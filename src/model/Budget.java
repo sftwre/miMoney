@@ -2,12 +2,19 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * This object represents a user's Budget.
+ * 
+ * @author Isaac Buitrago
+ *
+ */
+
 public class Budget {
 
 	
-	private ArrayList<Expense> expenses;
+	private ArrayList<Expense> expenses; //fixed expenses for the user
 	
-	private String title;
+	private String title; //The name of the budget
 	
 	public Budget(String title) {
 		
@@ -16,6 +23,7 @@ public class Budget {
 		
 	}
 	
+	//add an expense to the budget
 	public void addExpense(Expense expense) {
 		
 		this.expenses.add(expense);

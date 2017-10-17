@@ -9,6 +9,7 @@ import java.util.ArrayList;
  * @author Isaac Buitrago
  *
  */
+
 public class RecurringExpense {
 	
 	/**

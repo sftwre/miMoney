@@ -1,5 +1,5 @@
 package model;
 
-public class Expense {
+public abstract class Expense {
 
 }
