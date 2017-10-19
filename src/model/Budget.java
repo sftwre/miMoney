@@ -29,25 +29,14 @@ public class Budget {
 		this.expenses.add(expense);
 	}
 	
-	public void editBudget(Budget budget) {
-		
-		//copy the contents of the incoming to the current budget
-		
-		
-	}
-	
-	public void saveBudget(Budget budget) {
-		
-		
-	}
-	
-	public boolean delete(Budget budget) {
-		
-		return true;
-	}
 	
 	public String getTitle() {
 		
 		return this.title;
+	}
+	
+	public void setTitle(String title) {
+		
+		this.title = title;
 	}
 }
