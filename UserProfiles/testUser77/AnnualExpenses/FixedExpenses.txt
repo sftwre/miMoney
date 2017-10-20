@@ -1,0 +1,5 @@
+//File format: M-Expense type: amount : date
+//M is the numerical month with January representing 1
+
+1-Rent:700:1/30/2017, AutoInsurance:150:1/27/2017, AutoPayment:200:1/28/2017, HealthInsurance:75:1/30/2017,Utilities:150:1/30/2017, Subscriptions:15:1/30/2017
+7-Rent:750:7/30/2017, AutoInsurance:130:7/27/2017, AutoPayment:250:7/28/2017, HealthInsurance:90:7/30/2017,Utilities:150:7/30/2017, Subscriptions:15:7/30/2017
