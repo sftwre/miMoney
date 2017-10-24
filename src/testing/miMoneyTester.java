@@ -11,6 +11,13 @@ import model.FixedExpenses;
 import model.Income;
 import model.RecurringExpenses;
 
+/**
+ * 
+ * @author manueldeaguinaga
+ *
+ *We can use this package to test out objects and make sure each one is working right
+ */
+
 public class miMoneyTester {
 
 	@Test
