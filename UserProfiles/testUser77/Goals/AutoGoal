@@ -1,1 +1,4 @@
 //File format: Manuel Please specify
+
+cost: 15000, years: 4, interest rate: 0.08, paymets per month: 337.5, posible or not: yes
+
