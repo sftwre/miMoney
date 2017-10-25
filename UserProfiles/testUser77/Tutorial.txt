@@ -1,0 +1,10 @@
+miMoney Tutorial 
+-Log in
+ -username
+ -password
+Walkthrough the following:
+-Budgeting
+-Date
+-Expenses
+-Income
+-Goals(short term and long)
