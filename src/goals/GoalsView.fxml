@@ -37,6 +37,7 @@
                                   <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
+                                 
                                     <Button mnemonicParsing="false" prefHeight="110.0" prefWidth="150.0" text="HOME" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
