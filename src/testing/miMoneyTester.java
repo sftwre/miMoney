@@ -3,13 +3,14 @@ package testing;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import model.Goals;
-import model.Budget;
-import model.Date;
-import model.Expense;
-import model.FixedExpenses;
-import model.Income;
-import model.RecurringExpenses;
+
+import application.model.Budget;
+import application.model.Date;
+import application.model.Expense;
+import application.model.FixedExpenses;
+import application.model.Goals;
+import application.model.Income;
+import application.model.RecurringExpenses;
 
 /**
  * 

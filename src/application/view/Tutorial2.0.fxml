@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField layoutX="26.0" layoutY="24.0" prefHeight="164.0" prefWidth="365.0" text="Track your expenses in the calender view">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Button layoutX="398.0" layoutY="160.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="41.0" text="&gt;" />
+      <ImageView fitHeight="116.0" fitWidth="202.0" layoutX="149.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Pictures/Saved%20Pictures/images.png" />
+         </image></ImageView>
+   </children>
+</Pane>
