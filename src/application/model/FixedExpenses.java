@@ -15,17 +15,11 @@ public class FixedExpenses extends Expense {
 	
 	
 public FixedExpenses(double amount, Date date) 
-{super(amount, date);}
+{
+	super(amount, date);
+}
 
-public abstract getExpense();
 
 }
 
 
-//class AutoInsurance extends FixedExpenses{}
-
-
-ListView<FixedExpenses> list  = new ListView<FixedExpenses>();
-
-
-lis
