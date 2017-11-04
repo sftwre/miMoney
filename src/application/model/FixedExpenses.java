@@ -1,6 +1,5 @@
 package application.model;
 
-import javafx.scene.control.ListView;
 
 /**
  * Fixed Expenses occur periodically at a specific date.
