@@ -6,37 +6,35 @@ import java.util.regex.Pattern;
 import java.util.List;
 
 /**
- * 
+ * A Date has a month, day, and year
  * @author Isaac Buitrago
  *
  */
 public class Date implements Comparable<Date>
 {
-	final static private String INVALID_MONTH = "Invalid Month "; // Error String
-	
-	final static private int INVALID_DAY  = -1; // Error integer 
+	final static private String INVALID_MONTH = "Invalid Month "; // Used to indicate that 0 is an invalid month
 	 
 	private int month; // month in Date
 	
 	private int day; // day in Date
 	
 	private int year; // year in Date
+
+	// Number of days for each month of the year
+	public static final int DAYS_PER_MONTH[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}; 
 	
-	private static final int DAYS_PER_MONTH[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}; // Number of days for each month of the year
+	// Months of the year as a String
+	public static final String MONTHS_IN_YEAR[] = {INVALID_MONTH, "January", "February","March","April", "May", "June", "July", 
 	
-	private static final String MONTHS_IN_YEAR[] = {INVALID_MONTH, "January", "February","March","April", "May", "June", "July", 
-													"August", "September", "October", "November", "December"}; // Months of the year
+			"August", "September", "October", "November", "December"}; 
+	
+	
 	/**
-	 * Constructor for the date object. Parse the String for each field and validate input 
+	 * Constructor for the date object.
 	 */
 	 
-	public Date(String date)
+	public Date(int month, int day, int year)
 	{
-		int month = parseMonth(date);
-		int day = parseDay(date);
-		int year = parseYear(date);
-		
-		//perform error checking and throw an error if an invalid Date is encountered
 		
 		//check if the month is Invalid
 		if(month == 0)
@@ -64,60 +62,63 @@ public class Date implements Comparable<Date>
 	
 	/**
 	 * 
-	 * @param month string to parse for the month
-	 * @return month of the year in integer 
+	 * @return month as an integer
 	 */
-	private int parseMonth(String month)
+	public int getMonth() 
 	{
-		List<String> list = Arrays.asList(MONTHS_IN_YEAR);
-		
-		for(String M : MONTHS_IN_YEAR)
-		{
-				
-			if(M.regionMatches(true, 0, month, 0, 3))
-			{
-				return list.indexOf(M);
-			}
-		}
-		
-		return(list.indexOf(INVALID_MONTH));		
-	}
-	
-	/**
-	 * 
-	 * @param day string to parse for the day
-	 * @return day of the month in integer
-	 */
-	private int parseDay(String day)
-	{
-		//extract the day from the String
-		Pattern p = Pattern.compile("\\d+");
-        Matcher m = p.matcher(day);
-        
-        if(m.find())
-        {
-        	return(Integer.parseInt(m.group()));
-        }
-        
-        return (INVALID_DAY);
-	}
-	
-	/**
-	 * 
-	 * @param year day string to parse for the year
-	 * @return the year
-	 */
-	private int parseYear(String year)
-	{
-		String tokens[] = year.split(",");
-	
-		return( Integer.parseInt(tokens[1].trim()) );
+		return month;
 	}
 
 	/**
-	 * @param other Date object to compare against invoking Date object
-	 * @return Returns -1 if this Date is before the other Date, 
-	 * 0 if they are equal, and +1 if this Date is after the other Date. 
+	 * 
+	 * @param month of the year to edit in the current month
+	 */
+	public void setMonth(int month)
+	{
+		this.month = month;
+	}
+
+	/**
+	 * 
+	 * @return day of the month as an int
+	 */
+	public int getDay() 
+	{
+		return day;
+	}
+
+	/**
+	 * 
+	 * @param day of the month to edit in the current Date
+	 */
+	public void setDay(int day) 
+	{
+		this.day = day;
+	}
+
+	/**
+	 * 
+	 * @return the year as an int
+	 */
+	public int getYear() 
+	{
+		return year;
+	}
+
+	/**
+	 * 
+	 * @param year to edit in the current Date
+	 */
+	public void setYear(int year)
+	{
+		this.year = year;
+	}
+	
+	/**
+	 * Compare two date objects
+	 * @param other Date to compare to this Date
+	 * @return 0 if the Date objects are identical, 1 if this Date is more recent than other
+	 * , and -1 if this Date is older than other Date
 	 */
 	@Override
 	public int compareTo(Date other) 
@@ -163,10 +164,10 @@ public class Date implements Comparable<Date>
 
 	
 	/**
-	 * @return formatted String of the object state
+	 * @return formatted String of the Date in mm/dd/yyyy format 
 	 */
 	public String toString()
 	{
-		return(String.format("Date: %s %d, %d", MONTHS_IN_YEAR[this.month], this.day, this.year));
+		return(String.format("%d/%d/%d", this.month, this.day, this.year));
 	}
 }
