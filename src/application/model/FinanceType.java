@@ -4,8 +4,8 @@ package application.model;
  * A FinanceType enumerates the Users financial information.
  * Financial data related to the users Income is INCOME.
  * Financial data related to the users Goals is GOALS
- * Financial data relate to the users variable Expenses is REXPENSE
- * Financial data relate to the users Fixed Expenses is FEXPENSE
+ * Financial data related to the users variable Expenses is REXPENSE
+ * Financial data related to the users Fixed Expenses is FEXPENSE
  * 
  * @author Isaac Buitrago
  *
