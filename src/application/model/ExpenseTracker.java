@@ -2,6 +2,8 @@ package application.model;
 
 import java.util.ArrayList;
 
+import application.model.Expense.Expense;
+
 
 /**
  * This class is responsible for tracking a user's varaible Expenses

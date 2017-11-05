@@ -1,6 +1,8 @@
-package application.model;
+package application.model.Goals;
 
 import java.util.ArrayList;
+
+import application.model.Expense.Expense;
 
 /**
  * This object represents a user's Budget.

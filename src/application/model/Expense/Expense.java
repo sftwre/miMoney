@@ -1,7 +1,11 @@
-package application.model;
+package application.model.Expense;
+
+import application.model.Date;
 
 /**
- * 
+ * Each Expense object contains the amount that was spent
+ * and the date that the expense was made. This is an abstract
+ * class for
  * @author Isaac Buitrago
  *
  */
@@ -14,10 +18,8 @@ public abstract class Expense {
 	
 	public Expense(double amount, Date date) {
 		
-		if(amount >= 0 ) {
-			
+		if( amount >= 0 )
 			this.amount = amount;
-		}
 		
 		this.transactionDate = date;
 	}
@@ -33,7 +35,6 @@ public abstract class Expense {
 		{
 			this.amount = amount;
 		}
-		
 	}
 	
 	public Date getDate() 

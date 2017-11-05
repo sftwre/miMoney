@@ -1,5 +1,6 @@
-package application.model;
+package application.model.Expense;
 
+import application.model.Date;
 
 /**
  * Fixed Expenses occur periodically at a specific date.

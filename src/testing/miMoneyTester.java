@@ -6,11 +6,11 @@ import org.junit.Test;
 
 import application.model.Budget;
 import application.model.Date;
-import application.model.Expense;
-import application.model.FixedExpenses;
-import application.model.Goals;
 import application.model.Income;
 import application.model.RecurringExpenses;
+import application.model.Expense.Expense;
+import application.model.Expense.FixedExpenses;
+import application.model.Goals.Goals;
 
 /**
  * 
