@@ -14,12 +14,17 @@ public abstract class Expense {
 	
 	private double amount;			// The amount of the Expense
 	
+	private String item;
+	
 	private Date transactionDate;	// The Date the Expense was made
 	
-	public Expense(double amount, Date date) {
+	public Expense(double amount, Date date, String item) {
 		
 		if( amount >= 0 )
 			this.amount = amount;
+		
+		if(item.isEmpty() && item != null)
+			this.item = item;
 		
 		this.transactionDate = date;
 	}

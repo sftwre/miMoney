@@ -28,9 +28,9 @@ public class ExpenseTracker{
 	/**
 	 *@return ArrayList of expenses for the month 
 	 */
-	public ArrayList<Expense> getExpenses(){
+	public Expense getExpense(int index){
 		
-		return this.livingExpenses;
+		return this.livingExpenses.get(index);
 	}
 	
 	/**
