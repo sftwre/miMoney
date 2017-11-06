@@ -1,11 +1,8 @@
 package application.controller;
 
-import java.nio.file.*;
-import java.rmi.NoSuchObjectException;
+
 import java.io.*;
 import java.util.ArrayList;
-import java.util.IllegalFormatException;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.NoSuchElementException;
 import application.model.Expense.*;
@@ -14,8 +11,8 @@ import application.model.*;
 
 
 /**
- * Reads Income , ExpenseTracker, Fixed Expense, and Financial goals data
- * for a user.
+ * A FinancialDataParser can read Income,Expense,and Goals data
+ * from the users profile in UserProfiles directory
  * @author Isaac Buitrago
  *
  */
@@ -108,10 +105,10 @@ public class FinancialDataParser extends FileParser {
 			while(line != null) 
 			{
 				//clear the white space
-				line.replaceAll("\\s", "");
+				line = line.replaceAll("\\s","");
 				
 				//check that the data in the file is formatted correctly
-				if(! formattedData("[a-zA-z\\s]+", line))
+				if(! formattedData("[a-zA-Z\\s]+:\\d+_?\\d*", line))
 					throw new Exception(String.format("Data in %s is not formatted to standards", userProfile));
 
 				//obtain the data for each object by splitting the line on a colon
@@ -152,7 +149,7 @@ public class FinancialDataParser extends FileParser {
 	/**
 	 * Get all the Goals data for the user
 	 */
-	
+	//TODO 
 	public ArrayList<Goals> getUserGoals() { return null;}
 	
 	
@@ -202,10 +199,10 @@ public class FinancialDataParser extends FileParser {
 				{
 					
 					//clear out white space
-					properties.replaceAll("\\s+", "");
+					properties = properties.replaceAll("\\s", "");
 					
 					//Check the properties of an object are formated correctly
-					if(! formattedData("[a-zA-Z]+:\\d+\\.?\\d*:\\d+\\/\\d+\\/\\d+", properties))
+					if(! formattedData("[a-zA-Z]+:\\d+_?\\d*\\.?\\d*:\\d+\\/\\d+\\/\\d+", properties))
 						throw new Exception(String.format("Data in %s is not formatted to standards", userProfile));
 					
 					

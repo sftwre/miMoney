@@ -1,20 +1,15 @@
 package application.controller;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 import application.model.FinanceType;
 import application.model.User;
 
 
 /**
  * 
- * A FileRW can read and write data to a User's profile
+ * A FileParser contains the common objects and methods
+ * necessary to parse data from any file within the UserProfiles directory.
  * @author Isaac Buitrago
  *
  */
@@ -22,7 +17,7 @@ import application.model.User;
 public class FileParser {
 	
 	protected User user;							//The user who's data will be retrieved
-													//use relative paths Path or String  doesnt matter
+													
 	protected String userProfile; 					//Location of the User's profile in UserProfiles directory
 	
 	protected BufferedReader bufferInput;			//Buffer for faster reading of data
