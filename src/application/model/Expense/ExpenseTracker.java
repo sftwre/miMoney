@@ -1,23 +1,24 @@
-package model;
+package application.model.Expense;
 
 import java.util.ArrayList;
 
 
 /**
- * This class is responsible for tracking a user's living Expenses
+ * This class is responsible for tracking a user's varaible Expenses
  * on a monthly basis.
+ * 
  * @author Isaac Buitrago
  *
  */
 
-public class RecurringExpenses{
+public class ExpenseTracker{
 	
 	/**
 	 * Living expenses include Housing, Auto expenses, and General Insurance payments
 	 */
 	private ArrayList<Expense> livingExpenses;
 	
-	public RecurringExpenses() {
+	public ExpenseTracker() {
 
 		livingExpenses = new ArrayList<Expense>();
 	}

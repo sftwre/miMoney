@@ -1,4 +1,4 @@
-package model;
+package application.model.Goals;
 
 /**
  * @author manueldeaguinaga

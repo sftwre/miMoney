@@ -3,10 +3,10 @@
 //Note the underscore between numbers is allowed in Java and is useful for storing large numbers
 
 //User with a salary paid job
-Software Engineer:300_300, Passive Income:30_000, 
+Software Engineer:300_300, PassiveIncome:30_000
 
 //User with an hourly paid job
-Cashier:10_50
+Cashier:10.50
 
 //User with no paid job, just an Allowance/IRA/Pension
 NoIncome:0, PassiveIncome:3_000
