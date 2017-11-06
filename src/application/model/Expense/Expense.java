@@ -7,6 +7,7 @@ import application.model.Date;
  * and the date that the expense was made. This is an abstract
  * class for
  * @author Isaac Buitrago
+ * @author jguzm
  *
  */
 
