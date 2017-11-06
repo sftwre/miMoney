@@ -13,7 +13,7 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <Button layoutX="362.0" layoutY="140.0" mnemonicParsing="false" onAction="#handle" text="&gt;" />
-                  <TextField layoutX="14.0" layoutY="25.0" prefHeight="98.0" prefWidth="381.0" text="Welcome to mimoney financial planning made easy">
+                  <TextField layoutX="14.0" layoutY="25.0" prefHeight="98.0" prefWidth="381.0" text="miMoney: money management the way you want it">
                      <font>
                         <Font size="15.0" />
                      </font>
