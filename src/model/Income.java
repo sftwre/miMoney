@@ -13,7 +13,7 @@ public class Income {
 	private String title;
 	private double pay;
 
-	public void userProfile(String t, double p) {
+	public void userPay(String t, double p) {
 
 	
 		this.title = t;
