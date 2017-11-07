@@ -6,21 +6,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="282.0" prefWidth="442.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TitledPane animated="false" layoutX="-289.0" layoutY="-120.0" prefHeight="301.0" prefWidth="403.0" text="main">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <Button layoutX="362.0" layoutY="140.0" mnemonicParsing="false" onAction="#handle" text="&gt;" />
-                  <TextField layoutX="14.0" layoutY="25.0" prefHeight="98.0" prefWidth="381.0" text="miMoney: money management the way you want it">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
-               </children>
-            </AnchorPane>
-        </content>
-      </TitledPane>
+      <Pane layoutY="-1.0" prefHeight="282.0" prefWidth="442.0">
+         <children>
+            <TextField layoutX="70.0" layoutY="34.0" prefHeight="87.0" prefWidth="322.0" text="miMoney: money management the way you want it" />
+            <Button layoutX="403.0" layoutY="141.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="39.0" text="&gt;" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

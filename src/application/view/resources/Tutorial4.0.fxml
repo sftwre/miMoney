@@ -11,13 +11,13 @@
    <children>
       <Pane prefHeight="314.0" prefWidth="349.0">
          <children>
-            <TextField alignment="TOP_LEFT" layoutX="9.0" layoutY="7.0" prefHeight="93.0" prefWidth="317.0" text="Create a financial budget in the goals views">
+            <TextField alignment="TOP_LEFT" layoutX="6.0" layoutY="7.0" prefHeight="82.0" prefWidth="340.0" text="Create a financial budget in the goals views">
                <font>
                   <Font size="19.0" />
                </font>
             </TextField>
-            <Button layoutX="301.0" layoutY="132.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="46.0" text="&gt;" />
-            <ImageView fitHeight="203.0" fitWidth="303.0" layoutX="27.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
+            <Button layoutX="87.0" layoutY="273.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="145.0" text="Get Started" />
+            <ImageView fitHeight="160.0" fitWidth="259.0" layoutX="68.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/images.jpg" />
                </image></ImageView>
