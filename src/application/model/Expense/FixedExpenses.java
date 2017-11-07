@@ -14,9 +14,9 @@ import application.model.Date;
 public class FixedExpenses extends Expense {
 	
 	
-public FixedExpenses(double amount, Date date) 
+public FixedExpenses(double amount, Date date, String item) 
 {
-	super(amount, date);
+	super(amount, date, item);
 }
 
 

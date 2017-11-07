@@ -15,7 +15,7 @@ public abstract class Expense {
 	
 	private double amount;			// The amount of the Expense
 	
-	private String item;
+	private String item;			// description of the item bought
 	
 	private Date transactionDate;	// The Date the Expense was made
 	
