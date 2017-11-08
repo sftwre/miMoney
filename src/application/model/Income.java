@@ -1,36 +1,41 @@
+/**
+ * 
+ * @author Raul Cecena
+ *
+ */
+
 package application.model;
 
+import java.util.*;
+
 public class Income {
+
+	private String title;
+	private double pay;
+
+	public void userPay(String t, double p) {
+
 	
-	private String jobTitle;
+		this.title = t;
+		this.pay = p;
+
+	}// userProfile
+
 	
-	private double wage;
-	
-	
-	public Income(String jobTitle, double wage)
-	{
-		this.jobTitle = jobTitle;
-		this.wage = wage;
-	}
-	
-	public void setjobTitle(String jobTitle)
-	{
-		this.jobTitle = jobTitle;
-	}
-	
-	public String getjobTitle()
-	{
-		return (this.jobTitle);
-	}
-	
-	public void setWage(double wage)
-	{
-		this.wage = wage;
-	}
-	
-	public double getWage()
-	{
-		return(this.wage);
+
+	public String getTitle() {
+		return title;
 	}
 
-}
+	public void setTitle(String title) {
+			this.title = title;
+	}
+
+	public double getPay() {
+		return this.pay;
+	}
+
+	// user incomes stores how much they makes and job title.
+	//
+
+}// End public Income
