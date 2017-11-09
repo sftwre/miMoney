@@ -173,7 +173,7 @@ void createNewGoal(ActionEvent event)
 	
 	try
 	{
-	Parent root = FXMLLoader.load(getClass().getResource("../view/resources/CarGoalView.fxml"));
+	Parent root = FXMLLoader.load(getClass().getResource("../view/resources/GoalsView.fxml"));
 	
 	Scene scene = new Scene(root);
 	
