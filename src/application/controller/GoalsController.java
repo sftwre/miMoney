@@ -10,14 +10,14 @@ public class GoalsController implements EventHandler<ActionEvent> {
 	
 	@FXML
 	private Label output;
-	private Goals goals;
+	
 	
 	/**
 	 * MainControler constructor
 	 */
 	public GoalsController() {
 		super();
-		this.goals = new Goals();
+	
 	}
 	
 	/**
@@ -29,8 +29,8 @@ public class GoalsController implements EventHandler<ActionEvent> {
 	@Override
 	public void handle(ActionEvent event) {
 		Button b = (Button)event.getSource();
-		this.goals.information( b.getText());
-		this.output.setText( goals.getData() );
+		
+	
 	}
 	
 	
