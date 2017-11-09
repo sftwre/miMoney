@@ -1,7 +1,0 @@
-//File format: Expense type: amount : date
-//Note each day of the month is separated by a newline
-
-Food:10.23:1/15/2017, Gas:20.68:/1/15/2017
-Apparel:25.24:1/17/2017, Entertainment:15.25:1/17/2017,Food:15.37:1/17/2017
-Gas:22.34:1/23/2017
-Education:45.23:1/30/2017
