@@ -7,11 +7,43 @@ package application.model.Goals;
 
 public class Goals {
 	
-	private String goal;
-	private double budget;
-	private double rate;
-	private int years;
-	private double cost;
+	
+	private String projectName;
+	private String data;
+	private double totalCost;
+	private double interestRate;
+	private double downPayment;
+	private int year; 
+	private int time;
+	private boolean nextOrCancel;
+	
+	public Goals () {
+		projectName = "";
+		totalCost = 0.00;
+		interestRate = 0.00;
+		downPayment = 0.00;
+		year = 0;
+		time = 0;
+		nextOrCancel = true;
+		
+	}
+	
+	/**
+	 * @return the String value of what was just calculated or what the user is entering
+	 */
+	public String getData() {
+		return data;
+	}
+	
+	public void information ( String txt ){
+		System.out.printf(txt + "\n");
+		if(txt.equals("Continue")){
+			
+			
+		}
+	}
+
+/*
 	
 	public Goals(String goal, double budget, double rate, int years, double cost){
 		this.goal = goal;
@@ -20,10 +52,7 @@ public class Goals {
 		this.years = years;	
 		this.cost = cost;
 	}
-	/**
-	 * 
-	 * @return monthlyPayments
-	 */
+	
 	public double MonthlyPayments(){
 		double monthlyPayments;
 		double totalCost = TotalCost();
@@ -34,10 +63,7 @@ public class Goals {
 		return monthlyPayments;
 	}
 	
-	/**
-	 * 
-	 * @return totalCost
-	 */
+	
 	public double TotalCost(){
 		double totalCost;
 		totalCost = this.cost+(this.cost*(this.rate*0.01));
@@ -45,10 +71,7 @@ public class Goals {
 		return totalCost;
 	}
 	
-	/**
-	 * 
-	 * @return yes if is possible or not if is not
-	 */
+	
 	public String PosibleOrNot(){
 		
 		if(this.budget >= MonthlyPayments())
@@ -57,9 +80,7 @@ public class Goals {
 			return "no";
 	}
 	
-	/**
-	 * @return a string with the information that contains the current goal
-	 */
+	
 	public String toString(){
 		return String.format("goal name: %s, cost: %d, "
 				+ "years: %d interest rate: %d payments "
@@ -71,4 +92,5 @@ public class Goals {
 				, MonthlyPayments()
 				, PosibleOrNot());
 	}
+	*/
 }
