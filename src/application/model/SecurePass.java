@@ -1,3 +1,5 @@
+package application.model;
+
 /**
  * Every user's password is hashed and stored
  * with a known salt (randomized).
@@ -16,7 +18,7 @@ import java.util.Scanner;
 
 public class SecurePass
 {
-    private final Scanner input = new Scanner(System.in);.
+    private final Scanner input = new Scanner(System.in);
 	
   public void secure()
   { 

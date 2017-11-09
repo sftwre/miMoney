@@ -1,4 +1,2 @@
-//File format:
-
-cost: 15000, years: 4, interest rate: 0.08, paymets per month: 337.5, posible or not: yes
+cost: 15000, years: 4, interest rate: 0.08, payments per month: 337.5, possible or not: yes
 

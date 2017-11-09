@@ -162,7 +162,7 @@ public class FinancialDataParser extends FileParser {
 	 * .
 	 * @return ArrayList of Expense objects
 	 */
-	public ArrayList<Expense> getMonthlyExpensesData(Date date) 
+	public ArrayList<Expense> getMonthlyExpenseData(Date date) 
 	{
 		
 		ArrayList<Expense> expensesList =  new ArrayList<Expense>();

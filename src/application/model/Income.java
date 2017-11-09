@@ -12,6 +12,12 @@ public class Income {
 
 	private String title;
 	private double pay;
+	
+	public Income(String title, double pay)
+	{
+		this.title = title;
+		this.pay = pay;
+	}
 
 	public void userPay(String t, double p) {
 

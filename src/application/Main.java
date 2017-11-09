@@ -30,8 +30,6 @@ public class Main extends Application {
 			
 			primaryStage.setScene(scene);
 			
-			this.currScene = scene;
-			
 			primaryStage.show();
 			
 		} catch(Exception e) {
