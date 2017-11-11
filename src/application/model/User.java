@@ -46,7 +46,7 @@ public class User {
 	}
 
 	/**
-	 * Use regex to standerdize the storing of phone numbers
+	 * Use regex to standardize the storing of phone numbers
 	 * @param phone
 	 */
 	public void setPhone(String phone) {
