@@ -2,11 +2,10 @@ package application.controller;
 
 
 import javafx.event.ActionEvent;
-
 import java.io.IOException;
-
 import application.Main;
-import application.model.Goals.Goals;
+import application.model.*;
+import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -57,6 +56,8 @@ public class FinancialOverviewController {
     
     @FXML
     private GridPane incomePaneGrid;		// Grid to add the save button for editing the Users Income
+    
+    private FinancialDataParser financialData;	//FileParser for retrieving the Financial information of the User
 
     
  ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(	// data for the pieChart
@@ -71,7 +72,7 @@ public class FinancialOverviewController {
 		 "House : $120,000", "Savings :  $7000");
  
 /**
- * Used to open the user's profile for reading and retrieving the Income data of the user
+ * Used to open the user's profile for reading and retrieving the Spenfing data of the user
  * to display on the PieChart.
  */
     
@@ -90,13 +91,28 @@ public void loadGoalsData()
 
 /**
  * Called by the FXMLLoader to initialize the controller. 
- * Set up the data of the app and display it
+ * Initialize the Income, Expenses, and Goals data of the user
+ * and display it
  */
 public void initialize()
 {
+	//update the pieChart to display the expenses of the user
 	spendingChart.setData(pieChartData);
 	
+	//populate the Income pane with the income of the user
+	financialData = new FinancialDataParser(new User("testUser77"));
+	
+	ArrayList<Income> userIncome = financialData.readIncome(FinanceType.INCOME);
+	
+	//TODO format the user income
+	employmentTextField.setText(userIncome.get(0).getTitle());
+	
+	salaryTextField.setText(String.valueOf(userIncome.get(0).getPay()));
+	
+	//populate the Goals pane with the current Goals
 	loadGoalsData();
+	
+	
 }
 
 
@@ -162,8 +178,6 @@ public void editIncome(ActionEvent event)
 @FXML
 void createNewGoal(ActionEvent event) 
 {
-	
-	//TODO change CarGoalView.fxml when it is renamed
 	
 	Stage popUp =  new Stage();
 	
