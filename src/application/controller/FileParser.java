@@ -1,5 +1,4 @@
 package application.controller;
-
 import java.io.BufferedReader;
 import java.io.File;
 import application.model.FinanceType;
@@ -28,7 +27,7 @@ public FileParser(User user)
 {		
 		this.user = user;
 		this.userProfile = "UserProfiles" + 
-		File.pathSeparator + user.getUsername();
+		File.separator + user.getUsername() + File.separator;
 }
 
 /**
@@ -73,17 +72,10 @@ public String getUserProfile() {
  * 
  * @param userProfile whose data is being worked with
  */
-public void setUserProfile(User user) {
-	this.userProfile = "UserProfiles" + File.pathSeparator + user.getUsername();
+public void setUserProfile(User user) 
+{
+	this.userProfile = "UserProfiles" + File.separator + user.getUsername() + File.separator;
 }
 
-
-/**
- * Reset the path that the user will
- * @param userProfile the path to the User's profile in the UserProfiles directory
- */
-public void setUserProfile(String userProfile) {
-	this.userProfile = userProfile;
-}
 
 }
