@@ -17,7 +17,7 @@ public class CalendarView {
 	 * This method fills the current month tiles days
 	 * with the corresponding days for the month.
 	 */
-	public fill() {
+	public void fill() {
 		
 	}// END fill()
 
