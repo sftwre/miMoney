@@ -16,7 +16,7 @@ public class TutorialController {
     void nextScene(ActionEvent event) {
     	Parent tutor;
     	try {
-    		tutor = FXMLLoader.load(getClass().getClassLoader().getResource("application.view.resources/Tutorial2.0.fxml"));
+    		tutor = FXMLLoader.load(getClass().getClassLoader().getResource("../view/resources/Tutorial2.0.fxml"));
     	}catch(IOException e) {
     		e.printStackTrace();
     	}
