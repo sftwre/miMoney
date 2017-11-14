@@ -15,9 +15,9 @@ public abstract class Expense {
 	
 	private double amount;			// The amount of the Expense
 	
-	private String item;			// description of the item bought
-	
 	private Date transactionDate;	// The Date the Expense was made
+	
+	private String item;			// description of the item bought
 	
 	public Expense(double amount, Date date, String item) {
 		
@@ -30,6 +30,14 @@ public abstract class Expense {
 		this.transactionDate = date;
 	}
 	
+	public String getItem() {
+		return item;
+	}
+
+	public void setItem(String item) {
+		this.item = item;
+	}
+
 	public double getAmmount() 
 	{
 		return this.amount;
