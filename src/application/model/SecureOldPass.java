@@ -35,34 +35,13 @@ public class SecureOldPass extends SecurePass{
 	public void secure(String user)
 	{
 		currentUser = new User(user);
-		salt = retrieveSalt(user);
+		salt = currentUser.getSalt();
 		hash = super.hashFun(input.nextLine(), salt);
 		//TODO: find another way to take password input, above line compiles but will not work in the end
 		
-		oldHash = retrieveHash(user);
+		oldHash = currentUser.getPassword();
 		auth(hash, oldHash);
 	}//END secure()
-
-	/**
-	 * 
-	 * @param user
-	 * @return
-	 */
-	public String retrieveSalt(String user)
-	{
-		return currentUser.getSalt();
-	}// END retrieveSalt()
-	
-	/**
-	 * 
-	 * @param user
-	 * @return
-	 */
-	public String retrieveHash(String user)
-	{
-		return currentUser.getPassword();
-	}//END retrieveHash()
-	
 	
 	/**
 	 * 
