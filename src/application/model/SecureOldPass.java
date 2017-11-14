@@ -9,7 +9,8 @@ import java.util.Scanner;
  * TODO: Create SecureOldPass object and link with Login.fxml
  * then let this class do most of the work. Controller must
  * send user and password field input to this class. Use only
- * the secure() method
+ * the secure() method (acts as similarly to the initialize() 
+ * seen in other classes within miMoney)
  *
  */
 
