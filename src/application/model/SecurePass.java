@@ -1,8 +1,11 @@
 package application.model;
 
 /**
- * Every user's password is hashed and stored
- * with a known salt (randomized).
+ * Every user account has a user, salt, pass(hash)
+ * associated with it. Their pass input is combined
+ * with the accounts unique salt and then hashed.
+ * This salt and hash is stored with the user
+ * account and is used for authentication purposes.
  * @author jguzm
  **/
 
@@ -18,34 +21,6 @@ import java.util.Scanner;
 
 public class SecurePass
 {
-    private final Scanner input = new Scanner(System.in);
-	
-  public void secure()
-  { 
-    String salt = createSalt();
-    
-    System.out.printf("Enter password: %n");
-    String hash = hashFun(input.nextLine(), salt);
-    
-    System.out.printf("this is the salt: %s%n", salt);
-    System.out.printf("this is the hash: %s\n", hash);
-    
-    //TODO: take hash and store with salt and username as key
-  }// END method()
-  
-  public static String createSalt()
-  {
-    SecureRandom rand = new SecureRandom();
-    StringBuilder build = new StringBuilder();
-    
-    byte salt[] = new byte[32];
-    rand.nextBytes(salt);
-    
-    for(int i = 0; i<salt.length; i++)
-      build.append(String.format("%02x", salt[i]));
-    
-    return build.toString();
-  }// END createSalt()
   
   public static String hashFun(String pass, String salt)
   {
