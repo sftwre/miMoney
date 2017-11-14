@@ -15,8 +15,10 @@ public class User {
 	
 	private String password;		//The password of the user
 	
+	private String salt;
+
 	private String phone;			//The phone number of the user
-	
+		
 	private boolean authenticated;	//Flag to determine if the user is logged in
 
 	
@@ -40,6 +42,14 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
 
 	public String getPhone() {
 		return phone;
@@ -54,6 +64,16 @@ public class User {
 		//TODO
 		this.phone = phone;
 	}
+
+	public boolean isAuthenticated() {
+		return authenticated;
+	}
+
+	public void setAuthenticated(boolean authenticated) {
+		this.authenticated = authenticated;
+	}
+	
+	
 	
 
 }
