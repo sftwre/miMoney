@@ -1,8 +1,5 @@
-//File format: Expense type: amount : date
-//Note each day of the month is separated by a newline
-
-Food:11.15:2/05/2017, PersonalCare:30.56:2/05/2017
-Apparel:25.24:2/17/2017, Entertainment:15.25:2/17/2017
-Medical:1_500.37:2/19/2017, PublicTransport:5:2/19/2017
-Gas:25.34:2/23/2017,
-Luxury:22:2/27/2017
+Food:11.15:2/05/2017:Mc Donalds Cheese Burger,PersonalCare:30.56:2/05/2017:Shaving cream and razor
+Apparel:25.24:2/17/2017:Levi's T-shirt,Entertainment:15.25:2/17/2017:Movie theaters
+Medical:1500.37:2/19/2017:broken arm,PublicTransportation:5:2/19/2017:via bus
+Gas:25.34:2/23/2017:
+Luxury:22:2/27/2017:Bud Lite 6-pack

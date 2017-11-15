@@ -1,0 +1,1 @@
+HomePayment:700:1/30/2017:Apartment rent,AutoInsurance:150:1/27/2017:All State Car Insurance,AutoPayment:200:1/28/2017:car payment,HealthInsurance:75:1/30/2017:Ally health Insurance,Utilities:150:1/30/2017:light and water,Subscriptions:15:1/30/2017:Netflix

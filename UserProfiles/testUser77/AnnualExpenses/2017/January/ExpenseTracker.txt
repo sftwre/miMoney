@@ -1,4 +1,4 @@
-Food:10.23:1/15/2017, Gas:20.68:1/15/2017
-Apparel:25.24:1/17/2017, Entertainment:15.25:1/17/2017,Food:15.37:1/17/2017
-Gas:22.34:1/23/2017
-Education:45.23:1/30/2017
+Food:10.23:1/15/2017:Golden Coral,Gas:20.68:1/15/2017:
+Apparel:25.24:1/17/2017:sandals,Entertainment:15.25:1/17/2017:bowling,Food:15.37:1/17/2017:Panera
+Gas:22.34:1/23/2017:Shell
+Education:45.23:1/30/2017:Java 9 for Programmers book

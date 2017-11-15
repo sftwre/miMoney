@@ -1,3 +1,0 @@
-//File format: Budget Title, Expense type: amount...,
-
-Summer Budget,Gas:80, Food:50, Home Maintenance:30, Entertainment:20.45, PersonalCare:30.25
