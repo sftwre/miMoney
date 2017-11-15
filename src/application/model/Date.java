@@ -2,7 +2,7 @@ package application.model;
 
 
 /**
- * A Date has a month, day, and year
+ * A Date has a month, day, and year.
  * @author Isaac Buitrago
  *
  */
@@ -26,7 +26,7 @@ public class Date implements Comparable<Date>
 	
 	
 	/**
-	 * Constructor for the date object.
+	 * Constructor for the date object in North American mm,dd,yyyy format
 	 */
 	 
 	public Date(int month, int day, int year)
