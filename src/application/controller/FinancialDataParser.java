@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.nio.file.Path;
 import java.nio.file.DirectoryStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Pattern;
 import java.util.NoSuchElementException;
 import application.model.Expense.*;
@@ -23,7 +24,7 @@ import application.model.*;
 public class FinancialDataParser extends FileParser {
 	
 	private String line;				// Store a line of text from a file
-	private String[] rawObjects;		// raw data used to instantiate an object
+	private String rawObjects[];		// raw data used to instantiate an object
 
 	public FinancialDataParser(User user) 
 	{
@@ -55,13 +56,9 @@ public class FinancialDataParser extends FileParser {
 	
 			
 		case REXPENSE:
-		
-			this.userProfile += "AnnualExpenses" + File.separator;	
-			break;
-		
 		case FEXPENSE:
 		
-			this.userProfile += "AnnualExpenses" + File.separator;
+			this.userProfile += "AnnualExpenses" + File.separator;	
 			break;
 		}
 		
@@ -108,8 +105,10 @@ public class FinancialDataParser extends FileParser {
 			
 			line = bufferInput.readLine();
 			
-			while(line != null && !line.equals("")) 
+			while(line != null) 
 			{
+				//no need to split the line on commas, each line is a separate Income
+				
 				//check that the data in the file is formatted correctly
 				if(! Pattern.matches("[a-zA-Z\\s]+:\\d+", line))
 					throw new Exception(String.format("Data in %s is not formatted to standards", userProfile));
@@ -160,25 +159,60 @@ public class FinancialDataParser extends FileParser {
 	//TODO 
 	public ArrayList<Goals> readGoals(FinanceType recordType) {
 		
+		//list of Goals for the user
+		ArrayList<Goals> goalsList = new ArrayList<Goals>();
+		
 		//reset root directory of the current user
 		setUserProfile(this.user);
 		
+		//prepare the userProfile to read from the Goals directory
 		this.prepareBuffRead(recordType);
 		
-		Path goalsDir = Paths.get(this.userProfile);
+		Path goalsDir = Paths.get(userProfile);
 		
 		
 		try {
 			
-		
 		DirectoryStream<Path> directoryStream = Files.newDirectoryStream(goalsDir);
 		
 		for(Path p : directoryStream)
-			System.out.println(p);
+		{
+			//Create reader for character files
+			FileReader  file =  new FileReader(p.toFile());
+			
+			bufferInput = new BufferedReader(file);
+			
+			line = bufferInput.readLine();
+					
+			while(line != null)
+			{
+				// obtain the data by splitting the line on commas
+				rawObjects = line.split(",");
+				
+				//for each set of properties, instantiate a new Goal
+				for(String properties : rawObjects)
+				{
+					//check that the data in the file is formatted correctly
+					if(!formattedData("[]", properties))
+						throw new Exception(String.format("Data in %s is not formatted to standards", userProfile));
+					
+					Goals financialGoals = new Goals();
+					
+					goalsList.add(financialGoals);
+				}
+				
+			}
+			
+			bufferInput.close();
+		}
 		
 		} catch(IOException e){
 			
 			System.out.printf("Could not locate the directory : %s\n", userProfile);
+			
+		} catch (Exception e) {
+			
+			System.out.println(e.getMessage());
 		}
 		
 		
@@ -190,15 +224,17 @@ public class FinancialDataParser extends FileParser {
 	/**
 	 * Used to retrieve the Expenses of a user based on the recordType.
 	 * If FinanceType FEXPENSE is passed, all the fixed expenses of the User
-	 * are parsed from FixedExpenses.txt and placed into a ArrayList
+	 * are parsed from FixedExpenses.txt and placed into an ArrayList
 	 * 
-	 * If FinanceType REXPENSE is passed, all the monthly expense in SpendingTracker.txt
-	 * are placed into an ArrayList. The SpendingTracker.txt file selected is based on the
-	 * year and month passed into the date
-	 * Ex: Date object 1/1/2017 and 1/12/2017 both return the Expense objects for the month of
+	 * If FinanceType REXPENSE is passed, all the monthly expenses in SpendingTracker.txt
+	 * are placed into an ArrayList. The SpendingTracker.txt file is selected based on the
+	 * year and month in the date argument.
+	 * Ex: Date object 1/1/2017 and 1/12/2017 both return the Expense data for the month of
 	 * January 2017, so the day used in the Date object is irrelevant.
 	 * 
-	 * @param date month and year to query expense data from SpendingTracker.txt in the users AnnualExpenses folder
+	 * @param date month and year to query expense data
+	 * @param recordType of Expense data to query. FEXPENSE for fixed expenses that occur monthly 
+	 * and REXPENSE for variable expenses that occur during the month.
 	 * .
 	 * @return ArrayList of Expense objects
 	 */
@@ -208,51 +244,55 @@ public class FinancialDataParser extends FileParser {
 		
 		ArrayList<Expense> expenseList = new ArrayList<Expense>();
 		
-		//reset root directory of the current user
+		//reset URL of UserProfile to root directory for the current User
 		setUserProfile(this.user);
 		
 try {
 			
-			if(recordType != FinanceType.FEXPENSE || recordType != FinanceType.REXPENSE)
+			if( recordType != FinanceType.FEXPENSE && recordType != FinanceType.REXPENSE)
 			{
 					throw new NoSuchElementException(
-							String.format("getExpenses cannot read records of type: %s", recordType));
+							String.format("readExpenses cannot read records of type: %s", recordType));
 			}
 			
 			//prepare the Buffer to read from a file relevant to the recordType
 			this.prepareBuffRead(recordType);
 			
 			
-			//if a REXPENSE is desired, set userProfile to ExpenseTracker.txt for the specified year and month
+			//if a REXPENSE is desired, set userProfile to ExpenseTracker.txt expense file for year and month in date
 			if(recordType == FinanceType.REXPENSE)
 			{
-				userProfile += String.format("%d%c%s%c%s", date.getYear(), File.separator, 
+				
+				userProfile += String.format("%d%s%s%s%s", date.getYear(), File.separator, 
 								Date.MONTHS_IN_YEAR[date.getMonth()] , File.separator, "ExpenseTracker.txt");
 			}
 			
+			//FEXPENSE is desired, set the userProfile to FixedExpenses.txt expense file for year in date
 			else
-				userProfile += String.format("%d", date.getYear());
+				userProfile += String.format("%d%s%s", date.getYear(), File.separator, "FixedExpenses.txt");
 			
-			//read expense data from the specified FixedExpenses.txt in the AnnualExpenses folder
+			//read expense data from the expense file
 			bufferInput = new BufferedReader(new FileReader(this.userProfile));
 			
 			line = bufferInput.readLine();
 			
 			while(line != null) 
 			{
-
+				
 				//obtain the data for each object by splitting the line on comma
 				rawObjects = line.split(",");
 				
-				for(String properties : rawObjects)
+				for(String object : rawObjects)
 				{
-					//Check the properties of an object are formated correctly
-					if(! formattedData("[a-zA-Z]+:\\d+:\\d\\/\\d+\\/\\d+", properties))
-						throw new Exception(String.format("Data in %s is not formatted to standards", userProfile));
 					
+					//Check the properties of an object are formated correctly
+					if(! formattedData("[a-zA-Z]+:[\\d\\.]+:\\d+\\/\\d+\\/\\d+:.*", object ))
+					{	
+						throw new Exception(String.format("Data in %s is not formatted to standards", userProfile));
+					}
 					
 					//Instantiate the Expense object based on the first token in the properties
-					Expense e = createExpenseObject(properties.split(":"));
+					Expense e = createExpenseObject(object);
 					
 					expenseList.add(e);
 				}
@@ -277,7 +317,6 @@ try {
 		} catch(Exception e){
 			
 			System.out.println(e.getMessage());
-			
 		}
 		
 		return (expenseList);
@@ -288,165 +327,196 @@ try {
 	/**
 	 * This method instantiates a new Expense object with it's associated properties.
 	 * 
-	 * @param properties of the Expense Object to instantiate. The first element of properties
-	 * is reserved for the type of Expense object to instantiate, each other element is a property of the
-	 * Expense object.
-	 * Ex: properties[] = {"Food", "12.56", "12/15/2016"}
-	 * @return Expense object 
-	 * @throws Exception if the Expense object in properties[0] is undefined
+	 * @param object string representing the properties of an Expense object. The properties
+	 * are string separated by a colon ':', where the first string indicates the type of Expense object
+	 * and all other strings indicate the
+	 * Expense.
+	 * Ex: Food:5.56:12/15/2016:In-N-Out Double-Double
+	 * @return Expense object sub-type 
+	 * @throws Exception if the Expense object in properties.get(0) is undefined
 	 */
-	private Expense createExpenseObject(String[] properties) throws Exception {
+	private Expense createExpenseObject(String object) throws Exception {
 		
-		//create a date object to construct an Expense
-		//String[] mdy = properties[2].split("\\/"); 
+		//properties of an Expense object separated by colon
+		ArrayList<String> properties = new ArrayList<String>(Arrays.asList(object.split(":")));
 		
-		//Date date = new Date(Integer.parseInt(mdy[0]), Integer.parseInt(mdy[1]) , Integer.parseInt(mdy[2]));
+		//If the last colon contains no text, add null to indicate that the Expense contains no item 
+		if(properties.size() == 3)
+		{
+			properties.add(null);
+		}
+				
+		//create a date object from the second to construct an Expense
+		String[] mdy = properties.get(2).split("\\/");
 		
-		if(properties[0].equals("Food"))
+		Date date = new Date(Integer.parseInt(mdy[0]), Integer.parseInt(mdy[1]) , Integer.parseInt(mdy[2]));
+		
+		
+		if(properties.get(0).equals("Food"))
 		{
 			
-		/*
-			return new Food(Double.valueOf(properties[1]), date );
-		*/
+			return new Food(Double.valueOf(properties.get(1)), date, properties.get(3));
+			
 		}
 		
-		else if(properties[0].equals("Gas")) 
+		else if(properties.get(0).equals("Gas")) 
 		{
-		/*
-			return new Gas(Double.valueOf(properties[1]), date );
-		*/
+	
+			return new Gas(Double.valueOf(properties.get(1)), date, properties.get(3) );
+			 
 		}
 		
-		else if(properties[0].equals("Apparel")) 
+		else if(properties.get(0).equals("Apparel")) 
 		{
-		/*
-			return new Apparel(Double.valueOf(properties[1]), date );
-		*/
+		
+			return new Apperal(Double.valueOf(properties.get(1)), date, properties.get(3) );
+		
 		}
 		
-		else if(properties[0].equals("Medical")) 
+		else if(properties.get(0).equals("Medical")) 
 		{
-		/*
-			return new Medical(Double.valueOf(properties[1]), date );
-		*/
+		
+			return new Medical(Double.valueOf(properties.get(1)), date, properties.get(3) );
+		
 		}
 		
-		else if(properties[0].equals("HomeMaintenance")) 
+		else if(properties.get(0).equals("HomeMaintenance")) 
 		{
-		/*
-			return new HomeMaintenance(Double.valueOf(properties[1]), date );
-		*/
+		
+			return new HomeMaintenance(Double.valueOf(properties.get(1)), date, properties.get(3) );
+		
 		}
 		
-		else if(properties[0].equals("AutoMaintenance")) 
+		else if(properties.get(0).equals("AutoMaintenance")) 
 		{
-		/*
-			return new AutoMaintenance(Double.valueOf(properties[1]), date );
-		*/
+		
+			return new AutoMaintenance(Double.valueOf(properties.get(1)), date, properties.get(3) );
+		
 		}
 		
-		else if(properties[0].equals("PersonalCare")) 
+		else if(properties.get(0).equals("PersonalCare")) 
 		{
-		/*
-			return new PersonalCare(Double.valueOf(properties[1]), date );
-		*/
+		
+			return new PersonalCare(Double.valueOf(properties.get(1)), date, properties.get(3) );
+		
 		}
 		
-		else if(properties[0].equals("Entertainment")) 
+		else if(properties.get(0).equals("Entertainment")) 
 		{
-		/*
-			return new Entertainment(Double.valueOf(properties[1]), date );
-		*/	
+		
+			return new Entertainment(Double.valueOf(properties.get(1)), date, properties.get(3));
+		
 		}
 		
-		else if(properties[0].equals("Luxury")) 
+		else if(properties.get(0).equals("Education")) 
 		{
-		/*
-			return new Luxury(Double.valueOf(properties[1]), date );
-		*/	
+		
+			return new Education(Double.valueOf(properties.get(1)), date, properties.get(3));
+			
 		}
 		
-		else if(properties[0].equals("PublicTransportation")) 
+		else if(properties.get(0).equals("Subscriptions")) 
 		{
-		/*
-			return new PublicTransportation(Double.valueOf(properties[1]), date );
-		*/	
+		
+			return new Subscriptions(Double.valueOf(properties.get(1)), date, properties.get(3) );
+		
 		}
 		
-		else if(properties[0].equals("Miscellaneous")) 
+		else if(properties.get(0).equals("Luxury")) 
 		{
-		/*
-			return new Miscellaneous(Double.valueOf(properties[1]), date );
-		*/	
+		
+			return new Luxury(Double.valueOf(properties.get(1)), date, properties.get(3) );
+		
 		}
 		
-		else if(properties[0].equals("HomeInsurance")) 
+		else if(properties.get(0).equals("PublicTransportation")) 
 		{
-		/*
-			return new HomeInsurance(Double.valueOf(properties[1]), date );
-		*/	
+		
+			return new PublicTransportation(Double.valueOf(properties.get(1)), date, properties.get(3) );
+		
 		}
 		
-		else if(properties[0].equals("LifeInsurance")) 
+		else if(properties.get(0).equals("Miscellaneous")) 
 		{
-		/*
-			return new LifeInsurance(Double.valueOf(properties[1]), date );
-		*/	
+		
+			return new Miscellaneous(Double.valueOf(properties.get(1)), date, properties.get(3) );
+		
 		}
 		
-		else if(properties[0].equals("HealthInsurance")) 
+		else if(properties.get(0).equals("HomeInsurance")) 
 		{
-		/*
-			return new HealthInsurance(Double.valueOf(properties[1]), date );
-		*/	
+		
+			return new HomeInsurance(Double.valueOf(properties.get(1)), date, properties.get(3));
+		
 		}
 		
-		else if(properties[0].equals("CarInsurance")) 
+		else if(properties.get(0).equals("LifeInsurance")) 
 		{
-		/*
-			return new CarInsurance(Double.valueOf(properties[1]), date );
-		*/	
+		
+			return new LifeInsurance(Double.valueOf(properties.get(1)), date, properties.get(3));
+			
 		}
 		
-		else if(properties[0].equals("CarPayment")) 
+		else if(properties.get(0).equals("HealthInsurance")) 
 		{
-		/*
-			return new CarPayment(Double.valueOf(properties[1]), date );
-		*/	
+		
+			return new HealthInsurance(Double.valueOf(properties.get(1)), date, properties.get(3));
+		
 		}
 		
-		else if(properties[0].equals("HomePayment")) 
+		else if(properties.get(0).equals("AutoInsurance")) 
 		{
-		/*
-			return new HomePayment(Double.valueOf(properties[1]), date );
-		*/	
+		
+			return new AutoInsurance(Double.valueOf(properties.get(1)), date, properties.get(3));
+			
 		}
 		
-		else if(properties[0].equals("SavingsGoalExpense")) 
+		else if(properties.get(0).equals("AutoPayment")) 
 		{
-		/*
-			return new SavingsGoalExpense(Double.valueOf(properties[1]), date );
-		*/	
+		
+			return new AutoPayment(Double.valueOf(properties.get(1)), date, properties.get(3));
+			
 		}
 		
-		else if(properties[0].equals("VacationGoalExpense")) 
+		else if(properties.get(0).equals("HomePayment")) 
 		{
-		/*
-			return new VacationGoalExpense(Double.valueOf(properties[1]), date );
-		*/	
+		
+			return new HomePayment(Double.valueOf(properties.get(1)), date, properties.get(3));
+			
 		}
 		
-		else if(properties[0].equals("AutoGoalExpense")) 
+		else if(properties.get(0).equals("Utilities")) 
 		{
-		/*
-			return new AutoGoalExpense(Double.valueOf(properties[1]), date );
-		*/	
+		
+			return new Utilities(Double.valueOf(properties.get(1)), date, properties.get(3));
+			
+		}
+		
+		else if(properties.get(0).equals("SavingsGoalExpense")) 
+		{
+		
+			return new SavingsGoalExpense(Double.valueOf(properties.get(1)), date, properties.get(3));
+		
+		}
+		
+		else if(properties.get(0).equals("VacationGoalExpense")) 
+		{
+		
+			return new VacationGoalExpense(Double.valueOf(properties.get(1)), date, properties.get(3));
+	
+		}
+		
+		else if(properties.get(0).equals("AutoGoalExpense")) 
+		{
+		
+			return new AutoGoalExpense(Double.valueOf(properties.get(1)), date, properties.get(3));
+			
 		}
 		
 		else
-			throw new Exception(String.format("No such Expense Object %s", properties[0]));
+			throw new Exception(String.format("No such Expense Object %s", properties.get(0)));
 		
-		return null;
+		
 	}
 
 	

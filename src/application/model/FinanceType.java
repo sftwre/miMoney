@@ -15,7 +15,7 @@ public enum FinanceType {
 	
 	INCOME(1),	// Read or Write to Income.txt
 	GOALS(2),	// Read or Write to Goals sub-directory
-	REXPENSE(3),// Read or Write to RecurringExpenses.txt
+	REXPENSE(3),// Read or Write to SpendingTracker.txt
 	FEXPENSE(4);// Read or Write to FixedExpenses.txt
 	
 	private int type;
