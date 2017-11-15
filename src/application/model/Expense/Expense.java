@@ -24,14 +24,21 @@ public abstract class Expense {
 		if( amount >= 0 )
 			this.amount = amount;
 		
-		if(item.isEmpty() && item != null)
+		if(item == null || item.isEmpty() || item.matches("^\\s*$"))
+			this.item = null;
+		else
 			this.item = item;
 		
 		this.transactionDate = date;
 	}
 	
 	public String getItem() {
-		return item;
+		
+		if(item == null)
+			return "";
+		
+		else
+			return this.item;
 	}
 
 	public void setItem(String item) {
