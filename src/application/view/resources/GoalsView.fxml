@@ -8,13 +8,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.GoalsController">
    <children>
       <Pane prefHeight="400.0" prefWidth="400.0">
          <children>
             <Accordion prefHeight="400.0" prefWidth="400.0">
               <panes>
-                <TitledPane animated="false" text="Car Goal">
+                <TitledPane animated="false" prefHeight="400.0" prefWidth="400.0" text="Car Goal">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -40,21 +40,21 @@
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Time" textAlignment="CENTER" wrappingWidth="200.0" GridPane.rowIndex="3" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Interes Rate (APR)" textAlignment="CENTER" wrappingWidth="200.0" GridPane.rowIndex="4" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Down Paument" textAlignment="CENTER" wrappingWidth="200.0" GridPane.rowIndex="5" />
-                                    <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="170.0" text="Cancel" GridPane.rowIndex="7" />
-                                    <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="170.0" text="Continue" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                    <TextField promptText="Exp. Lamborghini Diablo" GridPane.columnIndex="1" />
-                                    <TextField promptText="Exp. 2017" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField promptText="Exp. $494,195" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField promptText="Exp. 4 Years " GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField promptText="Exp. 8%" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <TextField promptText="Exp. $100,000" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <Button fx:id="Cancel" mnemonicParsing="false" onAction="#cCancel" prefHeight="27.0" prefWidth="170.0" text="Cancel" GridPane.rowIndex="7" />
+                                    <Button fx:id="Continue" mnemonicParsing="false" onAction="#cContinue" prefHeight="27.0" prefWidth="170.0" text="Continue" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                    <TextField fx:id="CA" promptText="Exp. Lamborghini Diablo" GridPane.columnIndex="1" />
+                                    <TextField fx:id="CB" promptText="Exp. 2017" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="CC" promptText="Exp. $494,195" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="CD" promptText="Exp. 4 Years " GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="CE" promptText="Exp. 8%" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <TextField fx:id="CF" promptText="Exp. $100,000" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                  </children>
                               </GridPane>
                            </children>
                         </AnchorPane>
                   </content>
                 </TitledPane>
-                <TitledPane animated="false" text="House Goal">
+                <TitledPane animated="false" prefHeight="400.0" prefWidth="400.0" text="House Goal">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>

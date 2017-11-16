@@ -16,17 +16,17 @@
       </SplitPane>
       <SplitPane layoutX="184.0" prefHeight="583.0" prefWidth="588.0">
          <items>
-            <Pane fx:id="currentTile" prefHeight="200.0" prefWidth="200.0">
+            <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <GridPane fx:id="monthTile" gridLinesVisible="true" layoutX="37.0" layoutY="141.0" prefHeight="300.0" prefWidth="512.0">
+                  <GridPane fx:id="monthTile" gridLinesVisible="true" layoutX="29.0" layoutY="20.0">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="73.0" minWidth="73.0" prefWidth="73.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="73.0" minWidth="73.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="73.0" minWidth="73.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="73.0" minWidth="73.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="73.0" minWidth="73.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="73.0" minWidth="73.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="73.0" minWidth="73.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
@@ -38,20 +38,6 @@
                     </rowConstraints>
                   </GridPane>
                   <Button fx:id="addExpenseButton" layoutX="477.0" layoutY="490.0" mnemonicParsing="false" onAction="#addAnExpense" text="Button" />
-                  <GridPane fx:id="daysMTWRlabels" layoutX="37.0" layoutY="111.0" prefHeight="30.0" prefWidth="512.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="73.0" minWidth="73.0" prefWidth="73.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="73.0" minWidth="73.0" prefWidth="73.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="73.0" minWidth="73.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="73.0" minWidth="73.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="73.0" minWidth="73.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="73.0" minWidth="73.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="73.0" minWidth="73.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                  </GridPane>
                </children>
             </Pane>
          </items>
