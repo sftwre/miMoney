@@ -31,17 +31,7 @@ public class Goals {
 		//Operations
 	}
 	
-	public Goals (String type, String projectName, String data, double totalCost,
-			double interestRate, double downPayment, int time, double taxes) {
-		this.projectName = projectName;
-		this.type = type;
-		this.totalCost = totalCost;
-		this.interestRate = interestRate;
-		this.downPayment = downPayment;
-		this.time = time;
-		this.taxes = taxes;
-		//Operations
-	}
+
 	
 	/**
 	 * @return the String value of what was just calculated or what the user is entering

@@ -42,12 +42,12 @@
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Down Paument" textAlignment="CENTER" wrappingWidth="200.0" GridPane.rowIndex="5" />
                                     <Button fx:id="Cancel" mnemonicParsing="false" onAction="#cCancel" prefHeight="27.0" prefWidth="170.0" text="Cancel" GridPane.rowIndex="7" />
                                     <Button fx:id="Continue" mnemonicParsing="false" onAction="#cContinue" prefHeight="27.0" prefWidth="170.0" text="Continue" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                    <TextField fx:id="CA" promptText="Exp. Lamborghini Diablo" GridPane.columnIndex="1" />
-                                    <TextField fx:id="CB" promptText="Exp. 2017" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField fx:id="CC" promptText="Exp. $494,195" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField fx:id="CD" promptText="Exp. 4 Years " GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField fx:id="CE" promptText="Exp. 8%" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <TextField fx:id="CF" promptText="Exp. $100,000" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <TextField fx:id="Cmodel" promptText="Exp. Lamborghini Diablo" GridPane.columnIndex="1" />
+                                    <TextField fx:id="Cyear" promptText="Exp. 2017" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="Ccost" promptText="Exp. $494,195" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="Ctime" promptText="Exp. 4 Years " GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="Cinteres" promptText="Exp. 8%" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <TextField fx:id="Cdown" promptText="Exp. $100,000" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                  </children>
                               </GridPane>
                            </children>

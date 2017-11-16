@@ -26,22 +26,22 @@ import javafx.stage.Stage;
 public class GoalsController implements EventHandler<ActionEvent> {
 	
 	@FXML
-	private TextField CA;	// Name of the project
+	private TextField Cmodel;	// Name of the project
 	
 	@FXML
-	private TextField CB;	// Cost in shop
+	private TextField Cyear;	// Cost in shop
 	
 	@FXML
-	private TextField CC;	//
+	private TextField Ccost;	//
 	
 	@FXML
-	private TextField CD;	//
+	private TextField Ctime;	//
 	
 	@FXML
-	private TextField CE;	//
+	private TextField Cinteres;	//
 	
 	@FXML
-	private TextField CF;	//
+	private TextField Cdown;	//
 	
 	@FXML
 	private Button Continue;
@@ -57,18 +57,18 @@ public class GoalsController implements EventHandler<ActionEvent> {
 	 */
 	public void cContinue(ActionEvent event) {
 			
-			Goals carGoal = new Goals("CarGoal", this.CA.getText(), CB.getText(),
-					this.CC.getText(), this.CD.getText(), this.CE.getText(), this.CF.getText());
+			Goals carGoal = new Goals("CarGoal", this.Cmodel.getText(), Ccost.getText(),
+					this.Cinteres.getText(), this.Cdown.getText(), this.Cyear.getText(), this.Ctime.getText());
 			//Close window and open goal
 	}
 	
 	public void cCancel(ActionEvent event){
-		this.CA.setText("");
-		this.CB.setText("");
-		this.CC.setText("");
-		this.CD.setText("");
-		this.CE.setText("");
-		this.CF.setText("");
+		this.Cmodel.setText("");
+		this.Ccost.setText("");
+		this.Cinteres.setText("");
+		this.Cdown.setText("");
+		this.Cyear.setText("");
+		this.Ctime.setText("");
 	}
 
 	@Override
