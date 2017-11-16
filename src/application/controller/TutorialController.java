@@ -5,7 +5,9 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import application.Main;
 
 public class TutorialController {
 
@@ -16,7 +18,9 @@ public class TutorialController {
     void nextScene(ActionEvent event) {
     	Parent tutor;
     	try {
-    		tutor = FXMLLoader.load(getClass().getClassLoader().getResource("../view/resources/Tutorial2.0.fxml"));
+    		tutor = FXMLLoader.load(getClass().getClassLoader().getResource("/Tutorial2.0.fxml"));
+    		Main.stage.setScene(new Scene(tutor, 500, 575));
+    		Main.stage.show();
     	}catch(IOException e) {
     		e.printStackTrace();
     	}
