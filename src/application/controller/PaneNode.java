@@ -15,7 +15,7 @@ public class PaneNode extends Pane{
 	public PaneNode(Node... children) {
 		super(children);
 		
-		//TODO: Set a listener, onPaneClick do stuff
+		//TODO: Set a listener, onPaneClick display info side bar/color the week
 	}// END constructor
 	
 	public LocalDate getDate() {
