@@ -12,6 +12,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
@@ -32,11 +33,16 @@ public class CalendarController {
 	@FXML
 	private GridPane monthTile;
 	
+	@FXML
+	private GridPane daysMTWRlabels;
+	
 	private CalendarView view;
 	
 	private ArrayList<PaneNode> list;
 
 	private YearMonth currentYearMonth;
+	
+	private String[] daysOfWeek = new String[]{ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
 
 	
 	public void initialize() {
@@ -44,10 +50,9 @@ public class CalendarController {
 		monthTile.setMinSize(420, 380);
 		view = new CalendarView();
 		list = new ArrayList<PaneNode>(42);
-		
 		for(int i = 0; i<7; i++)
 		{
-			//TODO: Set day of the week here
+			daysMTWRlabels.add(new Label(daysOfWeek[i]), i, 0);
 			for(int j = 0; j<6; j++) {
 				/*PaneNode specificDay = new PaneNode();
 				specificDay.setPrefSize(75, 70);
