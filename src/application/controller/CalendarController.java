@@ -38,33 +38,40 @@ public class CalendarController {
 	
 	private CalendarView view;
 	
-	private ArrayList<PaneNode> list;
+	private ArrayList<LocalDate> list;
 
 	private YearMonth currentYearMonth;
 	
 	private String[] daysOfWeek = new String[]{ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+	
+	private YearMonth currentMonth;
+	
+	private LocalDate date;
 
 	
 	public void initialize() {
 		monthTile.setPrefSize(420, 380);
 		monthTile.setMinSize(420, 380);
 		view = new CalendarView();
-		list = new ArrayList<PaneNode>(42);
+		list = new ArrayList<LocalDate>(42);
+		currentMonth = YearMonth.now();
+		int counter = 1;
+		
 		for(int i = 0; i<7; i++)
 		{
 			daysMTWRlabels.add(new Label(daysOfWeek[i]), i, 0);
 			for(int j = 0; j<6; j++) {
-				/*PaneNode specificDay = new PaneNode();
-				specificDay.setPrefSize(75, 70);
-				specificDay.setDate(LocalDate.now());
-		        LocalDate calendarDate = LocalDate.of(currentYearMonth.getYear(), currentYearMonth.getMonthValue(), 1);*/
-				monthTile.add(new Label("myStr"), i, j);
-
-				//list.add(specificDay);
+				date = LocalDate.of(currentMonth.getYear(), currentMonth.getMonthValue(), counter);
+				
+				//PaneNode specificDay = new PaneNode();
+				//specificDay.setPrefSize(75, 70);
+				//specificDay.setDate(LocalDate.now());
+				
+				monthTile.add(new Label(view.fill(currentMonth, i, j, date)), i, j);
+				list.add(date);
 			}
 		}// END forLoop adding specificDay's to monthTile
-		
-	}
+	}// END initialize()
 
 	@FXML
 	public void addAnExpense(ActionEvent event) {
