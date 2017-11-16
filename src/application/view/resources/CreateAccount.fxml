@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CreateAccountController">
    <children>
       <Pane prefHeight="406.0" prefWidth="301.0">
          <children>
@@ -17,7 +17,7 @@
             <Label layoutX="21.0" layoutY="133.0" prefHeight="17.0" prefWidth="105.0" text="Password:" />
             <TextField layoutX="19.0" layoutY="152.0" prefHeight="25.0" prefWidth="162.0" promptText="*************" />
             <Label layoutX="109.0" layoutY="14.0" prefHeight="17.0" prefWidth="85.0" text="Registation" />
-            <Button layoutX="95.0" layoutY="360.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="112.0" text="Create Account" />
+            <Button fx:id="createAcctButton" layoutX="95.0" layoutY="360.0" mnemonicParsing="false" onAction="#createAcct" prefHeight="32.0" prefWidth="112.0" text="Create Account" />
             <Label layoutX="26.0" layoutY="177.0" prefHeight="17.0" prefWidth="112.0" text="Confirm Password:" />
             <TextField layoutX="21.0" layoutY="194.0" prefHeight="25.0" prefWidth="162.0" promptText="*************" />
             <TextField layoutX="21.0" layoutY="253.0" prefHeight="25.0" prefWidth="162.0" promptText="Ex. $3,000" />
