@@ -1,96 +1,58 @@
 package application.model.Goals;
+import java.util.*;
 
 /**
- * @author manueldeaguinaga
+ * @author Manuel Deaguinaga
  * 
  */
 
 public class Goals {
 	
-	
+	private String type;
 	private String projectName;
-	private String data;
 	private double totalCost;
 	private double interestRate;
 	private double downPayment;
 	private int year; 
 	private int time;
-	private boolean nextOrCancel;
+	private double taxes;
 	
-	public Goals () {
-		projectName = "";
-		totalCost = 0.00;
-		interestRate = 0.00;
-		downPayment = 0.00;
-		year = 0;
-		time = 0;
-		nextOrCancel = true;
+	public Goals (String type, String projectName, String totalCost,
+			String interestRate, String downPayment, String year, String time) {
+		this.projectName = projectName;
+		this.type = type;
+		this.totalCost = Double.parseDouble(totalCost);
+		this.interestRate = Double.parseDouble(interestRate);
+		this.downPayment = Double.parseDouble(downPayment);
+		this.year = Integer.parseInt(year); 
+		this.time = Integer.parseInt(time);
 		
+		System.out.println(toString1());
+		//Operations
 	}
+	
+
 	
 	/**
 	 * @return the String value of what was just calculated or what the user is entering
 	 */
-	public String getData() {
-		return data;
-	}
 	
-	public void information ( String txt ){
-		System.out.printf(txt + "\n");
-		if(txt.equals("Continue")){
-			
-			
-		}
-	}
-
-/*
-	
-	public Goals(String goal, double budget, double rate, int years, double cost){
-		this.goal = goal;
-		this.budget = budget;
-		this.rate = rate;
-		this.years = years;	
-		this.cost = cost;
-	}
-	
-	public double MonthlyPayments(){
-		double monthlyPayments;
-		double totalCost = TotalCost();
-		int months = this.years * 12;
+	public void TotalCost (){
+		double totalCost = 0;
 		
-		monthlyPayments = totalCost/months;
 		
-		return monthlyPayments;
 	}
-	
-	
-	public double TotalCost(){
-		double totalCost;
-		totalCost = this.cost+(this.cost*(this.rate*0.01));
-		
-		return totalCost;
+	public String toString1(){
+		return String.format("%s:%s:%.2f:%.2f:%.2f:%d:%d"
+				, this.type
+				, this.projectName
+				, this.totalCost
+				, this.interestRate
+				, this.downPayment
+				, this.year
+				, this.time);
 	}
-	
-	
-	public String PosibleOrNot(){
-		
-		if(this.budget >= MonthlyPayments())
-			return "yes";
-		else
-			return "no";
+	public String toString2(){
+		return String.format(":");
 	}
-	
-	
-	public String toString(){
-		return String.format("goal name: %s, cost: %d, "
-				+ "years: %d interest rate: %d payments "
-				+ "per month: %d posible or not: %s "
-				, this.goal
-				, this.cost
-				, this.years
-				, this.rate
-				, MonthlyPayments()
-				, PosibleOrNot());
-	}
-	*/
 }
