@@ -1,5 +1,7 @@
 package application.model.Expense;
 
+import java.util.ArrayList;
+
 import application.model.Date;
 
 /**
@@ -31,6 +33,13 @@ public abstract class Expense {
 		
 		this.transactionDate = date;
 	}
+	
+	/**
+	 * 
+	 * @return The class name of the Expense type
+	 */
+	
+	public abstract String getClassName();
 	
 	public String getItem() {
 		
@@ -68,4 +77,12 @@ public abstract class Expense {
 		this.transactionDate = date;
 	}	
 
+	/**
+	 * toString() used to output the object information to a file 
+	 */
+	public String toString()
+	{
+		return (String.format("%s:%.2f:%s:%s", this.getClassName(),this.getAmmount(), 
+				this.getDate().toString(), this.getItem()));
+	}
 }
