@@ -1,0 +1,33 @@
+				Standards for storing data in files
+				
+	In order for our application to run smoother and for the FileParser classes to execute faster, 
+	please have a toString() method in each class, whose data will need to be stored.
+	For example: 
+	
+	public class Expense
+	{
+	
+		private double amount;			// The amount of the Expense
+	
+		private Date transactionDate;	// The Date the Expense was made
+	
+		private String item;			// description of the item bought
+		
+		
+		//constructor
+		public class Expense();
+		
+		//toString method to use to store the data in file
+		public String toString()
+		{
+		return (String.format("%s:%f:%s:%s", this.getClassName(),this.getAmmount(), 
+				this.getDate().toString(), this.getItem()));
+		}
+	}
+	
+	Notice that double values are stored as is and are not formatted in any way;
+	using a .2f% or .10%f format specifier is not okay in this instance.
+	
+	Also notice that the Date object stored in the Expense has a toString() method
+	that returns the the string representation of the object as it should be represented
+	in the expense.
