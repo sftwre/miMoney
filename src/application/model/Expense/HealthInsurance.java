@@ -15,4 +15,10 @@ public class HealthInsurance extends Expense implements FixedExpense {
 		
 	}
 
+	@Override
+	public String getClassName() {
+		
+		return ("HealthInsurance");
+	}
+
 }

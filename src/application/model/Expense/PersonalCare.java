@@ -14,4 +14,10 @@ public class PersonalCare extends Expense implements VariableExpense {
 		
 	}
 
+	@Override
+	public String getClassName() {
+		
+		return ("PersonalCare");
+	}
+
 }

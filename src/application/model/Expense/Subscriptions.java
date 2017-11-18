@@ -16,4 +16,10 @@ public class Subscriptions extends Expense implements VariableExpense {
 		
 	}
 
+	@Override
+	public String getClassName() {
+		
+		return ("Subscriptions");
+	}
+
 }

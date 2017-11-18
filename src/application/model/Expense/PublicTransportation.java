@@ -14,4 +14,10 @@ public class PublicTransportation extends Expense implements VariableExpense {
 		
 	}
 
+	@Override
+	public String getClassName() {
+		
+		return ("PublicTransportation");
+	}
+
 }

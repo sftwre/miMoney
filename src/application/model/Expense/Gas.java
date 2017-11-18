@@ -14,4 +14,10 @@ public class Gas extends Expense implements VariableExpense {
 		
 	}
 
+	@Override
+	public String getClassName() {
+		
+		return ("Gas");
+	}
+
 }

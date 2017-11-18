@@ -14,4 +14,10 @@ public class Utilities extends Expense implements FixedExpense {
 		
 	}
 
+	@Override
+	public String getClassName() {
+		
+		return ("Utilities");
+	}
+
 }

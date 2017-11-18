@@ -14,4 +14,10 @@ public class LifeInsurance extends Expense implements FixedExpense {
 		
 	}
 
+	@Override
+	public String getClassName() {
+		
+		return ("LifeInsurance");
+	}
+
 }

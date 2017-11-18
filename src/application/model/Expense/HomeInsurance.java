@@ -14,4 +14,10 @@ public class HomeInsurance extends Expense implements FixedExpense {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public String getClassName() {
+		
+		return ("HomeInsurance");
+	}
+
 }

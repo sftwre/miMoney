@@ -14,4 +14,10 @@ public class AutoPayment extends Expense implements FixedExpense {
 		
 	}
 
+	@Override
+	public String getClassName() {
+		
+		return ("AutoPayment");
+	}
+
 }

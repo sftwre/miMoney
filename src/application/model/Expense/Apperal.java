@@ -14,4 +14,10 @@ public class Apperal extends Expense implements VariableExpense {
 		
 	}
 
+	@Override
+	public String getClassName() {
+		
+		return ("Apperal");
+	}
+
 }

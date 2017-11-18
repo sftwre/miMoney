@@ -15,4 +15,10 @@ public class Medical extends Expense implements VariableExpense {
 		
 	}
 
+	@Override
+	public String getClassName() {
+		
+		return ("Medical");
+	}
+
 }

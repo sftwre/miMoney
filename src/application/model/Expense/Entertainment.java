@@ -14,4 +14,10 @@ public class Entertainment extends Expense implements VariableExpense {
 		
 	}
 
+	@Override
+	public String getClassName() {
+		
+		return ("Entertainment");
+	}
+
 }

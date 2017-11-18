@@ -15,4 +15,10 @@ public class HomePayment extends Expense implements FixedExpense {
 		
 	}
 
+	@Override
+	public String getClassName() {
+		
+		return ("HomePayment");
+	}
+
 }

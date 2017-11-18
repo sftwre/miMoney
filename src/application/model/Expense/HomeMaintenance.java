@@ -11,7 +11,13 @@ public class HomeMaintenance extends Expense implements VariableExpense {
 
 	public HomeMaintenance(double amount, Date date, String item) {
 		super(amount, date, item);
-		// TODO Auto-generated constructor stub
+		
+	}
+
+	@Override
+	public String getClassName() {
+		
+		return ("HomeMaintenance");
 	}
 
 }

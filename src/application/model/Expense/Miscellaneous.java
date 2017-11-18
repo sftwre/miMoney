@@ -14,4 +14,10 @@ public class Miscellaneous extends Expense implements VariableExpense {
 		
 	}
 
+	@Override
+	public String getClassName() {
+		
+		return ("Miscellaneous");
+	}
+
 }

@@ -14,4 +14,10 @@ public class Food extends Expense implements VariableExpense {
 		
 	}
 
+	@Override
+	public String getClassName() {
+		
+		return ("Food");
+	}
+
 }

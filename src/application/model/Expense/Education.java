@@ -14,4 +14,10 @@ public class Education extends Expense implements VariableExpense {
 		
 	}
 
+	@Override
+	public String getClassName() {
+		
+		return ("Education");
+	}
+
 }

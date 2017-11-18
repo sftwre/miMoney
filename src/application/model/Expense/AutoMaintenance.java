@@ -15,4 +15,10 @@ public class AutoMaintenance extends Expense implements VariableExpense {
 		
 	}
 
+	@Override
+	public String getClassName() {
+		
+		return ("AutoMaintenance");
+	}
+
 }

@@ -14,4 +14,10 @@ public class Luxury extends Expense implements VariableExpense {
 		
 	}
 
+	@Override
+	public String getClassName() {
+		
+		return ("Luxury");
+	}
+
 }

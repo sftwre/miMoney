@@ -19,6 +19,12 @@ public FixedExpenses(double amount, Date date, String item)
 	super(amount, date, item);
 }
 
+@Override
+public String getClassName() {
+	
+	return ("FixedExpense");
+}
+
 
 }
 

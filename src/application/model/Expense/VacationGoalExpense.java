@@ -15,4 +15,10 @@ public class VacationGoalExpense extends Expense implements VariableExpense {
 		
 	}
 
+	@Override
+	public String getClassName() {
+		
+		return ("VacationGoalExpense");
+	}
+
 }

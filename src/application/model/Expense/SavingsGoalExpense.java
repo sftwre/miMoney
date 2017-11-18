@@ -15,4 +15,10 @@ public class SavingsGoalExpense extends Expense implements VariableExpense {
 		
 	}
 
+	@Override
+	public String getClassName() {
+		
+		return ("SavingsGoalExpense");
+	}
+
 }
