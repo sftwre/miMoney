@@ -14,21 +14,32 @@ import javafx.scene.text.Text;
 
 public class CreateAccountController {
 
+	private TextField user_name;
     @FXML
     private Button createAcctButton;
+    @FXML
+    private TextField phone_number;
+    @FXML
+    private TextField fiananceInfo;
+    @FXML
+    private TextField income;
+    @FXML
+    private TextField password;
+    @FXML
+    private TextField confirmPass;
     VBox fields = new VBox();
     Text usernameTxt = new Text("Username:");
-    TextField user_name = new TextField();
+    //TextField user_name = new TextField();
     Text phoneNmTxt = new Text("Phone Number:");
-    TextField phone_number = new TextField();
+    //TextField phone_number = new TextField();
     Text passwordTxt = new Text("Password:");
-    TextField password = new TextField();
+    //TextField password = new TextField();
     Text confirmPassTxt = new Text("Confirm Password:");
-    TextField confirmPass = new TextField();
+    //TextField confirmPass = new TextField();
     Text incomeTxt = new Text("Income:");
-    TextField income = new TextField();
+    //TextField income = new TextField();
     Text fianancialTxt = new Text("Fianancial Information:");
-    TextField fiananceInfo = new TextField();
+    //TextField fiananceInfo = new TextField();
 
     @FXML
     void createAcct(ActionEvent event) {
