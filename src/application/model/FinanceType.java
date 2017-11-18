@@ -13,10 +13,10 @@ package application.model;
 
 public enum FinanceType {
 	
-	INCOME(1),	// Read or Write to Income.txt
-	GOALS(2),	// Read or Write to Goals sub-directory
-	REXPENSE(3),// Read or Write to SpendingTracker.txt
-	FEXPENSE(4);// Read or Write to FixedExpenses.txt
+	INCOME(1),	// User Income
+	GOALS(2),	// User financial goals
+	REXPENSE(3),// User variable expenses
+	FEXPENSE(4);// User fixed expenses, e.g. Home Payment
 	
 	private int type;
 	
