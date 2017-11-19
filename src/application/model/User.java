@@ -19,7 +19,9 @@ public class User {
 
 	private String phone;			//The phone number of the user
 		
-	private boolean authenticated;	//Flag to determine if the user is logged in
+	private boolean passAuthenticated;	//Flag to determine if the user is logged in
+	
+	private boolean userAuthenticated;
 
 	
 	public User(String username) 
@@ -65,12 +67,20 @@ public class User {
 		this.phone = phone;
 	}
 
-	public boolean isAuthenticated() {
-		return authenticated;
+	public boolean isPassAuthenticated() {
+		return passAuthenticated;
 	}
 
-	public void setAuthenticated(boolean authenticated) {
-		this.authenticated = authenticated;
+	public void setPassAuthenticated(boolean passAuthenticated) {
+		this.passAuthenticated = passAuthenticated;
+	}
+
+	public boolean isUserAuthenticated() {
+		return userAuthenticated;
+	}
+
+	public void setUserAuthenticated(boolean userAuthenticated) {
+		this.userAuthenticated = userAuthenticated;
 	}
 	
 	
