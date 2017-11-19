@@ -26,7 +26,7 @@ public class SecureNewPass extends SecurePass{
     
     private User currentUser;
     
-    public void secure(String user)
+    public void secure(String user, CharSequence pass)
     { 
     	currentUser = new User(user);
     	salt = createSalt();
