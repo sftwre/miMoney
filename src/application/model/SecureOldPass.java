@@ -63,9 +63,6 @@ public class SecureOldPass extends SecurePass{
 	{
 		Boolean auth = false;
 		
-		if(Files.exists(path))
-			auth = true;
-		
 		if(newHash.compareTo(oldHash) == 1)
 			auth = true;
 
