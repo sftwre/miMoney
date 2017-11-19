@@ -46,7 +46,7 @@ public class LoginController {
 	@FXML
 	Button loginButton;
 	
-	private User currentUser;
+	private User currentUser = new User("testUser77");	//in the mean time, John
 	private SecureOldPass oldPass;
 	private SecureOldUser oldUser;
 	
