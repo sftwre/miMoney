@@ -1,13 +1,10 @@
+package application.model;
+
 /**
  * 
  * @author Raul Cecena
  *
  */
-
-package application.model;
-
-import java.util.*;
-
 public class Income {
 
 	private String title;
