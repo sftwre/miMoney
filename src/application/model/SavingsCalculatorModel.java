@@ -10,20 +10,11 @@ public class SavingsCalculatorModel {
 	private double savingsGoal; // Total cost of the item the user saving up to obtain
 	private double monthlyDeposit; // Amount deposited per month towards item
 	private int time; // Time in months that it will take to be able to afford the item
-	private String itemName; // The item that the user wishes to save up for
 
 	public SavingsCalculatorModel() {
 		savingsGoal = 0.0;
 		monthlyDeposit = 0.0;
 		time = 0;
-		itemName = "";
-	}
-	/**
-	 * 
-	 * @param s The name of the item that the user wishes to purchase
-	 */
-	public void desiredItem(String s) {
-		this.itemName = s;
 	}
 	/**
 	 * 
@@ -58,19 +49,12 @@ public class SavingsCalculatorModel {
 	 * @param sG the savings goal
 	 * @param mD the monthly deposit
 	 */
-	public void savingsTime (double sG, double mD) {
+	public int savingsTime (double sG, double mD) {
 		this.savingsGoal = sG;
 		this.monthlyDeposit = mD;
 		double rT = sG/mD;
-		this.time = (int)rT;
+		double rTCeiling = Math.ceil(rT);
+		this.time = (int)rTCeiling;
+		return time;
 	}
-	/**
-	 * return formatted string of savings calculation
-	 */
-	public String toString() {
-		return (String.format("At a rate of %f deposited per month, it will take you %d months to be able to afford your %s", 
-				this.monthlyDeposit, this.time, this.itemName));
-	}
-	
-	
 }
