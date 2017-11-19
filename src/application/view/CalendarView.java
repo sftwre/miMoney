@@ -24,8 +24,10 @@ public class CalendarView {
 	 * This method fills the current month tiles days
 	 * with the corresponding days for the month.
 	 */
-	public String fill(YearMonth yearMonth, int col, int row, LocalDate exactDay) {
+	public String fill(YearMonth yearMonth, int col, int row, LocalDate exactDate) {
 		int day = -1;
+		day = exactDate.getDayOfMonth();
+		
 		return Integer.toString(day);
 	}// END fill()
 

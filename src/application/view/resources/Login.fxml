@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="461.0" prefWidth="516.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="461.0" prefWidth="516.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.LoginController">
    <children>
       <GridPane alignment="CENTER" hgap="8.0" layoutX="52.0" layoutY="68.0" prefHeight="308.0" prefWidth="425.0">
         <columnConstraints>
@@ -30,10 +30,10 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField GridPane.columnIndex="1" GridPane.valignment="BOTTOM" />
-            <Button maxWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="Login" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
-            <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Hyperlink prefHeight="28.0" prefWidth="129.0" text="forgot username?" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+            <TextField fx:id="userField" promptText="enter username..." GridPane.columnIndex="1" GridPane.valignment="BOTTOM" />
+            <Button fx:id="loginButton" maxWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="Login" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+            <PasswordField fx:id="passField" promptText="enter password..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Hyperlink fx:id="forgotUserLink" prefHeight="28.0" prefWidth="129.0" text="forgot username?" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                <font>
                   <Font size="14.0" />
                </font></Hyperlink>
@@ -45,7 +45,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Hyperlink prefHeight="28.0" prefWidth="109.0" text="password?" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+            <Hyperlink fx:id="forgotPassLink" prefHeight="28.0" prefWidth="109.0" text="password?" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -53,7 +53,7 @@
                   <Font size="14.0" />
                </font>
             </Hyperlink>
-            <Hyperlink prefHeight="50.0" prefWidth="62.0" text="signup " GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+            <Hyperlink fx:id="signupLink" prefHeight="50.0" prefWidth="62.0" text="signup " GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                <font>
                   <Font size="14.0" />
                </font>

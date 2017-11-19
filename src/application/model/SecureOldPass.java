@@ -1,6 +1,12 @@
 package application.model;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
+
+import application.controller.UserDataParser;
 
 /**
  * @author Jonathan
@@ -27,20 +33,25 @@ public class SecureOldPass extends SecurePass{
     private Boolean auth;
     
     private User currentUser;
+    
+	private UserDataParser dataParser;
 	
     /**
      * 
      * @param user
      */
-	public void secure(String user)
+	public Boolean secure(String user, CharSequence pass)
 	{
+		//TODO: 
 		currentUser = new User(user);
+		dataParser = new UserDataParser(currentUser);
+		currentUser = dataParser.readUserData();
+		
 		salt = currentUser.getSalt();
-		hash = super.hashFun(input.nextLine(), salt);
-		//TODO: find another way to take password input, above line compiles but will not work in the end
+		hash = super.hashFun(pass.toString(), salt);
 		
 		oldHash = currentUser.getPassword();
-		auth(hash, oldHash);
+		return auth(hash, oldHash);
 	}//END secure()
 	
 	/**
@@ -48,14 +59,17 @@ public class SecureOldPass extends SecurePass{
 	 * @param newHash
 	 * @param oldHash
 	 */
-	public void auth(String newHash, String oldHash)
+	public Boolean auth(String newHash, String oldHash)
 	{
 		Boolean auth = false;
+		
+		if(Files.exists(path))
+			auth = true;
 		
 		if(newHash.compareTo(oldHash) == 1)
 			auth = true;
 
-		currentUser.setAuthenticated(auth);
+		return auth;
 	}//END auth()
 	
 }// END APPLICATION CLASS SecureOldPass
