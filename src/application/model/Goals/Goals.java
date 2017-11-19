@@ -42,6 +42,104 @@ public class Goals {
 		
 		
 	}
+	
+	
+	public String getType() {
+		return type;
+	}
+
+
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+
+
+	public String getProjectName() {
+		return projectName;
+	}
+
+
+
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+
+
+
+	public double getTotalCost() {
+		return totalCost;
+	}
+
+
+
+	public void setTotalCost(double totalCost) {
+		this.totalCost = totalCost;
+	}
+
+
+
+	public double getInterestRate() {
+		return interestRate;
+	}
+
+
+
+	public void setInterestRate(double interestRate) {
+		this.interestRate = interestRate;
+	}
+
+
+
+	public double getDownPayment() {
+		return downPayment;
+	}
+
+
+
+	public void setDownPayment(double downPayment) {
+		this.downPayment = downPayment;
+	}
+
+
+
+	public int getYear() {
+		return year;
+	}
+
+
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+
+
+	public int getTime() {
+		return time;
+	}
+
+
+
+	public void setTime(int time) {
+		this.time = time;
+	}
+
+
+
+	public double getTaxes() {
+		return taxes;
+	}
+
+
+
+	public void setTaxes(double taxes) {
+		this.taxes = taxes;
+	}
+
+
+
 	public String toString1(){
 		return String.format("%s:%s:%.2f:%.2f:%.2f:%d:%d"
 				, this.type
