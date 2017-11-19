@@ -16,33 +16,36 @@ import application.model.User;
  */
 public class UserDataParser extends FileParser {
 
+	/**
+	 * 
+	 * @param user who's account information is to be retrieved
+	 */
 	public UserDataParser(User user) 
 	{
 		super(user);
-		bufferInput = null;
 	}
 	
 	
 	/**
 	 * Used to retrieve the account information of the current
-	 * user
+	 * user and store it in the User field of the FileParser
 	 * @return a User with their username, password, and phone number
 	 */
-	public User readUserData()
+	public void readUserData()
 	{
 		
 		try {
 		
 			//set the user profile to the account information file
-			userProfile += String.format("%s", this.user.getUsername() + ".txt");
+			this.userProfile += String.format("%s", this.user.getUsername() + ".txt");
 			
-			bufferInput = new BufferedReader(new FileReader(userProfile));
+			bufferInput = new BufferedReader(new FileReader(this.userProfile));
 			
-			String  line  = new String(bufferInput.readLine());
+			String  line  = bufferInput.readLine();
 			
-			while(line != null && !line.equals(""))
+			while(line != null && !line.isEmpty())
 			{
-				String properties[]=  line.split(":");
+				String properties[] = line.split(":");
 				
 				this.user.setPassword(properties[1]);
 				this.user.setPhone(properties[2]);
@@ -61,8 +64,6 @@ public class UserDataParser extends FileParser {
 			System.out.printf("Could not open or close the file: %s\n", userProfile);
 			
 		} 
-		
-		return this.user;
 		
 	}
 }
