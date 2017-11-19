@@ -29,34 +29,42 @@ public class SavingsCalculatorController{
     private double num1 = 0;
     private double num2 = 0;
 
-    @FXML
-    private void handleSavings(ActionEvent event) {
+    
+    private void handleSavings() {
         if (begin) {
             goal.setText("");
             begin = false;
         }
 
-        String val = ((Button)event.getSource()).getText();
-        goal.setText(goal.getText() + val);
+     //   String val = ((Button)event.getSource()).getText();
+        //goal.setText(goal.getText() + val);
     }
     
-    @FXML
-    private void handleDeposit(ActionEvent event)
+    private void handleDeposit()
     {   if (begin) {
         deposit.setText("");
         begin = false;
     }
 
-    String val = ((Button)event.getSource()).getText();
-    deposit.setText(deposit.getText() + val);
+   // String val = ((Button)event.getSource()).getText();
+    //deposit.setText(deposit.getText() + val);
     }
     
-    @FXML
-    private void handleTime(ActionEvent event) {
+    
+    private void handleTime() {
     	num1 = Double.parseDouble(goal.getText());
     	num2 = Double.parseDouble(deposit.getText());
     	time.setText(String.valueOf(model.savingsTime(num1, num2)));
     	begin = true;
     }
     
+    /**
+     * Do computations here, call the handle methods above if you have to
+     * @param event
+     */
+    @FXML
+    public void handle(ActionEvent event)
+    {
+    	
+    }
 }

@@ -26,7 +26,7 @@
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <TextField onAction="#handleSavings" promptText="Ex. $20,000" GridPane.columnIndex="1">
+                  <TextField fx:id="goal" onAction="#handleSavings" promptText="Ex. $20,000" GridPane.columnIndex="1">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -36,7 +36,7 @@
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <TextField onAction="#handleDeposit" promptText="Ex. $1,500" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="deposit" onAction="#handleDeposit" promptText="Ex. $1,500" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -46,7 +46,7 @@
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <TextField onAction="#handleTime" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="time" onAction="#handleTime" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
                         <Font size="24.0" />
                      </font>
