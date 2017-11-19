@@ -81,9 +81,6 @@ public class User {
 
 	public void setUserAuthenticated(boolean userAuthenticated) {
 		this.userAuthenticated = userAuthenticated;
-	}
-	
-	
-	
+	}	
 
 }
