@@ -11,12 +11,17 @@
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="527.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.FinancialOverviewController">
    <children>
-      <TitledPane animated="false" collapsible="false" layoutX="50.0" layoutY="255.0" prefHeight="206.0" prefWidth="280.0" text="Goals">
+      <TitledPane animated="false" collapsible="false" layoutX="50.0" layoutY="255.0" prefHeight="206.0" prefWidth="280.0" text="Current Goals">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="250.0">
                <children>
                   <Button fx:id="newGoalButton" layoutX="79.0" layoutY="147.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#createNewGoal" prefWidth="120.0" text="New Goal " />
-                  <ListView fx:id="currentGoalsList" layoutX="19.0" prefHeight="139.0" prefWidth="241.0" />
+                  <StackPane layoutX="20.0" prefHeight="139.0" prefWidth="239.0">
+                     <children>
+                        <Label prefHeight="32.0" prefWidth="237.0" text="                 No Financial Goals yet" textAlignment="CENTER" />
+                        <ListView fx:id="currentGoalsListView" prefHeight="139.0" prefWidth="241.0" />
+                     </children>
+                  </StackPane>
                </children>
             </AnchorPane>
          </content>
@@ -25,7 +30,7 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="278.0">
                <children>
-                  <GridPane fx:id="incomePaneGrid" hgap="8.0" layoutX="14.0" layoutY="45.0" prefHeight="180.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GridPane fx:id="incomePaneGrid" hgap="8.0" layoutX="49.6" layoutY="49.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Label text="Employment" GridPane.halignment="RIGHT">
                            <font>
@@ -43,13 +48,18 @@
                               <Insets />
                            </GridPane.margin>
                         </Label>
-                        <TextField fx:id="employmentTextField" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="135.0" text="Lawyer" GridPane.columnIndex="1" />
-                        <TextField fx:id="salaryTextField" editable="false" focusTraversable="false" promptText="\$ 70,000" text="\$ 500,000" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button fx:id="editIncomeButton" maxWidth="-Infinity" mnemonicParsing="false" onAction="#editIncome" prefWidth="80.0" text="Edit" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                        <TextField fx:id="employmentTextField" editable="false" focusTraversable="false" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" />
+                        <TextField fx:id="salaryTextField" editable="false" focusTraversable="false" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <StackPane fx:id="buttonStackPane" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <children>
+                              <Button fx:id="saveIncomeButton" maxWidth="-Infinity" mnemonicParsing="false" onAction="#saveIncomeChanges" prefHeight="25.0" prefWidth="90.0" text="Save" visible="false" />
+                              <Button fx:id="editIncomeButton" maxWidth="-Infinity" mnemonicParsing="false" onAction="#editIncome" prefHeight="25.0" prefWidth="90.0" text="Edit" />
+                           </children>
+                        </StackPane>
                      </children>
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="85.0" minWidth="10.0" prefWidth="75.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="10.0" prefWidth="105.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="105.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -61,7 +71,7 @@
             </AnchorPane>
          </content>
       </TitledPane>
-      <PieChart fx:id="spendingChart" focusTraversable="true" layoutX="346.0" prefHeight="475.0" prefWidth="435.0" title="Spending By Category">
+      <PieChart fx:id="spendingChart" focusTraversable="true" layoutX="348.0" prefHeight="527.0" prefWidth="433.0" title="Spending By Category">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>

@@ -3,14 +3,22 @@ package application.controller;
 
 import javafx.event.ActionEvent;
 import java.io.IOException;
+import java.text.NumberFormat;
+
 import application.Main;
 import application.model.*;
+import application.model.Expense.Expense;
+import application.model.Goals.Goals;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
@@ -18,6 +26,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.EventHandler;
@@ -33,88 +42,157 @@ import javafx.event.EventHandler;
 public class FinancialOverviewController {
 
     @FXML
-    private TextField salaryTextField; 		// Text Field for the User to view/edit their salary
+    private TextField salaryTextField; 			// Text Field for the User to view/edit their salary
     
     @FXML
-    private TextField employmentTextField;	// Text Field for the User to view/edit their job title
+    private TextField employmentTextField;		// Text Field for the User to view/edit their job title
 
     @FXML
-    private Button editIncomeButton; 		// Button to edit the User's income in the Income panel on the 
+    private Button editIncomeButton; 			// Button to edit the User's income in the Income panel on the 
     
-    
-    private Button saveIncomeButton;		//Button to save edit's made to the Users Income
+    @FXML
+    private Button saveIncomeButton;			// Button to save the changes made to the Users Income
 
     @FXML
-    private Button newGoalButton;			// Button to create a financial goal
+    private Button newGoalButton;				// Button to create a financial goal
     
     @FXML
-    private ListView<String> currentGoalsList;// ListView for displaying the current goals of the User
-    
-    
-    @FXML
-    private PieChart spendingChart;			// Chart for displaying the Users spending
+    private ListView<String> currentGoalsListView;// ListView for displaying the current goals of the User
     
     @FXML
-    private GridPane incomePaneGrid;		// Grid to add the save button for editing the Users Income
+    private PieChart spendingChart;				// Chart for displaying the Users spending
     
-    private FinancialDataParser financialData;	//FileParser for retrieving the Financial information of the User
+    @FXML
+    private GridPane incomePaneGrid;			// Grid to add the save button for editing the Users Income
+    
+    @FXML
+    private StackPane buttonStackPane;			// Stack Pane that contains the Edit and Save buttons
+    
+    
+    private FinancialDataParser financialData;	// FileParser for retrieving the Financial information of the User
+    
+    private User user;							// Current user of the application
+    
+    // Expense data for pie chart
+    private ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(); 
 
-    
- ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(	// data for the pieChart
-			
-			new PieChart.Data("Housing", 700),
-			new PieChart.Data("AutoInsurance", 150),
-			new PieChart.Data("AutoPayment",200), 
-			new PieChart.Data("Food", 36.75 ),
-			new PieChart.Data("Gas", 68.36));
-
- ObservableList<String> goalsListData = FXCollections.observableArrayList("Car : $15,000",	//data for the Goals pane
-		 "House : $120,000", "Savings :  $7000");
+    // Goal data for the Current Goals pane
+    private ObservableList<String> goalsListData = FXCollections.observableArrayList();			
  
-/**
- * Used to open the user's profile for reading and retrieving the Spenfing data of the user
- * to display on the PieChart.
- */
-    
-public void loadSpendingData()
-{
-	//TODO
-	
-	
-}
 
-public void loadGoalsData()
-{
-	//TODO
-	currentGoalsList.setItems(goalsListData);
-}
+
 
 /**
  * Called by the FXMLLoader to initialize the controller. 
- * Initialize the Income, Expenses, and Goals data of the user
- * and display it
+ * Loads the Income, Expenses, and Goals data of the user
+ * and display it in the appropriate controls.
  */
 public void initialize()
 {
-	//update the pieChart to display the expenses of the user
+	//instantiate the current user and FinancaialDataParser
+	this.user = new User("testUser77");
+	
+	this.financialData = new FinancialDataParser(user);
+	
+	//TODO use concurrency to kick each of these off in a separate thread
+	
+	//load Expense and Goals into the ObservableList's
+	loadSpendingDataForChart();
+	
+	loadGoalsDataForList();
+	
+	//populate the pieChart to display the expenses of the user
 	spendingChart.setData(pieChartData);
+	
+	//populate the Current Goals pane with the goals of the user
+	currentGoalsListView.setItems(goalsListData);
 	
 	//populate the Income pane with the income of the user
 	financialData = new FinancialDataParser(new User("testUser77"));
 	
-	ArrayList<Income> userIncome = financialData.readIncome(FinanceType.INCOME);
+	ArrayList<Income> userIncome = financialData.readIncome();
 	
-	//TODO format the user income
+	//format the user income
 	employmentTextField.setText(userIncome.get(0).getTitle());
 	
-	salaryTextField.setText(String.valueOf(userIncome.get(0).getPay()));
-	
-	//populate the Goals pane with the current Goals
-	loadGoalsData();
-	
-	
+	salaryTextField.setText(NumberFormat.getCurrencyInstance().format(userIncome.get(0).getPay()));
+		
 }
 
+/**
+ * Used to retrieve all of the the User's spending data, add
+ * the total spent by category and load it into the ObservableList pieChartData.
+ */
+public void loadSpendingDataForChart()
+{
+	
+		//Create a Date to control what Expense data is retrieved
+		Date january = new Date(1,1,2017);
+			
+		//Get the variable expenses for January
+		ArrayList<Expense> monthlyExpenses = financialData.readExpenses(january, FinanceType.REXPENSE);
+			
+		//Get the fixed expenses for January and append them to the current list of Expenses
+		monthlyExpenses.addAll(financialData.readExpenses(january, FinanceType.FEXPENSE));
+		
+		//Combine duplicate Expense objects to obtain the total Expenses per category
+		HashMap<String, Double> totalExpenses = totalExpensesByCategory(monthlyExpenses);
+		
+		//add the expenses to the PieChart
+		for(String e : totalExpenses.keySet()) 
+		{
+			pieChartData.add(new PieChart.Data(e , totalExpenses.get(e)));
+		}
+}
+
+/**
+ * Given an ArrayList of Expense objects, the className of the
+ * Expense is hashed into a map and the amount spent in the Expense
+ * category is added to the existing amount for the category, if any.
+ * 
+ * @param expenseList of Expenses that may contain duplicates
+ * @return HashMap mapping an Expense category to the total amount spent for that
+ * category in the ArrayList
+ */
+public HashMap<String, Double> totalExpensesByCategory(ArrayList<Expense> expenseList)
+{
+	
+	 HashMap<String, Double> totalExpenses =  new HashMap<String , Double>();
+	 
+	 for(Expense e : expenseList)
+	 {
+		 if( totalExpenses.containsKey(e.getClassName()))
+		 {
+			 totalExpenses.put(e.getClassName(), totalExpenses.get(e.getClassName()) + e.getAmmount());
+		 }
+		 
+		 else
+			 totalExpenses.put(e.getClassName(), e.getAmmount());
+	 }
+	 
+	 return (totalExpenses);
+}
+
+/**
+ * Used to load all of the Users Goals and load them into the
+ * ObservableList goalsListData. 
+ */
+public void loadGoalsDataForList()
+{
+	//load all the Goals from the Goals directory
+	ArrayList<Goals> goalsList = financialData.readGoals();
+	
+	//instantiate the goalsListData
+	goalsListData = FXCollections.observableArrayList();
+	
+	//for each goal display the ProjectName and cost
+	for(Goals g: goalsList)
+	{
+		goalsListData.add(String.format("%s : %s", g.getProjectName(),
+				NumberFormat.getCurrencyInstance().format(g.getTotalCost())));
+	}
+
+}
 
 /**
  * Used to set focusTraversable and Editable properties of the
@@ -132,47 +210,61 @@ public void editIncome(ActionEvent event)
 	employmentTextField.setFocusTraversable(true);
 	employmentTextField.setEditable(true);
 	
-	//add the save button to center of the GridPane
-	saveIncomeButton = new Button("Save");
-	incomePaneGrid.add(saveIncomeButton, 0, 2);
-	saveIncomeButton.setAlignment(Pos.CENTER);
-	saveIncomeButton.setPrefWidth(80);
+	//bring the saveIncomeButton forward in the StackPane
+	ObservableList<Node> buttons = this.buttonStackPane.getChildren();
+	
+	if(buttons.size() > 1 )
+	{
+		Node top = buttons.get(buttons.size() - 1);
+		
+		top.toBack();
+	}
+	
+	//make the save button visible
+	saveIncomeButton.setVisible(true);
 	
 	//disable the editIncomeButton
 	editIncomeButton.setDisable(true);
-	
-	/**
-	 * Used to write the modified Income data to the Users' profile.
-	 * Once the data is successfully written, the saveIncomeButton is removed.
-	 */
-	
-	saveIncomeButton.setOnAction(new EventHandler<ActionEvent>() {
-		
-        @Override
-        public void handle(ActionEvent event) {
-
-        	//TODO write FileWriter to be able to write the data to the Users profile
-        	
-        	//TODO validate input
-        	
-        	//set focusTraversable and Editable properties of salaryTextField to false
-        	salaryTextField.setFocusTraversable(false);
-        	salaryTextField.setEditable(false);
-        		
-        	employmentTextField.setFocusTraversable(false);
-        	employmentTextField.setEditable(false);
-        	
-        	incomePaneGrid.getChildren().remove(saveIncomeButton);
-        	
-        	// re-enable the editIncomeButton
-        	editIncomeButton.setDisable(false);
-        }  
-	});	
 }
 
+	/**
+	 * Used to write the modified Income data to the Users' profile.
+	 * Once the data is successfully written, the saveIncomeButton is hidden
+	 * and sent to the back of the stack pane
+	 */
+
+@FXML
+public void saveIncomeChanges(ActionEvent event) 
+{
+        //TODO write FileWriter to be able to write the data to the Users profile
+        	
+        //TODO validate input
+        	
+        //set focusTraversable and Editable properties of salaryTextField to false
+        salaryTextField.setFocusTraversable(false);
+        salaryTextField.setEditable(false);
+        		
+        employmentTextField.setFocusTraversable(false);
+        employmentTextField.setEditable(false);
+        
+        //bring the Edit button forward in the StackPane
+    	ObservableList<Node> buttons = this.buttonStackPane.getChildren();
+    	
+    	if(buttons.size() > 1 )
+    	{
+    		Node top = buttons.get(buttons.size() - 1);
+    		
+    		top.toBack();
+    	}
+        
+        // re-enable the editIncomeButton
+        editIncomeButton.setDisable(false);
+}  
+
+
 /**
- * Used to create a new stage stage for displaying the FXML file
- * with a list of Goals to create maintained in an accordion layout.
+ * Used to display a new stage for displaying a list
+ * of Goals the user can create.
  * @param event that invoked Handler
  */
 @FXML
@@ -200,16 +292,6 @@ void createNewGoal(ActionEvent event)
 		System.out.printf("The resource 'view/resources/CarGoalView.fxml' could not be located");
 	}
 
-}
-
-/** Obtain the User's goals and display them in the Goals TitledPane.
- * 	If the user does not contain any goals, display a label indicating that
- * 	they currently have not created a financial goal
-*/
-public void getGoals()
-{
-	
-	// TODO load the user's goals and add them to the list
 }
 
 }

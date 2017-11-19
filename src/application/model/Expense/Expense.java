@@ -1,7 +1,5 @@
 package application.model.Expense;
 
-import java.util.ArrayList;
-
 import application.model.Date;
 
 /**
@@ -82,7 +80,7 @@ public abstract class Expense {
 	 */
 	public String toString()
 	{
-		return (String.format("%s:%.2f:%s:%s", this.getClassName(),this.getAmmount(), 
+		return (String.format("%s:%f:%s:%s", this.getClassName(),this.getAmmount(), 
 				this.getDate().toString(), this.getItem()));
 	}
 }
