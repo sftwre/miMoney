@@ -136,12 +136,6 @@
                         </AnchorPane>
                   </content>
                 </TitledPane>
-                  <TitledPane animated="false" layoutX="10.0" layoutY="10.0" text="Saves">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                        <fx:include fx:id="CalcView" source="CalcView.fxml" />
-                     </content>
-                  </TitledPane>
               </panes>
             </Accordion>
          </children>
