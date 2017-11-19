@@ -31,7 +31,7 @@ public class UserDataParser extends FileParser {
 	 * user and store it in the User field of the FileParser
 	 * @return a User with their username, password, and phone number
 	 */
-	public void readUserData()
+	public User readUserData()
 	{
 		
 		try {
@@ -64,6 +64,8 @@ public class UserDataParser extends FileParser {
 			System.out.printf("Could not open or close the file: %s\n", userProfile);
 			
 		} 
+		
+		return this.user;
 		
 	}
 }
