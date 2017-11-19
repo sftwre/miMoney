@@ -27,19 +27,22 @@ public class CreateAccountController {
     private TextField password;
     @FXML
     private TextField confirmPass;
-    VBox fields = new VBox();
-    Text usernameTxt = new Text("Username:");
-    //TextField user_name = new TextField();
-    Text phoneNmTxt = new Text("Phone Number:");
-    //TextField phone_number = new TextField();
+    
+    private Text userText;
+    
+    private Text phoneNmTxt;
+    //Text usernameTxt = new Text("Username:");
+    
+    //Text phoneNmTxt = new Text("Phone Number:");
+    
     Text passwordTxt = new Text("Password:");
-    //TextField password = new TextField();
+   
     Text confirmPassTxt = new Text("Confirm Password:");
-    //TextField confirmPass = new TextField();
+    
     Text incomeTxt = new Text("Income:");
-    //TextField income = new TextField();
+   
     Text fianancialTxt = new Text("Fianancial Information:");
-    //TextField fiananceInfo = new TextField();
+    
 
     @FXML
     void createAcct(ActionEvent event) {

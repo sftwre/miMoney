@@ -10,11 +10,11 @@
    <children>
       <Pane layoutY="-1.0" prefHeight="282.0" prefWidth="442.0">
          <children>
-            <TextField layoutX="70.0" layoutY="34.0" prefHeight="87.0" prefWidth="322.0" text="miMoney: money management the way you want it">
+            <TextField layoutX="24.0" layoutY="14.0" prefHeight="122.0" prefWidth="394.0" text="miMoney: money management the way you want it">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font size="16.0" />
                </font></TextField>
-            <Button fx:id="nextSceneButton" layoutX="403.0" layoutY="141.0" mnemonicParsing="false" onAction="#nextScene" prefHeight="24.0" prefWidth="39.0" text="&gt;" />
+            <Button fx:id="nextSceneButton" layoutX="389.0" layoutY="159.0" mnemonicParsing="false" onAction="#nextScene" prefHeight="24.0" prefWidth="39.0" text="&gt;" />
          </children>
       </Pane>
    </children>
