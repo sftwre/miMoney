@@ -1,6 +1,12 @@
 package application.model;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
+
+import application.controller.UserDataParser;
 
 /**
  * @author Jonathan
@@ -27,6 +33,8 @@ public class SecureOldPass extends SecurePass{
     private Boolean auth;
     
     private User currentUser;
+    
+	private UserDataParser dataParser;
 	
     /**
      * 
@@ -34,7 +42,11 @@ public class SecureOldPass extends SecurePass{
      */
 	public Boolean secure(String user, CharSequence pass)
 	{
+		//TODO: 
 		currentUser = new User(user);
+		dataParser = new UserDataParser(currentUser);
+		currentUser = dataParser.readUserData();
+		
 		salt = currentUser.getSalt();
 		hash = super.hashFun(pass.toString(), salt);
 		
@@ -50,6 +62,9 @@ public class SecureOldPass extends SecurePass{
 	public Boolean auth(String newHash, String oldHash)
 	{
 		Boolean auth = false;
+		
+		if(Files.exists(path))
+			auth = true;
 		
 		if(newHash.compareTo(oldHash) == 1)
 			auth = true;
