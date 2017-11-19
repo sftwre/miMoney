@@ -8,8 +8,10 @@ package application.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.Tooltip;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 public class CreateAccountController {
@@ -20,7 +22,7 @@ public class CreateAccountController {
     @FXML
     private TextField phone_number;
     @FXML
-    private TextField fiananceInfo;
+    private TextField jobInfo;
     @FXML
     private TextField income;
     @FXML
@@ -28,18 +30,18 @@ public class CreateAccountController {
     @FXML
     private TextField confirmPass;
     
-    private Text userText;
+    private Label userText;
     
-    private Text phoneNmTxt;
-    //Text usernameTxt = new Text("Username:");
+    private Label phoneNmTxt;
     
-    //Text phoneNmTxt = new Text("Phone Number:");
+    private Label passwordTxt;
     
-    Text passwordTxt = new Text("Password:");
    
-    Text confirmPassTxt = new Text("Confirm Password:");
+    private Label confirmPassTxt;
     
-    Text incomeTxt = new Text("Income:");
+    private Label incomeTxt;
+    
+    private Label jobLabel;
    
     Text fianancialTxt = new Text("Fianancial Information:");
     
@@ -61,10 +63,30 @@ public class CreateAccountController {
     	if(income.getText().trim().isEmpty()) {
     		System.err.println("You must enter your monthly income!");
     	}
-    	if(fiananceInfo.getText().trim().isEmpty()) {
+    	if(jobInfo.getText().trim().isEmpty()) {
     		System.err.println("You must enter your fianancial information!");
     	}
 
     }
+    
+    @FXML
+    void OnMouseDragOver(MouseEvent event) {
+
+    	//if(event.)
+    	Tooltip inc = new Tooltip("Enter monthly income");
+    	Tooltip pass = new Tooltip("\nYour password must be\n" + "at least 8 characters in length\n");
+    	Tooltip job = new Tooltip("Enter the title of your job");
+    	passwordTxt.setTooltip(pass);
+    	incomeTxt.setTooltip(inc);
+    	jobLabel.setTooltip(job);
+//    	Tooltip.install(income, inc);
+//    	Tooltip.install(jobInfo, job);
+    	
+    	//Rectangle rect = new Rectangle(100, 100);
+    	//rect.setOnMouseDragOver(value);
+    	
+    	//income.setTooltip(text);
+    }
+
 
 }
