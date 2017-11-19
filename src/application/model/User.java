@@ -1,5 +1,10 @@
 package application.model;
 
+import java.util.ArrayList;
+
+import application.model.Expense.Expense;
+import application.model.Goals.Goals;
+
 /**
  * 
  * Every User has a username, password, and phone number
@@ -20,12 +25,49 @@ public class User {
 	private String phone;			//The phone number of the user
 		
 	private boolean authenticated;	//Flag to determine if the user is logged in
+	
+	private ArrayList<Income> userIncome;	// Monthly Income of the User
+	
+	private ArrayList<Expense> userExpense;	// Expense information of the User
+	
+	private ArrayList<Goals> userGoals;		// Goals of the User
 
+	
+	/**
+	 * Constructor
+	 * @param username of the User 
+	 */
 	
 	public User(String username) 
 	{
 		this.username = username;
 	}
+	
+	public ArrayList<Income> getUserIncome() {
+		return userIncome;
+	}
+
+	public void setUserIncome(ArrayList<Income> userIncome) {
+		this.userIncome = userIncome;
+	}
+
+	public ArrayList<Expense> getUserExpense() {
+		return userExpense;
+	}
+
+	public void setUserExpense(ArrayList<Expense> userExpense) {
+		this.userExpense = userExpense;
+	}
+
+	public ArrayList<Goals> getUserGoals() {
+		return userGoals;
+	}
+
+	public void setUserGoals(ArrayList<Goals> userGoals) {
+		this.userGoals = userGoals;
+	}
+
+
 	
 	public String getUsername() {
 		return username;
