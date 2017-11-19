@@ -1,6 +1,8 @@
 package test;
 
 import java.util.ArrayList;
+
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import application.controller.*;
@@ -9,8 +11,9 @@ import application.model.FinanceType;
 import application.model.Income;
 import application.model.User;
 import application.model.Expense.*;
+import application.model.Goals.Goals;
 
-public class FileParserTest {
+public class FileIOTest {
 
 	static User user;
 	static FinancialDataParser input;
@@ -24,15 +27,22 @@ public class FileParserTest {
 	}
 	
 	
+	
 	@Test
 	public void testReadIncome() 
 	{
 		ArrayList<Income> incomeList = new ArrayList<Income>();
 		
-		incomeList =  input.readIncome(FinanceType.INCOME);
+		incomeList =  input.readIncome();
+		
+		input.printRawObjects();
+		
+		System.out.printf("%nIncome data%n");
 		
 		for(Income income : incomeList)
+		{
 			System.out.printf("%s %f\n", income.getTitle(), income.getPay());
+		}
 		
 	}
 	
@@ -49,6 +59,8 @@ public class FileParserTest {
 		
 		//Get the variable expenses for February
 		ArrayList<Expense> febExpenses = input.readExpenses(febraury, FinanceType.REXPENSE);
+		
+		input.printRawObjects();
 		
 		//Get the fixed expenses for February an append them to the current list of Expenses
 		febExpenses.addAll(input.readExpenses(febraury, FinanceType.FEXPENSE));
@@ -78,24 +90,46 @@ public class FileParserTest {
 		{
 				System.out.printf("%f %s %s%n", e.getAmmount(), e.getItem(), e.getDate().toString());
 		}
-		
 	}
+	
 	
 	@Test
 	public void testReadGoals()
 	{
-		input.readGoals(FinanceType.GOALS);
+		ArrayList<Goals> goalsList = new ArrayList<Goals>();
+		
+		//get the Goals for the user by creating an ArrayList of Goals
+		goalsList = input.readGoals();
+		
+		input.printRawObjects();
+		
+		//iterate through the goals and display the data
+		System.out.printf("%nGoals data for testUser77%n");
+		
+		for(Goals g : goalsList)
+		{
+			System.out.printf("%s %s %f %f %f %d %d%n%n", g.getType(), g.getProjectName(),
+					g.getTotalCost(), g.getInterestRate(), g.getDownPayment(), g.getYear(), g.getTime());
+		}
+		
+
 	}
+	
 	
 	@Test
 	public void testReadUserData()
 	{
 		userData = new UserDataParser(user);
-		User testUser = userData.readUserData();
 		
-		System.out.printf("Username : %s, Password : %s, Phone Number : %s\n",
-				testUser.getUsername(), testUser.getPassword(), testUser.getPhone());
+		// read the user's account information from their profile
+		// into the User field stored in FileParser
+		userData.readUserData();
 		
+		System.out.printf("%nUser account information%n");
+		
+		System.out.printf("%s %s %s\n", userData.getUser().getUsername(), 
+				userData.getUser().getPassword(), userData.getUser().getPhone());
 	}
+	
 
 }

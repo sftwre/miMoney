@@ -26,8 +26,7 @@ public class FileParser {
 public FileParser(User user) 
 {		
 		this.user = user;
-		this.userProfile = "UserProfiles" + 
-		File.separator + user.getUsername() + File.separator;
+		setUserProfile(this.user);
 }
 
 /**
