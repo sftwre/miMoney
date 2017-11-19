@@ -32,15 +32,14 @@ public class SecureOldPass extends SecurePass{
      * 
      * @param user
      */
-	public void secure(String user)
+	public Boolean secure(String user, CharSequence pass)
 	{
 		currentUser = new User(user);
 		salt = currentUser.getSalt();
-		hash = super.hashFun(input.nextLine(), salt);
-		//TODO: find another way to take password input, above line compiles but will not work in the end
+		hash = super.hashFun(pass.toString(), salt);
 		
 		oldHash = currentUser.getPassword();
-		auth(hash, oldHash);
+		return auth(hash, oldHash);
 	}//END secure()
 	
 	/**
@@ -48,14 +47,14 @@ public class SecureOldPass extends SecurePass{
 	 * @param newHash
 	 * @param oldHash
 	 */
-	public void auth(String newHash, String oldHash)
+	public Boolean auth(String newHash, String oldHash)
 	{
 		Boolean auth = false;
 		
 		if(newHash.compareTo(oldHash) == 1)
 			auth = true;
 
-		currentUser.setAuthenticated(auth);
+		return auth;
 	}//END auth()
 	
 }// END APPLICATION CLASS SecureOldPass
