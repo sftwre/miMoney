@@ -5,14 +5,23 @@ package application.controller;
 
 
 
+import java.io.IOException;
+
+import application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class CreateAccountController {
 
@@ -26,9 +35,9 @@ public class CreateAccountController {
     @FXML
     private TextField income;
     @FXML
-    private TextField password;
+    private PasswordField password;
     @FXML
-    private TextField confirmPass;
+    private PasswordField confirmPass;
     
     private Label userText;
     
@@ -48,23 +57,23 @@ public class CreateAccountController {
 
     @FXML
     void createAcct(ActionEvent event) {
-    	if(user_name.getText().trim().isEmpty()) {
-    		System.err.println("You must enter your username!");
+    	if(user_name.getText().trim().isEmpty() || password.getText().trim().isEmpty() || confirmPass.getText().trim().isEmpty() || phone_number.getText().trim().isEmpty() || income.getText().trim().isEmpty() || jobInfo.getText().trim().isEmpty()) {
+    		System.err.println("You must enter the missing field!");
     	}
-    	if(password.getText().trim().isEmpty()) {
-    		System.err.println("You must enter a password!");
-    	}
-    	if(confirmPass.getText().trim().isEmpty()) {
-    		System.err.println("You must confirm your password!");
-    	}
-    	if(phone_number.getText().trim().isEmpty()) {
-    		System.err.println("You must enter your phone number!");
-    	}
-    	if(income.getText().trim().isEmpty()) {
-    		System.err.println("You must enter your monthly income!");
-    	}
-    	if(jobInfo.getText().trim().isEmpty()) {
-    		System.err.println("You must enter your fianancial information!");
+    	else {
+    		Stage popUp =  new Stage();
+    		
+    		popUp.initModality(Modality.APPLICATION_MODAL);
+    		popUp.initOwner(Main.stage);
+    		try {
+    			Parent root = FXMLLoader.load(getClass().getResource("../view/resources/MainView.fxml"));
+        		Scene scene = new Scene(root);
+        		popUp.setScene(scene);
+        		popUp.show();
+    		}catch(IOException e) {
+    			System.err.println("The resourse 'view/resourses/MainView.fxml' could not be located.");
+    		}
+    		
     	}
 
     }

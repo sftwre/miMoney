@@ -43,7 +43,7 @@ public class TutorialController {
     	
     	try {
     		Parent start;
-        	start = FXMLLoader.load(getClass().getClassLoader().getResource("/MainView.fxml"));
+        	start = FXMLLoader.load(getClass().getClassLoader().getResource("..view/resourses/CreateAccount.fxml"));
         	Main.stage.setScene(new Scene(start, 500, 575));
     	}catch(IOException x) {
     		x.printStackTrace();
