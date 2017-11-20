@@ -48,7 +48,18 @@ public class Goals {
 		System.out.println(toString2());
 	}
 	
-
+	public Goals (String type, String projectName, String totalCost,
+			String interestRate, String downPayment, String time) {
+		this.projectName = projectName;
+		this.type = type;
+		this.totalCost = Double.parseDouble(totalCost);
+		this.interestRate = Double.parseDouble(interestRate);
+		this.downPayment = Double.parseDouble(downPayment); 
+		this.time = Integer.parseInt(time);
+		
+		System.out.println(toString3());
+		//Operations
+	}
 
 	
 	/**
@@ -151,6 +162,15 @@ public class Goals {
 				, this.time
 				, this.taxes
 				, this.other);
+	}
+	public String toString3(){
+		return String.format("%s:%s:%.2f:%.2f:%.2f:%d"
+				, this.type
+				, this.projectName
+				, this.totalCost
+				, this.interestRate
+				, this.downPayment
+				, this.time);
 	}
 	
 

@@ -123,6 +123,55 @@ public class GoalsController implements EventHandler<ActionEvent> {
 		this.hOther.setText("");
 	}
 	
+
+	@FXML
+	private TextField lProjectName;	// Name of the project
+	
+	@FXML
+	private TextField lCost;	//
+	
+	@FXML
+	private TextField lTime;	//
+	
+	@FXML
+	private TextField lInteres;	//
+	
+	@FXML
+	private TextField lDown;	//
+	
+	@FXML
+	private TextField lYear;
+	
+	@FXML
+	private TextField lType;
+	
+	@FXML
+	private Button lContinue;
+	
+	@FXML
+	private Button lCancel;
+	
+	/**
+	 * @param ActionEvent event
+	 * is using to create the function of each 
+	 * button and update the information
+	 * in the displayed
+	 */
+	public void lContinue(ActionEvent event) {
+			
+			Goals lLomeGoal = new Goals("LoanGoal", this.lProjectName.getText(), lCost.getText(),
+					this.lInteres.getText(), this.lDown.getText(), this.lTime.getText());
+			//Close window and open goal
+	}
+	
+	public void lCancel(ActionEvent event){
+		this.lProjectName.setText("");
+		this.lType.setText("");
+		this.lCost.setText("");
+		this.lInteres.setText("");
+		this.lDown.setText("");
+		this.lTime.setText("");
+	}
 	
 
 	
