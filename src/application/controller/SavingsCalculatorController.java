@@ -6,13 +6,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
+
+/**
+ * 
+ * @author Sam Dash
+ *
+ */
+
 public class SavingsCalculatorController{
 	
-	@FXML
-    private TextField deposit;
-    
     @FXML
     private TextField goal;
+    
+    @FXML
+    private TextField deposit;
     
     @FXML
     private TextField time;
@@ -21,35 +28,33 @@ public class SavingsCalculatorController{
     private boolean begin = true;
     private double num1 = 0;
     private double num2 = 0;
-
+    
+    /**
+     * Do computations here, call the handle methods above if you have to
+     * @param event
+     */
     @FXML
-    private void handleSavings(ActionEvent event) {
-        if (begin) {
-            goal.setText("");
+    public void handle(ActionEvent event)
+    {
+    	String g = goal.getText();
+    	String d = deposit.getText();
+    	
+    	if (begin) {
+            time.setText("");
             begin = false;
         }
-
-        String val = ((Button)event.getSource()).getText();
-        goal.setText(goal.getText() + val);
-    }
-    
-    @FXML
-    private void handleDeposit(ActionEvent event)
-    {   if (begin) {
-        deposit.setText("");
-        begin = false;
-    }
-
-    String val = ((Button)event.getSource()).getText();
-    deposit.setText(deposit.getText() + val);
-    }
-    
-    @FXML
-    private void handleTime(ActionEvent event) {
-    	num1 = Double.parseDouble(goal.getText());
-    	num2 = Double.parseDouble(deposit.getText());
-    	time.setText(String.valueOf(model.savingsTime(num1, num2)));
+    	
+    	String val = ((Button)event.getSource()).getText();
+    	
+    	if (!"Calculate".equals(val)) {
+		    	if(time.getText().equals(""))
+		    		return;
+    	num1 = Double.parseDouble(g);
+    	num2 = Double.parseDouble(d);
+    	}
+    	else {
+    	time.setText(String.valueOf(model.savingsTime(num1,num2)));
     	begin = true;
+    	}
     }
-    
 }

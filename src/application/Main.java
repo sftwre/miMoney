@@ -5,6 +5,7 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import application.model.Session;
 
 
 /**
@@ -15,14 +16,29 @@ public class Main extends Application {
 			
 		public static Stage stage;		// stage for displaying scenes in the application
 		
-		Scene currScene;
-		// the current scene
+		public Scene currScene;			// the current scene
+		
+		public Session session;			// Session to control the state of the application
+		
+		public Parent root;				// root node of the Scene Graph
+		
 	@Override
 	public void start(Stage primaryStage) {
 		
+		// create a new session
+		session = new Session();
+		
 		try {
 			
-			Parent root = FXMLLoader.load(getClass().getResource("view/resources/MainView.fxml"));
+			//if(! session.currentUser.isPassAuthenticated())
+			//{
+			//	root = FXMLLoader.load(getClass().getResource("view/resources/Login.fxml"));
+			//}
+			
+			//else
+			//{
+				root = FXMLLoader.load(getClass().getResource("view/resources/MainView.fxml"));
+			//}
 			
 			Scene scene = new Scene(root);
 			
@@ -41,6 +57,8 @@ public class Main extends Application {
 	}
 	
 	
+	
+	//entry point for the application
 	public static void main(String[] args) {
 		launch(args);
 	}

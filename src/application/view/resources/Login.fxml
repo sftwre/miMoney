@@ -31,7 +31,7 @@
                </font>
             </Label>
             <TextField fx:id="userField" promptText="enter username..." GridPane.columnIndex="1" GridPane.valignment="BOTTOM" />
-            <Button fx:id="loginButton" maxWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="Login" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+            <Button fx:id="loginButton" maxWidth="-Infinity" mnemonicParsing="false" onAction="#goToMainView" prefWidth="100.0" text="Login" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
             <PasswordField fx:id="passField" promptText="enter password..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Hyperlink fx:id="forgotUserLink" prefHeight="28.0" prefWidth="129.0" text="forgot username?" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                <font>
@@ -60,5 +60,6 @@
             </Hyperlink>
          </children>
       </GridPane>
+      <Label fx:id="incorrectCombo" layoutX="119.0" layoutY="410.0" prefHeight="17.0" prefWidth="291.0" textFill="RED" />
    </children>
 </AnchorPane>

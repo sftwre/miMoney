@@ -26,43 +26,22 @@ public class FinancialDataParser extends FileParser {
 	private String line;				// Store a line of text from a file
 	private String rawObjects[];		// raw data used to instantiate an object
 
+	
+	/**
+	 * 
+	 * @param user who's Financial data is to be accessed
+	 */
 	public FinancialDataParser(User user) 
 	{
 		super(user);
 		bufferInput = null;
 	}
 	
-	
-	/**
-	 * Set up the userProfile to point to a specific file or directory
-	 * based on the recordType. This is used to prepare for Buffered
-	 * reading from the Users' profile.
-	 * 
-	 */
-	private void prepareBuffRead(FinanceType recordType) 
+	public void printRawObjects()
 	{
-		switch(recordType) 
-		{
-		
-		case INCOME: 
-			
-			this.userProfile += "Income.txt";
-			break;
-			
-		case GOALS:
-			
-			this.userProfile += "Goals" + File.separator;
-			break;
-	
-			
-		case REXPENSE:
-		case FEXPENSE:
-		
-			this.userProfile += "AnnualExpenses" + File.separator;	
-			break;
-		}
-		
+		System.out.println(Arrays.asList(rawObjects));
 	}
+	
 	
 	/**
 	 * 
@@ -78,10 +57,9 @@ public class FinancialDataParser extends FileParser {
 	
 	/**
 	 * Reads the Income data from income.txt
-	 * Preconditions: The recordType is INCOME
 	 * @return an ArrayList of Income Objects
 	 */
-	public ArrayList<Income> readIncome(FinanceType recordType)
+	public ArrayList<Income> readIncome()
 	{
 		
 		ArrayList<Income> incomeList = new ArrayList<Income>();	//list of Income objects to return
@@ -91,27 +69,26 @@ public class FinancialDataParser extends FileParser {
 		
 		try {
 			
-			if(recordType != FinanceType.INCOME)
-			{
-					throw new NoSuchElementException(
-							String.format("getUserIncomeData cannot read records of type: %s", recordType));
-			}
-			
-			//prepare the Buffer to read from the file
-			this.prepareBuffRead(recordType);
+			//prepare the Buffer to read from Income.txt
+			userProfile += "Income.txt";
 			
 			//read from income.txt in UserProfiles
 			bufferInput = new BufferedReader(new FileReader(this.userProfile));
 			
 			line = bufferInput.readLine();
 			
-			while(line != null) 
+			while(line != null && ! line.isEmpty()) 
 			{
 				//no need to split the line on commas, each line is a separate Income
 				
 				//check that the data in the file is formatted correctly
-				if(! Pattern.matches("[a-zA-Z\\s]+:\\d+", line))
-					throw new Exception(String.format("Data in %s is not formatted to standards", userProfile));
+				if(! Pattern.matches("[a-zA-Z\\s]+:\\d+\\.\\d{6}", line))
+				{
+					throw new Exception(String.format("%s is not formatted to standards in %s.%n"
+							+ "Standard: Colons seperating fields, commas seperating objects, 6 decimal digits of precision%n"
+							+ "for double values, no decimals for integer values."
+							+ "%n", line, userProfile));
+				}
 
 				//obtain the data for each object by splitting the line on a colon
 				rawObjects = line.split(":");
@@ -126,10 +103,6 @@ public class FinancialDataParser extends FileParser {
 			
 			bufferInput.close();
 					
-		}catch(NoSuchElementException e) {
-			
-			System.out.println(e.getMessage());
-			
 		} catch(FileNotFoundException e) {
 				System.out.printf("File: %s does not exists\n", userProfile);
 			
@@ -139,25 +112,24 @@ public class FinancialDataParser extends FileParser {
 			
 		} catch(Exception e){
 			
-			System.out.println(e.getMessage());
+			System.out.println(e.getMessage() + " readIncome()");
 			
 		}
-		
 		
 			return (incomeList);
 	}
 		
 	
 	/**
-	 * Get all the Goals data for the user
-	 * Open all the files in the Goals folder,
-	 * parse the data, create new objects, and
-	 * add the Goal to an ArrayList.
+	 * Get all of the Goals data for the user.
+	 * Open each goal file, parse the data, 
+	 * instantiate the Goal and add the Goal to an ArrayList.
 	 * 
-	 * @return an ArrayList of Goals data.
+	 * @return an ArrayList of Goals data
 	 */
-	//TODO 
-	public ArrayList<Goals> readGoals(FinanceType recordType) {
+
+	public ArrayList<Goals> readGoals() 
+	{
 		
 		//list of Goals for the user
 		ArrayList<Goals> goalsList = new ArrayList<Goals>();
@@ -166,58 +138,104 @@ public class FinancialDataParser extends FileParser {
 		setUserProfile(this.user);
 		
 		//prepare the userProfile to read from the Goals directory
-		this.prepareBuffRead(recordType);
-		
-		Path goalsDir = Paths.get(userProfile);
-		
+		this.userProfile += "Goals";
 		
 		try {
 			
-		DirectoryStream<Path> directoryStream = Files.newDirectoryStream(goalsDir);
+		Path path = Paths.get(this.userProfile);
+		
+		DirectoryStream<Path> directoryStream = Files.newDirectoryStream(path);
 		
 		for(Path p : directoryStream)
 		{
-			//Create reader for character files
-			FileReader  file =  new FileReader(p.toFile());
-			
-			bufferInput = new BufferedReader(file);
-			
-			line = bufferInput.readLine();
-					
-			while(line != null)
+			//iterate through all the files in the directory and parse the goals data
+			if(Files.isDirectory(p))
 			{
-				// obtain the data by splitting the line on commas
-				rawObjects = line.split(",");
+				DirectoryStream<Path> filesStream = Files.newDirectoryStream(p);
 				
-				//for each set of properties, instantiate a new Goal
-				for(String properties : rawObjects)
+				for(Path f : filesStream)
 				{
-					//check that the data in the file is formatted correctly
-					if(!formattedData("[]", properties))
-						throw new Exception(String.format("Data in %s is not formatted to standards", userProfile));
 					
-					Goals financialGoals = new Goals();
+					//Create reader for character files
+					FileReader file =  new FileReader(f.toFile());
 					
-					goalsList.add(financialGoals);
+					bufferInput = new BufferedReader(file);
+					
+					line = bufferInput.readLine();
+					
+					while(line != null && ! line.isEmpty() )
+					{
+						
+						
+						//split on commas if they are present
+						if(line.matches(".*,"))
+						{
+							rawObjects = line.split(",");
+						}
+						
+						else
+						{
+							//clear the rawObjects and insert the single line
+							rawObjects = null;
+							
+							rawObjects = new String[] {line};
+						}
+							
+						
+						//for each set of properties, instantiate a new Goal
+						for(String object : rawObjects)
+						{
+							//check that the data in the file is formatted correctly
+							if(!formattedData("[a-zA-Z\\s]+:[a-zA-Z\\s]+:\\d+\\.\\d{6}:\\d+\\.\\d{6}:\\d+\\.\\d{6}:\\d+:\\d+:\\d+\\.\\d{6}", object))
+							{
+								throw new Exception(String.format("%s is not formatted to standards in %s.%n"
+										+ "Standard: Colons seperating fields, commas seperating objects, 6 decimal digits of precision%n"
+										+ "for double values, no decimals for integer values."
+										+ "%n", object, f.toFile() + ".txt" ));
+							}
+							
+							String properties[] =  object.split(":");
+							
+							// instantiate the Goals object 
+							Goals financialGoal = new Goals(properties[0], properties[1], properties[2], 
+									properties[3], properties[4], properties[5], properties[6]);
+							
+							//set the taxes for the object if any
+							financialGoal.setTaxes(Double.valueOf(properties[7]));
+							
+							//add the Goals to the list
+							goalsList.add(financialGoal);
+						}
+						
+						line = bufferInput.readLine();
+					}
+					
+					bufferInput.close();
 				}
 				
+				filesStream.close();
 			}
 			
-			bufferInput.close();
 		}
 		
+		directoryStream.close();
+		
+		} catch(FileNotFoundException e){
+			
+			System.out.printf("File: %s does not exists\n", userProfile);
+			
 		} catch(IOException e){
 			
 			System.out.printf("Could not locate the directory : %s\n", userProfile);
 			
 		} catch (Exception e) {
 			
-			System.out.println(e.getMessage());
+			System.out.println(e.getMessage() + " readGoals()");
 		}
 		
+		return(goalsList);
 		
-		return null;
-		}
+	}
 	
 	
 	
@@ -255,21 +273,21 @@ try {
 							String.format("readExpenses cannot read records of type: %s", recordType));
 			}
 			
-			//prepare the Buffer to read from a file relevant to the recordType
-			this.prepareBuffRead(recordType);
-			
-			
-			//if a REXPENSE is desired, set userProfile to ExpenseTracker.txt expense file for year and month in date
+			//if a REXPENSE is desired, set userProfile to the ExpenseTracker.txt expense file for year and month in date
 			if(recordType == FinanceType.REXPENSE)
 			{
 				
-				userProfile += String.format("%d%s%s%s%s", date.getYear(), File.separator, 
-								Date.MONTHS_IN_YEAR[date.getMonth()] , File.separator, "ExpenseTracker.txt");
+				userProfile += String.format("%s%s%d%s%s%s%s", "AnnualExpenses", File.separator,
+						date.getYear(), File.separator, Date.MONTHS_IN_YEAR[date.getMonth()] , 
+						File.separator,"ExpenseTracker.txt");
 			}
 			
 			//FEXPENSE is desired, set the userProfile to FixedExpenses.txt expense file for year in date
 			else
-				userProfile += String.format("%d%s%s", date.getYear(), File.separator, "FixedExpenses.txt");
+			{
+				userProfile += String.format("%s%s%d%s%s", "AnnualExpenses", File.separator, 
+								date.getYear(), File.separator, "FixedExpenses.txt");
+			}
 			
 			//read expense data from the expense file
 			bufferInput = new BufferedReader(new FileReader(this.userProfile));
@@ -286,9 +304,12 @@ try {
 				{
 					
 					//Check the properties of an object are formated correctly
-					if(! formattedData("[a-zA-Z]+:[\\d\\.]+:\\d+\\/\\d+\\/\\d+:.*", object ))
+					if(! formattedData("[a-zA-Z]+:\\d+\\.\\d{6}:\\d+\\/\\d+\\/\\d+:.*", object ))
 					{	
-						throw new Exception(String.format("Data in %s is not formatted to standards", userProfile));
+						throw new Exception(String.format("%s is not formatted to standards in %s.%n"
+								+ "Standard: Colons seperating fields, commas seperating objects, 6 decimal digits of precision%n"
+								+ "for double values, no decimals for integer values."
+								+ "%n", line, userProfile));
 					}
 					
 					//Instantiate the Expense object based on the first token in the properties
@@ -316,7 +337,7 @@ try {
 			
 		} catch(Exception e){
 			
-			System.out.println(e.getMessage());
+			System.out.println(e.getMessage() + " readExpenses()");
 		}
 		
 		return (expenseList);
@@ -517,9 +538,6 @@ try {
 			throw new Exception(String.format("No such Expense Object %s", properties.get(0)));
 		
 		
-	}
-
-	
+	}	
 	
 }
-	

@@ -1,5 +1,10 @@
 package application.model;
 
+import java.util.ArrayList;
+
+import application.model.Expense.Expense;
+import application.model.Goals.Goals;
+
 /**
  * 
  * Every User has a username, password, and phone number
@@ -18,16 +23,21 @@ public class User {
 	private String salt;
 
 	private String phone;			//The phone number of the user
-		
+
 	private boolean passAuthenticated;	//Flag to determine if the user is logged in
 	
 	private boolean userAuthenticated;
-
+	
+	/**
+	 * Constructor
+	 * @param username of the User 
+	 */
 	
 	public User(String username) 
 	{
 		this.username = username;
 	}
+	
 	
 	public String getUsername() {
 		return username;
@@ -81,6 +91,6 @@ public class User {
 
 	public void setUserAuthenticated(boolean userAuthenticated) {
 		this.userAuthenticated = userAuthenticated;
-	}	
+	}
 
 }

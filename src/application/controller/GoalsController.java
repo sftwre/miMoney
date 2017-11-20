@@ -70,6 +70,64 @@ public class GoalsController implements EventHandler<ActionEvent> {
 		this.Cyear.setText("");
 		this.Ctime.setText("");
 	}
+	
+	
+	@FXML
+	private TextField hProjectName;	// Name of the project
+	
+	@FXML
+	private TextField hCost;	//
+	
+	@FXML
+	private TextField hTime;	//
+	
+	@FXML
+	private TextField hInteres;	//
+	
+	@FXML
+	private TextField hDown;	//
+	
+	@FXML
+	private TextField hTaxas;	//
+	
+	@FXML
+	private TextField hOther;	//
+	
+	@FXML
+	private Button hContinue;
+	
+	@FXML
+	private Button hCancel;
+	
+	/**
+	 * @param ActionEvent event
+	 * is using to create the function of each 
+	 * button and update the information
+	 * in the displayed
+	 */
+	public void hContinue(ActionEvent event) {
+			
+			Goals homeGoal = new Goals("HomeGoal", this.hProjectName.getText(), hCost.getText(),
+					this.hInteres.getText(), this.hDown.getText(), this.hTime.getText(), 
+					this.hTaxas.getText(), this.hOther.getText());
+			//Close window and open goal
+	}
+	
+	public void hCancel(ActionEvent event){
+		this.hProjectName.setText("");
+		this.hCost.setText("");
+		this.hInteres.setText("");
+		this.hDown.setText("");
+		this.hTime.setText("");
+		this.hTaxas.setText("");
+		this.hOther.setText("");
+	}
+	
+	
+
+	
+	
+	
 
 	@Override
 	public void handle(ActionEvent event) {

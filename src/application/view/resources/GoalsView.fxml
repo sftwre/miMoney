@@ -76,20 +76,20 @@
                                  <children>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Home Project Name" textAlignment="CENTER" wrappingWidth="180.0" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Home Cost" textAlignment="CENTER" wrappingWidth="180.0" GridPane.rowIndex="1" />
-                                    <TextField promptText="Exp. White House" GridPane.columnIndex="1" />
-                                    <TextField promptText="Exp.1,509,509.99 " GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField promptText="Exp. 35%" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField promptText="Exp. 250,000 .00" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField promptText="Exp. 30 years" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <TextField promptText="Exp. 1,700.00" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                    <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="170.0" text="Cansel" GridPane.rowIndex="7" />
-                                    <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="170.0" text="Continue" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                    <TextField fx:id="hProjectName" promptText="Exp. White House" GridPane.columnIndex="1" />
+                                    <TextField fx:id="hCost" promptText="Exp.1,509,509.99 " GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="hInteres" promptText="Exp. 35%" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="hDown" promptText="Exp. 250,000 .00" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="hTime" promptText="Exp. 30 years" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <TextField fx:id="hTaxas" promptText="Exp. 1,700.00" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <Button fx:id="hCancel" mnemonicParsing="false" onAction="#hCancel" prefHeight="27.0" prefWidth="170.0" text="Cansel" GridPane.rowIndex="7" />
+                                    <Button fx:id="hContinue" mnemonicParsing="false" onAction="#hContinue" prefHeight="27.0" prefWidth="170.0" text="Continue" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Interest Rate" textAlignment="CENTER" wrappingWidth="180.0" GridPane.rowIndex="2" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Down Payment" textAlignment="CENTER" wrappingWidth="180.0" GridPane.rowIndex="3" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time to Payoff" textAlignment="CENTER" wrappingWidth="180.0" GridPane.rowIndex="4" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Zone Taxas p/y" textAlignment="CENTER" wrappingWidth="180.0" GridPane.rowIndex="5" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Insurance and Others p/m" textAlignment="CENTER" wrappingWidth="180.0" GridPane.rowIndex="6" />
-                                    <TextField promptText="Exp. 700.00 " GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <TextField fx:id="hOther" promptText="Exp. 700.00 " GridPane.columnIndex="1" GridPane.rowIndex="6" />
                                  </children>
                               </GridPane>
                            </children>
@@ -136,12 +136,6 @@
                         </AnchorPane>
                   </content>
                 </TitledPane>
-                  <TitledPane animated="false" layoutX="10.0" layoutY="10.0" text="Saves">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                        <fx:include fx:id="CalcView" source="CalcView.fxml" />
-                     </content>
-                  </TitledPane>
               </panes>
             </Accordion>
          </children>

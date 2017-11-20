@@ -16,6 +16,7 @@ public class Goals {
 	private int year; 
 	private int time;
 	private double taxes;
+	private double other;
 	
 	public Goals (String type, String projectName, String totalCost,
 			String interestRate, String downPayment, String year, String time) {
@@ -31,6 +32,23 @@ public class Goals {
 		//Operations
 	}
 	
+	public Goals (String type, String projectName, String totalCost,
+			String interestRate, String downPayment, String time, String taxas, String other) {
+		this.projectName = projectName;
+		this.type = type;
+		this.totalCost = Double.parseDouble(totalCost);
+		this.interestRate = Double.parseDouble(interestRate);
+		this.downPayment = Double.parseDouble(downPayment);
+		this.time = Integer.parseInt(time);
+		this.taxes = Double.parseDouble(taxas);
+		this.other = Double.parseDouble(other);
+		
+		//Operations
+		
+		System.out.println(toString2());
+	}
+	
+
 
 	
 	/**
@@ -38,10 +56,81 @@ public class Goals {
 	 */
 	
 	public void TotalCost (){
-		double totalCost = 0;
-		
-		
+		double totalCost = 0;	
 	}
+	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getProjectName() {
+		return projectName;
+	}
+
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+
+	public double getTotalCost() {
+		return totalCost;
+	}
+
+	public void setTotalCost(double totalCost) {
+		this.totalCost = totalCost;
+	}
+
+	public double getInterestRate() {
+		return interestRate;
+	}
+
+	public void setInterestRate(double interestRate) {
+		this.interestRate = interestRate;
+	}
+
+	public double getDownPayment() {
+		return downPayment;
+	}
+
+	public void setDownPayment(double downPayment) {
+		this.downPayment = downPayment;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	public int getTime() {
+		return time;
+	}
+
+	public void setTime(int time) {
+		this.time = time;
+	}
+
+	public double getTaxes() {
+		return taxes;
+	}
+
+	public void setTaxes(double taxes) {
+		this.taxes = taxes;
+	}
+	
+	public double other(){
+		return other;
+	}
+	
+	public void other (double other){
+		this.other = other;
+	}
+
 	public String toString1(){
 		return String.format("%s:%s:%.2f:%.2f:%.2f:%d:%d"
 				, this.type
@@ -53,6 +142,16 @@ public class Goals {
 				, this.time);
 	}
 	public String toString2(){
-		return String.format(":");
+		return String.format("%s:%s:%.2f:%.2f:%.2f:%d:%.2f:%.2f"
+				, this.type
+				, this.projectName
+				, this.totalCost
+				, this.interestRate
+				, this.downPayment
+				, this.time
+				, this.taxes
+				, this.other);
 	}
+	
+
 }
