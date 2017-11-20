@@ -89,12 +89,66 @@ public class LoginController {
 		
 		try
 		{
-		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/FinancialOverview.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/MainView.fxml"));
 		Scene scene = new Scene(root);
 		popUp.setScene(scene);
 		popUp.show();
 		} catch(IOException e){
-			System.out.printf("The resource 'view/resources/FinancialOverview.fxml' could not be located");
+			System.out.printf("The resource 'view/resources/MainView.fxml' could not be located");
+		}// END try/catch load FXML
+	}
+	
+	@FXML
+	public void goToSignUpView(ActionEvent event) {
+		Stage popUp =  new Stage();
+		
+		popUp.initModality(Modality.APPLICATION_MODAL);
+		popUp.initOwner(Main.stage);
+		
+		try
+		{
+		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/Tutorial.fxml"));
+		Scene scene = new Scene(root);
+		popUp.setScene(scene);
+		popUp.show();
+		} catch(IOException e){
+			System.out.printf("The resource 'view/resources/Tutorial.fxml' could not be located");
+		}// END try/catch load FXML
+	}//END goToSignUpView()
+	
+	@FXML
+	public void goToForgotUserView(ActionEvent event) {
+		Stage popUp =  new Stage();
+		
+		popUp.initModality(Modality.APPLICATION_MODAL);
+		popUp.initOwner(Main.stage);
+		
+		try
+		{
+		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/ForgotUsername.fxml"));
+		Scene scene = new Scene(root);
+		popUp.setScene(scene);
+		popUp.show();
+		} catch(IOException e){
+			System.out.printf("The resource 'view/resources/ForgotUsername.fxml' could not be located");
+		}// END try/catch load FXML
+	}// END goToForgotUserView()
+	
+	@FXML
+	public void goToForgotPassView(ActionEvent event) {
+		Stage popUp =  new Stage();
+		
+		popUp.initModality(Modality.APPLICATION_MODAL);
+		popUp.initOwner(Main.stage);
+		
+		try
+		{
+		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/Tutorial.fxml"));
+		Scene scene = new Scene(root);
+		popUp.setScene(scene);
+		popUp.show();
+		} catch(IOException e){
+			System.out.printf("The resource 'view/resources/ForgotPassword.fxml' could not be located");
 		}// END try/catch load FXML
 	}
 	
