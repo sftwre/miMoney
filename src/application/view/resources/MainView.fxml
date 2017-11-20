@@ -24,7 +24,7 @@
           </Tab>
             <Tab text="Goals">
               <content>
-                <fx:include fx:id="Goals" source="GoalsView.fxml" />
+                <fx:include fx:id="Goals" source="GoalsView2.fxml" />
               </content>
             </Tab>
         </tabs>

@@ -30,15 +30,15 @@ public class Main extends Application {
 		
 		try {
 			
-			if(! session.currentUser.isPassAuthenticated())
-			{
-				root = FXMLLoader.load(getClass().getResource("view/resources/Login.fxml"));
-			}
+			//if(! session.currentUser.isPassAuthenticated())
+			//{
+			//	root = FXMLLoader.load(getClass().getResource("view/resources/Login.fxml"));
+			//}
 			
-			else
-			{
+			//else
+			//{
 				root = FXMLLoader.load(getClass().getResource("view/resources/MainView.fxml"));
-			}
+			//}
 			
 			Scene scene = new Scene(root);
 			
