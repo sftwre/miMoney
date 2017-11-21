@@ -18,8 +18,9 @@ public class MainAccount extends Application{
 		//Session session = new Session();
 		try {
 			//if(! session.currentUser.isPassAuthenticated()) {
-				root = FXMLLoader.load(getClass().getResource("view/resourses/CreateAccount.fxml"));
+				root = FXMLLoader.load(getClass().getResource("view/resources/CreateAccount2.fxml"));
 				Scene scene = new Scene(root);
+			
 				primaryStage.setScene(scene);
 				primaryStage.show();
 			//}
@@ -32,7 +33,7 @@ public class MainAccount extends Application{
 			//primaryStage.setScene(scene);
 			//primaryStage.show();
 		}catch(Exception e) {
-			System.out.printf("The resource 'CreateAccount.fxml' could not be located");
+			e.printStackTrace();
 		}
 		MainAccount.stage = primaryStage;
 	}

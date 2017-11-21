@@ -26,77 +26,80 @@ import javafx.stage.Stage;
 
 public class CreateAccountController {
 
-	private TextField user_name;
-    @FXML
-    private Button createAcctButton;
-    @FXML
-    private TextField phone_number;
-    @FXML
-    private TextField jobInfo;
-    @FXML
-    private TextField income;
-    @FXML
-    private PasswordField password;
-    @FXML
-    private PasswordField confirmPass;
-    
-   
-    
-    private Label phoneNmTxt;
-    
-    private Label passwordTxt;
-    
-   
-    private Label confirmPassTxt;
-    
-    private Label incomeTxt;
-    
-    private Label jobLabel;
-    
-    
-    private Label username_error;
-    
-    
-    private Label password_error;
+	 @FXML
+	    private TextField income;
 
-   
-    private Label income_error;
+	    @FXML
+	    private Label username_error;
 
-    
-    private Label job_error;
-    
-  
-    private Label password2_error;
+	    @FXML
+	    private TextField user_name;
 
-  
-    private Label phone_error;
+	    @FXML
+	    private Button createAcctButton;
+
+	    @FXML
+	    private TextField jobInfo;
+
+	    @FXML
+	    private PasswordField password;
+
+	    @FXML
+	    private Label incomeTxt;
+
+	    @FXML
+	    private PasswordField confirmPass;
+
+	    @FXML
+	    private Label jobTxt;
+
+	    @FXML
+	    private Label password_error;
+
+	    @FXML
+	    private Label income_error;
+
+	    @FXML
+	    private Label job_error;
+
+	    @FXML
+	    private Label passwordTxt;
+
+	    @FXML
+	    private TextField phone_Number;
+
+	    @FXML
+	    private Label password2_error;
+
+	    @FXML
+	    private Label phone_error;
    
     Text fianancialTxt = new Text("Fianancial Information:");
     
 
     
     void createAcct(ActionEvent event) {
-    	if(user_name.getText().trim().isEmpty() || password.getText().trim().isEmpty() || confirmPass.getText().trim().isEmpty() || phone_number.getText().trim().isEmpty() || income.getText().trim().isEmpty() || jobInfo.getText().trim().isEmpty()) {
-    		{ 
+    	if(user_name.getText().trim().isEmpty() || password.getText().trim().isEmpty() || confirmPass.getText().trim().isEmpty() || phone_Number.getText().trim().isEmpty() || income.getText().trim().isEmpty() || jobInfo.getText().trim().isEmpty()) {
+    		if(user_name.getText().trim().isEmpty()){ 
     			user_name.setStyle("-fx-border-color: red;");
     			username_error.setText("username is not entered");
     			username_error.setTextFill(Color.RED);
     		}
     		
-    		{
+    		if(password.getText().trim().isEmpty()){
     			password.setStyle("-fx-border-color: red;");
     			password_error.setText("password is not entered");
     			password_error.setTextFill(Color.RED);
     		}
     		
-    		{
+    		if(confirmPass.getText().trim().isEmpty()){
     			confirmPass.setStyle("-fx-border-color: red;");
     			password2_error.setText("please confirm password");
     			password2_error.setTextFill(Color.RED);
     		}
     		
-    		{
-    			phone_number.setStyle("-fx-border-color: red;");
+    		if(phone_Number.getText().trim().isEmpty()){
+    			phone_Number.setStyle("-fx-border-color: red;");
     			phone_error.setText("phone number is not entered");
     			phone_error.setTextFill(Color.RED);
     		}
@@ -121,7 +124,7 @@ public class CreateAccountController {
     	Tooltip job = new Tooltip("Enter the title of your job");
     	passwordTxt.setTooltip(pass);
     	incomeTxt.setTooltip(inc);
-    	jobLabel.setTooltip(job);
+    	jobTxt.setTooltip(job);
 //    	Tooltip.install(income, inc);
 //    	Tooltip.install(jobInfo, job);
     	
