@@ -40,7 +40,7 @@ public class CreateAccountController {
     @FXML
     private PasswordField confirmPass;
     
-    private Label userText;
+   
     
     private Label phoneNmTxt;
     
@@ -106,19 +106,8 @@ public class CreateAccountController {
     	
     
     	else {
-    		Stage popUp =  new Stage();
     		
-    		popUp.initModality(Modality.APPLICATION_MODAL);
-    		popUp.initOwner(Main.stage);
-    		try {
-    			Parent root = FXMLLoader.load(getClass().getResource("../view/resources/Tutorial.fxml"));
-        		Scene scene = new Scene(root);
-        		popUp.setScene(scene);
-        		popUp.show();
-    		}catch(IOException e) {
-    			e.printStackTrace();
-    		}
-    		
+    		goToTutorial(new ActionEvent());
     	}
 
     }
@@ -140,6 +129,21 @@ public class CreateAccountController {
     	//rect.setOnMouseDragOver(value);
     	
     	//income.setTooltip(text);
+    }
+    
+    public void goToTutorial(ActionEvent event) {
+    	Stage popUp =  new Stage();
+		
+		//popUp.initModality(Modality.APPLICATION_MODAL);
+		//popUp.initOwner(Main.stage);
+		try {
+			Parent root = FXMLLoader.load(getClass().getResource("view/resources/Tutorial.fxml"));
+    		Scene scene = new Scene(root);
+    		popUp.setScene(scene);
+    		popUp.show();
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
     }
 
 
