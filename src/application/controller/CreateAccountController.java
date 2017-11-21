@@ -19,6 +19,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -51,27 +52,71 @@ public class CreateAccountController {
     private Label incomeTxt;
     
     private Label jobLabel;
+    
+    
+    private Label username_error;
+    
+    
+    private Label password_error;
+
+   
+    private Label income_error;
+
+    
+    private Label job_error;
+    
+  
+    private Label password2_error;
+
+  
+    private Label phone_error;
    
     Text fianancialTxt = new Text("Fianancial Information:");
     
 
-    @FXML
+    
     void createAcct(ActionEvent event) {
     	if(user_name.getText().trim().isEmpty() || password.getText().trim().isEmpty() || confirmPass.getText().trim().isEmpty() || phone_number.getText().trim().isEmpty() || income.getText().trim().isEmpty() || jobInfo.getText().trim().isEmpty()) {
-    		System.err.println("You must enter the missing field!");
+    		{ 
+    			user_name.setStyle("-fx-border-color: red;");
+    			username_error.setText("username is not entered");
+    			username_error.setTextFill(Color.RED);
+    		}
+    		
+    		{
+    			password.setStyle("-fx-border-color: red;");
+    			password_error.setText("password is not entered");
+    			password_error.setTextFill(Color.RED);
+    		}
+    		
+    		{
+    			confirmPass.setStyle("-fx-border-color: red;");
+    			password2_error.setText("please confirm password");
+    			password2_error.setTextFill(Color.RED);
+    		}
+    		
+    		{
+    			phone_number.setStyle("-fx-border-color: red;");
+    			phone_error.setText("phone number is not entered");
+    			phone_error.setTextFill(Color.RED);
+    		}
     	}
+    	
+    	
+    	
+    
     	else {
     		Stage popUp =  new Stage();
     		
     		popUp.initModality(Modality.APPLICATION_MODAL);
     		popUp.initOwner(Main.stage);
     		try {
-    			Parent root = FXMLLoader.load(getClass().getResource("../view/resources/MainView.fxml"));
+    			Parent root = FXMLLoader.load(getClass().getResource("../view/resources/Tutorial.fxml"));
         		Scene scene = new Scene(root);
         		popUp.setScene(scene);
         		popUp.show();
     		}catch(IOException e) {
-    			System.err.println("The resourse 'view/resourses/MainView.fxml' could not be located.");
+    			e.printStackTrace();
     		}
     		
     	}
