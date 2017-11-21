@@ -23,12 +23,12 @@ public class CalendarView {
 	 * with the corresponding days for the month.
 	 */
 	public ArrayList<String> fill(YearMonth yearMonth, LocalDate exactDate) {
-		while (!exactDate.getDayOfWeek().toString().equals("MONDAY"))
+		while (!exactDate.getDayOfWeek().toString().equals("SUNDAY"))
             exactDate = exactDate.minusDays(1);
 		/*
-		 * While loop above will loop until we are back at the last Monday
+		 * While loop above will loop until we are back at the last Sunday
 		 * of last month. Once there we will stop, and exact date will be
-		 * the exact date of the last Monday of last month. This is similar
+		 * the exact date of the last Sunday of last month. This is similar
 		 * to the calendar format in Windows 10 (taskbar calendar)
 		 */
         	
