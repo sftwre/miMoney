@@ -35,8 +35,6 @@ public class FileIOTest {
 		
 		incomeList =  input.readIncome();
 		
-		input.printRawObjects();
-		
 		System.out.printf("%nIncome data%n");
 		
 		for(Income income : incomeList)
@@ -45,12 +43,14 @@ public class FileIOTest {
 		}
 		
 	}
+	 
 	
 	/**
 	 * Create an ArrayList of Expenses and read in the Variable Expenses 
 	 * of the user for the month of February.
 	 * 
 	 */
+	
 	@Test
 	public void testReadExpenses()
 	{
@@ -59,8 +59,6 @@ public class FileIOTest {
 		
 		//Get the variable expenses for February
 		ArrayList<Expense> febExpenses = input.readExpenses(febraury, FinanceType.REXPENSE);
-		
-		input.printRawObjects();
 		
 		//Get the fixed expenses for February an append them to the current list of Expenses
 		febExpenses.addAll(input.readExpenses(febraury, FinanceType.FEXPENSE));
@@ -101,8 +99,6 @@ public class FileIOTest {
 		//get the Goals for the user by creating an ArrayList of Goals
 		goalsList = input.readGoals();
 		
-		input.printRawObjects();
-		
 		//iterate through the goals and display the data
 		System.out.printf("%nGoals data for testUser77%n");
 		
@@ -130,6 +126,7 @@ public class FileIOTest {
 		System.out.printf("%s %s %s\n", userData.getUser().getUsername(), 
 				userData.getUser().getPassword(), userData.getUser().getPhone());
 	}
+	
 	
 
 }

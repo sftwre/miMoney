@@ -37,10 +37,6 @@ public class FinancialDataParser extends FileParser {
 		bufferInput = null;
 	}
 	
-	public void printRawObjects()
-	{
-		System.out.println(Arrays.asList(rawObjects));
-	}
 	
 	
 	/**
