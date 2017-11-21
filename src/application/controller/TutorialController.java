@@ -48,7 +48,7 @@ public class TutorialController {
     	create.initOwner(Main.stage);
     	try {
     		Parent start;
-        	start = FXMLLoader.load(getClass().getClassLoader().getResource("..view/resourses/CreateAccount.fxml"));
+        	start = FXMLLoader.load(getClass().getClassLoader().getResource("view/resourses/MainView.fxml"));
         	Scene scene = new Scene(start);
         	create.setScene(scene);
         	create.show();
