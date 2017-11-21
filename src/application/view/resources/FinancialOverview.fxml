@@ -32,7 +32,7 @@
                <children>
                   <GridPane fx:id="incomePaneGrid" hgap="8.0" layoutX="49.6" layoutY="49.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label text="Employment" GridPane.halignment="RIGHT">
+                        <Label text="Employment" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                            <font>
                               <Font size="13.0" />
                            </font>
@@ -40,7 +40,7 @@
                               <Insets />
                            </GridPane.margin>
                         </Label>
-                        <Label text="Salary" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                        <Label text="Salary" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <font>
                               <Font size="13.0" />
                            </font>
@@ -48,14 +48,24 @@
                               <Insets />
                            </GridPane.margin>
                         </Label>
-                        <TextField fx:id="employmentTextField" editable="false" focusTraversable="false" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" />
-                        <TextField fx:id="salaryTextField" editable="false" focusTraversable="false" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="employmentTextField" editable="false" focusTraversable="false" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.valignment="TOP" />
+                        <TextField fx:id="salaryTextField" editable="false" focusTraversable="false" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
                         <StackPane fx:id="buttonStackPane" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <children>
                               <Button fx:id="saveIncomeButton" maxWidth="-Infinity" mnemonicParsing="false" onAction="#saveIncomeChanges" prefHeight="25.0" prefWidth="90.0" text="Save" visible="false" />
-                              <Button fx:id="editIncomeButton" maxWidth="-Infinity" mnemonicParsing="false" onAction="#editIncome" prefHeight="25.0" prefWidth="90.0" text="Edit" />
+                              <Button fx:id="editIncomeButton" alignment="CENTER" maxWidth="-Infinity" mnemonicParsing="false" onAction="#editIncome" prefHeight="25.0" prefWidth="90.0" text="Edit" />
                            </children>
                         </StackPane>
+                        <Label fx:id="invalidEmployment" maxWidth="1.7976931348623157E308" prefHeight="29.0" prefWidth="170.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="invalidSalary" layoutX="128.0" layoutY="35.0" maxWidth="1.7976931348623157E308" prefHeight="29.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
                      </children>
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="85.0" minWidth="10.0" prefWidth="75.0" />

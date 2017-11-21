@@ -2,6 +2,10 @@ package application.controller;
 
 
 import javafx.event.ActionEvent;
+
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.NumberFormat;
 
@@ -23,10 +27,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.EventHandler;
@@ -45,7 +51,13 @@ public class FinancialOverviewController {
     private TextField salaryTextField; 			// Text Field for the User to view/edit their salary
     
     @FXML
+    private Label invalidSalary;				// Label for Validation
+    
+    @FXML
     private TextField employmentTextField;		// Text Field for the User to view/edit their job title
+    
+    @FXML
+    private Label invalidEmployment;			// Label for Validation
 
     @FXML
     private Button editIncomeButton; 			// Button to edit the User's income in the Income panel on the 
@@ -73,6 +85,8 @@ public class FinancialOverviewController {
     
     private User user;							// Current user of the application
     
+    private ArrayList<Income> userIncome;
+    
     // Expense data for pie chart
     private ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(); 
 
@@ -81,7 +95,7 @@ public class FinancialOverviewController {
  
 
 
-
+//TODO change all references to testUser77
 /**
  * Called by the FXMLLoader to initialize the controller. 
  * Loads the Income, Expenses, and Goals data of the user
@@ -94,28 +108,24 @@ public void initialize()
 	
 	this.financialData = new FinancialDataParser(user);
 	
-	//TODO use concurrency to kick each of these off in a separate thread
-	
-	//load Expense and Goals into the ObservableList's
 	loadSpendingDataForChart();
-	
-	loadGoalsDataForList();
 	
 	//populate the pieChart to display the expenses of the user
 	spendingChart.setData(pieChartData);
-	
+
+	loadGoalsDataForList();
+
 	//populate the Current Goals pane with the goals of the user
 	currentGoalsListView.setItems(goalsListData);
-	
-	//populate the Income pane with the income of the user
-	financialData = new FinancialDataParser(new User("testUser77"));
-	
-	ArrayList<Income> userIncome = financialData.readIncome();
-	
+			
+	userIncome = financialData.readIncome();
+		
 	//format the user income
 	employmentTextField.setText(userIncome.get(0).getTitle());
-	
+		
 	salaryTextField.setText(NumberFormat.getCurrencyInstance().format(userIncome.get(0).getPay()));
+		
+
 		
 }
 
@@ -236,10 +246,42 @@ public void editIncome(ActionEvent event)
 @FXML
 public void saveIncomeChanges(ActionEvent event) 
 {
-        //TODO write FileWriter to be able to write the data to the Users profile
+	
+	String employment = employmentTextField.getText(); 	// temporary variable for employment text
+	String salary = salaryTextField.getText();			// temporary variable for salary text
+        
+	employment = employment.trim();
+	salary = salary.trim();
+	
+        //validate User Input
+		if(employment.equals("") || employment.trim().matches("[^a-zA-z\\s]"))
+		{
+			invalidTextAlarm(employmentTextField, invalidEmployment, "* employment needs letters and spaces");
+		}
         	
-        //TODO validate input
-        	
+
+		if(salary.equals("") || salary.matches("[^\\d,.$]"))
+		{
+			invalidTextAlarm(salaryTextField, invalidSalary, "* salary needs a value");
+					
+		}
+		
+		else {
+			
+			// over write the data in the User's Income.txt
+			try {
+				
+			writeIncomeData(employment,salary);
+				
+			} catch(IOException e){
+				
+				//TODO create a dialog box
+			}
+		
+		//format the text in the salary text field
+		
+		salaryTextField.setText(NumberFormat.getCurrencyInstance().format(Double.parseDouble(salary)));
+		
         //set focusTraversable and Editable properties of salaryTextField to false
         salaryTextField.setFocusTraversable(false);
         salaryTextField.setEditable(false);
@@ -259,6 +301,8 @@ public void saveIncomeChanges(ActionEvent event)
         
         // re-enable the editIncomeButton
         editIncomeButton.setDisable(false);
+        
+	}
 }  
 
 
@@ -292,6 +336,43 @@ void createNewGoal(ActionEvent event)
 		System.out.printf("The resource 'view/resources/CarGoalView.fxml' could not be located");
 	}
 
+}
+
+
+/**
+ * Used to highlight a text field and display an error message
+ * @param textField to highlight red indicating that something went wrong
+ */
+private void invalidTextAlarm(TextField textField, Label label, String text)
+{
+	textField.setStyle("-fx-border-color: red;");
+	
+	label.setText(text);
+	
+	label.setFont(new Font("Bold", 12));
+}
+
+/**
+ * 
+ * @param employment description of the User
+ * @param salary of the User
+ * @throws IOException if the File cannot be accessed
+ */
+private void writeIncomeData(String employment, String salary) throws IOException
+{
+	
+	//reset the userIncome object and write it to the file
+	userIncome.get(0).userPay(employment, Double.parseDouble(salary));
+	
+	financialData.setUserProfile(user);
+	
+	String incomeFile = financialData.getUserProfile();
+	
+	BufferedWriter bufferOutput = new BufferedWriter(new FileWriter(incomeFile + "Income.txt"));
+	
+	bufferOutput.write(userIncome.get(0).toString());
+	
+	bufferOutput.close();
 }
 
 }

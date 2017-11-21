@@ -167,26 +167,20 @@ public class FinancialDataParser extends FileParser {
 					{
 						
 						
-						//split on commas if they are present
+						/*//split on commas if they are present
 						if(line.matches(".*,"))
 						{
 							rawObjects = line.split(",");
 						}
-						
-						else
-						{
-							//clear the rawObjects and insert the single line
-							rawObjects = null;
-							
-							rawObjects = new String[] {line};
-						}
+						*/
+						rawObjects = new String[]{line};
 							
 						
 						//for each set of properties, instantiate a new Goal
 						for(String object : rawObjects)
 						{
 							//check that the data in the file is formatted correctly
-							if(!formattedData("[a-zA-Z\\s]+:[a-zA-Z\\s]+:\\d+\\.\\d{6}:\\d+\\.\\d{6}:\\d+\\.\\d{6}:\\d+:\\d+:\\d+\\.\\d{6}", object))
+							if(!formattedData("[a-zA-Z]+:[a-zA-Z\\s]+:\\d+\\.\\d{6}:\\d+\\.\\d{6}:\\d+\\.\\d{6}:\\d+:\\d+:\\d+\\.\\d{6}", object))
 							{
 								throw new Exception(String.format("%s is not formatted to standards in %s.%n"
 										+ "Standard: Colons seperating fields, commas seperating objects, 6 decimal digits of precision%n"
@@ -196,12 +190,13 @@ public class FinancialDataParser extends FileParser {
 							
 							String properties[] =  object.split(":");
 							
+							
 							// instantiate the Goals object 
 							Goals financialGoal = new Goals(properties[0], properties[1], properties[2], 
 									properties[3], properties[4], properties[5], properties[6]);
 							
 							//set the taxes for the object if any
-							financialGoal.setTaxes(Double.valueOf(properties[7]));
+							//financialGoal.setTaxes(Double.valueOf(properties[7]));
 							
 							//add the Goals to the list
 							goalsList.add(financialGoal);
@@ -294,7 +289,7 @@ try {
 			
 			line = bufferInput.readLine();
 			
-			while(line != null) 
+			while(line != null && ! line.isEmpty()) 
 			{
 				
 				//obtain the data for each object by splitting the line on comma

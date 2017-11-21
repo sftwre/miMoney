@@ -40,5 +40,10 @@ public class Income {
 
 	// user incomes stores how much they makes and job title.
 	//
+	
+	public String toString()
+	{
+		return (String.format("%s:%f", this.title, this.pay));
+	}
 
 }// End public Income
