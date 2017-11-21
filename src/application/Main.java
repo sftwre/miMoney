@@ -16,7 +16,7 @@ public class Main extends Application {
 			
 		public static Stage stage;		// stage for displaying scenes in the application
 		
-		public static Scene currScene;			// the current scene
+		public static Scene currScene;	// the current scene
 		
 		public Session session;			// Session to control the state of the application
 		
@@ -40,11 +40,10 @@ public class Main extends Application {
 			}
 			
 			Scene scene = new Scene(root);
-			Main.setScene(scene);
+			//Main.setScene(scene);
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
 			primaryStage.setScene(scene);
-			
 			primaryStage.show();
 			
 		} catch(Exception e) {
@@ -60,17 +59,17 @@ public class Main extends Application {
 	//entry point for the application
 	public static void main(String[] args) {
 		launch(args);
-	}
+	}//END main()
 	
-	public static Scene getScene()
+	public Scene getScene()
 	{
 		return currScene;
-	}
+	}//END getScene()
 	
 	public static void setScene(Scene scene)
 	{
 		currScene = scene;
 		stage.setScene(currScene);
-	}
+	}// END setScene()
 	
-}
+}//END APPLICATION CLASS Main
