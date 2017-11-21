@@ -27,9 +27,6 @@ public class Goals {
 		this.downPayment = Double.parseDouble(downPayment);
 		this.year = Integer.parseInt(year); 
 		this.time = Integer.parseInt(time);
-		
-		System.out.println(toString1());
-		//Operations
 	}
 	
 	public Goals (String type, String projectName, String totalCost,
@@ -44,8 +41,6 @@ public class Goals {
 		this.other = Double.parseDouble(other);
 		
 		//Operations
-		
-		System.out.println(toString2());
 	}
 	
 	public Goals (String type, String projectName, String totalCost,
