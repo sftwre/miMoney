@@ -16,7 +16,7 @@ public class Main extends Application {
 			
 		public static Stage stage;		// stage for displaying scenes in the application
 		
-		public Scene currScene;			// the current scene
+		public static Scene currScene;			// the current scene
 		
 		public Session session;			// Session to control the state of the application
 		
@@ -29,16 +29,16 @@ public class Main extends Application {
 		session = new Session();
 		
 		try {
+
+			if(! session.currentUser.isPassAuthenticated())
+			{
+				root = FXMLLoader.load(getClass().getResource("view/resources/Login.fxml"));
+			}
 			
-			//if(! session.currentUser.isPassAuthenticated())
-			//{
-			//	root = FXMLLoader.load(getClass().getResource("view/resources/Login.fxml"));
-			//}
-			
-			//else
-			//{
+			else
+			{
 				root = FXMLLoader.load(getClass().getResource("view/resources/MainView.fxml"));
-			//}
+			}
 			
 			Scene scene = new Scene(root);
 			
@@ -63,14 +63,15 @@ public class Main extends Application {
 		launch(args);
 	}
 	
-	public Scene getScene()
+	public static Scene getScene()
 	{
-		return (this.currScene);
+		return currScene;
 	}
 	
-	public void setScene(Scene scene)
+	public static void setScene(Scene scene)
 	{
-		this.currScene = scene;
+		currScene = scene;
+		stage.setScene(currScene);
 	}
 	
 }
