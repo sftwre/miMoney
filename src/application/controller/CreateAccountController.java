@@ -26,8 +26,43 @@ import javafx.stage.Stage;
 
 public class CreateAccountController {
 
+
 	 @FXML
-	    private TextField income;
+	private TextField income;
+
+	/*private TextField user_name;
+    @FXML
+    private Button createAcctButton;
+    @FXML
+    private TextField phone_number;
+    @FXML
+    private TextField jobInfo;
+    @FXML
+    private TextField income;
+    @FXML
+    private PasswordField password;
+    @FXML
+    private PasswordField confirmPass;
+    
+    private Label userText;
+    
+    private Label phoneNmTxt;
+    
+    private Label passwordTxt;
+    
+   
+    private Label confirmPassTxt;
+    
+    private Label incomeTxt;
+    
+    private Label jobLabel;
+    
+    
+    private Label username_error;
+    
+    
+    private Label password_error;*/
+
 
 	    @FXML
 	    private Label username_error;
@@ -109,8 +144,19 @@ public class CreateAccountController {
     	
     
     	else {
+    		Stage popUp =  new Stage();
     		
-    		goToTutorial(new ActionEvent());
+    		popUp.initModality(Modality.APPLICATION_MODAL);
+    		popUp.initOwner(Main.stage);
+    		try {
+    			Parent root = FXMLLoader.load(getClass().getResource("../view/resources/Tutorial.fxml"));
+        		Scene scene = new Scene(root);
+        		popUp.setScene(scene);
+        		popUp.show();
+    		}catch(IOException e) {
+    			e.printStackTrace();
+    		}
+    		
     	}
 
     }
@@ -132,21 +178,6 @@ public class CreateAccountController {
     	//rect.setOnMouseDragOver(value);
     	
     	//income.setTooltip(text);
-    }
-    
-    public void goToTutorial(ActionEvent event) {
-    	Stage popUp =  new Stage();
-		
-		//popUp.initModality(Modality.APPLICATION_MODAL);
-		//popUp.initOwner(Main.stage);
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("view/resources/Tutorial.fxml"));
-    		Scene scene = new Scene(root);
-    		popUp.setScene(scene);
-    		popUp.show();
-		}catch(IOException e) {
-			e.printStackTrace();
-		}
     }
 
 

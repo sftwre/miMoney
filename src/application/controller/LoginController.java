@@ -50,7 +50,7 @@ public class LoginController {
 	@FXML
 	Label incorrectCombo;
 	
-	private User currentUser = new User("testUser77");	//in the mean time, John
+	private User currentUser = new User("testUser77");	//This sets the current user to testUser77
 	private SecureOldPass oldPass;
 	private SecureOldUser oldUser;
 	private ActionEvent e;
@@ -69,11 +69,11 @@ public class LoginController {
 	loginButton.setOnAction(new EventHandler<ActionEvent>() {
 		@Override
 		public void handle(ActionEvent e) {
-			if(currentUser.isPassAuthenticated())
-			{
+		/*	if(currentUser.isPassAuthenticated())
+			{*/
 				goToMainView(new ActionEvent());
-			}
-			incorrectCombo.setText("Username or password is incorrect.");
+			//}
+			//incorrectCombo.setText("Username or password is incorrect.");
 		}
 	});
 		
@@ -82,37 +82,27 @@ public class LoginController {
 	//TODO: method on loginButton press, it current user authenticated then go to mainview else stay
 	@FXML
 	public void goToMainView(ActionEvent event) {
-		Stage popUp =  new Stage();
-		
-		popUp.initModality(Modality.APPLICATION_MODAL);
-		popUp.initOwner(Main.stage);
 		
 		try
 		{
 		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/MainView.fxml"));
 		Scene scene = new Scene(root);
-		popUp.setScene(scene);
-		popUp.show();
+		Main.setScene(scene);
 		} catch(IOException e){
 			System.out.printf("The resource 'view/resources/MainView.fxml' could not be located");
 		}// END try/catch load FXML
-	}
+	}// END CONTROLLER CLASS goToMainView()
 	
 	@FXML
 	public void goToSignUpView(ActionEvent event) {
-		Stage popUp =  new Stage();
-		
-		popUp.initModality(Modality.APPLICATION_MODAL);
-		popUp.initOwner(Main.stage);
 		
 		try
 		{
-		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/Tutorial.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/CreateAccount.fxml"));
 		Scene scene = new Scene(root);
-		popUp.setScene(scene);
-		popUp.show();
+		Main.setScene(scene);
 		} catch(IOException e){
-			System.out.printf("The resource 'view/resources/Tutorial.fxml' could not be located");
+			System.out.printf("The resource 'view/resources/CreateAccount.fxml' could not be located");
 		}// END try/catch load FXML
 	}//END goToSignUpView()
 	
