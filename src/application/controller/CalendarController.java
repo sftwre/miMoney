@@ -3,6 +3,8 @@ package application.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -33,29 +35,21 @@ public class CalendarController {
 	private GridPane monthTile;
 	
 	private CalendarView view;
-	
-	private ArrayList<LocalDate> list;
-	
+		
 	private ArrayList<String> sList;
 	
 	private ArrayList<String> sListCopy;
-
-	private YearMonth currentYearMonth;
-	
-	private String[] daysOfWeek = new String[]{ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
-	
+		
 	private YearMonth currentMonth;
 	
 	private LocalDate date;
 	
 	private int counter;
-
 	
 	public void initialize() {
 		monthTile.setPrefSize(420, 380);
 		monthTile.setMinSize(420, 380);
 		view = new CalendarView();
-		list = new ArrayList<LocalDate>(42);
 		currentMonth = YearMonth.now();
 		sList = new ArrayList<String>(42);
 		sListCopy = new ArrayList<String>(42);
@@ -73,16 +67,15 @@ public class CalendarController {
 				
 				for(int i = 0; i<7; i++) {
 					monthTile.add(new Label(sList.get(i)), i, 0);
-					//for(int j = 7; j<=42; j+=7, k++) {
 						j = 0;
 						k = 0;
 						while(k<6) {
 							monthTile.add(new Label(sListCopy.get(j+i)), i, k);
+							//monthTile.setAlignment(CENTER);
 							j+=7;
 							k++;
-						}
-					
-				}
+						}//END while k<6
+				}// END for i<7
 				
 
 				/*PaneNode specificDay = new PaneNode();
