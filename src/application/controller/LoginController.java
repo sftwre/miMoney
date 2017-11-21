@@ -108,17 +108,12 @@ public class LoginController {
 	
 	@FXML
 	public void goToForgotUserView(ActionEvent event) {
-		Stage popUp =  new Stage();
-		
-		popUp.initModality(Modality.APPLICATION_MODAL);
-		popUp.initOwner(Main.stage);
 		
 		try
 		{
 		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/ForgotUsername.fxml"));
 		Scene scene = new Scene(root);
-		popUp.setScene(scene);
-		popUp.show();
+		Main.setScene(scene);
 		} catch(IOException e){
 			System.out.printf("The resource 'view/resources/ForgotUsername.fxml' could not be located");
 		}// END try/catch load FXML
