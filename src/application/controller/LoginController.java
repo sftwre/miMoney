@@ -98,12 +98,13 @@ public class LoginController {
 		
 		try
 		{
-		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/CreateAccount.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/CreateAccount2.fxml"));
 		Scene scene = new Scene(root);
 		Main.setScene(scene);
 		} catch(IOException e){
-			System.out.printf("The resource 'view/resources/CreateAccount.fxml' could not be located");
+			System.out.printf("The resource 'view/resources/CreateAccount2.fxml' could not be located");
 		}// END try/catch load FXML
+		
 	}//END goToSignUpView()
 	
 	@FXML
@@ -121,20 +122,16 @@ public class LoginController {
 	
 	@FXML
 	public void goToForgotPassView(ActionEvent event) {
-		Stage popUp =  new Stage();
-		
-		popUp.initModality(Modality.APPLICATION_MODAL);
-		popUp.initOwner(Main.stage);
 		
 		try
 		{
-		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/Tutorial.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/ForgotPassword.fxml"));
 		Scene scene = new Scene(root);
-		popUp.setScene(scene);
-		popUp.show();
+		Main.setScene(scene);
 		} catch(IOException e){
 			System.out.printf("The resource 'view/resources/ForgotPassword.fxml' could not be located");
 		}// END try/catch load FXML
+		
 	}
 	
 }//END CONTROLLER CLASS LoginController
