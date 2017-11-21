@@ -16,13 +16,13 @@ import application.model.Goals.Goals;
 public class User {
 	
 	
-	private String username;		//The username of the user
+	private String username;			//The username of the user
 	
-	private String password;		//The password of the user
+	private String password;			//The password of the user
 	
-	private String salt;
+	private String salt;				// unique salt for encryption algorithm
 
-	private String phone;			//The phone number of the user
+	private String phone;				//The phone number of the user
 
 	private boolean passAuthenticated;	//Flag to determine if the user is logged in
 	
