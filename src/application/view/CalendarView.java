@@ -16,19 +16,30 @@ import javafx.scene.text.Text;
  */
 public class CalendarView {
 	
-	public CalendarView() {
-
-	}// END constructor
+	private ArrayList<String> list = new ArrayList<String>(42);
 	
 	/**
 	 * This method fills the current month tiles days
 	 * with the corresponding days for the month.
 	 */
-	public String fill(YearMonth yearMonth, int col, int row, LocalDate exactDate) {
-		int day = -1;
-		day = exactDate.getDayOfMonth();
+	public ArrayList<String> fill(YearMonth yearMonth, LocalDate exactDate) {
+		while (!exactDate.getDayOfWeek().toString().equals("MONDAY"))
+            exactDate = exactDate.minusDays(1);
+		/*
+		 * While loop above will loop until we are back at the last Monday
+		 * of last month. Once there we will stop, and exact date will be
+		 * the exact date of the last Monday of last month. This is similar
+		 * to the calendar format in Windows 10 (taskbar calendar)
+		 */
+        	
+		for(int i = 0; i<42; i++) {
+			list.add(Integer.toString(exactDate.getDayOfMonth()));
+			//System.out.printf("%d ", exactDate.getDayOfMonth());
+
+			exactDate = exactDate.plusDays(1);
+		}
 		
-		return Integer.toString(day);
+		return list;
 	}// END fill()
 
 }
