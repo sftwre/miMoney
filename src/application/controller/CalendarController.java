@@ -35,6 +35,10 @@ public class CalendarController {
 	private CalendarView view;
 	
 	private ArrayList<LocalDate> list;
+	
+	private ArrayList<String> sList;
+	
+	private ArrayList<String> sListCopy;
 
 	private YearMonth currentYearMonth;
 	
@@ -53,36 +57,42 @@ public class CalendarController {
 		view = new CalendarView();
 		list = new ArrayList<LocalDate>(42);
 		currentMonth = YearMonth.now();
-		counter = 1;
-		list = new ArrayList<LocalDate>(42);
+		sList = new ArrayList<String>(42);
+		sListCopy = new ArrayList<String>(42);
+		int k = 1;
 		
-		for(int i = 0; i<7; i++)
-		{
-			//TODO: Set day of the week here
-			for(int j = 0; j<6; j++) {				
-				date = LocalDate.of(currentMonth.getYear(), currentMonth.getMonthValue(), counter);
+				date = LocalDate.of(currentMonth.getYear(), currentMonth.getMonthValue(), 1);
 				
 				//PaneNode specificDay = new PaneNode();
 				//specificDay.setPrefSize(75, 70);
 				//specificDay.setDate(LocalDate.now());
 				
-				monthTile.add(new Label(view.fill(currentMonth, i, j, date)), i, j);
-				//list.add(date);
-				counter++;
+				sList = view.fill(currentMonth, date);
+				sListCopy = sList;
+				int j = 7;
 				
-				if(counter >= (currentMonth.atEndOfMonth()).getDayOfMonth());
-					break;
+				for(int i = 0; i<7; i++) {
+					monthTile.add(new Label(sList.get(i)), i, 0);
+					//for(int j = 7; j<=42; j+=7, k++) {
+						j = 0;
+						k = 0;
+						while(k<6) {
+							monthTile.add(new Label(sListCopy.get(j+i)), i, k);
+							j+=7;
+							k++;
+						}
+					
+				}
+				
+
 				/*PaneNode specificDay = new PaneNode();
 				specificDay.setPrefSize(75, 70);
 				specificDay.setDate(LocalDate.now());
 		        LocalDate calendarDate = LocalDate.of(currentYearMonth.getYear(), currentYearMonth.getMonthValue(), 1);*/
 				
-					//monthTile.add(new Label("myStr"), i, j);
+				//monthTile.add(new Label("myStr"), i, j);
 
-				//list.add(specificDay);
-			}
-		}// END forLoop adding specificDay's to monthTile
-		
+				//list.add(specificDay);		
 	}
 
 	@FXML
