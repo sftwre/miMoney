@@ -34,14 +34,13 @@ public class Main extends Application {
 			{
 				root = FXMLLoader.load(getClass().getResource("view/resources/Login.fxml"));
 			}
-			
 			else
 			{
 				root = FXMLLoader.load(getClass().getResource("view/resources/MainView.fxml"));
 			}
 			
 			Scene scene = new Scene(root);
-			
+			Main.setScene(scene);
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
 			primaryStage.setScene(scene);
