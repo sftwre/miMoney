@@ -9,6 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 
 public class TutorialController {
@@ -40,11 +42,17 @@ public class TutorialController {
     }
     @FXML
     void getStarted(ActionEvent event) {
+    	Stage create =  new Stage();
     	
+    	create.initModality(Modality.APPLICATION_MODAL);
+    	create.initOwner(Main.stage);
     	try {
     		Parent start;
-        	start = FXMLLoader.load(getClass().getClassLoader().getResource("/MainView.fxml"));
-        	Main.stage.setScene(new Scene(start, 500, 575));
+        	start = FXMLLoader.load(getClass().getClassLoader().getResource("..view/resourses/CreateAccount.fxml"));
+        	Scene scene = new Scene(start);
+        	create.setScene(scene);
+        	create.show();
+        	//Main.stage.setScene(new Scene(start, 500, 575));
     	}catch(IOException x) {
     		x.printStackTrace();
     	}
