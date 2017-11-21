@@ -29,7 +29,7 @@ public class UserDataParser extends FileParser {
 	/**
 	 * Used to retrieve the account information of the current
 	 * user and store it in the User field of the FileParser
-	 * @return a User with their username, password, and phone number
+	 * @return a User with a username, password, salt, and phone number
 	 */
 	public User readUserData()
 	{
@@ -48,7 +48,8 @@ public class UserDataParser extends FileParser {
 				String properties[] = line.split(":");
 				
 				this.user.setPassword(properties[1]);
-				this.user.setPhone(properties[2]);
+				this.user.setSalt(properties[2]);
+				this.user.setPhone(properties[3]);
 				
 				line = bufferInput.readLine();
 			}

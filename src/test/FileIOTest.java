@@ -112,19 +112,25 @@ public class FileIOTest {
 	}
 	
 	
+	/**
+	 * Read the Users account information from their account file. 
+	 */
 	@Test
 	public void testReadUserData()
 	{
 		userData = new UserDataParser(user);
 		
-		// read the user's account information from their profile
-		// into the User field stored in FileParser
-		userData.readUserData();
+		/*
+		 * Read the user's account information from their profile
+		 * and return a User object with a username, password, salt, phone number.
+		 */
+		User authenticatedUser = userData.readUserData();
 		
 		System.out.printf("%nUser account information%n");
 		
-		System.out.printf("%s %s %s\n", userData.getUser().getUsername(), 
-				userData.getUser().getPassword(), userData.getUser().getPhone());
+		System.out.printf("%s %s %s %s\n", authenticatedUser.getUsername(), 
+				authenticatedUser.getPassword(), authenticatedUser.getSalt(),
+				authenticatedUser.getPhone());
 	}
 	
 	
