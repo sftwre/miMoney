@@ -1,7 +1,7 @@
 package application.model;
 
 /**
- * @author Sam Dash
+ * @author eeo072
  * The purpose of this code is to create a savings calculator.
  * The calculator will tell you when you will be able to buy something based on how much you save per month.
  *
@@ -11,9 +11,9 @@ public class SavingsCalculatorModel {
 	private double monthlyDeposit; // Amount deposited per month towards item
 	private int time; // Time in months that it will take to be able to afford the item
 
-	public SavingsCalculatorModel() {
-		savingsGoal = 0.0;
-		monthlyDeposit = 0.0;
+	public SavingsCalculatorModel(double savingsGoal, double monthlyDeposit) {
+		this.savingsGoal = savingsGoal;
+		this.monthlyDeposit = monthlyDeposit;
 		time = 0;
 	}
 	/**
