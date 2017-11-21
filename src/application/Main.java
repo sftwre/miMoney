@@ -41,7 +41,7 @@ public class Main extends Application {
 			}
 			
 			Scene scene = new Scene(root);
-			Main.setScene(scene);
+			//Main.setScene(scene);
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
 			primaryStage.setScene(scene);
