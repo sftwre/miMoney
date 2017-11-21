@@ -34,7 +34,7 @@
                         <Font size="12.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="time" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <TextField fx:id="time" editable="false" focusTraversable="false" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <font>
                         <Font size="12.0" />
                      </font>
