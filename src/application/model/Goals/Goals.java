@@ -1,5 +1,11 @@
 package application.model.Goals;
+import java.io.File;
 import java.util.*;
+
+import application.controller.FileParser;
+import application.controller.FinancialDataParser;
+import application.controller.UserDataParser;
+import application.model.User;
 
 /**
  * @author Manuel Deaguinaga
@@ -18,6 +24,10 @@ public class Goals {
 	private double taxes;
 	private double other;
 	
+	User user;
+	public UserDataParser userFile;
+	
+	
 	public Goals (String type, String projectName, String totalCost,
 			String interestRate, String downPayment, String year, String time) {
 		this.projectName = projectName;
@@ -27,6 +37,10 @@ public class Goals {
 		this.downPayment = Double.parseDouble(downPayment);
 		this.year = Integer.parseInt(year); 
 		this.time = Integer.parseInt(time);
+		
+		User user = new User("testUser77");
+		userFile.setUserProfile(user);
+		
 	}
 	
 	public Goals (String type, String projectName, String totalCost,

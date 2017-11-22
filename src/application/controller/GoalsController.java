@@ -12,9 +12,16 @@ import java.io.File;
 import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.io.IOException;
 
+import application.controller.FinancialOverviewController;
+import application.controller.FinancialDataParser;
+import application.controller.FileParser;
 import application.Main;
+
+import application.model.User;
 import application.model.Goals.Goals;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,9 +40,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class GoalsController implements EventHandler<ActionEvent> {
-	
-	private FinancialDataParser financialData;	// FileParser for retrieving the Financial information of the User
-	private ObservableList<String> goalsListData = FXCollections.observableArrayList();	
+		
 	@FXML
 	private TextField Cmodel;	// Name of the project
 	
@@ -59,12 +64,16 @@ public class GoalsController implements EventHandler<ActionEvent> {
 	
 	@FXML
 	private Button Cancel;		// Cleaner button
+	
+	private FileParser file;
+	
+	private UserDataParser user;
 		
 	/**
 	 * @param ActionEvent event
 	 * is using to create the function of each 
 	 * button and update the information
-	 * in the displayed
+	 * in the display
 	 */
 	public void cContinue(ActionEvent event) {
 		Goals carGoal = new Goals("CarGoal", this.Cmodel.getText(), Ccost.getText(),
@@ -72,7 +81,8 @@ public class GoalsController implements EventHandler<ActionEvent> {
 		//Close window and open goal
 		((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
 		
-		File file = new File("UserProfiles/testUser77/Goals/Auto/"+this.Cmodel.getText());
+		
+		
 		System.out.printf(carGoal.toString1());
 	}
 	
@@ -205,24 +215,6 @@ public class GoalsController implements EventHandler<ActionEvent> {
 		this.lTime.setText("");
 	}
 	
-	
-	//Will show the data of the goals
-	public void loadGoalsDataForList()
-	{
-		//load all the Goals from the Goals directory
-		ArrayList<Goals> goalsList = financialData.readGoals();
-		
-		//instantiate the goalsListData
-		goalsListData = FXCollections.observableArrayList();
-		
-		//for each goal display the ProjectName and cost
-		for(Goals g: goalsList)
-		{
-			goalsListData.add(String.format("%s : %s", g.getProjectName(),
-					NumberFormat.getCurrencyInstance().format(g.getTotalCost())));
-		}
-
-	}
 
 	@Override
 	public void handle(ActionEvent event) {

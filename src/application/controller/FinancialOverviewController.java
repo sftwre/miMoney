@@ -333,7 +333,7 @@ void createNewGoal(ActionEvent event)
 	
 	} catch(IOException e){
 		
-		System.out.printf("The resource 'view/resources/CarGoalView.fxml' could not be located");
+		System.out.printf("The resource 'view/resources/GoaslView.fxml' could not be located");
 	}
 
 }
