@@ -11,22 +11,31 @@
    <children>
       <Pane layoutX="6.0" prefHeight="478.0" prefWidth="516.0">
          <children>
-            <Label layoutX="89.0" layoutY="2.0" prefHeight="25.0" prefWidth="157.0" text="Account Information">
+            <Label layoutX="177.0" layoutY="2.0" prefHeight="25.0" prefWidth="157.0" text="Account Information">
                <font>
                   <Font size="16.0" />
                </font></Label>
             <TextField fx:id="user_name" layoutX="159.0" layoutY="35.0" prefHeight="27.0" prefWidth="175.0" promptText="Ex. abc123" style="-fx-border-color: black;" />
-            <TextField fx:id="phone_Number" layoutX="159.0" layoutY="202.0" prefHeight="27.0" prefWidth="175.0" promptText="(210)534-9999" style="-fx-border-color: black;" />
+            <TextField fx:id="phone_Number" layoutX="159.0" layoutY="211.0" prefHeight="27.0" prefWidth="175.0" promptText="(210)534-9999" style="-fx-border-color: black;" />
             <TextField fx:id="income" layoutX="159.0" layoutY="297.0" prefHeight="27.0" prefWidth="175.0" promptText="Ex. $3,000" style="-fx-border-color: black;" />
             <TextField fx:id="jobInfo" layoutX="159.0" layoutY="363.0" prefHeight="27.0" prefWidth="175.0" promptText="Ex. Job Title" style="-fx-border-color: black;" />
             <Label layoutX="95.0" layoutY="40.0" text="Username:" />
-            <Label fx:id="passwordTxt" layoutX="97.0" layoutY="99.0" text="Password:" />
+            <Label fx:id="passwordTxt" layoutX="97.0" layoutY="99.0" text="Password:">
+               <tooltip>
+                  <Tooltip text="Empty Tooltip" />
+               </tooltip></Label>
             <Label layoutX="48.0" layoutY="158.0" text="Confirm Password:" />
-            <Label layoutX="62.0" layoutY="207.0" text="Phone Number:" />
-            <Label fx:id="incomeTxt" layoutX="86.0" layoutY="302.0" onDragOver="#OnMouseDragOver" prefHeight="17.0" prefWidth="53.0" text="Income:" />
-            <Label fx:id="jobTxt" layoutX="85.0" layoutY="368.0" onDragOver="#OnMouseDragOver" prefHeight="17.0" prefWidth="56.0" text="Job Title:" />
+            <Label layoutX="55.0" layoutY="216.0" text="Phone Number:" />
+            <Label fx:id="incomeTxt" layoutX="86.0" layoutY="302.0" onDragOver="#OnMouseDragOver" prefHeight="17.0" prefWidth="53.0" text="Income:">
+               <tooltip>
+                  <Tooltip text="Enter Monthly income" />
+               </tooltip></Label>
+            <Label fx:id="jobTxt" layoutX="85.0" layoutY="368.0" onDragOver="#OnMouseDragOver" prefHeight="17.0" prefWidth="56.0" text="Job Title:">
+               <tooltip>
+                  <Tooltip text="Enter the title of your job" />
+               </tooltip></Label>
             <Button fx:id="createAcctButton" layoutX="199.0" layoutY="433.0" mnemonicParsing="false" onAction="#createAcct" prefHeight="25.0" prefWidth="112.0" text="Submit" />
-            <Label layoutX="151.0" layoutY="252.0" prefHeight="17.0" prefWidth="190.0" text="Fianancial Information">
+            <Label layoutX="147.0" layoutY="269.0" prefHeight="17.0" prefWidth="190.0" text="Fianancial Information">
                <font>
                   <Font size="19.0" />
                </font>
@@ -35,11 +44,11 @@
             <PasswordField fx:id="confirmPass" layoutX="159.0" layoutY="153.0" prefHeight="27.0" prefWidth="175.0" promptText="repeat password" style="-fx-border-color: black;" />
             <Label fx:id="username_error" layoutX="159.0" layoutY="70.0" prefHeight="17.0" prefWidth="175.0" />
             <Label fx:id="password_error" layoutX="159.0" layoutY="121.0" prefHeight="17.0" prefWidth="175.0" />
-            <Label fx:id="password2_error" layoutX="354.0" layoutY="149.0" prefHeight="17.0" prefWidth="98.0" />
-            <Label fx:id="phone_error" layoutX="421.0" layoutY="207.0" prefHeight="17.0" prefWidth="27.0" />
-            <Label fx:id="income_error" layoutX="408.0" layoutY="302.0" prefHeight="17.0" prefWidth="27.0" />
-            <Label fx:id="job_error" layoutX="417.0" layoutY="360.0" prefHeight="17.0" prefWidth="35.0" />
-            <Line endX="355.0" layoutX="160.0" layoutY="252.0" startX="-165.0" />
+            <Label fx:id="password2_error" layoutX="156.0" layoutY="187.0" prefHeight="17.0" prefWidth="175.0" />
+            <Label fx:id="phone_error" layoutX="155.0" layoutY="245.0" prefHeight="17.0" prefWidth="175.0" />
+            <Label fx:id="income_error" layoutX="156.0" layoutY="335.0" prefHeight="17.0" prefWidth="175.0" />
+            <Label fx:id="job_error" layoutX="156.0" layoutY="399.0" prefHeight="17.0" prefWidth="175.0" />
+            <Line endX="355.0" layoutX="160.0" layoutY="270.0" startX="-165.0" />
          </children>
       </Pane>
    </children>

@@ -20,8 +20,12 @@ public class TutorialController {
     @FXML
     private Button nextSceneButton;
 
+    
+    
     @FXML
     void nextScene(ActionEvent event) {
+    	
+    	//nextSceneButton.setOnAction(EventHandler);
    
     	try {
     		Parent tutor;
@@ -40,6 +44,8 @@ public class TutorialController {
     	}
 
     }
+    
+    
     @FXML
     void getStarted(ActionEvent event) {
     	Stage create =  new Stage();

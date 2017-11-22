@@ -84,23 +84,44 @@ public class CreateAccountController {
     			username_error.setText("username is not entered");
     			username_error.setTextFill(Color.RED);
     		}
+    		else {
+    			user_name.setStyle("-fx-border-color: black;");
+    			username_error.setText("");
+    		}
     		
     		if(password.getText().trim().isEmpty()){
     			password.setStyle("-fx-border-color: red;");
     			password_error.setText("password is not entered");
     			password_error.setTextFill(Color.RED);
     		}
+    		else {
+    			password.setStyle("-fx-border-color: black;");
+    			password_error.setText("");
+    		}
     		
     		if(confirmPass.getText().trim().isEmpty()){
     			confirmPass.setStyle("-fx-border-color: red;");
-    			password2_error.setText("please confirm password");
+    			password2_error.setText("passwords must match");
     			password2_error.setTextFill(Color.RED);
+    		}
+    		//else if(confirmPass.getText().trim() != password.getText().trim()) {
+    			//confirmPass.setStyle("-fx-border-color: red;");
+    			//password2_error.setText("passwords must match");
+    			//password2_error.setTextFill(Color.RED);
+    		//}
+    		else {
+    			confirmPass.setStyle("-fx-border-color: black;");
+    			password2_error.setText("");
     		}
     		
     		if(phone_Number.getText().trim().isEmpty()){
     			phone_Number.setStyle("-fx-border-color: red;");
     			phone_error.setText("phone number is not entered");
     			phone_error.setTextFill(Color.RED);
+    		}
+    		else {
+    			phone_Number.setStyle("-fx-border-color: black;");
+    			phone_error.setText("");
     		}
     		
     		if(income.getText().trim().isEmpty()){
@@ -158,9 +179,11 @@ public class CreateAccountController {
 		//popUp.initOwner(Main.stage);
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("view/resources/Tutorial.fxml"));
-    		Scene scene = new Scene(root);
-    		popUp.setScene(scene);
-    		popUp.show();
+			Scene scene = new Scene(root, 500, 500);
+		
+			Main.setScene(scene);
+			//primaryStage.setScene(scene);
+			//primaryStage.show();
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
