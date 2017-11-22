@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import application.Main;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,92 +28,55 @@ import javafx.stage.Stage;
 public class CreateAccountController {
 
 
-	 @FXML
-	private TextField income;
+	@FXML
+    private TextField income;
 
-	/*private TextField user_name;
+    @FXML
+    private Label username_error;
+
+    @FXML
+    private TextField user_name;
+
     @FXML
     private Button createAcctButton;
-    @FXML
-    private TextField phone_number;
+
     @FXML
     private TextField jobInfo;
-    @FXML
-    private TextField income;
+
     @FXML
     private PasswordField password;
+
+    @FXML
+    private Label incomeTxt;
+
     @FXML
     private PasswordField confirmPass;
-    
-   
-    
-    private Label phoneNmTxt;
-    
+
+    @FXML
+    private Label jobTxt;
+
+    @FXML
+    private Label password_error;
+
+    @FXML
+    private Label income_error;
+
+    @FXML
+    private Label job_error;
+
+    @FXML
     private Label passwordTxt;
-    
-   
-    private Label confirmPassTxt;
-    
-    private Label incomeTxt;
-    
-    private Label jobLabel;
-    
-    
-    private Label username_error;
-    
-    
-    private Label password_error;*/
 
+    @FXML
+    private TextField phone_Number;
 
-	    @FXML
-	    private Label username_error;
+    @FXML
+    private Label password2_error;
 
-	    @FXML
-	    private TextField user_name;
-
-	    @FXML
-	    private Button createAcctButton;
-
-	    @FXML
-	    private TextField jobInfo;
-
-	    @FXML
-	    private PasswordField password;
-
-	    @FXML
-	    private Label incomeTxt;
-
-	    @FXML
-	    private PasswordField confirmPass;
-
-	    @FXML
-	    private Label jobTxt;
-
-	    @FXML
-	    private Label password_error;
-
-	    @FXML
-	    private Label income_error;
-
-	    @FXML
-	    private Label job_error;
-
-	    @FXML
-	    private Label passwordTxt;
-
-	    @FXML
-	    private TextField phone_Number;
-
-	    @FXML
-	    private Label password2_error;
-
-	    @FXML
-	    private Label phone_error;
-   
-    Text fianancialTxt = new Text("Fianancial Information:");
-    
-
-    
+    @FXML
+    private Label phone_error;
+	 @FXML
+	
     void createAcct(ActionEvent event) {
     	if(user_name.getText().trim().isEmpty() || password.getText().trim().isEmpty() || confirmPass.getText().trim().isEmpty() || phone_Number.getText().trim().isEmpty() || income.getText().trim().isEmpty() || jobInfo.getText().trim().isEmpty()) {
     		if(user_name.getText().trim().isEmpty()){ 
@@ -138,6 +102,18 @@ public class CreateAccountController {
     			phone_error.setText("phone number is not entered");
     			phone_error.setTextFill(Color.RED);
     		}
+    		
+    		if(income.getText().trim().isEmpty()){
+    			income.setStyle("-fx-border-color: red;");
+    			income_error.setText("income is not entered");
+    			income_error.setTextFill(Color.RED);
+    		}
+    		
+    		if(jobInfo.getText().trim().isEmpty()) {
+    			jobInfo.setStyle("-fx-border-color: red;");
+    			job_error.setText("job title is not entered");
+    			job_error.setTextFill(Color.RED);
+    		}
     	}
     	
     	
@@ -145,7 +121,13 @@ public class CreateAccountController {
     
     	else {
     		
-    		goToTutorial(new ActionEvent());
+    		createAcctButton.setOnAction(new EventHandler<ActionEvent>() {
+    			@Override
+    			public void handle(ActionEvent e) {
+    				goToTutorial(new ActionEvent());
+			
+    			}
+    		});
     	}
 
     }

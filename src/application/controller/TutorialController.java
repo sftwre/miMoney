@@ -27,7 +27,7 @@ public class TutorialController {
     		Parent tutor;
     		sceneCnt++;
     		
-    		tutor = FXMLLoader.load(getClass().getClassLoader().getResource("/" + scene + "" + sceneCnt +".fxml"));
+    		tutor = FXMLLoader.load(getClass().getClassLoader().getResource("view/resources/" + scene + "" + sceneCnt +".fxml"));
     		
     		
  
