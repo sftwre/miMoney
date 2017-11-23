@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import application.Main;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,92 +28,58 @@ import javafx.stage.Stage;
 public class CreateAccountController {
 
 
-	 @FXML
-	private TextField income;
+	@FXML
+    private TextField income;
 
-	/*private TextField user_name;
+    @FXML
+    private Label username_error;
+
+    @FXML
+    private TextField user_name;
+
     @FXML
     private Button createAcctButton;
-    @FXML
-    private TextField phone_number;
+
     @FXML
     private TextField jobInfo;
-    @FXML
-    private TextField income;
+
     @FXML
     private PasswordField password;
+
+    @FXML
+    private Label incomeTxt;
+
     @FXML
     private PasswordField confirmPass;
-    
-   
-    
-    private Label phoneNmTxt;
-    
+
+    @FXML
+    private Label jobTxt;
+
+    @FXML
+    private Label password_error;
+
+    @FXML
+    private Label income_error;
+
+    @FXML
+    private Label job_error;
+
+    @FXML
     private Label passwordTxt;
-    
+
+    @FXML
+    private TextField phone_Number;
+
+    @FXML
+    private Label password2_error;
+
+    @FXML
+    private Label phone_error;
+	 
    
-    private Label confirmPassTxt;
-    
-    private Label incomeTxt;
-    
-    private Label jobLabel;
-    
-    
-    private Label username_error;
-    
-    
-    private Label password_error;*/
-
-
-	    @FXML
-	    private Label username_error;
-
-	    @FXML
-	    private TextField user_name;
-
-	    @FXML
-	    private Button createAcctButton;
-
-	    @FXML
-	    private TextField jobInfo;
-
-	    @FXML
-	    private PasswordField password;
-
-	    @FXML
-	    private Label incomeTxt;
-
-	    @FXML
-	    private PasswordField confirmPass;
-
-	    @FXML
-	    private Label jobTxt;
-
-	    @FXML
-	    private Label password_error;
-
-	    @FXML
-	    private Label income_error;
-
-	    @FXML
-	    private Label job_error;
-
-	    @FXML
-	    private Label passwordTxt;
-
-	    @FXML
-	    private TextField phone_Number;
-
-	    @FXML
-	    private Label password2_error;
-
-	    @FXML
-	    private Label phone_error;
-   
-    Text fianancialTxt = new Text("Fianancial Information:");
     
 
-    
+    @FXML
     void createAcct(ActionEvent event) {
     	if(user_name.getText().trim().isEmpty() || password.getText().trim().isEmpty() || confirmPass.getText().trim().isEmpty() || phone_Number.getText().trim().isEmpty() || income.getText().trim().isEmpty() || jobInfo.getText().trim().isEmpty()) {
     		if(user_name.getText().trim().isEmpty()){ 
@@ -120,11 +87,19 @@ public class CreateAccountController {
     			username_error.setText("username is not entered");
     			username_error.setTextFill(Color.RED);
     		}
+    		else {
+    			 user_name.setStyle("-fx-border-color: black;");
+    			 username_error.setText("");
+    		}
     		
     		if(password.getText().trim().isEmpty()){
     			password.setStyle("-fx-border-color: red;");
     			password_error.setText("password is not entered");
     			password_error.setTextFill(Color.RED);
+    		}
+    		else {
+    			password.setStyle("-fx-border-color: black;");
+    			password_error.setText("");
     		}
     		
     		if(confirmPass.getText().trim().isEmpty()){
@@ -132,11 +107,35 @@ public class CreateAccountController {
     			password2_error.setText("please confirm password");
     			password2_error.setTextFill(Color.RED);
     		}
+    		else {
+    			confirmPass.setStyle("-fx-border-color: black;");
+    			password2_error.setText("");
+    		}
     		
     		if(phone_Number.getText().trim().isEmpty()){
     			phone_Number.setStyle("-fx-border-color: red;");
     			phone_error.setText("phone number is not entered");
     			phone_error.setTextFill(Color.RED);
+    		}
+    		else {
+    			phone_Number.setStyle("-fx-border-color: black;");
+    			phone_error.setText("");
+    		}
+    		
+    		if(income.getText().trim().isEmpty()){
+    			  income.setStyle("-fx-border-color: red;");
+    			  income_error.setText("income is not entered");
+    			  income_error.setTextFill(Color.RED);
+    		}
+    		else {
+    			income.setStyle("-fx-border-color: black;");
+    			income_error.setText("");
+    		}
+    			    		
+    		if(jobInfo.getText().trim().isEmpty()) {
+    			jobInfo.setStyle("-fx-border-color: red;");
+    			job_error.setText("job title is not entered");
+    			job_error.setTextFill(Color.RED);
     		}
     	}
     	
@@ -144,6 +143,16 @@ public class CreateAccountController {
     	
     
     	else {
+    		createAcctButton.setOnAction(new EventHandler<ActionEvent>() {
+    			@Override
+    			public void handle(ActionEvent e) {
+    			/*	if(currentUser.isPassAuthenticated())
+    				{*/
+    					goToTutorial(new ActionEvent());
+    				//}
+    				//incorrectCombo.setText("Username or password is incorrect.");
+    			}
+    		});
     		
     		goToTutorial(new ActionEvent());
     	}
