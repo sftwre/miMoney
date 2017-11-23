@@ -103,6 +103,7 @@ public class FinancialOverviewController {
  */
 public void initialize()
 {
+	// TODO change User
 	//instantiate the current user and FinancaialDataParser
 	this.user = new User("testUser77");
 	
@@ -247,30 +248,41 @@ public void editIncome(ActionEvent event)
 public void saveIncomeChanges(ActionEvent event) 
 {
 	
-	String employment = employmentTextField.getText(); 	// temporary variable for employment text
-	String salary = salaryTextField.getText();			// temporary variable for salary text
-        
-	employment = employment.trim();
-	salary = salary.trim();
-	
+	String employment = employmentTextField.getText().trim(); 	// temporary variable for employment text
+	String salary = salaryTextField.getText().trim();			// temporary variable for salary text
+       
+	System.out.println(employment);
+	System.out.println(salary);
+
         //validate User Input
-		if(employment.equals("") || employment.trim().matches("[^a-zA-z\\s]"))
+		if(employment.equals("") || employment.matches("[^a-zA-Z\\s]+"))
 		{
-			invalidTextAlarm(employmentTextField, invalidEmployment, "* employment needs letters and spaces");
+			
+			invalidTextAlarm(employmentTextField, invalidEmployment, "* letters and spaces only");
 		}
         	
 
-		if(salary.equals("") || salary.matches("[^\\d,.$]"))
+		if(salary.equals("") || salary.matches("[^\\d,\\.\\$]+"))
 		{
-			invalidTextAlarm(salaryTextField, invalidSalary, "* salary needs a value");
+			invalidTextAlarm(salaryTextField, invalidSalary, "* monetary values only");
 					
 		}
 		
 		else {
 			
+			// remove error marks from labels
+			employmentTextField.setStyle(null);
+			salaryTextField.setStyle(null);
+			invalidEmployment.setText("");
+			invalidSalary.setText("");
+			
 			// over write the data in the User's Income.txt
 			try {
-				
+			
+			//sanitize data
+			salary.replaceAll("[,\\$]", "");
+			
+			//store the data in the Users profile
 			writeIncomeData(employment,salary);
 				
 			} catch(IOException e){
@@ -303,6 +315,7 @@ public void saveIncomeChanges(ActionEvent event)
         editIncomeButton.setDisable(false);
         
 	}
+
 }  
 
 
@@ -346,10 +359,7 @@ void createNewGoal(ActionEvent event)
 private void invalidTextAlarm(TextField textField, Label label, String text)
 {
 	textField.setStyle("-fx-border-color: red;");
-	
 	label.setText(text);
-	
-	label.setFont(new Font("Bold", 12));
 }
 
 /**
