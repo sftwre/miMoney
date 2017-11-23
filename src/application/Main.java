@@ -31,6 +31,8 @@ public class Main extends Application {
 		try {
 
 			/*if(! session.currentUser.isPassAuthenticated())
+			
+			if(! session.currentUser.isPassAuthenticated())
 			{
 				root = FXMLLoader.load(getClass().getResource("view/resources/Login.fxml"));
 			}
