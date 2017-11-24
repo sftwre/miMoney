@@ -81,83 +81,85 @@ public class CreateAccountController {
 
     @FXML
     void createAcct(ActionEvent event) {
-    	if(user_name.getText().trim().isEmpty() || password.getText().trim().isEmpty() || confirmPass.getText().trim().isEmpty() || phone_Number.getText().trim().isEmpty() || income.getText().trim().isEmpty() || jobInfo.getText().trim().isEmpty()) {
-    		if(user_name.getText().trim().isEmpty()){ 
-    			user_name.setStyle("-fx-border-color: red;");
-    			username_error.setText("username is not entered");
-    			username_error.setTextFill(Color.RED);
-    		}
-    		else {
-    			 user_name.setStyle("-fx-border-color: black;");
-    			 username_error.setText("");
-    		}
-    		
-    		if(password.getText().trim().isEmpty()){
-    			password.setStyle("-fx-border-color: red;");
-    			password_error.setText("password is not entered");
-    			password_error.setTextFill(Color.RED);
-    		}
-    		else {
-    			password.setStyle("-fx-border-color: black;");
-    			password_error.setText("");
-    		}
-    		
-    		if(confirmPass.getText().trim().isEmpty()){
-    			confirmPass.setStyle("-fx-border-color: red;");
-    			password2_error.setText("please confirm password");
-    			password2_error.setTextFill(Color.RED);
-    		}
-    		else {
-    			confirmPass.setStyle("-fx-border-color: black;");
-    			password2_error.setText("");
-    		}
-    		
-    		if(phone_Number.getText().trim().isEmpty()){
-    			phone_Number.setStyle("-fx-border-color: red;");
-    			phone_error.setText("phone number is not entered");
-    			phone_error.setTextFill(Color.RED);
-    		}
-    		else {
-    			phone_Number.setStyle("-fx-border-color: black;");
-    			phone_error.setText("");
-    		}
-    		
-    		if(income.getText().trim().isEmpty()){
-    			  income.setStyle("-fx-border-color: red;");
-    			  income_error.setText("income is not entered");
-    			  income_error.setTextFill(Color.RED);
-    		}
-    		else {
-    			income.setStyle("-fx-border-color: black;");
-    			income_error.setText("");
-    		}
-    			    		
-    		if(jobInfo.getText().trim().isEmpty()) {
-    			jobInfo.setStyle("-fx-border-color: red;");
-    			job_error.setText("job title is not entered");
-    			job_error.setTextFill(Color.RED);
-    		}
-    	}
     	
-    	
-    	
-    
-    	else {
-    		createAcctButton.setOnAction(new EventHandler<ActionEvent>() {
-    			@Override
-    			public void handle(ActionEvent e) {
-    			/*	if(currentUser.isPassAuthenticated())
-    				{*/
-    					goToTutorial(new ActionEvent());
-    				//}
-    				//incorrectCombo.setText("Username or password is incorrect.");
-    			}
-    		});
-    		
-    		goToTutorial(new ActionEvent());
-    	}
+				if(user_name.getText().trim().isEmpty() || password.getText().trim().isEmpty() || confirmPass.getText().trim().isEmpty() || phone_Number.getText().trim().isEmpty() || income.getText().trim().isEmpty() || jobInfo.getText().trim().isEmpty()) {
+		    		if(user_name.getText().trim().isEmpty()){ 
+		    			user_name.setStyle("-fx-border-color: red;");
+		    			username_error.setText("username is not entered");
+		    			username_error.setTextFill(Color.RED);
+		    		}
+		    		else {
+		    			 user_name.setStyle("-fx-border-color: black;");
+		    			 username_error.setText("");
+		    		}
+		    		
+		    		if(password.getText().trim().isEmpty()){
+		    			password.setStyle("-fx-border-color: red;");
+		    			password_error.setText("password is not entered");
+		    			password_error.setTextFill(Color.RED);
+		    		}
+		    		else {
+		    			password.setStyle("-fx-border-color: black;");
+		    			password_error.setText("");
+		    		}
+		    		
+		    		if(confirmPass.getText().trim().isEmpty()){
+		    			confirmPass.setStyle("-fx-border-color: red;");
+		    			password2_error.setText("please confirm password");
+		    			password2_error.setTextFill(Color.RED);
+		    		}
+		    		else {
+		    			confirmPass.setStyle("-fx-border-color: black;");
+		    			password2_error.setText("");
+		    		}
+		    		
+		    		if(phone_Number.getText().trim().isEmpty()){
+		    			phone_Number.setStyle("-fx-border-color: red;");
+		    			phone_error.setText("phone number is not entered");
+		    			phone_error.setTextFill(Color.RED);
+		    		}
+		    		else {
+		    			phone_Number.setStyle("-fx-border-color: black;");
+		    			phone_error.setText("");
+		    		}
+		    		
+		    		if(income.getText().trim().isEmpty()){
+		    			  income.setStyle("-fx-border-color: red;");
+		    			  income_error.setText("income is not entered");
+		    			  income_error.setTextFill(Color.RED);
+		    		}
+		    		else {
+		    			income.setStyle("-fx-border-color: black;");
+		    			income_error.setText("");
+		    		}
+		    			    		
+		    		if(jobInfo.getText().trim().isEmpty()) {
+		    			jobInfo.setStyle("-fx-border-color: red;");
+		    			job_error.setText("job title is not entered");
+		    			job_error.setTextFill(Color.RED);
+		    		}
+		    		else {
+		    			jobInfo.setStyle("-fx-border-color: black;");
+		    			job_error.setText("");
+		    		}
+		    	}
+			else {
+				System.out.println(income.getText());
+				System.out.println(jobInfo.getText());
+				createAcctButton.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent e) {
+						goToTutorial(new ActionEvent());
+					}
+				});
+			}
+	}
+				
 
-    }
+    	
+    	
+
+    
     
     @FXML
     void OnMouseDragOver(MouseEvent event) {
@@ -178,7 +180,8 @@ public class CreateAccountController {
     	//income.setTooltip(text);
     }
     
-    public void goToTutorial(ActionEvent event) {
+    
+   public void goToTutorial(ActionEvent event) {
     	Stage popUp =  new Stage();
 		
 		//popUp.initModality(Modality.APPLICATION_MODAL);
@@ -190,6 +193,7 @@ public class CreateAccountController {
     		popUp.show();
 		}catch(IOException e) {
 			e.printStackTrace();
+			System.out.println("Tutorial page can't be found");
 		}
     }
 
