@@ -3,6 +3,7 @@ package application;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.transform.Scale;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import application.model.Session;
@@ -22,6 +23,10 @@ public class Main extends Application {
 		
 		public Parent root;				// root node of the Scene Graph
 		
+		final int width = 750;
+		
+		final int length = 500;
+		
 	@Override
 	public void start(Stage primaryStage) {
 		
@@ -31,24 +36,25 @@ public class Main extends Application {
 		try {
 
 			//if(! session.currentUser.isPassAuthenticated())
-			
+			/*
 			if(! session.currentUser.isPassAuthenticated())
 			{
 				root = FXMLLoader.load(getClass().getResource("view/resources/Login.fxml"));
 			}
 			else
 			{
+			*/	
 				
-				root = FXMLLoader.load(getClass().getResource("view/resources/MainView.fxml"));
-			}
+			root = FXMLLoader.load(getClass().getResource("view/resources/MainView.fxml"));
+			//}
 			
 			Scene scene = new Scene(root);
+			
+			
 			//Main.setScene(scene);
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
 			primaryStage.setScene(scene);
-			//primaryStage.setMaximized(true);
-			//primaryStage.setFullScreen(true);
 			primaryStage.show();
 			
 		} catch(Exception e) {

@@ -9,7 +9,6 @@ import java.io.IOException;
 
 import application.Main;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,63 +27,51 @@ import javafx.stage.Stage;
 public class CreateAccountController {
 
 
+	 
+
 	@FXML
-    private TextField income;
-
-    @FXML
-    private Label username_error;
-
-    @FXML
-    private TextField user_name;
-
+	private TextField user_name;
     @FXML
     private Button createAcctButton;
-
-    @FXML
-    private TextField jobInfo;
-
-    @FXML
-    private PasswordField password;
-
-    @FXML
-    private Label incomeTxt;
-
-    @FXML
-    private PasswordField confirmPass;
-
-    @FXML
-    private Label jobTxt;
-
-    @FXML
-    private Label password_error;
-
-    @FXML
-    private Label income_error;
-
-    @FXML
-    private Label job_error;
-
-    @FXML
-    private Label passwordTxt;
-
     @FXML
     private TextField phone_Number;
-
     @FXML
-    private Label password2_error;
-
+    private TextField jobInfo;
     @FXML
-    private Label phone_error;
-	 
+    private TextField income;
+    @FXML
+    private PasswordField password;
+    @FXML
+    private PasswordField confirmPass;
+    
    
-    public void initualize() {
-    	createAcctButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				goToTutorial(new ActionEvent());
-			}
-		});
-    }
+
+    
+   
+    
+    private Label passwordTxt;
+    
+   
+    
+    
+    
+    private Label incomeTxt;
+    
+    
+    private Label username_error;
+    
+    
+    private Label password_error;
+
+    private Label password2_error;
+    
+    private Label phone_error;
+    
+    private Label income_error;
+    
+    private Label job_error;
+    
+	private Label jobTxt;
 
     @FXML
     void createAcct(ActionEvent event) {
@@ -175,9 +162,8 @@ public class CreateAccountController {
 	}
 				
 
-    	
-    	
 
+    
     
     
     @FXML
@@ -199,8 +185,7 @@ public class CreateAccountController {
     	//income.setTooltip(text);
     }
     
-    
-   public void goToTutorial(ActionEvent event) {
+    public void goToTutorial(ActionEvent event) {
     	Stage popUp =  new Stage();
 		
 		
@@ -212,7 +197,6 @@ public class CreateAccountController {
     		//popUp.show();
 		}catch(IOException e) {
 			e.printStackTrace();
-			System.out.println("Tutorial page can't be found");
 		}
     }
 

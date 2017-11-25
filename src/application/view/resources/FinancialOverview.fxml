@@ -81,12 +81,12 @@
             </AnchorPane>
          </content>
       </TitledPane>
-      <PieChart fx:id="spendingChart" clockwise="false" focusTraversable="true" layoutX="348.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" title="Spending By Category">
+      <PieChart fx:id="spendingChart" clockwise="false" focusTraversable="true" layoutX="348.0" prefHeight="651.0" prefWidth="544.0" title="Spending By Category">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
          <padding>
-            <Insets top="17.0" />
+            <Insets top="35.0" />
          </padding></PieChart>
    </children>
 </AnchorPane>
