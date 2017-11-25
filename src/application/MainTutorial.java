@@ -14,8 +14,8 @@ package application;
  		try {
  
  			
- 			Parent root = FXMLLoader.load(getClass().getResource("view/resources/Tutorial.fxml"));
- 			Scene scene = new Scene(root, 500, 500);
+ 			Parent root = FXMLLoader.load(getClass().getResource("view/resources/Tutorial4.fxml"));
+ 			Scene scene = new Scene(root);
  		
  			primaryStage.setScene(scene);
  			primaryStage.show();

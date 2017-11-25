@@ -77,7 +77,14 @@ public class CreateAccountController {
     private Label phone_error;
 	 
    
-    
+    public void initualize() {
+    	createAcctButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				goToTutorial(new ActionEvent());
+			}
+		});
+    }
 
     @FXML
     void createAcct(ActionEvent event) {
@@ -146,12 +153,24 @@ public class CreateAccountController {
 			else {
 				System.out.println(income.getText());
 				System.out.println(jobInfo.getText());
-				createAcctButton.setOnAction(new EventHandler<ActionEvent>() {
-					@Override
-					public void handle(ActionEvent e) {
-						goToTutorial(new ActionEvent());
-					}
-				});
+				//Stage popUp =  new Stage();
+				
+				
+				try {
+					Parent root = FXMLLoader.load(getClass().getResource("../view/resources/Tutorial.fxml"));
+		    		Scene scene = new Scene(root);
+		    		Main.stage.setScene(scene);
+		    		Main.stage.show();
+		    		//Main.setScene(scene);
+		    		//popUp.setScene(scene);
+		    		//popUp.show();
+				}catch(IOException e) {
+					e.printStackTrace();
+					System.out.println("Tutorial page can't be found");
+				}
+						//goToTutorial(new ActionEvent());
+					//}
+				//});
 			}
 	}
 				
@@ -184,13 +203,13 @@ public class CreateAccountController {
    public void goToTutorial(ActionEvent event) {
     	Stage popUp =  new Stage();
 		
-		//popUp.initModality(Modality.APPLICATION_MODAL);
-		//popUp.initOwner(Main.stage);
+		
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("view/resources/Tutorial.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("../view/resources/Tutorial.fxml"));
     		Scene scene = new Scene(root);
-    		popUp.setScene(scene);
-    		popUp.show();
+    		Main.setScene(scene);
+    		//popUp.setScene(scene);
+    		//popUp.show();
 		}catch(IOException e) {
 			e.printStackTrace();
 			System.out.println("Tutorial page can't be found");

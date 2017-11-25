@@ -8,17 +8,17 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="350.0" prefWidth="406.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.TutorialController">
+<AnchorPane prefHeight="484.0" prefWidth="509.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.TutorialController">
    <children>
-      <Pane prefHeight="350.0" prefWidth="406.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane prefHeight="484.0" prefWidth="509.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="nextSceneButton" layoutX="368.0" layoutY="189.0" mnemonicParsing="false" onAction="#nextScene" prefHeight="38.0" prefWidth="31.0" text="&gt;" />
-            <ImageView fitHeight="241.0" fitWidth="336.0" layoutX="9.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="nextSceneButton" layoutX="461.0" layoutY="233.0" mnemonicParsing="false" onAction="#nextScene" prefHeight="38.0" prefWidth="31.0" text="&gt;" />
+            <ImageView fitHeight="241.0" fitWidth="336.0" layoutX="85.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/Raining-Money.jpg" />
                </image>
             </ImageView>
-            <TextArea editable="false" focusTraversable="false" layoutX="9.0" layoutY="14.0" prefHeight="77.0" prefWidth="352.0" text="Create a financial goal on the Goals tab" wrapText="true">
+            <TextArea editable="false" focusTraversable="false" layoutX="77.0" layoutY="14.0" prefHeight="77.0" prefWidth="352.0" text="Create a financial goal on the Goals tab" wrapText="true">
                <font>
                   <Font size="24.0" />
                </font>
