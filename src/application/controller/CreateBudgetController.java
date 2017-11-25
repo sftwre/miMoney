@@ -1,5 +1,7 @@
 package application.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,14 +9,29 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+
 
 /**
- * Used to create a Budget and save the result to the Users profile
+ * Used to create, add, and delete Budget items
+ * from the Budget goal in the GoalsView.
  * @author Isaac Buitrago
  *
  */
-public class CreateBudgetController 
-{
+public class CreateBudgetController {
+
+    @FXML
+    private Button deleteButton;
+
+    @FXML
+    private TextField foodTextField;
+
+
+    @FXML
+    private TextField gasTextField;
+
+    @FXML
+    private GridPane budgetGridPane;
 
     @FXML
     private CheckBox gasExpense;
@@ -23,42 +40,51 @@ public class CreateBudgetController
     private CheckBox rentExpense;
 
     @FXML
-    private Button deleteButton;
-
-    @FXML
     private Button clearButton;
 
     @FXML
-    private GridPane budgetGridPane;
+    private Button continueButton;
 
     @FXML
-    private Button lContinue;
-
-    @FXML
-    private TextField lProjectName;
-
-    @FXML
-    private TextField lCost;
+    private TextField rentTextField;
 
     @FXML
     private CheckBox foodExpense;
 
     @FXML
-    private ComboBox<?> expensesComboBox;
+    private ComboBox<String> expensesComboBox;
 
     @FXML
-    private TextField lType;
+    private StackPane buttonStackPane;
+    
+    // Options to display adding a new Expense category
+    
+    private ObservableList<String> expenseOptions = FXCollections.observableArrayList();	
 
-    @FXML
-    private Button addExpenseButton;
-
-    @FXML
-    void lContinue(ActionEvent event) {
-
+    
+    /**
+     * Used to initialize components of the view
+     */
+    
+    public void initialize()
+    {
+    	Thread comboBoxThread = new Thread(){
+    		
+    		@Override
+    		public void run()
+    		{
+    			loadExpenseCategories();
+    			expensesComboBox.setItems(expenseOptions);
+    		}
+    		
+    	};
+    	
+    	comboBoxThread.run();
     }
 
     @FXML
-    void deleteGoal(ActionEvent event) {
+    void deleteGoal(ActionEvent event) 
+    {
 
     }
 
@@ -72,10 +98,23 @@ public class CreateBudgetController
 
     }
 
+    
+    /**
+     * Used to load Expense Categories into the expensesComboBox
+     * @param event
+     */
+    
+    private void loadExpenseCategories()
+    {
+    	
+    	expenseOptions.addAll("Apperal", "Auto Maintenance", "Home Maintenance", "Medical", 
+    						  "Education", "Entertainment", "Food", "Gas","Luxury", "Personal Care", 
+    						  "Public Transportation", "Subscriptions", "Savings Goal", "Auto Goal", 
+    						  "Vacation Goal", "Miscellaneous");
+    }
+    
     @FXML
-    void addExpenseCategories(ActionEvent event) {
+    void Continue(ActionEvent event) {
 
     }
-
 }
-

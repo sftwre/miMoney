@@ -7,18 +7,17 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="application.controller.CreateBudgetController">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CreateBudgetController">
    <children>
       <GridPane fx:id="budgetGridPane" prefHeight="265.0" prefWidth="370.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gas" textAlignment="CENTER" wrappingWidth="180.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rent" textAlignment="CENTER" wrappingWidth="180.0" GridPane.rowIndex="1" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Food" textAlignment="CENTER" wrappingWidth="180.0" GridPane.rowIndex="2" />
-            <TextField fx:id="lProjectName" promptText="Exp. $75" GridPane.columnIndex="1" />
-            <TextField fx:id="lType" promptText="Exp. $750" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="lCost" promptText="Exp. $250" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button fx:id="lContinue" mnemonicParsing="false" onAction="#lContinue" prefHeight="27.0" prefWidth="170.0" text="Continue" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <TextField fx:id="gasTextField" promptText="Exp. $75" GridPane.columnIndex="1" />
+            <TextField fx:id="rentTextField" promptText="Exp. $750" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="foodTextField" promptText="Exp. $250" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="continueButton" mnemonicParsing="false" onAction="#Continue" prefHeight="27.0" prefWidth="170.0" text="Continue" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <padding>
                   <Insets right="8.0" />
                </padding>
@@ -29,7 +28,7 @@
             <CheckBox fx:id="gasExpense" mnemonicParsing="false" text="Select" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
             <CheckBox fx:id="foodExpense" layoutX="257.0" layoutY="35.0" mnemonicParsing="false" text="Select" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
             <CheckBox fx:id="rentExpense" layoutX="257.0" layoutY="35.0" mnemonicParsing="false" text="Select" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="3">
+            <StackPane fx:id="buttonStackPane" prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="3">
                <children>
                   <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteGoal" prefHeight="27.0" prefWidth="170.0" text="Delete">
                      <StackPane.margin>
@@ -46,12 +45,14 @@
                   </Button>
                </children>
             </StackPane>
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="4">
-               <children>
-                  <ComboBox fx:id="expensesComboBox" onAction="#showExpenseCategories" prefWidth="150.0" promptText="Expenses" visible="false" />
-                  <Button fx:id="addExpenseButton" mnemonicParsing="false" onAction="#addExpenseCategories" text="Add" />
-               </children>
-            </StackPane>
+            <ComboBox fx:id="expensesComboBox" onAction="#showExpenseCategories" prefWidth="150.0" promptText="Expenses" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="8.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets left="8.0" />
+               </padding>
+            </ComboBox>
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
