@@ -113,7 +113,9 @@ public void initialize()
 	
 	//populate the pieChart to display the expenses of the user
 	spendingChart.setData(pieChartData);
-
+	
+	spendingChart.setStartAngle(25);
+	
 	loadGoalsDataForList();
 
 	//populate the Current Goals pane with the goals of the user
@@ -249,22 +251,25 @@ public void saveIncomeChanges(ActionEvent event)
 {
 	
 	String employment = employmentTextField.getText().trim(); 	// temporary variable for employment text
+	
 	String salary = salaryTextField.getText().trim();			// temporary variable for salary text
-       
-	System.out.println(employment);
-	System.out.println(salary);
+      
 
         //validate User Input
-		if(employment.equals("") || employment.matches("[^a-zA-Z\\s]+"))
+		if(employment.equals("") || employment.matches(".*[a-zA-Z\\s]+"))
 		{
-			
-			invalidTextAlarm(employmentTextField, invalidEmployment, "* letters and spaces only");
+			System.out.println(employment);
+			employmentTextField.setStyle("-fx-border-color:red;");
+			invalidEmployment.setText("* letters and spaces only");
+			//invalidTextAlarm(employmentTextField, invalidEmployment, "* letters and spaces only");
 		}
         	
 
-		if(salary.equals("") || salary.matches("[^\\d,\\.\\$]+"))
+		if(salary.equals("") || salary.matches(".*[^\\d,\\.\\$]"))
 		{
-			invalidTextAlarm(salaryTextField, invalidSalary, "* monetary values only");
+			salaryTextField.setStyle("-fx-border-color:red;");
+			invalidSalary.setText("* monetary values only");
+			//invalidTextAlarm(salaryTextField, invalidSalary, "* monetary values only");
 					
 		}
 		
@@ -280,7 +285,7 @@ public void saveIncomeChanges(ActionEvent event)
 			try {
 			
 			//sanitize data
-			salary.replaceAll("[,\\$]", "");
+			salary = salary.replaceAll("[,\\$]", "");
 			
 			//store the data in the Users profile
 			writeIncomeData(employment,salary);
@@ -346,7 +351,7 @@ void createNewGoal(ActionEvent event)
 	
 	} catch(IOException e){
 		
-		System.out.printf("The resource 'view/resources/CarGoalView.fxml' could not be located");
+		System.out.printf("The resource 'view/resources/GoaslView.fxml' could not be located");
 	}
 
 }
