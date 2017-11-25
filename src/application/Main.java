@@ -35,8 +35,8 @@ public class Main extends Application {
 		
 		try {
 
-			/*if(! session.currentUser.isPassAuthenticated())
-			
+			//if(! session.currentUser.isPassAuthenticated())
+			/*
 			if(! session.currentUser.isPassAuthenticated())
 			{
 				root = FXMLLoader.load(getClass().getResource("view/resources/Login.fxml"));
@@ -44,14 +44,11 @@ public class Main extends Application {
 			else
 			{
 			*/	
-			
-			root = FXMLLoader.load(getClass().getResource("view/resources/MainView.fxml"));
 				
-			Scale scale = new Scale(1,1,0,0);
+			root = FXMLLoader.load(getClass().getResource("view/resources/MainView.fxml"));
+			//}
 			
 			Scene scene = new Scene(root);
-			
-			scene.getRoot().getTransforms().setAll(scale);
 			
 			
 			//Main.setScene(scene);
