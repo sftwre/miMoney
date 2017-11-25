@@ -138,7 +138,7 @@ public class Goals {
 	}
 
 	public String toString1(){
-		return String.format("%s:%s:%.2f:%.2f:%.2f:%d:%d"
+		return String.format("%s:%s:%f:%f:%f:%d:%d"
 				, this.type
 				, this.projectName
 				, this.totalCost
@@ -148,7 +148,7 @@ public class Goals {
 				, this.time);
 	}
 	public String toString2(){
-		return String.format("%s:%s:%.2f:%.2f:%.2f:%d:%.2f:%.2f"
+		return String.format("%s:%s:%f:%f:%f:%d:%f:%f"
 				, this.type
 				, this.projectName
 				, this.totalCost
@@ -159,7 +159,7 @@ public class Goals {
 				, this.other);
 	}
 	public String toString3(){
-		return String.format("%s:%s:%.2f:%.2f:%.2f:%d"
+		return String.format("%s:%s:%f:%f:%f:%d"
 				, this.type
 				, this.projectName
 				, this.totalCost
