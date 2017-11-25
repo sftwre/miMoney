@@ -27,9 +27,9 @@ public class Session {
 	/**
 	 * Load the User data into Collections User
 	 */
-	public void startSession()
+	public void startSession(User user)
 	{
-		
+		this.currentUser = user;
 		
 	}
 	
@@ -39,6 +39,6 @@ public class Session {
 	
 	public void endSession()
 	{
-		
+		this.currentUser = null;
 	}
 }
