@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.TutorialController">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="445.0" type="Pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.TutorialController">
    <children>
-      <TextField layoutX="26.0" layoutY="24.0" prefHeight="116.0" prefWidth="391.0" text="Track and add expenses in the calender view">
+      <TextField editable="false" focusTraversable="false" layoutX="26.0" layoutY="24.0" prefHeight="116.0" prefWidth="391.0" text="Track and add expenses in the calender view">
          <font>
             <Font size="18.0" />
          </font>
@@ -20,4 +20,4 @@
             <Image url="@../images/images.png" />
          </image></ImageView>
    </children>
-</Pane>
+</fx:root>
