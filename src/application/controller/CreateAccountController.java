@@ -190,7 +190,7 @@ public class CreateAccountController {
     	//income.setTooltip(text);
     }
     
-    public void goToTutorial(ActionEvent event) {
+    /*public void goToTutorial(ActionEvent event) {
     	Stage popUp =  new Stage();
 		
 		
@@ -203,7 +203,7 @@ public class CreateAccountController {
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
-    }
+    }*/
 
 
 }

@@ -78,7 +78,7 @@ public class TutorialController {
 		} catch(IOException e){
 			System.out.printf("The resource 'view/resources/MainView.fxml' could not be located");
 		}// END try/catch load FXML
-    	create.initModality(Modality.APPLICATION_MODAL);
+    	/*create.initModality(Modality.APPLICATION_MODAL);
     	create.initOwner(Main.stage);
     	try {
     		Parent start;
@@ -89,7 +89,7 @@ public class TutorialController {
         	//Main.stage.setScene(new Scene(start, 500, 575));
     	}catch(IOException x) {
     		x.printStackTrace();
-    	}
+    	}*/
     	
     	
     	
