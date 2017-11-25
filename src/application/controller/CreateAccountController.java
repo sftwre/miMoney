@@ -48,29 +48,34 @@ public class CreateAccountController {
 
     
    
-    
+    @FXML
     private Label passwordTxt;
     
    
     
     
-    
+    @FXML
     private Label incomeTxt;
     
-    
+    @FXML
     private Label username_error;
     
-    
+    @FXML
     private Label password_error;
 
+    @FXML
     private Label password2_error;
     
+    @FXML
     private Label phone_error;
     
+    @FXML
     private Label income_error;
     
+    @FXML
     private Label job_error;
     
+    @FXML
 	private Label jobTxt;
 
     @FXML
