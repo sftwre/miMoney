@@ -1,13 +1,21 @@
 package application.controller;
 //import java.awt.event.ActionEvent;
 import java.io.IOException;
+
+import application.Main;
+import application.MainAccount;
+//import application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+//import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 
 public class TutorialController 
@@ -157,21 +165,21 @@ public class TutorialController
     @FXML
     public void getStarted(ActionEvent event) {
     	
-    	/*
-    	Stage create =  new Stage();
+    	
+    	//Stage create =  new Stage();
     	
     	//create.initModality(Modality.APPLICATION_MODAL);
     	//create.initOwner(Main.stage);
     	try
 		{
-    		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/MainView.fxml"));
+    		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/CreateAccount2.fxml"));
     		Scene scene = new Scene(root);
-    		create.setScene(scene);
-    		create.show();
+    		Main.stage.setScene(scene);
+    		Main.stage.show();
 		} catch(IOException e){
 			System.out.printf("The resource 'view/resources/MainView.fxml' could not be located");
 		}// END try/catch load FXML
-    	create.initModality(Modality.APPLICATION_MODAL);
+    	/*create.initModality(Modality.APPLICATION_MODAL);
     	create.initOwner(Main.stage);
     	try {
     		Parent start;
