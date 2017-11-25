@@ -16,7 +16,7 @@
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="250.0">
                <children>
                   <Button fx:id="newGoalButton" layoutX="94.0" layoutY="147.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#createNewGoal" prefWidth="120.0" text="New Goal " />
-                  <StackPane layoutX="29.0" prefHeight="139.0" prefWidth="250.0">
+                  <StackPane fx:id="goalsStackPane" layoutX="29.0" prefHeight="139.0" prefWidth="250.0">
                      <children>
                         <Label prefHeight="32.0" prefWidth="237.0" text="                 No Financial Goals yet" textAlignment="CENTER" />
                         <ListView fx:id="currentGoalsListView" prefHeight="139.0" prefWidth="241.0" />

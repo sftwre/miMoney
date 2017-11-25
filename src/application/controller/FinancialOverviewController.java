@@ -29,7 +29,9 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
@@ -45,8 +47,9 @@ import javafx.event.EventHandler;
  * @author Isaac Buitrago
  *
  */
-public class FinancialOverviewController {
-
+public class FinancialOverviewController 
+{
+	
     @FXML
     private TextField salaryTextField; 			// Text Field for the User to view/edit their salary
     
@@ -79,6 +82,9 @@ public class FinancialOverviewController {
     
     @FXML
     private StackPane buttonStackPane;			// Stack Pane that contains the Edit and Save buttons
+    
+    @FXML 
+    private StackPane goalsStackPane;			// Stack Pane that contains a ListView and label
     
     
     private FinancialDataParser financialData;	// FileParser for retrieving the Financial information of the User
@@ -117,9 +123,28 @@ public void initialize()
 	spendingChart.setStartAngle(25);
 	
 	loadGoalsDataForList();
+	
+	/*
+	 * If the User currently does not contain any goals, display a label  
+	 * with a proper message.
+	*/
+	if(goalsListData.isEmpty())
+	{
+		ObservableList<Node> nodes = goalsStackPane.getChildren();
+		
 
-	//populate the Current Goals pane with the goals of the user
-	currentGoalsListView.setItems(goalsListData);
+    	if(nodes.size() > 1 )
+    	{
+    		Node top = nodes.get(nodes.size() - 1);
+    		
+    		top.toBack();
+    	}
+		
+	}
+	
+	else 
+		//populate the Current Goals pane with the goals of the user
+		currentGoalsListView.setItems(goalsListData);
 			
 	userIncome = financialData.readIncome();
 		
@@ -150,12 +175,13 @@ public void loadSpendingDataForChart()
 		
 		//Combine duplicate Expense objects to obtain the total Expenses per category
 		HashMap<String, Double> totalExpenses = totalExpensesByCategory(monthlyExpenses);
-		
+			
 		//add the expenses to the PieChart
 		for(String e : totalExpenses.keySet()) 
 		{
-			pieChartData.add(new PieChart.Data(e , totalExpenses.get(e)));
+				pieChartData.add(new PieChart.Data(e , totalExpenses.get(e)));
 		}
+		
 }
 
 /**
@@ -194,9 +220,6 @@ public void loadGoalsDataForList()
 {
 	//load all the Goals from the Goals directory
 	ArrayList<Goals> goalsList = financialData.readGoals();
-	
-	//instantiate the goalsListData
-	goalsListData = FXCollections.observableArrayList();
 	
 	//for each goal display the ProjectName and cost
 	for(Goals g: goalsList)
@@ -323,6 +346,20 @@ public void saveIncomeChanges(ActionEvent event)
 
 }  
 
+/**
+ * Used to switch the view to the Goals tab when the User clicks on
+ * a goal in the Current Goals panel
+ */
+@FXML
+public void switchToGoalsTab(MouseEvent event)
+{
+	try {
+	MainViewController.tabPane.getSelectionModel().selectLast();
+	} catch(Exception e)
+	{
+		System.out.println(e.getMessage());
+	}
+}
 
 /**
  * Used to display a new stage for displaying a list
@@ -330,7 +367,7 @@ public void saveIncomeChanges(ActionEvent event)
  * @param event that invoked Handler
  */
 @FXML
-void createNewGoal(ActionEvent event) 
+public void createNewGoal(ActionEvent event) 
 {
 	
 	Stage popUp =  new Stage();
