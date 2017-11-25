@@ -237,7 +237,7 @@ public void editIncome(ActionEvent event)
 	saveIncomeButton.setVisible(true);
 	
 	//disable the editIncomeButton
-	editIncomeButton.setDisable(true);
+	//editIncomeButton.setDisable(true);
 }
 
 	/**
@@ -256,24 +256,24 @@ public void saveIncomeChanges(ActionEvent event)
       
 
         //validate User Input
-		if(employment.equals("") || employment.matches(".*[a-zA-Z\\s]+"))
+		
+	if(! employment.matches("[a-zA-Z\\s]+") || ! salary.matches("\\$*[\\d,]+\\.?\\d*") )
+	{
+		if(employment.equals("") || employment.matches(".*[^a-zA-Z\\s]+.*"))
 		{
-			System.out.println(employment);
-			employmentTextField.setStyle("-fx-border-color:red;");
-			invalidEmployment.setText("* letters and spaces only");
-			//invalidTextAlarm(employmentTextField, invalidEmployment, "* letters and spaces only");
+			invalidTextAlarm(employmentTextField, invalidEmployment, "* letters and spaces only");
 		}
         	
 
 		if(salary.equals("") || salary.matches(".*[^\\d,\\.\\$]"))
 		{
-			salaryTextField.setStyle("-fx-border-color:red;");
-			invalidSalary.setText("* monetary values only");
-			//invalidTextAlarm(salaryTextField, invalidSalary, "* monetary values only");
+			invalidTextAlarm(salaryTextField, invalidSalary, "* monetary values only");
 					
 		}
+	}
 		
-		else {
+	else 
+	{
 			
 			// remove error marks from labels
 			employmentTextField.setStyle(null);
@@ -317,7 +317,7 @@ public void saveIncomeChanges(ActionEvent event)
     	}
         
         // re-enable the editIncomeButton
-        editIncomeButton.setDisable(false);
+        //editIncomeButton.setDisable(false);
         
 	}
 
