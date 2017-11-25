@@ -8,7 +8,7 @@ package application.controller;
 import java.io.IOException;
 
 import application.Main;
-import application.MainAccount;
+//import application.MainAccount;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,9 +22,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
+//import javafx.scene.text.Text;
+//import javafx.stage.Modality;
+//import javafx.stage.Stage;
 
 public class CreateAccountController {
 
@@ -154,7 +154,7 @@ public class CreateAccountController {
 				
 				
 				try {
-					Parent root = FXMLLoader.load(getClass().getResource("../view/resources/Tutorial.fxml"));
+					Parent root = FXMLLoader.load(getClass().getResource("../view/resources/MainView.fxml"));
 		    		Scene scene = new Scene(root);
 		    		Main.stage.setScene(scene);
 		    		Main.stage.show();
@@ -163,7 +163,7 @@ public class CreateAccountController {
 		    		//popUp.show();
 				}catch(IOException e) {
 					e.printStackTrace();
-					System.out.println("Tutorial page can't be found");
+					System.out.println("MainView page can't be found");
 				}
 						//goToTutorial(new ActionEvent());
 					//}
