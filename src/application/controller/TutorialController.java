@@ -37,8 +37,9 @@ public class TutorialController
 	    
 
     @FXML
-    void nextScene(ActionEvent event) {
-    	
+    void nextScene(ActionEvent event) 
+    {
+   
     	//new version of Tutorial using one controller and one FXML file
     	 
     	 if(((Button)event.getSource()).getId().equals("lastSceneButton"))
@@ -84,7 +85,10 @@ public class TutorialController
     	 }
     	 
     	
-    	/*try {
+    	
+    		/*try {
+    			Parent tutor;
+
     			sceneCnt++;
     			
     			if(sceneCnt <= 4)
@@ -101,7 +105,25 @@ public class TutorialController
     			x.printStackTrace();
     			System.err.println("Tutorial page not found!");
     		}
-		*/
+		
+
+    	try {
+    		Parent tutor;
+    		sceneCnt++;
+    		
+    		tutor = FXMLLoader.load(getClass().getClassLoader().getResource("/" + scene + "" + sceneCnt +".fxml"));
+    		
+    		
+ 
+    		Main.stage.setScene(new Scene(tutor, 500, 575));
+    		Main.stage.show();
+    		//Math.ceil();
+    	}catch(IOException e) {
+    		e.printStackTrace();
+    		System.err.println("Tutorial page not found!");
+    	}
+
+    	*/
     }
     
     
