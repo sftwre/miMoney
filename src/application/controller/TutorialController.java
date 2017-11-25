@@ -157,7 +157,7 @@ public class TutorialController
     	*/
     }
     
-    //TODO Johnathan needs to be able to link this to the MainView.fxml
+    //TODO Kelly and Johnathan need to be able to link this to the MainView.fxml 
     /**
      * 
      * @param event
