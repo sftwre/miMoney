@@ -27,7 +27,7 @@ public class TutorialController {
     @FXML
     void nextScene(ActionEvent event) {
     	
-    		try {
+    		/*try {
     			Parent tutor;
     			sceneCnt++;
 	    		
@@ -43,7 +43,7 @@ public class TutorialController {
     		}catch(IOException x) {
     			x.printStackTrace();
     			System.err.println("Tutorial page not found!");
-    		}
+    		}*/
 		
    
     	try {

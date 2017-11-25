@@ -19,7 +19,7 @@ public class MainAccount extends Application{
 		try {
 
 			//if(! session.currentUser.isPassAuthenticated()) {
-				Parent root = FXMLLoader.load(getClass().getResource("view/resources/CreateAccount2.fxml"));
+				Parent root = FXMLLoader.load(getClass().getResource("view/resources/CreateAccount.fxml"));
 				Scene scene = new Scene(root);
 			
 				primaryStage.setScene(scene);
