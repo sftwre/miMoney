@@ -12,7 +12,7 @@
    <children>
       <Pane layoutX="14.0" layoutY="8.0" prefHeight="370.0" prefWidth="535.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="captionLabel" layoutY="23.0" maxWidth="1.7976931348623157E308" prefHeight="52.0" prefWidth="535.0" text="miMoney: money management the way you want it">
+            <Label fx:id="captionLabel" alignment="CENTER" layoutY="23.0" maxWidth="1.7976931348623157E308" prefHeight="52.0" prefWidth="535.0" text="miMoney: money management the way you want it" textAlignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
@@ -27,7 +27,7 @@
                         <Insets left="8.0" right="8.0" top="75.0" />
                      </HBox.margin>
                   </Button>
-                  <ImageView fx:id="imageView" fitHeight="221.0" fitWidth="410.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imageView" fitHeight="230.0" fitWidth="410.0" pickOnBounds="true" preserveRatio="true" />
                   <Button fx:id="nextSceneButton" mnemonicParsing="false" onAction="#nextScene" prefHeight="40.0" prefWidth="63.0" text="&gt;">
                      <HBox.margin>
                         <Insets left="8.0" right="8.0" top="75.0" />

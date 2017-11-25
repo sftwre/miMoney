@@ -34,8 +34,21 @@ public class TutorialController
 	    
 	    private Image image;			// Image to displays
     
-	    
+	 
+	/**
+	 * Used to set up the application
+	 
+	
+	public void initialize()
+	{
+		captionLabel.setTextAlignment(value);
+	}
+	*/
 
+	/**
+	 * 
+	 * @param event
+	 */
     @FXML
     void nextScene(ActionEvent event) 
     {
@@ -48,7 +61,7 @@ public class TutorialController
     	 else
     		 buttonClickCnt++;
     	
-    	 if(1<= buttonClickCnt && buttonClickCnt <= 4)
+    	 if(1<= buttonClickCnt && buttonClickCnt <= 5)
     	 {
     		 
     		 switch(buttonClickCnt) 
@@ -60,24 +73,34 @@ public class TutorialController
 			 	break;
 			 	
     		 	case 2:
-    		 		captionLabel.setText("Track and add expenses in the calender view");
+    		 		captionLabel.setText("View your Fiancial Summary on the Financial Overview tab");
     		 		lastSceneButton.setVisible(true);
-    		 		image = new Image("application/view/images/images.png");
-    		 		imageView.setImage(image);
-    		 	break;
-    		 		
-    		 	case 3:
-    		 		captionLabel.setText("Create a financial goal on the Goals tab");
-    		 		nextSceneButton.setVisible(true);
-    		 		image = new Image("application/view/images/Raining-Money.jpg");
+    		 		image = new Image("application/view/images/financial-overview.png", 410, 230, false, true);
     		 		imageView.setImage(image);
     		 	break;
     		 	
-    		 	case 4:
-    		 		captionLabel.setText("Create a financial budget in the goals views");
-    		 		image = new Image("application/view/images/images.jpg");
+    		 	case 3:
+    		 		captionLabel.setText("Track and add expenses on the Calender tab");
+    		 		image = new Image("application/view/images/images.png", 410, 230, false, true);
     		 		imageView.setImage(image);
+    		 	break;
+    		 		
+    		 	case 4:
+    		 		captionLabel.setText("Create and manage you goals on the Goals tab");
+    		 		nextSceneButton.setVisible(true);
+    		 		image = new Image("application/view/images/Raining-Money.jpg", 410, 230, false, true);
+    		 		imageView.setImage(image);
+    		 	break;
+    		 	
+    		 	case 5:
+    		 		captionLabel.setText("Create a financial budget on the Goals tab");
+    		 		image = new Image("application/view/images/images.jpg",  410, 230, false, true);
+    		 		imageView.setImage(image);
+    		 		
+    		 		//end of tutorial no next Button
     		 		nextSceneButton.setVisible(false);
+    		 		
+    		 		//add Button to enter the MainView.fxml
     		 		getStartedButton.setVisible(true);
     		 	break;
     		 		
@@ -126,7 +149,11 @@ public class TutorialController
     	*/
     }
     
-    
+    //TODO Johnathan needs to be able to link this to the MainView.fxml
+    /**
+     * 
+     * @param event
+     */
     @FXML
     public void getStarted(ActionEvent event) {
     	
