@@ -15,7 +15,7 @@ public class CalculatorMain extends Application{
 	public void start(Stage primaryStage) {
 		try {
 		
-			Parent root = FXMLLoader.load(getClass().getResource("/CalcView.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("view/resources/CalcView.fxml"));
 			primaryStage.setScene(new Scene(root, 400, 400));
 			primaryStage.show();
 			
