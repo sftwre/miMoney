@@ -17,7 +17,11 @@ import javafx.scene.image.ImageView;
 //import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-
+/**
+ * @author Kelly Malcolm
+ * @author Isaac Buitrago
+ *
+ */
 public class TutorialController 
 {
 
@@ -42,16 +46,7 @@ public class TutorialController
 	    
 	    private Image image;			// Image to displays
     
-	 
-	/**
-	 * Used to set up the application
-	 
-	
-	public void initialize()
-	{
-		captionLabel.setTextAlignment(value);
-	}
-	*/
+
 
 	/**
 	 * 
