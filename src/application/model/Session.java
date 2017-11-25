@@ -1,10 +1,8 @@
 package application.model;
 
-import java.util.HashMap;
-
 /**
- * Session controls the global state of the application and 
- * stores data on the User of the application.
+ * Session controls the global state of the application by 
+ * storing the current User of the application.
  * @author Isaac Buitrago
  *
  */
