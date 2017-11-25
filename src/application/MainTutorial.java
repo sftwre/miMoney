@@ -47,7 +47,7 @@ public class MainTutorial extends Application{
 		try {
 
 			
-			Parent root = FXMLLoader.load(getClass().getResource("view/resources/Tutorial.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("view/resources/Tutorial4.fxml"));
 			Scene scene = new Scene(root, 500, 500);
 		
 			primaryStage.setScene(scene);
