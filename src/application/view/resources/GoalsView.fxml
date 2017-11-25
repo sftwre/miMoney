@@ -141,6 +141,11 @@
                         <fx:include fx:id="SavingsCalculator" source="CalcView.fxml" />
                      </content>
                   </TitledPane>
+                  <TitledPane animated="false" text="Budget">
+                    <content>
+                      <fx:include fx:id="CreateBudget" source="CreateBudget.fxml" />
+                    </content>
+                  </TitledPane>
               </panes>
             </Accordion>
          </children>
