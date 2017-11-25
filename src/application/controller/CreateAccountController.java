@@ -27,14 +27,14 @@ import javafx.stage.Stage;
 public class CreateAccountController {
 
 
-	 @FXML
-	private TextField income;
+	 
 
-	/*private TextField user_name;
+	@FXML
+	private TextField user_name;
     @FXML
     private Button createAcctButton;
     @FXML
-    private TextField phone_number;
+    private TextField phone_Number;
     @FXML
     private TextField jobInfo;
     @FXML
@@ -45,110 +45,131 @@ public class CreateAccountController {
     private PasswordField confirmPass;
     
    
+
     
-    private Label phoneNmTxt;
-    
+   
+    @FXML
     private Label passwordTxt;
     
    
-    private Label confirmPassTxt;
     
+    
+    @FXML
     private Label incomeTxt;
     
-    private Label jobLabel;
-    
-    
+    @FXML
     private Label username_error;
     
+    @FXML
+    private Label password_error;
+
+    @FXML
+    private Label password2_error;
     
-    private Label password_error;*/
-
-
-	    @FXML
-	    private Label username_error;
-
-	    @FXML
-	    private TextField user_name;
-
-	    @FXML
-	    private Button createAcctButton;
-
-	    @FXML
-	    private TextField jobInfo;
-
-	    @FXML
-	    private PasswordField password;
-
-	    @FXML
-	    private Label incomeTxt;
-
-	    @FXML
-	    private PasswordField confirmPass;
-
-	    @FXML
-	    private Label jobTxt;
-
-	    @FXML
-	    private Label password_error;
-
-	    @FXML
-	    private Label income_error;
-
-	    @FXML
-	    private Label job_error;
-
-	    @FXML
-	    private Label passwordTxt;
-
-	    @FXML
-	    private TextField phone_Number;
-
-	    @FXML
-	    private Label password2_error;
-
-	    @FXML
-	    private Label phone_error;
-   
-    Text fianancialTxt = new Text("Fianancial Information:");
+    @FXML
+    private Label phone_error;
     
-
+    @FXML
+    private Label income_error;
     
+    @FXML
+    private Label job_error;
+    
+    @FXML
+	private Label jobTxt;
+
+    @FXML
     void createAcct(ActionEvent event) {
-    	if(user_name.getText().trim().isEmpty() || password.getText().trim().isEmpty() || confirmPass.getText().trim().isEmpty() || phone_Number.getText().trim().isEmpty() || income.getText().trim().isEmpty() || jobInfo.getText().trim().isEmpty()) {
-    		if(user_name.getText().trim().isEmpty()){ 
-    			user_name.setStyle("-fx-border-color: red;");
-    			username_error.setText("username is not entered");
-    			username_error.setTextFill(Color.RED);
-    		}
-    		
-    		if(password.getText().trim().isEmpty()){
-    			password.setStyle("-fx-border-color: red;");
-    			password_error.setText("password is not entered");
-    			password_error.setTextFill(Color.RED);
-    		}
-    		
-    		if(confirmPass.getText().trim().isEmpty()){
-    			confirmPass.setStyle("-fx-border-color: red;");
-    			password2_error.setText("please confirm password");
-    			password2_error.setTextFill(Color.RED);
-    		}
-    		
-    		if(phone_Number.getText().trim().isEmpty()){
-    			phone_Number.setStyle("-fx-border-color: red;");
-    			phone_error.setText("phone number is not entered");
-    			phone_error.setTextFill(Color.RED);
-    		}
-    	}
     	
-    	
-    	
-    
-    	else {
-    		
-    		goToTutorial(new ActionEvent());
-    	}
+				if(user_name.getText().trim().isEmpty() || password.getText().trim().isEmpty() || confirmPass.getText().trim().isEmpty() || phone_Number.getText().trim().isEmpty() || income.getText().trim().isEmpty() || jobInfo.getText().trim().isEmpty()) {
+		    		if(user_name.getText().trim().isEmpty()){ 
+		    			user_name.setStyle("-fx-border-color: red;");
+		    			username_error.setText("username is not entered");
+		    			username_error.setTextFill(Color.RED);
+		    		}
+		    		else {
+		    			 user_name.setStyle("-fx-border-color: black;");
+		    			 username_error.setText("");
+		    		}
+		    		
+		    		if(password.getText().trim().isEmpty()){
+		    			password.setStyle("-fx-border-color: red;");
+		    			password_error.setText("password is not entered");
+		    			password_error.setTextFill(Color.RED);
+		    		}
+		    		else {
+		    			password.setStyle("-fx-border-color: black;");
+		    			password_error.setText("");
+		    		}
+		    		
+		    		if(confirmPass.getText().trim().isEmpty()){
+		    			confirmPass.setStyle("-fx-border-color: red;");
+		    			password2_error.setText("please confirm password");
+		    			password2_error.setTextFill(Color.RED);
+		    		}
+		    		else {
+		    			confirmPass.setStyle("-fx-border-color: black;");
+		    			password2_error.setText("");
+		    		}
+		    		
+		    		if(phone_Number.getText().trim().isEmpty()){
+		    			phone_Number.setStyle("-fx-border-color: red;");
+		    			phone_error.setText("phone number is not entered");
+		    			phone_error.setTextFill(Color.RED);
+		    		}
+		    		else {
+		    			phone_Number.setStyle("-fx-border-color: black;");
+		    			phone_error.setText("");
+		    		}
+		    		
+		    		if(income.getText().trim().isEmpty()){
+		    			  income.setStyle("-fx-border-color: red;");
+		    			  income_error.setText("income is not entered");
+		    			  income_error.setTextFill(Color.RED);
+		    		}
+		    		else {
+		    			income.setStyle("-fx-border-color: black;");
+		    			income_error.setText("");
+		    		}
+		    			    		
+		    		if(jobInfo.getText().trim().isEmpty()) {
+		    			jobInfo.setStyle("-fx-border-color: red;");
+		    			job_error.setText("job title is not entered");
+		    			job_error.setTextFill(Color.RED);
+		    		}
+		    		else {
+		    			jobInfo.setStyle("-fx-border-color: black;");
+		    			job_error.setText("");
+		    		}
+		    	}
+			else {
+				System.out.println(income.getText());
+				System.out.println(jobInfo.getText());
+				//Stage popUp =  new Stage();
+				
+				
+				try {
+					Parent root = FXMLLoader.load(getClass().getResource("../view/resources/Tutorial.fxml"));
+		    		Scene scene = new Scene(root);
+		    		Main.stage.setScene(scene);
+		    		Main.stage.show();
+		    		//Main.setScene(scene);
+		    		//popUp.setScene(scene);
+		    		//popUp.show();
+				}catch(IOException e) {
+					e.printStackTrace();
+					System.out.println("Tutorial page can't be found");
+				}
+						//goToTutorial(new ActionEvent());
+					//}
+				//});
+			}
+	}
+				
 
-    }
+
+    
+    
     
     @FXML
     void OnMouseDragOver(MouseEvent event) {
@@ -172,13 +193,13 @@ public class CreateAccountController {
     public void goToTutorial(ActionEvent event) {
     	Stage popUp =  new Stage();
 		
-		//popUp.initModality(Modality.APPLICATION_MODAL);
-		//popUp.initOwner(Main.stage);
+		
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("view/resources/Tutorial.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("../view/resources/Tutorial.fxml"));
     		Scene scene = new Scene(root);
-    		popUp.setScene(scene);
-    		popUp.show();
+    		Main.setScene(scene);
+    		//popUp.setScene(scene);
+    		//popUp.show();
 		}catch(IOException e) {
 			e.printStackTrace();
 		}

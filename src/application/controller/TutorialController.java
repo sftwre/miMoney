@@ -19,9 +19,32 @@ public class TutorialController {
 	int sceneCnt = 0;
     @FXML
     private Button nextSceneButton;
+    @FXML
+    private Button getStartedButton;
+    
+
 
     @FXML
     void nextScene(ActionEvent event) {
+    	
+    		try {
+    			Parent tutor;
+    			sceneCnt++;
+	    		
+    			tutor = FXMLLoader.load(getClass().getClassLoader().getResource("view/resouces/"+scene+""+sceneCnt+".fxml"));
+    			System.out.println("view/resouces/" + scene + "" + sceneCnt +".fxml");
+    			//tutor = FXMLLoader.load(getClass().getClassLoader().getResource("view/resouces/Tutorial2.fxml"));
+	    		
+	    		
+	 
+    			Main.stage.setScene(new Scene(tutor));
+    			Main.stage.show();
+	    		//Math.ceil();
+    		}catch(IOException x) {
+    			x.printStackTrace();
+    			System.err.println("Tutorial page not found!");
+    		}
+		
    
     	try {
     		Parent tutor;
@@ -44,6 +67,17 @@ public class TutorialController {
     void getStarted(ActionEvent event) {
     	Stage create =  new Stage();
     	
+    	//create.initModality(Modality.APPLICATION_MODAL);
+    	//create.initOwner(Main.stage);
+    	try
+		{
+    		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/MainView.fxml"));
+    		Scene scene = new Scene(root);
+    		create.setScene(scene);
+    		create.show();
+		} catch(IOException e){
+			System.out.printf("The resource 'view/resources/MainView.fxml' could not be located");
+		}// END try/catch load FXML
     	create.initModality(Modality.APPLICATION_MODAL);
     	create.initOwner(Main.stage);
     	try {
@@ -59,7 +93,6 @@ public class TutorialController {
     	
     	
     	
-
     }
 
 }

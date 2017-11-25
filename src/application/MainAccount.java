@@ -19,11 +19,11 @@ public class MainAccount extends Application{
 		try {
 
 			//if(! session.currentUser.isPassAuthenticated()) {
-				//Parent root = FXMLLoader.load(getClass().getResource("view/resources/CreateAccount2.fxml"));
-				//Scene scene = new Scene(root);
+				Parent root = FXMLLoader.load(getClass().getResource("view/resources/CreateAccount2.fxml"));
+				Scene scene = new Scene(root);
 			
-				//primaryStage.setScene(scene);
-				//primaryStage.show();
+				primaryStage.setScene(scene);
+				primaryStage.show();
 			//}
 			
 			//FXMLLoader loader = new FXMLLoader();
@@ -34,17 +34,17 @@ public class MainAccount extends Application{
 			//primaryStage.setScene(scene);
 			//primaryStage.show();
 
-			Parent root = FXMLLoader.load(getClass().getResource("CreateAccount.fxml"));
-			Scene scene = new Scene(root);
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			//Parent root = FXMLLoader.load(getClass().getResource("view/resourses/CreateAccount2.fxml"));
+			//Scene scene = new Scene(root);
+			//primaryStage.setScene(scene);
+			//primaryStage.show();
 
 
 			//if(! session.currentUser.isPassAuthenticated()) {
-				root = FXMLLoader.load(getClass().getResource("view/resourses/CreateAccount.fxml"));
+				//root = FXMLLoader.load(getClass().getResource("view/resourses/CreateAccount2.fxml"));
 				//Scene scene = new Scene(root);
-				primaryStage.setScene(scene);
-				primaryStage.show();
+				//primaryStage.setScene(scene);
+				//primaryStage.show();
 			//}
 			
 			//FXMLLoader loader = new FXMLLoader();
