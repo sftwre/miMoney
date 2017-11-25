@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 public class MainAccount extends Application{
 
 	public static Stage stage;
+
+	private static Scene currScene;
 	
 	public Parent root;
 	
@@ -71,4 +73,10 @@ public class MainAccount extends Application{
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
+	public static void setScene(Scene scene)
+	{
+		currScene = scene;
+		stage.setScene(currScene);
+	}// END setScene()
 }

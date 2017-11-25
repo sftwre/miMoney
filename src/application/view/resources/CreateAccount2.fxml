@@ -18,14 +18,14 @@
             <TextField fx:id="user_name" layoutX="147.0" layoutY="40.0" prefHeight="27.0" prefWidth="175.0" promptText="Ex. abc123" style="-fx-border-color: black;" />
             <TextField fx:id="phone_Number" layoutX="159.0" layoutY="235.0" prefHeight="27.0" prefWidth="175.0" promptText="(210)534-9999" style="-fx-border-color: black;" />
             <TextField fx:id="income" layoutX="147.0" layoutY="371.0" prefHeight="27.0" prefWidth="175.0" promptText="Ex. $3,000" style="-fx-border-color: black;" />
-            <TextField fx:id="jobInfo" layoutX="147.0" layoutY="448.0" prefHeight="27.0" prefWidth="175.0" promptText="Ex. Job Title" style="-fx-border-color: black;" />
+            <TextField fx:id="jobInfo" layoutX="145.0" layoutY="426.0" prefHeight="27.0" prefWidth="175.0" promptText="Ex. Job Title" style="-fx-border-color: black;" />
             <Label layoutX="69.0" layoutY="45.0" text="Username:" />
             <Label fx:id="passwordTxt" layoutX="76.0" layoutY="111.0" prefHeight="17.0" prefWidth="66.0" text="Password:" />
             <Label layoutX="40.0" layoutY="174.0" text="Confirm Password:" />
             <Label layoutX="55.0" layoutY="240.0" text="Phone Number:" />
             <Label fx:id="incomeTxt" layoutX="55.0" layoutY="376.0" onDragOver="#OnMouseDragOver" prefHeight="17.0" prefWidth="53.0" text="Income:" />
             <Label fx:id="jobTxt" layoutX="53.0" layoutY="431.0" onDragOver="#OnMouseDragOver" prefHeight="17.0" prefWidth="56.0" text="Job Title:" />
-            <Button fx:id="createAcctButton" layoutX="179.0" layoutY="499.0" mnemonicParsing="false" onAction="#createAcct" prefHeight="25.0" prefWidth="112.0" text="Submit" />
+            <Button fx:id="createAcctButton" layoutX="170.0" layoutY="470.0" mnemonicParsing="false" onAction="#createAcct" prefHeight="25.0" prefWidth="112.0" text="Submit" />
             <Line endX="310.0" layoutX="160.0" layoutY="330.0" startX="-165.0" />
             <Label layoutX="138.0" layoutY="330.0" prefHeight="17.0" prefWidth="190.0" text="Fianancial Information">
                <font>
@@ -39,7 +39,8 @@
             <Label fx:id="password2_error" layoutX="145.0" layoutY="196.0" prefHeight="17.0" prefWidth="175.0" />
             <Label fx:id="phone_error" layoutX="159.0" layoutY="261.0" prefHeight="17.0" prefWidth="175.0" />
             <Label fx:id="income_error" layoutX="146.0" layoutY="398.0" prefHeight="17.0" prefWidth="175.0" />
-            <Label fx:id="job_error" layoutX="145.0" layoutY="475.0" prefHeight="17.0" prefWidth="175.0" />
+            <Label fx:id="job_error" layoutX="145.0" layoutY="453.0" prefHeight="17.0" prefWidth="175.0" />
+            <Hyperlink fx:id="tutorialLink" layoutX="197.0" layoutY="505.0" onAction="#goToTutorial" text="Tutorial " />
          </children>
       </Pane>
    </children>

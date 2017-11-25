@@ -8,12 +8,14 @@ package application.controller;
 import java.io.IOException;
 
 import application.Main;
+import application.MainAccount;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -77,6 +79,9 @@ public class CreateAccountController {
     
     @FXML
 	private Label jobTxt;
+    
+    @FXML
+    private Hyperlink tutorialLink;
 
     @FXML
     void createAcct(ActionEvent event) {
@@ -190,8 +195,9 @@ public class CreateAccountController {
     	//income.setTooltip(text);
     }
     
-    /*public void goToTutorial(ActionEvent event) {
-    	Stage popUp =  new Stage();
+    @FXML
+    public void goToTutorial(ActionEvent event) {
+    	//Stage popUp =  new Stage();
 		
 		
 		try {
@@ -203,7 +209,7 @@ public class CreateAccountController {
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
-    }*/
+    }
 
 
 }
