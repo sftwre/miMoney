@@ -205,17 +205,17 @@ public class CreateAccountController {
 					//fixedFile.mkdirs();
 					FileWriter fill = new FileWriter(fixedFile);
 					if(!houseDebt.isEmpty()){
-						fill.write("Housing:"+houseDebt+" ");
+						fill.write("Housing:"+Double.parseDouble(houseDebt)+" ");
 						//fill.close();	
 					}
 					if(!gasDebt.isEmpty()) {
-						fill.write("Gas:"+gasDebt+" ");
+						fill.write("Gas:"+Double.parseDouble(gasDebt)+" ");
 						
 					}if(!payment.isEmpty()) {
-						fill.write("Auto Payment:"+payment+" ");
+						fill.write("Auto Payment:"+Double.parseDouble(payment)+" ");
 						
-					}if(!gasDebt.isEmpty()) {
-						fill.write("Auto Insurance:"+insurance+" ");
+					}if(!insurance.isEmpty()) {
+						fill.write("Auto Insurance:"+Double.parseDouble(insurance)+" ");
 					}
 					
 					fill.close();
