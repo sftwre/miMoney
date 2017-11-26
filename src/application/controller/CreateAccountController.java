@@ -154,7 +154,7 @@ public class CreateAccountController {
 				
 				
 				try {
-					Parent root = FXMLLoader.load(getClass().getResource("../view/resources/MainView.fxml"));
+					Parent root = FXMLLoader.load(getClass().getResource("../view/resources/Tutorial.fxml"));
 		    		Scene scene = new Scene(root);
 		    		Main.stage.setScene(scene);
 		    		Main.stage.show();
