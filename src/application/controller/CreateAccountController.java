@@ -155,7 +155,7 @@ public class CreateAccountController {
 					if (success){
 				      // creating the directory succeeded
 				      System.out.println("directory was created successfully");
-				      System.out.println(dir);
+				      
 				    }
 					else{
 				      // creating the directory failed
