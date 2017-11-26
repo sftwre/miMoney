@@ -8,6 +8,7 @@ package application.controller;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.NumberFormat;
 
 import application.Main;
 //import application.MainAccount;
@@ -128,6 +129,7 @@ public class CreateAccountController {
 		    		}
 		    		else {
 		    			income.setStyle("-fx-border-color: black;");
+		    			//income.setText(NumberFormat.getCurrencyInstance().format(number));
 		    			income_error.setText("");
 		    		}
 		    			    		
@@ -145,6 +147,8 @@ public class CreateAccountController {
 				//this.income = Double.parseDouble(income);
 				
 				String newUser = user_name.getText().trim();
+				String newPass = password.getText().trim();
+				String phone = phone_Number.getText().trim();
 				String newIncome = income.getText().trim();
 				String newJob = jobInfo.getText().trim();
 				String houseDebt = housing.getText().trim();
@@ -152,15 +156,17 @@ public class CreateAccountController {
 				String payment = autoPay.getText().trim();
 				String insurance = autoInsur.getText().trim();
 				String fileName = "FixedExpenses.txt";
-				String incomeFile = "Income.txt";
-				File fixedFile = new File("UserProfiles/"+newUser+"/"+incomeFile);
-				File dir = new File("UserProfiles/"+newUser);
+				//String incomeFile = "Income.txt";
+				File incomeFile = new File("UserProfiles/"+newUser+"/Income.txt");
+				File userFile = new File("UserProfiles/"+newUser+"/"+newUser+".txt");
+				
+				File dir = new File("UserProfiles/"+newUser+"/AnnualExpenses");
 				
 				if(dir.exists()) {
 					System.out.println("directory already exists");
 				}
 				else {
-					boolean success = dir.mkdir();
+					boolean success = dir.mkdirs();
 					if (success){
 				      // creating the directory succeeded
 				      System.out.println("directory was created successfully");
@@ -171,9 +177,9 @@ public class CreateAccountController {
 				      System.out.println("failed trying to create the directory");
 				    }
 				}
-				if(fixedFile.createNewFile()) {
-					System.out.println("File is created!");
-					FileWriter writer = new FileWriter(fixedFile);
+				if(incomeFile.createNewFile()) {
+					System.out.println("Income File is created!");
+					FileWriter writer = new FileWriter(incomeFile);
 					writer.write(newJob+":"+ Double.parseDouble(newIncome));
 					writer.close();
 					
@@ -181,13 +187,38 @@ public class CreateAccountController {
 					System.out.println("File already exists.");
 				}
 				
+				if(userFile.createNewFile()) {
+					System.out.println("User File is created!");
+					FileWriter writer = new FileWriter(userFile);
+					writer.write(newUser + ":" + newPass + ":" + phone);
+					writer.close();
+					
+				}else {
+					System.out.println("File already exists.");
+				}
+				
 				if(!houseDebt.isEmpty() || !gasDebt.isEmpty() || !payment.isEmpty() || !insurance.isEmpty()) {
+					File fixedFile = new File(dir+"/FixedExpenses.txt");
+					if(fixedFile.createNewFile()) {
+						System.out.println("Fixed File is created!");
+					}
+					//fixedFile.mkdirs();
+					FileWriter fill = new FileWriter(fixedFile);
 					if(!houseDebt.isEmpty()){
-						//File fixedFile = new File("UserProfiles/"+newUser+"/"+fileName);
-						//FileWriter writer = new FileWriter();
+						fill.write("Housing:"+houseDebt+"\n");
+						//fill.close();	
+					}
+					if(!gasDebt.isEmpty()) {
+						fill.write("Gas:"+gasDebt+"\n");
 						
+					}if(!payment.isEmpty()) {
+						fill.write("Auto Payment:"+payment+"\n");
+						
+					}if(!gasDebt.isEmpty()) {
+						fill.write("Auto Insurance:"+insurance+"\n");
 					}
 					
+					fill.close();
 				}
 				
 				
