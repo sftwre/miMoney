@@ -5,6 +5,7 @@ package application.controller;
 
 
 
+import java.io.File;
 import java.io.IOException;
 
 import application.Main;
@@ -43,18 +44,9 @@ public class CreateAccountController {
     private TextField income;
     @FXML
     private PasswordField password;
-    @FXML
-    private PasswordField confirmPass;
     
-   
-
-    
-   
     @FXML
     private Label passwordTxt;
-    
-   
-    
     
     @FXML
     private Label incomeTxt;
@@ -65,8 +57,7 @@ public class CreateAccountController {
     @FXML
     private Label password_error;
 
-    @FXML
-    private Label password2_error;
+   
     
     @FXML
     private Label phone_error;
@@ -81,16 +72,28 @@ public class CreateAccountController {
 	private Label jobTxt;
     
     @FXML
+    private TextField housing;
+    
+    @FXML
+    private TextField gas;
+    
+    @FXML
+    private TextField autoPay;
+    
+    @FXML
+    private TextField autoInsur;
+    
+    @FXML
     private Hyperlink tutorialLink;
 
     @FXML
-    void createAcct(ActionEvent event) {
+    void createAcct(ActionEvent event) throws IOException {
     	
-				if(user_name.getText().trim().isEmpty() || password.getText().trim().isEmpty() || confirmPass.getText().trim().isEmpty() || phone_Number.getText().trim().isEmpty() || income.getText().trim().isEmpty() || jobInfo.getText().trim().isEmpty()) {
+				if(user_name.getText().trim().isEmpty() || password.getText().trim().isEmpty() || phone_Number.getText().trim().isEmpty() || income.getText().trim().isEmpty() || jobInfo.getText().trim().isEmpty()) {
 		    		if(user_name.getText().trim().isEmpty()){ 
 		    			user_name.setStyle("-fx-border-color: red;");
 		    			username_error.setText("username is not entered");
-		    			username_error.setTextFill(Color.RED);
+		    			username_error.setTextFill(Color.BLACK);
 		    		}
 		    		else {
 		    			 user_name.setStyle("-fx-border-color: black;");
@@ -100,27 +103,17 @@ public class CreateAccountController {
 		    		if(password.getText().trim().isEmpty()){
 		    			password.setStyle("-fx-border-color: red;");
 		    			password_error.setText("password is not entered");
-		    			password_error.setTextFill(Color.RED);
+		    			password_error.setTextFill(Color.BLACK);
 		    		}
 		    		else {
 		    			password.setStyle("-fx-border-color: black;");
 		    			password_error.setText("");
 		    		}
 		    		
-		    		if(confirmPass.getText().trim().isEmpty()){
-		    			confirmPass.setStyle("-fx-border-color: red;");
-		    			password2_error.setText("please confirm password");
-		    			password2_error.setTextFill(Color.RED);
-		    		}
-		    		else {
-		    			confirmPass.setStyle("-fx-border-color: black;");
-		    			password2_error.setText("");
-		    		}
-		    		
 		    		if(phone_Number.getText().trim().isEmpty()){
 		    			phone_Number.setStyle("-fx-border-color: red;");
 		    			phone_error.setText("phone number is not entered");
-		    			phone_error.setTextFill(Color.RED);
+		    			phone_error.setTextFill(Color.BLACK);
 		    		}
 		    		else {
 		    			phone_Number.setStyle("-fx-border-color: black;");
@@ -130,7 +123,7 @@ public class CreateAccountController {
 		    		if(income.getText().trim().isEmpty()){
 		    			  income.setStyle("-fx-border-color: red;");
 		    			  income_error.setText("income is not entered");
-		    			  income_error.setTextFill(Color.RED);
+		    			  income_error.setTextFill(Color.BLACK);
 		    		}
 		    		else {
 		    			income.setStyle("-fx-border-color: black;");
@@ -140,7 +133,7 @@ public class CreateAccountController {
 		    		if(jobInfo.getText().trim().isEmpty()) {
 		    			jobInfo.setStyle("-fx-border-color: red;");
 		    			job_error.setText("job title is not entered");
-		    			job_error.setTextFill(Color.RED);
+		    			job_error.setTextFill(Color.BLACK);
 		    		}
 		    		else {
 		    			jobInfo.setStyle("-fx-border-color: black;");
@@ -148,8 +141,50 @@ public class CreateAccountController {
 		    		}
 		    	}
 			else {
-				System.out.println(income.getText());
-				System.out.println(jobInfo.getText());
+				//this.income = Double.parseDouble(income);
+				
+				String newUser = user_name.getText();
+				String newIncome = income.getText();
+				String newJob = jobInfo.getText();
+				File dir = new File("UserProfiles/"+newUser);
+				if(dir.exists()) {
+					System.out.println("directory already exists");
+				}
+				else {
+					boolean success = dir.mkdir();
+					if (success){
+				      // creating the directory succeeded
+				      System.out.println("directory was created successfully");
+				      System.out.println(dir);
+				    }
+					else{
+				      // creating the directory failed
+				      System.out.println("failed trying to create the directory");
+				    }
+				}
+				
+				if(!housing.getText().trim().isEmpty()) {
+					File dir2 = new File("UserProfiles/"+newUser+"/AnnualExpenses/2017/");
+					if(dir2.exists()) {
+						System.out.println("directory already exists");
+					}
+					else {
+						boolean success = dir2.mkdirs();
+						if (success){
+					      // creating the directory succeeded
+					      System.out.println("directory was created successfully");
+					      System.out.println(dir2);
+					    }
+						else{
+					      // creating the directory failed
+					      System.out.println("failed trying to create the directory");
+					    }
+					}
+				}
+				
+				
+				System.out.println(newIncome);
+				System.out.println(newJob);
 				//Stage popUp =  new Stage();
 				
 				
@@ -158,16 +193,11 @@ public class CreateAccountController {
 		    		Scene scene = new Scene(root);
 		    		Main.stage.setScene(scene);
 		    		Main.stage.show();
-		    		//Main.setScene(scene);
-		    		//popUp.setScene(scene);
-		    		//popUp.show();
 				}catch(IOException e) {
 					e.printStackTrace();
 					System.out.println("MainView page can't be found");
 				}
-						//goToTutorial(new ActionEvent());
-					//}
-				//});
+						
 			}
 	}
 				

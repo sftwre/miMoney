@@ -167,7 +167,7 @@ public class TutorialController
     	//create.initOwner(Main.stage);
     	try
 		{
-    		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/MainView.fxml"));
+    		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/CreateAccount2.fxml"));
     		Scene scene = new Scene(root);
     		Main.stage.setScene(scene);
     		Main.stage.show();
