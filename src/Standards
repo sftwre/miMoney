@@ -1,7 +1,10 @@
 				Standards for storing data in files
 				
 	In order for our application to run smoother and for the FileParser classes to execute faster, 
-	please have a toString() method in each class, whose data will need to be stored.
+	please have a toString() method in each class, whose data will need to be stored. The fields of
+	the Class to be stored should be separated by colons, with no spaces, and should be stored
+	in the same exact order that the Class is instantiated.
+	
 	For example: 
 	
 	public class Expense
@@ -15,7 +18,7 @@
 		
 		
 		//constructor
-		public class Expense();
+		public class Expense(String className, double amount, Date date, String item);
 		
 		//toString method to use to store the data in file
 		public String toString()
@@ -31,3 +34,6 @@
 	Also notice that the Date object stored in the Expense has a toString() method
 	that returns the the string representation of the object as it should be represented
 	in the expense.
+	
+	Once completing the toString(), notify the team lead that the class has had a toString()
+	implemented so he can update the FileParsers accordingly.
