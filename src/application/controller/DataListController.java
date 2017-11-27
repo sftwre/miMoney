@@ -18,6 +18,9 @@ import javafx.scene.layout.*;
 import javafx.scene.control.*;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 import application.Main;
 import javafx.collections.FXCollections;
@@ -41,9 +44,19 @@ public class DataListController {
     private GridPane itemsGridPane;
     
     @FXML
+    private Label doubleLabel;
+    
+    @FXML
+    private Label itemLabel;
+    
+    @FXML
     private ComboBox<String> expensesComboBox;
     
     private ObservableList<String> expenseOptions = FXCollections.observableArrayList();
+    private int counter = 0;
+    private Locale USA;
+    private NumberFormat usFormat;
+    private double total;
 
     /**
      * 
@@ -53,10 +66,9 @@ public class DataListController {
      * 				message is the prompt text of the TextField at bottom (e.g. add expense... | add recurring expense...)
      */
       
-   /* public void initialize() {
+    public void initialize() {
     	Thread comboBoxThread = new Thread(){
     		
-    		@Override
     		public void run()
     		{
     			System.out.printf("\nin the override\n");
@@ -68,11 +80,23 @@ public class DataListController {
     	
     	comboBoxThread.run();
     }//END initialize()
-*/    
+    
 	@FXML
 	public void addButtonExpense(ActionEvent event) {
-		System.out.println("add pressed");
-	}//END addAnExpense()
+		if(counter == 0)
+		{
+			itemLabel.setText(t0Field.getCharacters().toString());
+			total = Double.parseDouble(t1Field.getCharacters().toString());
+			doubleLabel.setText(DecimalFormat.getCurrencyInstance().format(total));
+			counter++;
+			return;
+		}
+		
+		itemsGridPane.add(new Label(t0Field.getCharacters().toString()), 0, counter);
+		total = Double.parseDouble(t1Field.getCharacters().toString());
+		itemsGridPane.add(new Label(DecimalFormat.getCurrencyInstance().format(total)), 1, counter);
+		counter++;
+}//END addAnExpense()
 	
     private void loadExpenseCategories()
     {
