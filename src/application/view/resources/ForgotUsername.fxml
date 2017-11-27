@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="285.0" prefWidth="372.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="285.0" prefWidth="372.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.ForgotUsernameController">
    <children>
       <GridPane hgap="8.0" layoutX="34.0" layoutY="48.0" prefHeight="189.0" prefWidth="306.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="48.0">
         <columnConstraints>
@@ -24,6 +24,6 @@
             <Button fx:id="submitButton" mnemonicParsing="false" text="Submit" translateX="45.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Button fx:id="backButton" layoutX="8.0" layoutY="8.0" mnemonicParsing="false" text="Back" />
+      <Button fx:id="backButton" layoutX="8.0" layoutY="8.0" mnemonicParsing="false" onAction="#goToLoginView" text="Back" />
    </children>
 </AnchorPane>
