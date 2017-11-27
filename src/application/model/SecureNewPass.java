@@ -25,10 +25,11 @@ public class SecureNewPass extends SecurePass{
     private String hash;
     
     private User currentUser;
-    
-    public void secure(String user, CharSequence pass)
+        
+    public void secure(String username, String phoneNumber, CharSequence pass)
     { 
-    	currentUser = new User(user);
+    	currentUser = new User(username);
+    	//TODO: create username.txt
     	salt = createSalt();
     	//TODO: store salt in username.txt
     	hash = super.hashFun(input.nextLine(), salt);
@@ -36,6 +37,9 @@ public class SecureNewPass extends SecurePass{
       
     	currentUser.setSalt(salt);
     	currentUser.setPassword(hash);
+    	currentUser.setPhone(phoneNumber);
+    	
+    	//TODO: write toString() to username.txt
     }// END secure()
     
     public String createSalt()
@@ -52,5 +56,9 @@ public class SecureNewPass extends SecurePass{
       return build.toString();
     }// END createSalt()
 
+    public String toString() {
+    	return (String.format("%s:%s:%s:%s", currentUser.getUsername(),currentUser.getPassword(), 
+				currentUser.getSalt(), currentUser.getPhone()));
+    }//END toString()
 
 }//END APPLICATION CLASS SecureNewPass
