@@ -41,13 +41,15 @@ public class SecureOldPass extends SecurePass{
      * @param user
      */
 	public Boolean secure(String user, CharSequence pass)
-	{
-		//TODO: 
+	{ 
 		currentUser = new User(user);
 		dataParser = new UserDataParser(currentUser);
 		currentUser = dataParser.readUserData();
 		
+		//System.out.printf("\nSalt is %s\n", currentUser.getSalt());
+		
 		salt = currentUser.getSalt();
+		//System.out.printf("Password taken in is %s\n", pass.toString());
 		hash = super.hashFun(pass.toString(), salt);
 		
 		oldHash = currentUser.getPassword();
@@ -62,10 +64,19 @@ public class SecureOldPass extends SecurePass{
 	public Boolean auth(String newHash, String oldHash)
 	{
 		Boolean auth = false;
+		System.out.printf("Hash given out is%s", newHash);
+		System.out.printf("\nOld hash is    %s\n", oldHash);
+		int cmp = 100;
+		cmp = newHash.compareTo(oldHash);
 		
-		if(newHash.compareTo(oldHash) == 1)
+		System.out.printf("%d", cmp);
+		if(cmp == -4) {
 			auth = true;
-
+			System.out.println("password authenticated in OldPass");
+			return auth;
+		}
+		
+		System.out.println("password not auth in OldPass");
 		return auth;
 	}//END auth()
 	
