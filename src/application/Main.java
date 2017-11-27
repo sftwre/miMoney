@@ -19,7 +19,7 @@ public class Main extends Application {
 		
 		public static Scene currScene;	// the current scene
 		
-		public Session session;			// Session to control the state of the application
+		public static Session session;			// Session to control the state of the application
 		
 		public Parent root;				// root node of the Scene Graph
 		
