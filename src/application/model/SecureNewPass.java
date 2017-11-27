@@ -26,14 +26,11 @@ public class SecureNewPass extends SecurePass{
     
     private User currentUser;
         
-    public void secure(String username, String phoneNumber, CharSequence pass)
+    public void secure(String username, CharSequence pass, String phoneNumber)
     { 
     	currentUser = new User(username);
-    	//TODO: create username.txt
     	salt = createSalt();
-    	//TODO: store salt in username.txt
     	hash = super.hashFun(input.nextLine(), salt);
-    	//TODO: store hash in username.txt
       
     	currentUser.setSalt(salt);
     	currentUser.setPassword(hash);

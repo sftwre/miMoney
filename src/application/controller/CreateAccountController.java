@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.text.NumberFormat;
 
 import application.Main;
+import application.model.SecureNewPass;
 //import application.MainAccount;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -148,6 +149,12 @@ public class CreateAccountController {
 				
 				String newUser = user_name.getText().trim();
 				String newPass = password.getText().trim();
+				/*
+				 * Commenting out line above (after we talk). This is slightly dangerous
+				 * but mostly because it's a little redundant. Sending
+				 * password.getCharacters() to SecureNewPass
+				 * cuts out this step.
+				 */
 				String phone = phone_Number.getText().trim();
 				String newIncome = income.getText().trim();
 				String newJob = jobInfo.getText().trim();
@@ -190,6 +197,9 @@ public class CreateAccountController {
 				if(userFile.createNewFile()) {
 					System.out.println("User File is created!");
 					FileWriter writer = new FileWriter(userFile);
+					/*SecureNewPass snp = new SecureNewPass();
+					snp.secure(newUser, password.getCharacters(), phone);
+					writer.write(snp.toString());*/
 					writer.write(newUser + ":" + newPass + ":" + phone);
 					writer.close();
 					
