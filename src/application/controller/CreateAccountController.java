@@ -5,153 +5,245 @@ package application.controller;
 
 
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.text.NumberFormat;
 
 import application.Main;
+//import application.MainAccount;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
+//import javafx.scene.text.Text;
+//import javafx.stage.Modality;
+//import javafx.stage.Stage;
 
 public class CreateAccountController {
 
 
+	 
+
 	@FXML
-    private TextField income;
-
-    @FXML
-    private Label username_error;
-
-    @FXML
-    private TextField user_name;
-
+	private TextField user_name;
     @FXML
     private Button createAcctButton;
-
+    @FXML
+    private TextField phone_Number;
     @FXML
     private TextField jobInfo;
-
+    @FXML
+    private TextField income;
     @FXML
     private PasswordField password;
-
+    
+    @FXML
+    private Label passwordTxt;
+    
     @FXML
     private Label incomeTxt;
-
+    
     @FXML
-    private PasswordField confirmPass;
-
-    @FXML
-    private Label jobTxt;
-
+    private Label username_error;
+    
     @FXML
     private Label password_error;
 
-    @FXML
-    private Label income_error;
-
-    @FXML
-    private Label job_error;
-
-    @FXML
-    private Label passwordTxt;
-
-    @FXML
-    private TextField phone_Number;
-
-    @FXML
-    private Label password2_error;
-
+   
+    
     @FXML
     private Label phone_error;
-	 @FXML
-	
-    void createAcct(ActionEvent event) {
-    	if(user_name.getText().trim().isEmpty() || password.getText().trim().isEmpty() || confirmPass.getText().trim().isEmpty() || phone_Number.getText().trim().isEmpty() || income.getText().trim().isEmpty() || jobInfo.getText().trim().isEmpty()) {
-    		if(user_name.getText().trim().isEmpty()){ 
-    			user_name.setStyle("-fx-border-color: red;");
-    			username_error.setText("username is not entered");
-    			username_error.setTextFill(Color.RED);
-    		}
-    		else {
-    			user_name.setStyle("-fx-border-color: black;");
-    			username_error.setText("");
-    		}
-    		
-    		if(password.getText().trim().isEmpty()){
-    			password.setStyle("-fx-border-color: red;");
-    			password_error.setText("password is not entered");
-    			password_error.setTextFill(Color.RED);
-    		}
-    		else {
-    			password.setStyle("-fx-border-color: black;");
-    			password_error.setText("");
-    		}
-    		
-    		if(confirmPass.getText().trim().isEmpty()){
-    			confirmPass.setStyle("-fx-border-color: red;");
-    			password2_error.setText("passwords must match");
-    			password2_error.setTextFill(Color.RED);
-    		}
-    		//else if(confirmPass.getText().trim() != password.getText().trim()) {
-    			//confirmPass.setStyle("-fx-border-color: red;");
-    			//password2_error.setText("passwords must match");
-    			//password2_error.setTextFill(Color.RED);
-    		//}
-    		else {
-    			confirmPass.setStyle("-fx-border-color: black;");
-    			password2_error.setText("");
-    		}
-    		
-    		if(phone_Number.getText().trim().isEmpty()){
-    			phone_Number.setStyle("-fx-border-color: red;");
-    			phone_error.setText("phone number is not entered");
-    			phone_error.setTextFill(Color.RED);
-    		}
-    		else {
-    			phone_Number.setStyle("-fx-border-color: black;");
-    			phone_error.setText("");
-    		}
-    		
-    		if(income.getText().trim().isEmpty()){
-    			income.setStyle("-fx-border-color: red;");
-    			income_error.setText("income is not entered");
-    			income_error.setTextFill(Color.RED);
-    		}
-    		
-    		if(jobInfo.getText().trim().isEmpty()) {
-    			jobInfo.setStyle("-fx-border-color: red;");
-    			job_error.setText("job title is not entered");
-    			job_error.setTextFill(Color.RED);
-    		}
-    	}
-    	
-    	
-    	
     
-    	else {
-    		
-    		createAcctButton.setOnAction(new EventHandler<ActionEvent>() {
-    			@Override
-    			public void handle(ActionEvent e) {
-    				goToTutorial(new ActionEvent());
-			
-    			}
-    		});
-    	}
+    @FXML
+    private Label income_error;
+    
+    @FXML
+    private Label job_error;
+    
+    @FXML
+	private Label jobTxt;
+    
+    @FXML
+    private TextField housing;
+    
+    @FXML
+    private TextField gas;
+    
+    @FXML
+    private TextField autoPay;
+    
+    @FXML
+    private TextField autoInsur;
+    
+    @FXML
+    private Hyperlink tutorialLink;
 
-    }
+    @FXML
+    void createAcct(ActionEvent event) throws IOException {
+    	
+			if(user_name.getText().trim().isEmpty() || password.getText().trim().isEmpty() || phone_Number.getText().trim().isEmpty() || income.getText().trim().isEmpty() || jobInfo.getText().trim().isEmpty()) {
+		    		if(user_name.getText().trim().isEmpty()){ 
+		    			user_name.setStyle("-fx-border-color: red;");
+		    			username_error.setText("username is not entered");
+		    			username_error.setTextFill(Color.BLACK);
+		    		}
+		    		else {
+		    			 user_name.setStyle("-fx-border-color: black;");
+		    			 username_error.setText("");
+		    		}
+		    		
+		    		if(password.getText().trim().isEmpty()){
+		    			password.setStyle("-fx-border-color: red;");
+		    			password_error.setText("password is not entered");
+		    			password_error.setTextFill(Color.BLACK);
+		    		}
+		    		else {
+		    			password.setStyle("-fx-border-color: black;");
+		    			password_error.setText("");
+		    		}
+		    		
+		    		if(phone_Number.getText().trim().isEmpty()){
+		    			phone_Number.setStyle("-fx-border-color: red;");
+		    			phone_error.setText("phone number is not entered");
+		    			phone_error.setTextFill(Color.BLACK);
+		    		}
+		    		else {
+		    			phone_Number.setStyle("-fx-border-color: black;");
+		    			phone_error.setText("");
+		    		}
+		    		
+		    		if(income.getText().trim().isEmpty()){
+		    			  income.setStyle("-fx-border-color: red;");
+		    			  income_error.setText("income is not entered");
+		    			  income_error.setTextFill(Color.BLACK);
+		    		}
+		    		else {
+		    			income.setStyle("-fx-border-color: black;");
+		    			//income.setText(NumberFormat.getCurrencyInstance().format(number));
+		    			income_error.setText("");
+		    		}
+		    			    		
+		    		if(jobInfo.getText().trim().isEmpty()) {
+		    			jobInfo.setStyle("-fx-border-color: red;");
+		    			job_error.setText("job title is not entered");
+		    			job_error.setTextFill(Color.BLACK);
+		    		}
+		    		else {
+		    			jobInfo.setStyle("-fx-border-color: black;");
+		    			job_error.setText("");
+		    		}
+		    	}
+		else {
+				//this.income = Double.parseDouble(income);
+				
+				String newUser = user_name.getText().trim();
+				String newPass = password.getText().trim();
+				String phone = phone_Number.getText().trim();
+				String newIncome = income.getText().trim();
+				String newJob = jobInfo.getText().trim();
+				String houseDebt = housing.getText().trim();
+				String gasDebt = gas.getText().trim();
+				String payment = autoPay.getText().trim();
+				String insurance = autoInsur.getText().trim();
+				String fileName = "FixedExpenses.txt";
+				//String incomeFile = "Income.txt";
+				File incomeFile = new File("UserProfiles/"+newUser+"/Income.txt");
+				File userFile = new File("UserProfiles/"+newUser+"/"+newUser+".txt");
+				
+				File dir = new File("UserProfiles/"+newUser+"/AnnualExpenses");
+				
+				if(dir.exists()) {
+					System.out.println("directory already exists");
+				}
+				else {
+					boolean success = dir.mkdirs();
+					if (success){
+				      // creating the directory succeeded
+				      System.out.println("directory was created successfully");
+				      
+				    }
+					else{
+				      // creating the directory failed
+				      System.out.println("failed trying to create the directory");
+				    }
+				}
+				if(incomeFile.createNewFile()) {
+					System.out.println("Income File is created!");
+					FileWriter writer = new FileWriter(incomeFile);
+					writer.write(newJob+":"+ Double.parseDouble(newIncome));
+					writer.close();
+					
+				}else {
+					System.out.println("File already exists.");
+				}
+				
+				if(userFile.createNewFile()) {
+					System.out.println("User File is created!");
+					FileWriter writer = new FileWriter(userFile);
+					writer.write(newUser + ":" + newPass + ":" + phone);
+					writer.close();
+					
+				}else {
+					System.out.println("File already exists.");
+				}
+				
+				if(!houseDebt.isEmpty() || !gasDebt.isEmpty() || !payment.isEmpty() || !insurance.isEmpty()) {
+					File fixedFile = new File(dir+"/FixedExpenses.txt");
+					if(fixedFile.createNewFile()) {
+						System.out.println("Fixed File is created!");
+					}
+					//fixedFile.mkdirs();
+					FileWriter fill = new FileWriter(fixedFile);
+					if(!houseDebt.isEmpty()){
+						fill.write("Housing:"+Double.parseDouble(houseDebt)+" ");
+						//fill.close();	
+					}
+					if(!gasDebt.isEmpty()) {
+						fill.write("Gas:"+Double.parseDouble(gasDebt)+" ");
+						
+					}if(!payment.isEmpty()) {
+						fill.write("Auto Payment:"+Double.parseDouble(payment)+" ");
+						
+					}if(!insurance.isEmpty()) {
+						fill.write("Auto Insurance:"+Double.parseDouble(insurance)+" ");
+					}
+					
+					fill.close();
+				}
+				
+				
+				System.out.println(newIncome);
+				System.out.println(newJob);
+				//Stage popUp =  new Stage();
+				
+				
+				try {
+					Parent root = FXMLLoader.load(getClass().getResource("../view/resources/Tutorial.fxml"));
+		    		Scene scene = new Scene(root);
+		    		Main.stage.setScene(scene);
+		    		Main.stage.show();
+				}catch(IOException e) {
+					e.printStackTrace();
+					System.out.println("MainView page can't be found");
+				}
+						
+			}
+	}
+				
+
+
+    
+    
     
     @FXML
     void OnMouseDragOver(MouseEvent event) {
@@ -172,18 +264,17 @@ public class CreateAccountController {
     	//income.setTooltip(text);
     }
     
+    @FXML
     public void goToTutorial(ActionEvent event) {
-    	Stage popUp =  new Stage();
+    	//Stage popUp =  new Stage();
 		
-		//popUp.initModality(Modality.APPLICATION_MODAL);
-		//popUp.initOwner(Main.stage);
+		
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("view/resources/Tutorial.fxml"));
-			Scene scene = new Scene(root, 500, 500);
-		
-			Main.setScene(scene);
-			//primaryStage.setScene(scene);
-			//primaryStage.show();
+			Parent root = FXMLLoader.load(getClass().getResource("../view/resources/Tutorial.fxml"));
+    		Scene scene = new Scene(root);
+    		Main.setScene(scene);
+    		//popUp.setScene(scene);
+    		//popUp.show();
 		}catch(IOException e) {
 			e.printStackTrace();
 		}

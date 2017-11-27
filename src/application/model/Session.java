@@ -1,10 +1,8 @@
 package application.model;
 
-import java.util.HashMap;
-
 /**
- * Session controls the global state of the application and 
- * stores data on the User of the application.
+ * Session controls the global state of the application by 
+ * storing the current User of the application.
  * @author Isaac Buitrago
  *
  */
@@ -27,9 +25,9 @@ public class Session {
 	/**
 	 * Load the User data into Collections User
 	 */
-	public void startSession()
+	public void startSession(User user)
 	{
-		
+		this.currentUser = user;
 		
 	}
 	
@@ -39,6 +37,6 @@ public class Session {
 	
 	public void endSession()
 	{
-		
+		this.currentUser = null;
 	}
 }

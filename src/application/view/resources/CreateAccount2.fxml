@@ -7,48 +7,57 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="478.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CreateAccountController">
+<AnchorPane prefHeight="397.0" prefWidth="319.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CreateAccountController">
    <children>
-      <Pane layoutX="6.0" prefHeight="478.0" prefWidth="516.0">
+      <Pane layoutX="3.0" layoutY="-1.0" prefHeight="583.0" prefWidth="465.0">
          <children>
-            <Label layoutX="177.0" layoutY="2.0" prefHeight="25.0" prefWidth="157.0" text="Account Information">
+            <Label layoutX="157.0" layoutY="2.0" prefHeight="25.0" prefWidth="157.0" text="Account Information">
                <font>
                   <Font size="16.0" />
                </font></Label>
-            <TextField fx:id="user_name" layoutX="159.0" layoutY="35.0" prefHeight="27.0" prefWidth="175.0" promptText="Ex. abc123" style="-fx-border-color: black;" />
-            <TextField fx:id="phone_Number" layoutX="159.0" layoutY="211.0" prefHeight="27.0" prefWidth="175.0" promptText="(210)534-9999" style="-fx-border-color: black;" />
-            <TextField fx:id="income" layoutX="159.0" layoutY="297.0" prefHeight="27.0" prefWidth="175.0" promptText="Ex. $3,000" style="-fx-border-color: black;" />
-            <TextField fx:id="jobInfo" layoutX="159.0" layoutY="363.0" prefHeight="27.0" prefWidth="175.0" promptText="Ex. Job Title" style="-fx-border-color: black;" />
-            <Label layoutX="95.0" layoutY="40.0" text="Username:" />
-            <Label fx:id="passwordTxt" layoutX="97.0" layoutY="99.0" text="Password:">
+            <TextField fx:id="user_name" layoutX="147.0" layoutY="33.0" prefHeight="27.0" prefWidth="175.0" promptText="Ex. abc123" style="-fx-border-color: black;" />
+            <TextField fx:id="phone_Number" layoutX="145.0" layoutY="122.0" prefHeight="27.0" prefWidth="175.0" promptText="(210)534-9999" style="-fx-border-color: black;" />
+            <TextField fx:id="income" layoutX="149.0" layoutY="199.0" prefHeight="27.0" prefWidth="175.0" promptText="Ex. $3,000" style="-fx-border-color: black;" />
+            <TextField fx:id="jobInfo" layoutX="149.0" layoutY="253.0" prefHeight="27.0" prefWidth="175.0" promptText="Ex. Job Title" style="-fx-border-color: black;" />
+            <Label layoutX="69.0" layoutY="38.0" text="Username:" />
+            <Label fx:id="passwordTxt" layoutX="64.0" layoutY="83.0" prefHeight="17.0" prefWidth="66.0" text="Password:" />
+            <Label layoutX="55.0" layoutY="127.0" text="Phone Number:" />
+            <Label fx:id="incomeTxt" layoutX="71.0" layoutY="204.0" onDragOver="#OnMouseDragOver" prefHeight="17.0" prefWidth="53.0" text="Income:">
                <tooltip>
-                  <Tooltip text="Empty Tooltip" />
+                  <Tooltip text="Enter monthly income" />
                </tooltip></Label>
-            <Label layoutX="48.0" layoutY="158.0" text="Confirm Password:" />
-            <Label layoutX="55.0" layoutY="216.0" text="Phone Number:" />
-            <Label fx:id="incomeTxt" layoutX="86.0" layoutY="302.0" onDragOver="#OnMouseDragOver" prefHeight="17.0" prefWidth="53.0" text="Income:">
+            <Label fx:id="jobTxt" layoutX="70.0" layoutY="258.0" onDragOver="#OnMouseDragOver" prefHeight="17.0" prefWidth="56.0" text="Job Title:">
                <tooltip>
-                  <Tooltip text="Enter Monthly income" />
+                  <Tooltip text="Enter your Job title" />
                </tooltip></Label>
-            <Label fx:id="jobTxt" layoutX="85.0" layoutY="368.0" onDragOver="#OnMouseDragOver" prefHeight="17.0" prefWidth="56.0" text="Job Title:">
-               <tooltip>
-                  <Tooltip text="Enter the title of your job" />
-               </tooltip></Label>
-            <Button fx:id="createAcctButton" layoutX="199.0" layoutY="433.0" mnemonicParsing="false" onAction="#createAcct" prefHeight="25.0" prefWidth="112.0" text="Submit" />
-            <Label layoutX="147.0" layoutY="269.0" prefHeight="17.0" prefWidth="190.0" text="Fianancial Information">
+            <Button fx:id="createAcctButton" layoutX="339.0" layoutY="537.0" mnemonicParsing="false" onAction="#createAcct" prefHeight="25.0" prefWidth="112.0" text="Submit" />
+            <Line endX="310.0" layoutX="160.0" layoutY="170.0" startX="-165.0" />
+            <Label layoutX="141.0" layoutY="170.0" prefHeight="17.0" prefWidth="190.0" text="Fianancial Information">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <PasswordField fx:id="password" layoutX="159.0" layoutY="93.0" prefHeight="28.0" prefWidth="175.0" promptText="enter password" style="-fx-border-color: black;" />
-            <PasswordField fx:id="confirmPass" layoutX="159.0" layoutY="153.0" prefHeight="27.0" prefWidth="175.0" promptText="repeat password" style="-fx-border-color: black;" />
-            <Label fx:id="username_error" layoutX="159.0" layoutY="70.0" prefHeight="17.0" prefWidth="175.0" />
-            <Label fx:id="password_error" layoutX="159.0" layoutY="121.0" prefHeight="17.0" prefWidth="175.0" />
-            <Label fx:id="password2_error" layoutX="156.0" layoutY="187.0" prefHeight="17.0" prefWidth="175.0" />
-            <Label fx:id="phone_error" layoutX="155.0" layoutY="245.0" prefHeight="17.0" prefWidth="175.0" />
-            <Label fx:id="income_error" layoutX="156.0" layoutY="335.0" prefHeight="17.0" prefWidth="175.0" />
-            <Label fx:id="job_error" layoutX="156.0" layoutY="399.0" prefHeight="17.0" prefWidth="175.0" />
-            <Line endX="355.0" layoutX="160.0" layoutY="270.0" startX="-165.0" />
+            <PasswordField fx:id="password" layoutX="145.0" layoutY="77.0" prefHeight="28.0" prefWidth="175.0" promptText="enter password" style="-fx-border-color: black;" />
+            <Label fx:id="username_error" layoutX="147.0" layoutY="60.0" prefHeight="17.0" prefWidth="175.0" />
+            <Label fx:id="password_error" layoutX="145.0" layoutY="105.0" prefHeight="17.0" prefWidth="175.0" />
+            <Label fx:id="phone_error" layoutX="145.0" layoutY="149.0" prefHeight="17.0" prefWidth="175.0" />
+            <Label fx:id="income_error" layoutX="148.0" layoutY="234.0" prefHeight="17.0" prefWidth="175.0" />
+            <Label fx:id="job_error" layoutX="145.0" layoutY="283.0" prefHeight="17.0" prefWidth="175.0" />
+            <Hyperlink fx:id="tutorialLink" layoutX="14.0" layoutY="538.0" onAction="#goToTutorial" text="Tutorial " />
+            <Line endX="250.0" layoutX="223.0" layoutY="300.0" startX="-230.0" />
+            <TextField fx:id="housing" layoutX="149.0" layoutY="348.0" prefHeight="25.0" prefWidth="175.0" />
+            <TextField fx:id="gas" layoutX="147.0" layoutY="400.0" prefHeight="25.0" prefWidth="175.0" />
+            <TextField fx:id="autoPay" layoutX="149.0" layoutY="455.0" prefHeight="25.0" prefWidth="175.0" />
+            <TextField fx:id="autoInsur" layoutX="149.0" layoutY="512.0" prefHeight="25.0" prefWidth="175.0" />
+            <Label layoutX="63.0" layoutY="352.0" text="Housing" />
+            <Label layoutX="72.0" layoutY="404.0" prefHeight="17.0" prefWidth="29.0" text="Gas:" />
+            <Label layoutX="47.0" layoutY="459.0" text="Auto Payment:" />
+            <Label layoutX="45.0" layoutY="516.0" prefHeight="17.0" prefWidth="83.0" text="Auto Insurance:" />
+            <Label layoutX="153.0" layoutY="307.0" text="Monthly Expenses">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>

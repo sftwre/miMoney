@@ -16,31 +16,27 @@ import javafx.stage.*;
 import javafx.scene.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
+
+import java.io.IOException;
+
+import application.Main;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
 public class DataListController {
-
-    //Create variables/fields
-    static boolean answer;
     
     @FXML
     private Button addButton;
     
     @FXML
-    private TextField tField;
+    private TextField t0Field;
     
     @FXML
-    private Label itemLabel;
+    private TextField t1Field;
     
     @FXML
-    private Label doubleLabel;
-    
-    @FXML
-    private HBox hBox;
-    
-    @FXML
-    private VBox vBox;
+    private ListView listV;
 
     /**
      * 
@@ -61,16 +57,19 @@ public class DataListController {
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
         window.setMinWidth(250);
-        tField = new TextField();
-        tField.setPromptText(message);
-
+        
         //Clicking will set answer and close window
-        addButton.setOnAction(e -> {            
+        addButton.setOnAction(e -> {         
             //TODO: vbox.add hBox.contains(item + total) pseudocode remove window.close()
             window.close();
         });
 
         return;
     }
+    
+	@FXML
+	public void addAnExpense(ActionEvent event) {	
+		HBox next = new HBox(new Label(t0Field.getCharacters().toString()), new Label(t1Field.getCharacters().toString()));
+	}
 
-}
+}//END CONTROLLER CLASS DatalistController

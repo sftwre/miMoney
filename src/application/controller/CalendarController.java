@@ -106,4 +106,14 @@ public class CalendarController {
 		}// END try/catch load FXML
 	}
 	
+	/**
+	 * Sample code:
+	 * 
+	 * FinancialDataParser financialData =  new FinancialDataParser(new User("testUser77"));
+	 * 
+	 * Date  date = new Date(11,26,2017);
+	 * 
+	 * ArrayList<Expense> expenses = financialData.readExpenses(date, FinanceType.FEXPENSE);
+	 */
+	
 }

@@ -9,14 +9,14 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="527.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.FinancialOverviewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="631.0" prefWidth="892.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.FinancialOverviewController">
    <children>
-      <TitledPane animated="false" collapsible="false" layoutX="50.0" layoutY="255.0" prefHeight="206.0" prefWidth="280.0" text="Current Goals">
+      <TitledPane animated="false" collapsible="false" layoutX="38.0" layoutY="280.0" prefHeight="238.0" prefWidth="310.0" text="Current Goals">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="250.0">
                <children>
-                  <Button fx:id="newGoalButton" layoutX="79.0" layoutY="147.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#createNewGoal" prefWidth="120.0" text="New Goal " />
-                  <StackPane layoutX="20.0" prefHeight="139.0" prefWidth="239.0">
+                  <Button fx:id="newGoalButton" layoutX="94.0" layoutY="147.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#createNewGoal" prefWidth="120.0" text="New Goal " />
+                  <StackPane fx:id="goalsStackPane" layoutX="29.0" prefHeight="139.0" prefWidth="250.0">
                      <children>
                         <Label prefHeight="32.0" prefWidth="237.0" text="                 No Financial Goals yet" textAlignment="CENTER" />
                         <ListView fx:id="currentGoalsListView" prefHeight="139.0" prefWidth="241.0" />
@@ -26,7 +26,7 @@
             </AnchorPane>
          </content>
       </TitledPane>
-      <TitledPane animated="false" collapsible="false" layoutX="50.0" layoutY="21.0" text="Income">
+      <TitledPane animated="false" collapsible="false" layoutX="38.0" layoutY="37.0" prefHeight="213.0" prefWidth="310.0" text="Income">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="278.0">
                <children>
@@ -81,12 +81,12 @@
             </AnchorPane>
          </content>
       </TitledPane>
-      <PieChart fx:id="spendingChart" focusTraversable="true" layoutX="348.0" prefHeight="527.0" prefWidth="433.0" title="Spending By Category">
+      <PieChart fx:id="spendingChart" clockwise="false" focusTraversable="true" layoutX="348.0" prefHeight="651.0" prefWidth="544.0" title="Spending By Category">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
          <padding>
-            <Insets top="25.0" />
+            <Insets top="35.0" />
          </padding></PieChart>
    </children>
 </AnchorPane>

@@ -1,3 +1,4 @@
+
 package application;
 
 import javafx.application.Application;
@@ -8,20 +9,24 @@ import javafx.stage.Stage;
 
 public class MainTutorial extends Application{
 
-	public static Stage stage;
+	public  Stage stage;
+	
+	public Scene currentScene;
 	
 	public void start(Stage primaryStage) {
+
 		try {
 
-			
 			Parent root = FXMLLoader.load(getClass().getResource("view/resources/Tutorial.fxml"));
-			Scene scene = new Scene(root, 500, 500);
+			currentScene = new Scene(root);
 		
-			primaryStage.setScene(scene);
+			primaryStage.setScene(currentScene);
 			primaryStage.show();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		
+		stage = primaryStage;
 	}
 	
 	public static void main(String[] args) {
@@ -30,3 +35,5 @@ public class MainTutorial extends Application{
 	}
 
 }
+
+

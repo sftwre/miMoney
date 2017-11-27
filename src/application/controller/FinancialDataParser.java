@@ -163,13 +163,14 @@ public class FinancialDataParser extends FileParser {
 					{
 						
 						
-						/*//split on commas if they are present
+						//split on commas if they are present
 						if(line.matches(".*,"))
 						{
 							rawObjects = line.split(",");
 						}
-						*/
-						rawObjects = new String[]{line};
+						
+						else
+							rawObjects = new String[]{line};
 							
 						
 						//for each set of properties, instantiate a new Goal
@@ -192,7 +193,7 @@ public class FinancialDataParser extends FileParser {
 									properties[3], properties[4], properties[5], properties[6]);
 							
 							//set the taxes for the object if any
-							//financialGoal.setTaxes(Double.valueOf(properties[7]));
+							financialGoal.setTaxes(Double.valueOf(properties[7]));
 							
 							//add the Goals to the list
 							goalsList.add(financialGoal);

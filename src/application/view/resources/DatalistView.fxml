@@ -10,23 +10,29 @@
    <children>
       <BorderPane prefHeight="500.0" prefWidth="350.0">
          <center>
-            <ScrollPane hbarPolicy="NEVER" hmax="0.0" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="457.0" prefWidth="350.0">
+            <ScrollPane hbarPolicy="NEVER" hmax="0.0" prefHeight="453.0" prefWidth="350.0" BorderPane.alignment="CENTER">
+               <content>
+                  <GridPane prefHeight="256.0" prefWidth="348.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="273.0" minWidth="10.0" prefWidth="269.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="8.0" prefWidth="79.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
                      <children>
-                        <VBox prefHeight="457.0" prefWidth="350.0">
-                           <children>
-                              <HBox fx:id="hBox" prefHeight="59.0" prefWidth="350.0">
-                                 <children>
-                                    <Label fx:id="itemLabel" text="itemLabel" />
-                                    <Label fx:id="doubleLabel" text="doubleLabel" translateX="225.0" />
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
+                        <Label text="Gas" />
+                        <Label text="McDonalds" GridPane.rowIndex="1" />
+                        <Label text="Vending Machine" GridPane.rowIndex="2" />
+                        <Label text="\$1.25" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="\$6.42" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="\$22.15" GridPane.columnIndex="1" />
                      </children>
-                  </AnchorPane>
-              </content>
+                  </GridPane>
+               </content>
             </ScrollPane>
          </center>
          <bottom>
@@ -34,7 +40,8 @@
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <TextField prefHeight="40.0" prefWidth="281.0" promptText="add expense..." />
+                        <TextField fx:id="t0Field" prefHeight="40.0" prefWidth="217.0" promptText="expense name...." />
+                        <TextField fx:id="t1Field" layoutX="216.0" layoutY="-1.0" prefHeight="41.0" prefWidth="69.0" promptText="\$20.00" />
                      </children>
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -45,6 +52,21 @@
               </items>
             </SplitPane>
          </bottom>
+         <top>
+            <GridPane gridLinesVisible="true" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="263.0" minWidth="10.0" prefWidth="263.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0" prefWidth="87.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Items" />
+                  <Label text="Totals" GridPane.columnIndex="1" />
+               </children>
+            </GridPane>
+         </top>
       </BorderPane>
    </children>
 </AnchorPane>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<fx:root prefHeight="282.0" prefWidth="442.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.TutorialController">
+   <children>
+      <Pane layoutY="-1.0" prefHeight="282.0" prefWidth="442.0">
+         <children>
+            <TextField editable="false" focusTraversable="false" layoutX="24.0" layoutY="14.0" prefHeight="122.0" prefWidth="394.0" text="miMoney: money management the way you want it">
+               <font>
+                  <Font size="16.0" />
+               </font></TextField>
+            <Button fx:id="nextSceneButton" layoutX="389.0" layoutY="159.0" mnemonicParsing="false" onAction="#nextScene" prefHeight="24.0" prefWidth="39.0" text="&gt;" />
+         </children>
+      </Pane>
+   </children>
+</fx:root>

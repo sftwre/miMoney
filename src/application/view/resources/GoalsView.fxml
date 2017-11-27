@@ -39,7 +39,7 @@
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cost in Shop" textAlignment="CENTER" wrappingWidth="200.0" GridPane.rowIndex="2" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Time" textAlignment="CENTER" wrappingWidth="200.0" GridPane.rowIndex="3" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Interes Rate (APR)" textAlignment="CENTER" wrappingWidth="200.0" GridPane.rowIndex="4" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Down Paument" textAlignment="CENTER" wrappingWidth="200.0" GridPane.rowIndex="5" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Down Payment" textAlignment="CENTER" wrappingWidth="200.0" GridPane.rowIndex="5" />
                                     <Button fx:id="Cancel" mnemonicParsing="false" onAction="#cCancel" prefHeight="27.0" prefWidth="170.0" text="Clear" GridPane.rowIndex="7" />
                                     <Button fx:id="Continue" mnemonicParsing="false" onAction="#cContinue" prefHeight="27.0" prefWidth="170.0" text="Continue" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                                     <TextField fx:id="Cmodel" promptText="Exp. Lamborghini Diablo" GridPane.columnIndex="1" />
@@ -96,7 +96,7 @@
                         </AnchorPane>
                   </content>
                 </TitledPane>
-                <TitledPane animated="false" text="Loan/CC">
+                <TitledPane animated="false" text="Loans or Credit Cards">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -118,7 +118,7 @@
                                  <children>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name of Project" textAlignment="CENTER" wrappingWidth="180.0" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type of loan" textAlignment="CENTER" wrappingWidth="180.0" GridPane.rowIndex="1" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Dev" textAlignment="CENTER" wrappingWidth="180.0" GridPane.rowIndex="2" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Debt" textAlignment="CENTER" wrappingWidth="180.0" GridPane.rowIndex="2" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time to Pay off" textAlignment="CENTER" wrappingWidth="180.0" GridPane.rowIndex="3" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Interest Rate" textAlignment="CENTER" wrappingWidth="180.0" GridPane.rowIndex="4" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Possible down payment" textAlignment="CENTER" wrappingWidth="180.0" GridPane.rowIndex="5" />
@@ -138,8 +138,13 @@
                 </TitledPane>
                   <TitledPane animated="false" layoutX="10.0" layoutY="64.0" text="Savings Calculator">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        <fx:include fx:id="SavingsCalculator" source="CalcView.fxml" />
                      </content>
+                  </TitledPane>
+                  <TitledPane animated="false" text="Budget">
+                    <content>
+                      <fx:include fx:id="CreateBudget" source="CreateBudget.fxml" />
+                    </content>
                   </TitledPane>
               </panes>
             </Accordion>
