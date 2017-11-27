@@ -63,19 +63,20 @@ public class SecureOldPass extends SecurePass{
 	 */
 	public Boolean auth(String newHash, String oldHash)
 	{
-		Boolean auth = false;
-		System.out.printf("Hash given out is%s", newHash);
-		System.out.printf("\nOld hash is    %s\n", oldHash);
-		int cmp = 100;
-		cmp = newHash.compareTo(oldHash);
-		
-		System.out.printf("%d", cmp);
-		if(cmp == -4) {
+		Boolean auth = true;
+		System.out.printf("\nHash given out %s", newHash);
+		System.out.printf("\nOld hash       %s\n", oldHash);
+		//int cmp = 100;
+		//cmp = newHash.compareTo(oldHash);
+		auth = newHash.equals(oldHash);
+		if(auth == true) {
+			System.out.printf("%s", auth.toString());
 			auth = true;
 			System.out.println("password authenticated in OldPass");
 			return auth;
 		}
-		
+		System.out.printf("%s", auth.toString());
+
 		System.out.println("password not auth in OldPass");
 		return auth;
 	}//END auth()
