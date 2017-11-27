@@ -28,9 +28,13 @@ public class SecureNewPass extends SecurePass{
         
     public void secure(String username, CharSequence pass, String phoneNumber)
     { 
+    	//System.out.println("In");
     	currentUser = new User(username);
+    	//System.out.printf("Username: %s", currentUser.getUsername());
     	salt = createSalt();
-    	hash = super.hashFun(input.nextLine(), salt);
+    	//System.out.printf("Salt: %s", salt);
+    	hash = super.hashFun(pass.toString(), salt);
+    	//System.out.printf("Hash: %s", hash);
       
     	currentUser.setSalt(salt);
     	currentUser.setPassword(hash);

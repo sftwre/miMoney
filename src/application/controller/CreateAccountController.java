@@ -88,6 +88,8 @@ public class CreateAccountController {
     
     @FXML
     private Hyperlink tutorialLink;
+    
+    private SecureNewPass snp;
 
     @FXML
     void createAcct(ActionEvent event) throws IOException {
@@ -148,7 +150,7 @@ public class CreateAccountController {
 				//this.income = Double.parseDouble(income);
 				
 				String newUser = user_name.getText().trim();
-				String newPass = password.getText().trim();
+				//String newPass = password.getText().trim();
 				/*
 				 * Commenting out line above (after we talk). This is slightly dangerous
 				 * but mostly because it's a little redundant. Sending
@@ -195,13 +197,14 @@ public class CreateAccountController {
 				}
 				
 				if(userFile.createNewFile()) {
-					System.out.println("User File is created!");
 					FileWriter writer = new FileWriter(userFile);
-					/*SecureNewPass snp = new SecureNewPass();
+					snp = new SecureNewPass();
 					snp.secure(newUser, password.getCharacters(), phone);
-					writer.write(snp.toString());*/
-					writer.write(newUser + ":" + newPass + ":" + phone);
+					System.out.printf("%s", snp.toString());
+					writer.write(snp.toString());
+					//writer.write(newUser + ":" + newPass + ":" + phone);
 					writer.close();
+					System.out.println("User File is created!");
 					
 				}else {
 					System.out.println("File already exists.");
