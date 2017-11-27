@@ -25,5 +25,6 @@
          </children>
       </GridPane>
       <Button fx:id="backButton" layoutX="8.0" layoutY="8.0" mnemonicParsing="false" onAction="#goToLoginView" text="Back" />
+      <Label fx:id="wrongPhone" layoutX="224.0" layoutY="134.0" prefHeight="17.0" prefWidth="212.0" textFill="RED" translateY="-15.0" />
    </children>
 </AnchorPane>

@@ -35,6 +35,11 @@ public class ForgotUsernameController {
 	@FXML
 	Label yourUserIsLabel;
 	
+	@FXML
+	Label wrongPhone;
+	
+	String phNo;
+	
 	public void initialize() {
 		backButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -43,8 +48,30 @@ public class ForgotUsernameController {
 				}
 		});
 		
+		submitButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				if(phoneTextField.getCharacters().toString().compareTo("") == 0) {
+					wrongPhone.setText("You must enter a phone number");
+					return;
+				}
+				
+				wrongPhone.setVisible(false);
+				phNo = phoneTextField.getCharacters().toString();
+				phNo = phNo.replaceAll("[^\\d]", "");
+				System.out.printf("%s", phNo);
+				}
+		});
+		
 	}// END initialize
 
+	public boolean checkIfMatch() {
+		boolean auth = false;
+		
+		
+		return auth;
+	}
+	
 	@FXML
 	public void goToLoginView(ActionEvent event) {
 		
