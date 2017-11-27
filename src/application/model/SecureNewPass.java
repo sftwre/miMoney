@@ -30,9 +30,9 @@ public class SecureNewPass extends SecurePass{
     { 
     	currentUser = new User(user);
     	salt = createSalt();
+    	//TODO: store salt in username.txt
     	hash = super.hashFun(input.nextLine(), salt);
-    	//TODO: find another way to take password input, above line compiles but will not work in the end
-
+    	//TODO: store hash in username.txt
       
     	currentUser.setSalt(salt);
     	currentUser.setPassword(hash);
