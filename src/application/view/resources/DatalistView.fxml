@@ -58,6 +58,7 @@
                <children>
                   <Label text="Items" />
                   <Label text="Totals" GridPane.columnIndex="1" />
+                  <Label fx:id="incorrectCombo" textFill="RED" translateX="50.0" />
                </children>
             </GridPane>
          </top>

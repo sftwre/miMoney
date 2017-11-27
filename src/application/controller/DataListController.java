@@ -49,6 +49,9 @@ public class DataListController {
     @FXML
     private Label itemLabel;
     
+	@FXML
+	Label incorrectCombo;
+    
     @FXML
     private ComboBox<String> expensesComboBox;
     
@@ -76,7 +79,6 @@ public class DataListController {
     		
     		public void run()
     		{
-    			System.out.printf("\nin the override\n");
     			loadExpenseCategories();
     			expensesComboBox.setItems(expenseOptions);
     		}
@@ -88,6 +90,17 @@ public class DataListController {
     
 	@FXML
 	public void addButtonExpense(ActionEvent event) {
+		if(t0Field.getCharacters().toString().compareTo("") == 0) {
+			incorrectCombo.setText("Must enter item name");
+			return;
+		}else if(expensesComboBox.getSelectionModel().getSelectedItem() == null) {
+			incorrectCombo.setText("Must select expense category");
+			return;
+		}
+		//TODO: if t1Field contains characters other than numbers or a single period
+		//TODO: if a category is not selected
+		
+		incorrectCombo.setVisible(false);
 		if(counter == 0)
 		{
 			itemLabel.setText(t0Field.getCharacters().toString());
@@ -100,10 +113,14 @@ public class DataListController {
 			t0Field.requestFocus();
 			return;
 		}
-		
-		itemsGridPane.add(new Label(t0Field.getCharacters().toString()), 0, counter);
 		total = Double.parseDouble(t1Field.getCharacters().toString());
-		itemsGridPane.add(new Label(DecimalFormat.getCurrencyInstance().format(total)), 1, counter);
+		
+		itemsGridPane.addRow(counter, 
+				new Label(t0Field.getCharacters().toString()), 
+				new Label(DecimalFormat.getCurrencyInstance().format(total)));
+		itemsGridPane.setPrefHeight(67);
+		//itemsGridPane.add(new Label(t0Field.getCharacters().toString()), 0, counter);
+		//itemsGridPane.add(new Label(DecimalFormat.getCurrencyInstance().format(total)), 1, counter);
 		counter++;
 		t1Field.clear();
 		t0Field.clear();
