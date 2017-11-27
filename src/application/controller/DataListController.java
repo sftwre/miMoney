@@ -20,6 +20,8 @@ import javafx.scene.control.*;
 import java.io.IOException;
 
 import application.Main;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,7 +38,12 @@ public class DataListController {
     private TextField t1Field;
     
     @FXML
-    private ListView listV;
+    private GridPane itemsGridPane;
+    
+    @FXML
+    private ComboBox<String> expensesComboBox;
+    
+    private ObservableList<String> expenseOptions = FXCollections.observableArrayList();
 
     /**
      * 
@@ -45,31 +52,35 @@ public class DataListController {
      * @param message
      * 				message is the prompt text of the TextField at bottom (e.g. add expense... | add recurring expense...)
      */
-    
-    public void display(String title, String message) {
-    	try {
-			Parent root = FXMLLoader.load(getClass().getResource("application.view.resources/DatalistView.fxml"));			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-    	    	
-        Stage window = new Stage();
-        window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle(title);
-        window.setMinWidth(250);
-        
-        //Clicking will set answer and close window
-        addButton.setOnAction(e -> {         
-            //TODO: vbox.add hBox.contains(item + total) pseudocode remove window.close()
-            window.close();
-        });
-
-        return;
-    }
-    
+      
+   /* public void initialize() {
+    	Thread comboBoxThread = new Thread(){
+    		
+    		@Override
+    		public void run()
+    		{
+    			System.out.printf("\nin the override\n");
+    			loadExpenseCategories();
+    			expensesComboBox.setItems(expenseOptions);
+    		}
+    		
+    	};
+    	
+    	comboBoxThread.run();
+    }//END initialize()
+*/    
 	@FXML
-	public void addAnExpense(ActionEvent event) {	
-		HBox next = new HBox(new Label(t0Field.getCharacters().toString()), new Label(t1Field.getCharacters().toString()));
-	}
+	public void addButtonExpense(ActionEvent event) {
+		System.out.println("add pressed");
+	}//END addAnExpense()
+	
+    private void loadExpenseCategories()
+    {
+    	
+    	expenseOptions.addAll("Apperal", "Auto Maintenance", "Home Maintenance", "Medical", 
+    						  "Education", "Entertainment", "Food", "Gas","Luxury", "Personal Care", 
+    						  "Public Transportation", "Subscriptions", "Savings Goal", "Auto Goal", 
+    						  "Vacation Goal", "Miscellaneous");
+    }//END loadExpenseCategories()
 
 }//END CONTROLLER CLASS DatalistController

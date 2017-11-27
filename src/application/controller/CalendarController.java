@@ -89,8 +89,32 @@ public class CalendarController {
 	}
 
 	@FXML
-	public void addAnExpense(ActionEvent event) {
+	public void addAnExpense(ActionEvent event) 
+	{
+		
 		Stage popUp =  new Stage();
+		
+		popUp.initModality(Modality.APPLICATION_MODAL);
+		
+		popUp.initOwner(Main.stage);
+		
+		try
+		{
+		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/DatalistView.fxml"));
+		
+		Scene scene = new Scene(root);
+		
+		popUp.setScene(scene);
+		
+		popUp.show();
+		
+		} catch(IOException e){
+			
+			System.out.printf("The resource 'view/resources/DatalistView.fxml' could not be located");
+		}
+
+	}
+		/*Stage popUp =  new Stage();
 		
 		popUp.initModality(Modality.APPLICATION_MODAL);
 		popUp.initOwner(Main.stage);
@@ -102,9 +126,9 @@ public class CalendarController {
 		popUp.setScene(scene);
 		popUp.show();
 		} catch(IOException e){
-			System.out.printf("The resource 'view/resources/DatalistView.fxml' could not be located");
+			System.out.printf("\nThe resource 'view/resources/DatalistView.fxml' could not be located\n");
 		}// END try/catch load FXML
-	}
+	}*/
 	
 	/**
 	 * Sample code:
