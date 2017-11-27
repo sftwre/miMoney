@@ -118,7 +118,7 @@ public class DataListController {
 		itemsGridPane.addRow(counter, 
 				new Label(t0Field.getCharacters().toString()), 
 				new Label(DecimalFormat.getCurrencyInstance().format(total)));
-		itemsGridPane.setPrefHeight(67);
+		//itemsGridPane.setPrefHeight(67);
 		//itemsGridPane.add(new Label(t0Field.getCharacters().toString()), 0, counter);
 		//itemsGridPane.add(new Label(DecimalFormat.getCurrencyInstance().format(total)), 1, counter);
 		counter++;
