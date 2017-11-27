@@ -38,7 +38,6 @@ public class SavingsCalculatorController{
     	String d = deposit.getText();
     	num1 = Double.parseDouble(g);
     	num2 = Double.parseDouble(d);
-
     	time.setText(String.valueOf(model.savingsTime(num1,num2)));
     	System.out.println("clicked!");
     	}
