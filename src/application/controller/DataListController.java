@@ -67,6 +67,11 @@ public class DataListController {
      */
       
     public void initialize() {
+    	total = 10.0;
+    	doubleLabel.setText(DecimalFormat.getCurrencyInstance().format(total));
+    	t1Field.setPromptText(DecimalFormat.getCurrencyInstance().format(total));
+    	
+    	addButton.setDefaultButton(true);
     	Thread comboBoxThread = new Thread(){
     		
     		public void run()
@@ -89,6 +94,10 @@ public class DataListController {
 			total = Double.parseDouble(t1Field.getCharacters().toString());
 			doubleLabel.setText(DecimalFormat.getCurrencyInstance().format(total));
 			counter++;
+			
+			t1Field.clear();
+			t0Field.clear();
+			t0Field.requestFocus();
 			return;
 		}
 		
@@ -96,6 +105,9 @@ public class DataListController {
 		total = Double.parseDouble(t1Field.getCharacters().toString());
 		itemsGridPane.add(new Label(DecimalFormat.getCurrencyInstance().format(total)), 1, counter);
 		counter++;
+		t1Field.clear();
+		t0Field.clear();
+		t0Field.requestFocus();
 }//END addAnExpense()
 	
     private void loadExpenseCategories()
@@ -103,8 +115,7 @@ public class DataListController {
     	
     	expenseOptions.addAll("Apperal", "Auto Maintenance", "Home Maintenance", "Medical", 
     						  "Education", "Entertainment", "Food", "Gas","Luxury", "Personal Care", 
-    						  "Public Transportation", "Subscriptions", "Savings Goal", "Auto Goal", 
-    						  "Vacation Goal", "Miscellaneous");
+    						  "Public Transportation", "Subscriptions", "Miscellaneous");
     }//END loadExpenseCategories()
 
 }//END CONTROLLER CLASS DatalistController
