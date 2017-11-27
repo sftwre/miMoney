@@ -23,13 +23,15 @@ public class SecureOldUser {
 		Boolean auth = false;
 		
 		dataParser = new UserDataParser(currentUser);
-		Path path = Paths.get("UserProfiles" + currentUser.getUsername() + File.separator);
+		Path path = Paths.get("UserProfiles" + File.separator + currentUser.getUsername());
 		
-		if(Files.exists(path))
+		if(Files.exists(path)) {
+			System.out.printf("\nFile path does exist\n");
 			auth = true;
+		}
 		
 		
 		return auth;
-	}
+	}//END auth()
 
 }
