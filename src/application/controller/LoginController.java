@@ -73,6 +73,7 @@ public class LoginController {
 
 			if(currentUser.isPassAuthenticated())
 			{
+				Main.session.startSession(currentUser);
 				goToMainView(new ActionEvent());
 			}
 			incorrectCombo.setText("Username or password is incorrect.");
