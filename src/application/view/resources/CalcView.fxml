@@ -39,7 +39,7 @@
                         <Font size="12.0" />
                      </font>
                   </TextField>
-                  <Button mnemonicParsing="false" onAction="#handle" text="Calculate" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                  <Button mnemonicParsing="false" onAction="#handle" prefHeight="23.0" prefWidth="121.0" text="Calculate" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="3">
                      <font>
                         <Font size="12.0" />
                      </font>
@@ -55,6 +55,11 @@
                         <Font size="12.0" />
                      </font>
                   </Label>
+                  <Button mnemonicParsing="false" onAction="#clear" prefHeight="23.0" prefWidth="120.0" text="Clear" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Button>
                </children>
             </GridPane>
          </children>

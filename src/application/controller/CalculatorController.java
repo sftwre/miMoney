@@ -40,6 +40,12 @@ public class CalculatorController implements EventHandler<ActionEvent>{
     	num1 = Double.parseDouble(g);
     	num2 = Double.parseDouble(d);
     	time.setText(String.valueOf(model.savingsTime(num1,num2)));
-    	System.out.println("clicked!");
-    	}
+    }
+    
+    public void clear(ActionEvent event)
+    {
+    	this.goal.setText("");
+    	this.deposit.setText("");
+    	this.time.setText("");
+    }
 }
