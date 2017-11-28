@@ -64,7 +64,14 @@ public class Goals {
 		this.downPayment = Double.parseDouble(downPayment); 
 		this.time = Integer.parseInt(time);
 		
-		System.out.println(toString3());
+	}
+	
+	public Goals (String type, String projectName, String totalCost, String time) {
+		this.type = type;
+		this.projectName = projectName;
+		this.totalCost = Double.parseDouble(totalCost);
+		this.time = Integer.parseInt(time); 
+		
 		//Operations
 	}
 

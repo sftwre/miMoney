@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 import application.Main;
 import application.view.CalendarView;
+import application.model.DatalistModel;
 
 /**
  * @author Jonathan Remote
@@ -45,6 +46,8 @@ public class CalendarController {
 	private LocalDate date;
 	
 	private int counter;
+
+	private DatalistModel datalist;
 	
 	public void initialize() {
 		monthTile.setPrefSize(420, 380);
@@ -91,6 +94,7 @@ public class CalendarController {
 	@FXML
 	public void addAnExpense(ActionEvent event) 
 	{
+		datalist = new DatalistModel(currentMonth, date);//DataListController.initialize(currentMonth, date);
 		
 		Stage popUp =  new Stage();
 		
@@ -100,17 +104,19 @@ public class CalendarController {
 		
 		try
 		{
-		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/DatalistView.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/DatalistModel.fxml"));
 		
 		Scene scene = new Scene(root);
 		
 		popUp.setScene(scene);
 		
+		popUp.setTitle("Date of asdf");
+		
 		popUp.show();
 		
 		} catch(IOException e){
 			
-			System.out.printf("The resource 'view/resources/DatalistView.fxml' could not be located");
+			System.out.printf("The resource 'view/resources/DatalistModel.fxml' could not be located");
 		}
 
 	}
@@ -121,12 +127,12 @@ public class CalendarController {
 		
 		try
 		{
-		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/DatalistView.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/DatalistModel.fxml"));
 		Scene scene = new Scene(root);
 		popUp.setScene(scene);
 		popUp.show();
 		} catch(IOException e){
-			System.out.printf("\nThe resource 'view/resources/DatalistView.fxml' could not be located\n");
+			System.out.printf("\nThe resource 'view/resources/DatalistModel.fxml' could not be located\n");
 		}// END try/catch load FXML
 	}*/
 	

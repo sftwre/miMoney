@@ -288,6 +288,67 @@ public class GoalsController implements EventHandler<ActionEvent> {
 		this.lDown.setText("");
 		this.lTime.setText("");
 	}
+	
+	@FXML
+	private TextField vProjectName;	// Name of the project
+	
+	@FXML
+	private TextField vTotalCost; //
+	
+	@FXML
+	private TextField vTime;	//
+	
+	@FXML
+	private Button vContinue;	//
+	
+	@FXML
+	private Button vCancel;		//
+	
+	@FXML
+	public void vContinue(ActionEvent event) {
+		Goals vacationsGoal = new Goals("Vacations", this.vProjectName.getText(), this.vTotalCost.getText(), this.vTime.getText());
+		
+		//Close window and open goal
+		((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+		
+		String path = "UserProfiles" + File.separator + Main.session.currentUser.getUsername() + File.separator +
+				"Goals" +  File.separator + "Vacations" + File.separator + this.vProjectName.getText();
+		
+		System.out.println(path);
+		//if there is a file print the info to the file 
+		
+		File file = new File(path);
+		if(!file.exists()) { 
+		
+			try {
+            
+				FileWriter fw = new FileWriter(file);
+				fw.write(vacationsGoal.toString1());
+				fw.close();
+			}
+				catch (IOException iox) {
+				//do stuff with exception
+				iox.printStackTrace();
+			}
+		}
+		
+		else if(file.exists()){
+			System.out.println("Goal Exist");
+			
+		}
+		
+		//Print the information
+		System.out.printf(vacationsGoal.toString3());
+	}
+	
+	@FXML
+	public void vCancel(ActionEvent event){
+		this.vProjectName.setText("");
+		this.vTotalCost.setText("");
+		this.vTime.setText("");
+		
+	}
+	
 
 	@Override
 	public void handle(ActionEvent event) {
