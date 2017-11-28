@@ -12,13 +12,13 @@ import application.model.Goals.*;
  * @author Jonathan Remote
  *
  */
-public class DataList {
+public class DatalistModel {
 	private Date d;
 	
 	/*
 	 * constructor for generic DataList use case
 	 */
-	public DataList(Date d) {
+	public DatalistModel(Date d) {
 		// TODO Auto-generated constructor stub
 	}
 	
