@@ -21,7 +21,8 @@ import application.model.*;
  * @author Isaac Buitrago
  *
  */
-public class FinancialDataParser extends FileParser {
+public class FinancialDataParser extends FileParser 
+{
 	
 	private String line;				// Store a line of text from a file
 	private String rawObjects[];		// raw data used to instantiate an object
@@ -180,7 +181,7 @@ public class FinancialDataParser extends FileParser {
 						for(String object : rawObjects)
 						{
 							//check that the data in the file is formatted correctly
-							if(!formattedData("[a-zA-Z]+:[a-zA-Z\\s]+:\\d+\\.\\d{6}:\\d+\\.\\d{6}:\\d+\\.\\d{6}:\\d+:\\d+:\\d+\\.\\d{6}", object))
+							if(!formattedData("[a-zA-Z]+:[a-zA-Z\\d\\-\\.\\s]+:\\d+\\.\\d{6}:\\d+\\.\\d{6}:\\d+\\.\\d{6}:\\d+:\\d+:\\d+\\.\\d{6}", object))
 							{
 								throw new Exception(String.format("%s is not formatted to standards in %s.%n"
 										+ "Standard: Colons seperating fields, commas seperating objects, 6 decimal digits of precision%n"
