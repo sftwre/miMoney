@@ -54,12 +54,11 @@ public class FinancialDataParser extends FileParser
 	
 	/**
 	 * Reads the Income data from income.txt
-	 * @return an ArrayList of Income Objects
+	 * @return Income of the user or null if none is provided
 	 */
-	public ArrayList<Income> readIncome()
+	public Income readIncome()
 	{
-		
-		ArrayList<Income> incomeList = new ArrayList<Income>();	//list of Income objects to return
+		Income userIncome = null;		// Income data of the User
 		
 		//reset root directory of the current user
 		setUserProfile(this.user);
@@ -74,7 +73,7 @@ public class FinancialDataParser extends FileParser
 			
 			line = bufferInput.readLine();
 			
-			while(line != null && ! line.isEmpty()) 
+			if(! line.isEmpty())
 			{
 				//no need to split the line on commas, each line is a separate Income
 				
@@ -91,11 +90,7 @@ public class FinancialDataParser extends FileParser
 				rawObjects = line.split(":");
 				
 				//create a new Income with Job the title and Wage
-				Income income = new Income(rawObjects[0], Double.parseDouble(rawObjects[1]));
-				
-				incomeList.add(income);
-				
-				line = bufferInput.readLine();
+				userIncome = new Income(rawObjects[0], Double.parseDouble(rawObjects[1]));
 			}
 			
 			bufferInput.close();
@@ -113,7 +108,7 @@ public class FinancialDataParser extends FileParser
 			
 		}
 		
-			return (incomeList);
+			return (userIncome);
 	}
 		
 	

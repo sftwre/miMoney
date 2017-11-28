@@ -90,7 +90,7 @@ public class FinancialOverviewController
     
     private FinancialDataParser financialData;	// FileParser for retrieving the Financial information of the User
     
-    private ArrayList<Income> userIncome;
+    private Income userIncome;					// Income data of the User
     
     // Expense data for pie chart
     private ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(); 
@@ -146,9 +146,9 @@ public void initialize()
 	userIncome = financialData.readIncome();
 		
 	//format the user income
-	employmentTextField.setText(userIncome.get(0).getTitle());
+	employmentTextField.setText(userIncome.getTitle());
 		
-	salaryTextField.setText(NumberFormat.getCurrencyInstance().format(userIncome.get(0).getPay()));
+	salaryTextField.setText(NumberFormat.getCurrencyInstance().format(userIncome.getPay()));
 		
 
 		
@@ -413,7 +413,7 @@ private void writeIncomeData(String employment, String salary) throws IOExceptio
 {
 	
 	//reset the userIncome object and write it to the file
-	userIncome.get(0).userPay(employment, Double.parseDouble(salary));
+	userIncome.userPay(employment, Double.parseDouble(salary));
 	
 	financialData.setUserProfile(Main.session.currentUser);
 	
@@ -421,7 +421,7 @@ private void writeIncomeData(String employment, String salary) throws IOExceptio
 	
 	BufferedWriter bufferedOutput = new BufferedWriter(new FileWriter(incomeFile + "Income.txt"));
 	
-	bufferedOutput.write(userIncome.get(0).toString());
+	bufferedOutput.write(userIncome.toString());
 	
 	bufferedOutput.close();
 }
