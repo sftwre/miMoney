@@ -151,6 +151,9 @@ public class FinancialDataParser extends FileParser {
 				
 				for(Path f : filesStream)
 				{
+					//skip hidden files
+					if(Files.isHidden(f))
+						continue;
 					
 					//Create reader for character files
 					FileReader file =  new FileReader(f.toFile());
