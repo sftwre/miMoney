@@ -109,43 +109,6 @@ public class Goals2Controller {
 		}
 	}
 	
-	/**
-	//Will show the data of the goals
-	public void loadGoalsDataForList()
-	{
-		//load all the Goals from the Goals directory
-		ArrayList<Goals> goalsList = financialData.readGoals();
-			
-		//instantiate the goalsListData
-		goalsListData = FXCollections.observableArrayList();
-			
-		//for each goal display the ProjectName and cost
-		for(Goals g: goalsList)
-		{
-			goalsListData.add(String.format("%s : %s", g.getProjectName(),
-				NumberFormat.getCurrencyInstance().format(g.getTotalCost())));
-		}
 
-	}
-	public void initialize()
-	{
-		//instantiate the current user and FinancaialDataParser
-		loadGoalsDataForList();		
-		
-		if(goalsListData.isEmpty())
-		{
-			ObservableList<Node> nodes = goalsStackPane.getChildren();
-		
-	    	if(nodes.size() > 1 )
-	    	{
-	    		Node top = nodes.get(nodes.size() - 1);    		
-	    		top.toBack();
-	    	}	
-		}
-		
-		else 
-			//populate the Current Goals pane with the goals of the user
-			currentGoalsListView.setItems(goalsListData);
-	}**/
 
 }
