@@ -29,6 +29,11 @@ import javafx.scene.paint.Color;
 //import javafx.scene.text.Text;
 //import javafx.stage.Modality;
 //import javafx.stage.Stage;
+/**
+ * Controller handles events in the create account page
+ * @author kel
+ *
+ */
 
 public class CreateAccountController {
 
@@ -253,29 +258,6 @@ public class CreateAccountController {
 			}
 	}
 				
-
-
-    
-    
-    
-    @FXML
-    void OnMouseDragOver(MouseEvent event) {
-
-    	//if(event.)
-    	Tooltip inc = new Tooltip("Enter monthly income");
-    	Tooltip pass = new Tooltip("\nYour password must be\n" + "at least 8 characters in length\n");
-    	Tooltip job = new Tooltip("Enter the title of your job");
-    	passwordTxt.setTooltip(pass);
-    	incomeTxt.setTooltip(inc);
-    	jobTxt.setTooltip(job);
-//    	Tooltip.install(income, inc);
-//    	Tooltip.install(jobInfo, job);
-    	
-    	//Rectangle rect = new Rectangle(100, 100);
-    	//rect.setOnMouseDragOver(value);
-    	
-    	//income.setTooltip(text);
-    }
     
     @FXML
     public void goToTutorial(ActionEvent event) {
