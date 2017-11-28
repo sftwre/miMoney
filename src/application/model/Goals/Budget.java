@@ -17,25 +17,27 @@ import application.model.Expense.Expense;
 public class Budget {
 
 	
-	private ArrayList<Expense> budgetItems; //fixed expenses for the user
+	private ArrayList<Expense> budgetItems; // Expenses the Budget consists of
+	
+	private String title;					// Title of the Budget
 	
 	/**
 	 * Constructor used to create a new Budget
 	 */
-	public Budget()
+	public Budget(String title)
 	{
 		
 		this.budgetItems = new ArrayList<Expense>();
-		
+		this.title = title;
 	}
 	
 	/**
 	 * Constructor used to create a new Budget from a given list of Expenses
 	 */
-	public Budget(ArrayList<Expense> budgetItems)
+	public Budget(String title, ArrayList<Expense> budgetItems)
 	{
 		this.budgetItems = budgetItems;
-		
+		this.title = title;
 	}
 	
 	/**
