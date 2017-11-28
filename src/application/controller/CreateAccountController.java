@@ -96,6 +96,17 @@ public class CreateAccountController {
     
     private SecureNewPass snp;
 
+    
+    /**
+	 * Isaac Buitrago commentary
+	 * 
+	 * Please use An Income object for the Income and Job.
+	 * Use a User object for the username, phone and pathToProfile
+	 * Create a HomePayment,AutoPayment, and AutoInsurance objects for the
+	 * appropriate fields.
+	 * 
+	 * When it is time to write this data, call the toString of each object
+	 */
     @FXML
     void createAcct(ActionEvent event) throws IOException {
     	
@@ -162,6 +173,8 @@ public class CreateAccountController {
 				 * password.getCharacters() to SecureNewPass
 				 * cuts out this step.
 				 */
+				
+				
 				String phone = phone_Number.getText().trim();
 				String newIncome = income.getText().trim();
 				String newJob = jobInfo.getText().trim();
