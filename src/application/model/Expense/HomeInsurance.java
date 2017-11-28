@@ -7,15 +7,23 @@ import application.model.Date;
  * @author Isaac Buitrago
  *
  */
-public class HomeInsurance extends Expense implements FixedExpense {
+public class HomeInsurance extends Expense implements FixedExpense 
+{
 
-	public HomeInsurance(double amount, Date date, String item) {
+	public HomeInsurance(double amount, Date date, String item) 
+	{
 		super(amount, date, item);
 		// TODO Auto-generated constructor stub
 	}
+	
+	public HomeInsurance()
+	{
+		super();
+	}
 
 	@Override
-	public String getClassName() {
+	public String getClassName() 
+	{
 		
 		return ("HomeInsurance");
 	}

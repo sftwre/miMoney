@@ -8,15 +8,23 @@ import application.model.Date;
  *
  */
 
-public class HomePayment extends Expense implements FixedExpense {
+public class HomePayment extends Expense implements FixedExpense 
+{
 
-	public HomePayment(double amount, Date date, String item) {
+	public HomePayment(double amount, Date date, String item) 
+	{
 		super(amount, date, item);
 		
 	}
 
+	public HomePayment()
+	{
+		super();
+	}
+	
 	@Override
-	public String getClassName() {
+	public String getClassName() 
+	{
 		
 		return ("HomePayment");
 	}

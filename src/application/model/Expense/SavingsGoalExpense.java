@@ -8,15 +8,23 @@ import application.model.Date;
  *
  */
 
-public class SavingsGoalExpense extends Expense implements VariableExpense {
+public class SavingsGoalExpense extends Expense implements VariableExpense 
+{
 
-	public SavingsGoalExpense(double amount, Date date, String item) {
+	public SavingsGoalExpense(double amount, Date date, String item) 
+	{
 		super(amount, date, item);
 		
 	}
 
+	public SavingsGoalExpense()
+	{
+		super();
+	}
+	
 	@Override
-	public String getClassName() {
+	public String getClassName() 
+	{
 		
 		return ("SavingsGoalExpense");
 	}

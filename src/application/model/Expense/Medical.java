@@ -8,15 +8,23 @@ import application.model.Date;
  *
  */
 
-public class Medical extends Expense implements VariableExpense {
+public class Medical extends Expense implements VariableExpense 
+{
 
-	public Medical(double amount, Date date, String item) {
+	public Medical(double amount, Date date, String item) 
+	{
 		super(amount, date, item);
 		
 	}
+	
+	public Medical()
+	{
+		super();
+	}
 
 	@Override
-	public String getClassName() {
+	public String getClassName() 
+	{
 		
 		return ("Medical");
 	}

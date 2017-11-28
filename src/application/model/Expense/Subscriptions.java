@@ -8,16 +8,24 @@ import application.model.Date;
  *
  */
 
-public class Subscriptions extends Expense implements VariableExpense {
+public class Subscriptions extends Expense implements VariableExpense 
+{
 
-	public Subscriptions(double amount, Date date, String item) {
+	public Subscriptions(double amount, Date date, String item) 
+	{
 		
 		super(amount, date, item);
 		
 	}
+	
+	public Subscriptions()
+	{
+		super();
+	}
 
 	@Override
-	public String getClassName() {
+	public String getClassName() 
+	{
 		
 		return ("Subscriptions");
 	}

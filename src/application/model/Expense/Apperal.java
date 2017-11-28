@@ -7,15 +7,23 @@ import application.model.Date;
  * @author Isaac Buitrago
  *
  */
-public class Apperal extends Expense implements VariableExpense {
+public class Apperal extends Expense implements VariableExpense 
+{
 
-	public Apperal(double amount, Date date, String item) {
+	public Apperal(double amount, Date date, String item) 
+	{
 		super(amount, date, item);
 		
 	}
+	
+	public Apperal()
+	{
+		super();
+	}
 
 	@Override
-	public String getClassName() {
+	public String getClassName() 
+	{
 		
 		return ("Apperal");
 	}
