@@ -37,7 +37,7 @@ public class CalculatorController implements EventHandler<ActionEvent>{
     	num2 = Double.parseDouble(d);
     	time.setText(String.valueOf(model.savingsTime(num1,num2)));
     }
-    
+
     public void clear(ActionEvent event)
     {
     	this.goal.setText("");
