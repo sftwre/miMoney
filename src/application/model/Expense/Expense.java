@@ -19,7 +19,14 @@ public abstract class Expense {
 	
 	private String item;			// description of the item bought
 	
-	public Expense(double amount, Date date, String item) {
+	/**
+	 * Constructor for an Expense object
+	 * @param amount of the Expense made
+	 * @param date the Expense was made
+	 * @param item that was purchased
+	 */
+	public Expense(double amount, Date date, String item) 
+	{
 		
 		if( amount >= 0 )
 			this.amount = amount;
@@ -30,6 +37,15 @@ public abstract class Expense {
 			this.item = item;
 		
 		this.transactionDate = date;
+	}
+	
+	/**
+	 * Overloaded constructor for instantiating an empty Expense object 
+	 * to be used later.
+	 */
+	public Expense()
+	{
+		super();
 	}
 	
 	/**
