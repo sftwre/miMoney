@@ -28,10 +28,6 @@ public class CalculatorController implements EventHandler<ActionEvent>{
     private double num2 = 0;
     private SavingsCalculatorModel model = new SavingsCalculatorModel(num1, num2);
     
-    /**
-     * Do computations here, call the handle methods above if you have to
-     * @param event
-     */
     @Override
     public void handle(ActionEvent event)
     {
@@ -40,6 +36,12 @@ public class CalculatorController implements EventHandler<ActionEvent>{
     	num1 = Double.parseDouble(g);
     	num2 = Double.parseDouble(d);
     	time.setText(String.valueOf(model.savingsTime(num1,num2)));
-    	System.out.println("clicked!");
-    	}
+    }
+
+    public void clear(ActionEvent event)
+    {
+    	this.goal.setText("");
+    	this.deposit.setText("");
+    	this.time.setText("");
+    }
 }
