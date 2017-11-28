@@ -28,10 +28,6 @@ public class CalculatorController implements EventHandler<ActionEvent>{
     private double num2 = 0;
     private SavingsCalculatorModel model = new SavingsCalculatorModel(num1, num2);
     
-    /**
-     * Do computations here, call the handle methods above if you have to
-     * @param event
-     */
     @Override
     public void handle(ActionEvent event)
     {
