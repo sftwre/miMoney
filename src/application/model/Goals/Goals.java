@@ -1,4 +1,5 @@
 package application.model.Goals;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -18,15 +19,26 @@ public class Goals {
 	private double taxes;
 	private double other;
 	
+	
+	//CarGoal
 	public Goals (String type, String projectName, String totalCost,
 			String interestRate, String downPayment, String year, String time) {
-		this.projectName = projectName;
-		this.type = type;
-		this.totalCost = Double.parseDouble(totalCost);
-		this.interestRate = Double.parseDouble(interestRate);
-		this.downPayment = Double.parseDouble(downPayment);
-		this.year = Integer.parseInt(year); 
-		this.time = Integer.parseInt(time);
+		
+		try{
+			this.projectName = projectName;
+			this.type = type;
+			this.totalCost = Double.parseDouble(totalCost);
+			this.interestRate = Double.parseDouble(interestRate);
+			this.downPayment = Double.parseDouble(downPayment);
+			this.year = Integer.parseInt(year); 
+			this.time = Integer.parseInt(time);
+		}
+		catch(NumberFormatException ex){
+			System.out.println("Not a number");
+		}
+		
+		
+		
 	}
 	
 	public Goals (String type, String projectName, String totalCost,
@@ -138,7 +150,7 @@ public class Goals {
 	}
 
 	public String toString1(){
-		return String.format("%s:%s:%f:%f:%f:%d:%d"
+		return String.format("%s:%s:%.2f:%.2f:%.2f:%d:%d"
 				, this.type
 				, this.projectName
 				, this.totalCost
@@ -148,7 +160,7 @@ public class Goals {
 				, this.time);
 	}
 	public String toString2(){
-		return String.format("%s:%s:%f:%f:%f:%d:%f:%f"
+		return String.format("%s:%s:%.2f:%.2f:%.2f:%d:%.2f:%.2f"
 				, this.type
 				, this.projectName
 				, this.totalCost
@@ -159,7 +171,7 @@ public class Goals {
 				, this.other);
 	}
 	public String toString3(){
-		return String.format("%s:%s:%f:%f:%f:%d"
+		return String.format("%s:%s:%.2f:%.2f:%.2f:%d"
 				, this.type
 				, this.projectName
 				, this.totalCost
