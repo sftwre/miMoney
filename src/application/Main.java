@@ -35,8 +35,6 @@ public class Main extends Application {
 		session = new Session();
 		
 		try {
-
-			//if(! session.currentUser.isPassAuthenticated())
 			
 			if(! session.currentUser.isPassAuthenticated())
 			{
