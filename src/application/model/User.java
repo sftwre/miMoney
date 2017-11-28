@@ -1,5 +1,6 @@
 package application.model;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import application.model.Expense.Expense;
@@ -17,6 +18,8 @@ public class User {
 	
 	
 	private String username;			//The username of the user
+	
+	private String pathToProfile;		// The path to the Users profile in the UserProfiles directory
 	
 	private String password;			//The password of the user
 	
@@ -36,6 +39,7 @@ public class User {
 	public User(String username) 
 	{
 		this.username = username;
+		this.pathToProfile = "UserProfiles" + File.separator + this.username + File.separator;
 	}
 	
 	
@@ -45,6 +49,11 @@ public class User {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	
+	public String pathToProfile()
+	{
+		return (this.pathToProfile);
 	}
 
 	public String getPassword() {
