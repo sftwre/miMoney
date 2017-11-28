@@ -10,9 +10,9 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.GoalsController">
    <children>
-      <Pane prefHeight="400.0" prefWidth="400.0">
+      <Pane prefHeight="500.0" prefWidth="400.0">
          <children>
-            <Accordion prefHeight="400.0" prefWidth="400.0">
+            <Accordion prefHeight="500.0" prefWidth="400.0">
               <panes>
                 <TitledPane animated="false" prefHeight="400.0" prefWidth="400.0" text="Car Goal">
                   <content>
@@ -136,6 +136,40 @@
                         </AnchorPane>
                   </content>
                 </TitledPane>
+                  <TitledPane animated="false" layoutX="10.0" layoutY="64.0" text="Vacations/Savings">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <GridPane layoutX="10.0" prefHeight="265.0" prefWidth="370.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vacations Destination" textAlignment="CENTER" wrappingWidth="180.0" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Cost/Ammount to Save" textAlignment="CENTER" wrappingWidth="180.0" GridPane.rowIndex="1" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time in Months to Acheve" textAlignment="CENTER" wrappingWidth="180.0" GridPane.rowIndex="2" />
+                                    <TextField fx:id="vProjectName" promptText="Ex. Cancun" GridPane.columnIndex="1" />
+                                    <TextField fx:id="vTotalCost" promptText="Ex. 4000" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="vTime" promptText="Ex. 5" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Button fx:id="vCancel" mnemonicParsing="false" onAction="#vCancel" prefHeight="50.0" prefWidth="170.0" text="Clear" GridPane.rowIndex="6" />
+                                    <Button fx:id="vContinue" mnemonicParsing="false" onAction="#vContinue" prefHeight="27.0" prefWidth="170.0" text="Continue" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                 </children>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </TitledPane>
                   <TitledPane animated="false" layoutX="10.0" layoutY="64.0" text="Savings Calculator">
                      <content>
                         <fx:include fx:id="SavingsCalculator" source="CalcView.fxml" />
