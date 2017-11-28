@@ -17,14 +17,24 @@ import application.model.Expense.Expense;
 public class Budget {
 
 	
-	private ArrayList<Expense> expenses; //fixed expenses for the user
+	private ArrayList<Expense> budgetItems; //fixed expenses for the user
 	
-	private String title; //The name of the budget
-	
-	public Budget(String title) {
+	/**
+	 * Constructor used to create a new Budget
+	 */
+	public Budget()
+	{
 		
-		this.expenses = new ArrayList<Expense>();
-		this.title = title;
+		this.budgetItems = new ArrayList<Expense>();
+		
+	}
+	
+	/**
+	 * Constructor used to create a new Budget from a given list of Expenses
+	 */
+	public Budget(ArrayList<Expense> budgetItems)
+	{
+		this.budgetItems = budgetItems;
 		
 	}
 	
@@ -42,26 +52,17 @@ public class Budget {
 			System.out.println("Expense object must be instantiated");
 		}
 		
-		this.expenses.add(expense);
-	}
-	
-	
-	/**
-	 * 
-	 * @return the title of the Budget
-	 */
-	public String getTitle() {
-		
-		return this.title;
+		this.budgetItems.add(expense);
 	}
 	
 	/**
-	 * Reset the title of the Budget
-	 * @param title of the Budget
+	 * Used to return the budget items that represent this Budget
+	 * @return
 	 */
-	
-	public void setTitle(String title) {
+	public ArrayList<Expense> getExpenses()
+	{
 		
-		this.title = title;
+		return this.budgetItems;
+		
 	}
 }
