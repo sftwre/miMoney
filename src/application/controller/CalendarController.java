@@ -94,7 +94,7 @@ public class CalendarController {
 	@FXML
 	public void addAnExpense(ActionEvent event) 
 	{
-		datalist = new DatalistModel(currentMonth, date);//DataListController.initialize(currentMonth, date);
+		//datalist = new DatalistModel(date);//DataListController.initialize(currentMonth, date);
 		
 		Stage popUp =  new Stage();
 		
@@ -104,13 +104,13 @@ public class CalendarController {
 		
 		try
 		{
-		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/DatalistModel.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/DatalistView.fxml"));
 		
 		Scene scene = new Scene(root);
 		
 		popUp.setScene(scene);
 		
-		popUp.setTitle("Date of asdf");
+		popUp.setTitle("Date of " + currentMonth.getMonth().toString().toLowerCase());
 		
 		popUp.show();
 		

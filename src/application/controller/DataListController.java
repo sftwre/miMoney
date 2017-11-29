@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.util.Locale;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.time.LocalDate;
+import java.time.YearMonth;
 
 import application.Main;
 import javafx.collections.FXCollections;
@@ -57,19 +59,26 @@ public class DataListController {
     
     private ObservableList<String> expenseOptions = FXCollections.observableArrayList();
     private int counter = 0;
-    private Locale USA;
-    private NumberFormat usFormat;
     private double total;
+    
+    private YearMonth currentMonth;
+    
+    private LocalDate date;
 
     /**
      * 
+     * @param date 
+     * @param currentMonth 
      * @param title
      * 				title is the name of the DataList window (e.g. Add Expense, Add Recurring Expense)
      * @param message
      * 				message is the prompt text of the TextField at bottom (e.g. add expense... | add recurring expense...)
      */
       
-    public void initialize() {
+    public void initialize() {//YearMonth currentMonth, LocalDate date) {
+    	this.currentMonth = currentMonth;
+    	this.date = date;
+    	
     	total = 10.0;
     	doubleLabel.setText(DecimalFormat.getCurrencyInstance().format(total));
     	t1Field.setPromptText(DecimalFormat.getCurrencyInstance().format(total));
@@ -101,10 +110,12 @@ public class DataListController {
 		//TODO: if a category is not selected
 		
 		incorrectCombo.setVisible(false);
+		
+		
 		if(counter == 0)
 		{
 			itemLabel.setText(t0Field.getCharacters().toString());
-			total = Double.parseDouble(t1Field.getCharacters().toString());
+			total = Double.parseDouble(t1Field.getCharacters().toString().replaceAll("[^\\d.]", ""));
 			doubleLabel.setText(DecimalFormat.getCurrencyInstance().format(total));
 			counter++;
 			
@@ -113,7 +124,7 @@ public class DataListController {
 			t0Field.requestFocus();
 			return;
 		}
-		total = Double.parseDouble(t1Field.getCharacters().toString());
+		total = Double.parseDouble(t1Field.getCharacters().toString().replaceAll("[^\\d.]", ""));
 		
 		itemsGridPane.addRow(counter, 
 				new Label(t0Field.getCharacters().toString()), 
