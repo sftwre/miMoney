@@ -110,7 +110,10 @@ public class CalendarController {
 		
 		popUp.setScene(scene);
 		
-		popUp.setTitle("Date of " + currentMonth.getMonth().toString().toLowerCase());
+		popUp.setTitle("Date of " + currentMonth.getMonth().toString().substring(0, 1).toUpperCase()
+						+ currentMonth.getMonth().toString().substring(1).toLowerCase() + " "
+						+ date.now().getDayOfMonth() + ", "
+						+ date.now().getYear());
 		
 		popUp.show();
 		
