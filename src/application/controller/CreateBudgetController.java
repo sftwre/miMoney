@@ -1,7 +1,16 @@
 package application.controller;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.LinkedList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +29,10 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.FontSmoothingType;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import application.Main;
+import application.model.Expense.*;
+import application.model.Goals.Budget;
+import application.model.Date;
 
 
 /**
@@ -30,6 +43,10 @@ import javafx.scene.text.TextAlignment;
  */
 public class CreateBudgetController {
 
+	
+	@FXML
+	private Text titleText;			// The title of the Budget
+	
 	@FXML
     private Text gasText;
 	
@@ -41,12 +58,18 @@ public class CreateBudgetController {
 	
     @FXML
     private Button deleteButton;
+    
+    @FXML
+    private TextField titleTextField;
 
     @FXML
     private TextField foodTextField;
 
     @FXML
     private TextField gasTextField;
+    
+    @FXML
+    private TextField apperalTextField;
 
     @FXML
     private GridPane budgetGridPane;
@@ -61,10 +84,10 @@ public class CreateBudgetController {
     private Button clearButton;
 
     @FXML
-    private Button continueButton;
-
+    private Button continueButton;			// Button to create and save the Budget
+    
     @FXML
-    private TextField apperalTextField;
+    private Label invalidTextField;			// Label for invalid Text Field values
 
     @FXML
     private CheckBox foodExpense;
@@ -89,7 +112,12 @@ public class CreateBudgetController {
     
     // List of Check Boxes in budgetGridPane
     private ArrayList<CheckBox> checkBoxes = new ArrayList<CheckBox>();
-
+    
+    // Map of Text for Expense category and associated TextField
+    private HashMap<Text, TextField> budgetItemsMap = new HashMap<Text, TextField>();
+    
+    // Budget for the user
+    private Budget budget = new Budget();
     
     /**
      * Used to initialize components of the view
@@ -111,12 +139,17 @@ public class CreateBudgetController {
     	
     	 stackPaneButtons = buttonStackPane.getChildren();
     	 
-    	 //add the Check Boxes to the Collection of CheckBoxes
+    	 //add to the list of Check Boxes 
     	 checkBoxes.add(foodExpense);
     	 checkBoxes.add(gasExpense);
     	 checkBoxes.add(apperalExpense);
     	 
-    	 // set the rowIndex to last row in budgetGridPane
+    	 // put the default list items into the map
+    	 budgetItemsMap.put(foodText, foodTextField);
+    	 budgetItemsMap.put(apperalText, apperalTextField);
+    	 budgetItemsMap.put(gasText, gasTextField);
+    	 
+    	// set the rowIndex to last row in budgetGridPane
     	 rowIndex =  budgetGridPane.getRowConstraints().size()-1;
     	 
     }
@@ -168,6 +201,9 @@ public class CreateBudgetController {
     		if(indexesToDelete.contains(GridPane.getRowIndex(child)))
     		{
     			nodesToDelete.add(child);
+    			
+    			if(child instanceof Text)
+    				budgetItemsMap.remove(child);
     		}
     			
     	}
@@ -209,10 +245,13 @@ public class CreateBudgetController {
     	// register an event for the CheckBox
     	itemSelected.addEventHandler(ActionEvent.ACTION, this::budgetItemSelected);
     	
-    	try
-    	{
+    	// add Check Box to list of Budget Items Check Boxes
+    	checkBoxes.add(itemSelected);
+    	
+    	// create a mapping between the Text and TextField
+    	budgetItemsMap.put(itemCategory, itemAmount);
     		
-    	// place a new Budget Item in empty rows first
+    	// place a new Budget Item in an empty row first before creating a new row
     	if(indexesToDelete.isEmpty())
     		rowIndex++;
     	
@@ -221,14 +260,12 @@ public class CreateBudgetController {
     	
     	budgetGridPane.addRow(rowIndex, itemCategory, itemAmount, itemSelected);
     	
+    	
+    	
     	// align the CheckBox and TextField
     	GridPane.setValignment(itemAmount, VPos.CENTER);
     	GridPane.setHalignment(itemSelected, HPos.CENTER);
     	
-    	} catch(Exception e)
-    	{
-    	System.out.println(rowIndex);
-    	}
     	
     }
 
@@ -247,14 +284,142 @@ public class CreateBudgetController {
     						  "Vacation Goal", "Miscellaneous");
     }
     
+    /**
+     * Used to create a new Budget from the list of Budget Items
+     * provided by the User and save the Budget in the Budget
+     * directory of the Goals directory.
+     * @param event
+     */
     @FXML
-    public void Continue(ActionEvent event) {
+    public void saveBudget(ActionEvent event)
+    {
+    	BufferedWriter bufferedOutput;		// file to write the Budget
+    	boolean validBudget = true;			// flag to indicate if all items in the Budget are valid and ready to be stored
+    	
+    	// no Budget Items available
+    	if(budgetItemsMap.isEmpty())
+    		return;
+    	
+    	// validate the title text field with no monetary values
+    	if(! isTextFieldValid(titleTextField, false))
+    		validBudget = false;
+    	
+    	for(Text category : budgetItemsMap.keySet())
+    	{
+    		TextField amount = budgetItemsMap.get(category);
+
+    		// validate the monetary amount within the text field 
+    		if( ! isTextFieldValid(amount, true))	
+    		{
+    			amount.setStyle("-fx-border-color: red;");
+    			validBudget = false;
+    		}
+    		
+    		// the TextField is valid
+    		else
+    		{
+    			// remove the red error styling
+    			amount.setStyle(null);
+    			
+    			String value = amount.getText().trim().replaceAll("[,\\$]", "");
+    			
+    			//create an Expense object based on the Expense category chosen by the User
+    			Expense item = createExpenseSubType(category.getText());
+    			
+    			item.setAmmount(Double.parseDouble(value));
+    			
+    			// set the Date for the Object to the current month and year
+    			YearMonth currentDate = YearMonth.now();
+    			
+    			Date date = new Date(currentDate.getMonthValue(),1, currentDate.getYear());
+    			
+    			item.setDate(date);
+    			
+    			// add the BUdget item to the Budget
+    			this.budget.addItem(item);
+    		}
+    	}
+    		
+    	// create a file for the Budget and save the Budget if all items are valid
+    	if(validBudget)
+    	{
+    		this.budget.setTitle(titleTextField.getText());
+    		
+    		invalidTextField.setVisible(false);
+    		
+    		// create a new file with the same title as the Budget
+    		String path = Main.session.currentUser.pathToProfile() + "Goals" + File.separator + "Budget" 
+    					+  File.separator + this.budget.getTitle();
+    		
+    		File filePath =  new File(path);
+    		
+    		try {
+    			
+    			boolean fvar =  filePath.createNewFile();
+    			
+    			if(fvar)
+    			{
+    				
+				BufferedWriter goalFile = new BufferedWriter(new FileWriter(filePath));
+				
+				goalFile.write(this.budget.toString());
+				
+				goalFile.flush();
+				
+				goalFile.close();
+				
+    			}
+    			
+    		else
+    			invalidTextField.setVisible(true);
+    			
+    		//TODO Implement an error dialog
+			} catch (IOException e) {
+				
+				
+				System.out.printf("Error while accessing %s%n", filePath.getPath());
+				
+			} catch(SecurityException e)
+    		{
+				System.out.printf("No permission to write to %s%n", filePath.getPath());
+    		}
+    		
+    	}
 
     }
     
-    /**
+    
+    private boolean isTextFieldValid(TextField titleTextField2) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	/**
+     * Used to validate the amount for a Budget category.
+     * A valid amount must contain digits and may contain
+     * decimal points, dollar signs, or commas.
+     * @param amount to validate
+     * @param monetary true if the text field contains a monetary value to be validated
+     * @return true if the value in amount is valid, false otherwise
+     */
+    private boolean isTextFieldValid(TextField amount, boolean monetary)
+    {
+    	String value = amount.getText();
+    	
+    	if((value.equals("") || value.matches(".*[^\\d,\\.\\$]")) && monetary)
+    		return false;	
+    	
+    	else if(value.equals(""))
+    		return false;
+    	
+    	else
+    		return true;
+	}
+
+
+	/**
      * Used to move buttons in the buttonStackPane forward and backward
-     * 
      */
     private void moveButtonInStackPane(StackPane stackPane)
     {
@@ -283,6 +448,71 @@ public class CreateBudgetController {
     	}
     	
     	return(itemSelected);
+    }
+    
+    /**
+     * Used to
+     * @param expenseName
+     * @return
+     */
+    private Expense createExpenseSubType(String expenseName)
+    {
+    	Expense expense;
+    	
+    	switch(expenseName)
+    	{
+    		case "Apperal":
+    			return new Apperal();
+    			
+    		case "Auto Maintenance":
+    			return new AutoMaintenance();
+    			
+    		case "Home Maintenance":
+    			return new HomeMaintenance();
+    			
+    		case "Medical":
+    			return new Medical();
+    			
+    		case "Education":
+    			return new Education();
+    			
+    		case "Entertainment":
+    			return new Entertainment();
+    			
+    		case "Food":
+    			return new Food();
+    			
+    		case "Gas":
+    			return new Gas();
+    			
+    		case "Luxury":
+    			return new Luxury();
+    			
+    		case "Personal Care":
+    			return new PersonalCare();
+    			
+    		case "Public Transportation":
+    			return new PublicTransportation();
+    			
+    		case "Subscriptions":
+    			return new Subscriptions();
+    			
+    		case "Savings Goal":
+    			return new SavingsGoalExpense();
+    			
+    		case "Auto Goal":
+    			return new AutoGoalExpense();
+    			
+    		case "Vacation Goal":
+    			return new VacationGoalExpense();
+    			
+    		case "Miscellaneous":
+    			return new Miscellaneous();
+  
+    	}
+    	
+    	return null;
+    	
     }
     
 }
