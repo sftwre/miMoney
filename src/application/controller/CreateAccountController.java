@@ -173,8 +173,8 @@ public class CreateAccountController {
 				//String incomeFile = "Income.txt";
 				File incomeFile = new File("UserProfiles/"+newUser+"/Income.txt");
 				File userFile = new File("UserProfiles/"+newUser+"/"+newUser+".txt");
-				
-				File dir = new File("UserProfiles/"+newUser+"/AnnualExpenses");
+				File dir = new File("UserProfiles/"+newUser+"/AnnualExpenses/2017");
+				File expTrack = new File("UserProfiles/"+newUser+"/AnnualExpenses/2017/November/");
 				
 				if(dir.exists()) {
 					System.out.println("directory already exists");
@@ -223,17 +223,17 @@ public class CreateAccountController {
 					//fixedFile.mkdirs();
 					FileWriter fill = new FileWriter(fixedFile);
 					if(!houseDebt.isEmpty()){
-						fill.write("Housing:"+Double.parseDouble(houseDebt)+" ");
+						fill.write("Housing:"+Double.parseDouble(houseDebt)+":");
 						//fill.close();	
 					}
 					if(!gasDebt.isEmpty()) {
-						fill.write("Gas:"+Double.parseDouble(gasDebt)+" ");
+						fill.write("Gas:"+Double.parseDouble(gasDebt)+":");
 						
 					}if(!payment.isEmpty()) {
-						fill.write("Auto Payment:"+Double.parseDouble(payment)+" ");
+						fill.write("Auto Payment:"+Double.parseDouble(payment)+":");
 						
 					}if(!insurance.isEmpty()) {
-						fill.write("Auto Insurance:"+Double.parseDouble(insurance)+" ");
+						fill.write("Auto Insurance:"+Double.parseDouble(insurance)+":");
 					}
 					
 					fill.close();

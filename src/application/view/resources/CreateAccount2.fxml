@@ -46,11 +46,10 @@
             <Hyperlink fx:id="tutorialLink" layoutX="14.0" layoutY="538.0" onAction="#goToTutorial" text="Tutorial " />
             <Line endX="250.0" layoutX="223.0" layoutY="300.0" startX="-230.0" />
             <TextField fx:id="housing" layoutX="149.0" layoutY="348.0" prefHeight="25.0" prefWidth="175.0" />
-            <TextField fx:id="gas" layoutX="147.0" layoutY="400.0" prefHeight="25.0" prefWidth="175.0" />
+            <TextField layoutX="149.0" layoutY="392.0" prefHeight="25.0" prefWidth="175.0" />
             <TextField fx:id="autoPay" layoutX="149.0" layoutY="455.0" prefHeight="25.0" prefWidth="175.0" />
             <TextField fx:id="autoInsur" layoutX="149.0" layoutY="512.0" prefHeight="25.0" prefWidth="175.0" />
             <Label layoutX="63.0" layoutY="352.0" text="Housing" />
-            <Label layoutX="72.0" layoutY="404.0" prefHeight="17.0" prefWidth="29.0" text="Gas:" />
             <Label layoutX="47.0" layoutY="459.0" text="Auto Payment:" />
             <Label layoutX="45.0" layoutY="516.0" prefHeight="17.0" prefWidth="83.0" text="Auto Insurance:" />
             <Label layoutX="153.0" layoutY="307.0" text="Monthly Expenses">
