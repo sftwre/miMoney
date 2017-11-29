@@ -27,21 +27,16 @@ public class FileIOTest {
 	}
 	
 	
-	
 	@Test
 	public void testReadIncome() 
 	{
-		ArrayList<Income> incomeList = new ArrayList<Income>();
 		
-		incomeList =  input.readIncome();
+		Income income =  input.readIncome();
 		
 		System.out.printf("%nIncome data%n");
 		
-		for(Income income : incomeList)
-		{
-			System.out.printf("%s %f\n", income.getTitle(), income.getPay());
-		}
-		
+		System.out.printf("%s %f\n", income.getTitle(), income.getPay());
+
 	}
 	 
 	
