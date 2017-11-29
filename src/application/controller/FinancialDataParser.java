@@ -21,7 +21,8 @@ import application.model.*;
  * @author Isaac Buitrago
  *
  */
-public class FinancialDataParser extends FileParser {
+public class FinancialDataParser extends FileParser 
+{
 	
 	private String line;				// Store a line of text from a file
 	private String rawObjects[];		// raw data used to instantiate an object
@@ -53,12 +54,11 @@ public class FinancialDataParser extends FileParser {
 	
 	/**
 	 * Reads the Income data from income.txt
-	 * @return an ArrayList of Income Objects
+	 * @return Income of the user or null if none is provided
 	 */
-	public ArrayList<Income> readIncome()
+	public Income readIncome()
 	{
-		
-		ArrayList<Income> incomeList = new ArrayList<Income>();	//list of Income objects to return
+		Income userIncome = null;		// Income data of the User
 		
 		//reset root directory of the current user
 		setUserProfile(this.user);
@@ -73,7 +73,7 @@ public class FinancialDataParser extends FileParser {
 			
 			line = bufferInput.readLine();
 			
-			while(line != null && ! line.isEmpty()) 
+			if(! line.isEmpty())
 			{
 				//no need to split the line on commas, each line is a separate Income
 				
@@ -90,11 +90,7 @@ public class FinancialDataParser extends FileParser {
 				rawObjects = line.split(":");
 				
 				//create a new Income with Job the title and Wage
-				Income income = new Income(rawObjects[0], Double.parseDouble(rawObjects[1]));
-				
-				incomeList.add(income);
-				
-				line = bufferInput.readLine();
+				userIncome = new Income(rawObjects[0], Double.parseDouble(rawObjects[1]));
 			}
 			
 			bufferInput.close();
@@ -112,7 +108,7 @@ public class FinancialDataParser extends FileParser {
 			
 		}
 		
-			return (incomeList);
+			return (userIncome);
 	}
 		
 	
@@ -151,6 +147,9 @@ public class FinancialDataParser extends FileParser {
 				
 				for(Path f : filesStream)
 				{
+					//skip hidden files
+					if(Files.isHidden(f))
+						continue;
 					
 					//Create reader for character files
 					FileReader file =  new FileReader(f.toFile());
@@ -177,7 +176,7 @@ public class FinancialDataParser extends FileParser {
 						for(String object : rawObjects)
 						{
 							//check that the data in the file is formatted correctly
-							if(!formattedData("[a-zA-Z]+:[a-zA-Z\\s]+:\\d+\\.\\d{6}:\\d+\\.\\d{6}:\\d+\\.\\d{6}:\\d+:\\d+:\\d+\\.\\d{6}", object))
+							if(!formattedData("[a-zA-Z]+:[a-zA-Z\\d\\-\\.\\s]+:\\d+\\.\\d{6}:\\d+\\.\\d{6}:\\d+\\.\\d{6}:\\d+:\\d+:\\d+\\.\\d{6}", object))
 							{
 								throw new Exception(String.format("%s is not formatted to standards in %s.%n"
 										+ "Standard: Colons seperating fields, commas seperating objects, 6 decimal digits of precision%n"
