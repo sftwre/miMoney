@@ -29,10 +29,6 @@ public class DatalistModel {
 	/*
 	 * constructor for generic DataList use case
 	 */
-
-	public DatalistModel(LocalDate date) {
-		// TODO Auto-generated constructor stub
-	}
 	
 	public void add(String category, double total, LocalDate date, String item) {
 		et.addExpense(decideType(category, total, date, item));

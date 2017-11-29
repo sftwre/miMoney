@@ -25,6 +25,7 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 
 import application.Main;
+import application.model.DatalistModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -58,13 +59,16 @@ public class DataListController {
     private ComboBox<String> expensesComboBox;
     
     private ObservableList<String> expenseOptions = FXCollections.observableArrayList();
+    
     private int counter = 0;
+    
     private double total;
     
     private YearMonth currentMonth;
     
     private LocalDate date;
 
+    private DatalistModel dm;
     /**
      * 
      * @param date 
@@ -78,6 +82,7 @@ public class DataListController {
     public void initialize() {//YearMonth currentMonth, LocalDate date) {
     	this.currentMonth = currentMonth;
     	this.date = date;
+    	dm = new DatalistModel();
     	
     	total = 10.0;
     	doubleLabel.setText(DecimalFormat.getCurrencyInstance().format(total));
@@ -98,19 +103,10 @@ public class DataListController {
     }//END initialize()
     
 	@FXML
-	public void addButtonExpense(ActionEvent event) {
-		if(t0Field.getCharacters().toString().compareTo("") == 0) {
-			incorrectCombo.setText("Must enter item name");
+	public void addButtonExpense(ActionEvent event) {	
+		incorrectCombo.setVisible(!validate());
+		if(!validate())
 			return;
-		}else if(expensesComboBox.getSelectionModel().getSelectedItem() == null) {
-			incorrectCombo.setText("Must select expense category");
-			return;
-		}
-		//TODO: if t1Field contains characters other than numbers or a single period
-		//TODO: if a category is not selected
-		
-		incorrectCombo.setVisible(false);
-		
 		
 		if(counter == 0)
 		{
@@ -137,6 +133,22 @@ public class DataListController {
 		t0Field.clear();
 		t0Field.requestFocus();
 }//END addAnExpense()
+	
+    public boolean validate() {
+    	boolean auth = false;
+		if(t0Field.getCharacters().toString().compareTo("") == 0) {
+			incorrectCombo.setText("Must enter item name");
+			return auth;
+		}else if(expensesComboBox.getSelectionModel().getSelectedItem() == null) {
+			incorrectCombo.setText("Must select expense category");
+			return auth;
+		}
+    	return true;
+    }//END validate()
+	
+	public void addExpense(String category, double total, LocalDate date, String item) {
+		dm.add(category, total, date, item);
+	}//END addExpense()
 	
     private void loadExpenseCategories()
     {
