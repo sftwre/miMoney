@@ -79,6 +79,9 @@ public class FinancialOverviewController
     private PieChart spendingChart;				// Chart for displaying the Users spending
     
     @FXML
+    private Label nullSpendingData;				// Label for indicating that no spending data is available
+    
+    @FXML
     private GridPane incomePaneGrid;			// Grid to add the save button for editing the Users Income
     
     @FXML
@@ -114,10 +117,18 @@ public void initialize()
 	
 	loadSpendingDataForChart();
 	
+	
+	//If there is no spending data, set the label indicating that no spending data is available to visible
+	if(pieChartData.isEmpty())
+		nullSpendingData.setVisible(true);
+	
 	//populate the pieChart to display the expenses of the user
+	else 
+	{
 	spendingChart.setData(pieChartData);
 	
 	spendingChart.setStartAngle(25);
+	}
 	
 	loadGoalsDataForList();
 	
@@ -155,8 +166,8 @@ public void initialize()
 }
 
 /**
- * Used to retrieve all of the the User's spending data, add
- * the total spent by category and load it into the ObservableList pieChartData.
+ * Used to retrieve all of the the User's spending data for the current month
+ * with duplicate Expense categories added.
  */
 public void loadSpendingDataForChart()
 {
@@ -172,15 +183,18 @@ public void loadSpendingDataForChart()
 		//Get the fixed expenses for January and append them to the current list of Expenses
 		monthlyExpenses.addAll(financialData.readExpenses(currentMonth, FinanceType.FEXPENSE));
 		
+		// if the user has no monthly expenses, leave the pieChartData empty
+		if(monthlyExpenses.isEmpty())
+			return;
+		
 		//Combine duplicate Expense objects to obtain the total Expenses per category
 		HashMap<String, Double> totalExpenses = totalExpensesByCategory(monthlyExpenses);
-			
+		
 		//add the expenses to the PieChart
 		for(String e : totalExpenses.keySet()) 
 		{
 				pieChartData.add(new PieChart.Data(e , totalExpenses.get(e)));
-		}
-		
+		}		
 }
 
 /**
