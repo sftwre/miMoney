@@ -99,11 +99,10 @@ public class DataListController {
 		sdf = new SimpleDateFormat("MM/dd/yyyy");
 		
 		input = new FinancialDataParser(Main.session.currentUser);
-		readExpenses();
     	
 		total = 10.0;
-    	doubleLabel.setText(DecimalFormat.getCurrencyInstance().format(total));
     	t1Field.setPromptText(DecimalFormat.getCurrencyInstance().format(total));
+		readExpenses();
     	
     	addButton.setDefaultButton(true);
     	Thread comboBoxThread = new Thread(){
@@ -143,6 +142,10 @@ public class DataListController {
     	return true;
     }//END validate()
 	
+	private void addToFile(String selectedItem, double total2, LocalDate date2, String string) {
+		
+	}
+    
 	public void addFreshExpense(){
 		if(counter == 0)
 		{
@@ -152,6 +155,7 @@ public class DataListController {
 			counter++;
 			
 			dm.add(expensesComboBox.getSelectionModel().getSelectedItem(), total, date, t0Field.getCharacters().toString());
+			addToFile(expensesComboBox.getSelectionModel().getSelectedItem(), total, date, t0Field.getCharacters().toString());
 			t1Field.clear();
 			t0Field.clear();
 			t0Field.requestFocus();
@@ -162,6 +166,8 @@ public class DataListController {
 		itemsGridPane.addRow(counter, 
 				new Label(t0Field.getCharacters().toString()), 
 				new Label(DecimalFormat.getCurrencyInstance().format(total)));
+		dm.add(expensesComboBox.getSelectionModel().getSelectedItem(), total, date, t0Field.getCharacters().toString());
+		addToFile(expensesComboBox.getSelectionModel().getSelectedItem(), total, date, t0Field.getCharacters().toString());
 		//itemsGridPane.add(new Label(t0Field.getCharacters().toString()), 0, counter);
 		//itemsGridPane.add(new Label(DecimalFormat.getCurrencyInstance().format(total)), 1, counter);
 		counter++;
@@ -169,14 +175,27 @@ public class DataListController {
 		t0Field.clear();
 		t0Field.requestFocus();
 	}//END addExpense()
-	
-	public void addOldExpense(String category, double total, LocalDate date, String item) {
+
+	public void addOldExpense(String category, double oldTotal, LocalDate date, String item) {
+		if(counter == 0)
+		{
+			itemLabel.setText(item);
+			oldTotal = Double.parseDouble((Double.toString(oldTotal).format("%.2f", oldTotal)));
+			//doubleLabel.setText("NO");
+			doubleLabel.setText(DecimalFormat.getCurrencyInstance().format(oldTotal));
+			counter++;
+			
+			dm.add(category, oldTotal, date, item);
+			t0Field.requestFocus();
+			return;
+		}
+		itemsGridPane.addRow(counter, 
+				new Label(item), 
+				new Label(DecimalFormat.getCurrencyInstance().format(oldTotal)));
+				counter++;
+				t0Field.requestFocus();
 		
 	}//END addOldExpense()
-	
-	private void checkExistingExpenses() {
-		
-	}//END checkExistingExpenses()
     
     public void readExpenses()
 	{
@@ -188,20 +207,13 @@ public class DataListController {
 		//Get the fixed expenses for February an append them to the current list of Expenses
 		monthExpenses.addAll(input.readExpenses(d, FinanceType.FEXPENSE));
 		
-		System.out.println();
-		System.out.println("Todays expenses:");
-		//Separate the Variable Expense's from the Fixed Expenses		
+		//Separate the Variable Expense's from the Fixed Expenses
 		for(Expense e : monthExpenses)
 		{
 			if(e.getDate().toString().compareTo(d.toString()) == 0)
 			{
-				System.out.printf("%f %s %s%n", e.getAmmount(), e.getItem(), e.getDate().toString());
-				//addOldExpense(e.getAmmount(), e.getItem(), e.getDate().toString());
-			}
-			
-			else
-			{
-				
+				//System.out.printf("%f %s %s%n", e.getAmmount(), e.getItem(), e.getDate().toString());
+				addOldExpense(e.getClassName(), e.getAmmount(), LocalDate.of(e.getDate().getYear(), e.getDate().getMonth(), e.getDate().getDay()), e.getItem());
 			}
 		}//END for each expense
 		
