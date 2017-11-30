@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.NumberFormat;
+import java.time.YearMonth;
 
 import application.Main;
 import application.model.SecureNewPass;
@@ -95,6 +96,8 @@ public class CreateAccountController {
     private Hyperlink tutorialLink;
     
     private SecureNewPass snp;
+    
+    private YearMonth currentMonth;
 
     
     /**
@@ -109,6 +112,8 @@ public class CreateAccountController {
 	 */
     @FXML
     void createAcct(ActionEvent event) throws IOException {
+    	
+    	currentMonth = YearMonth.now();
     	
 			if(user_name.getText().trim().isEmpty() || password.getText().trim().isEmpty() || phone_Number.getText().trim().isEmpty() || income.getText().trim().isEmpty() || jobInfo.getText().trim().isEmpty()) {
 		    		if(user_name.getText().trim().isEmpty()){ 
@@ -188,6 +193,7 @@ public class CreateAccountController {
 				File userFile = new File("UserProfiles/"+newUser+"/"+newUser+".txt");
 				File dir = new File("UserProfiles/"+newUser+"/AnnualExpenses/2017");
 				File dateTrack = new File("UserProfiles/"+newUser+"/AnnualExpenses/2017/November");
+				//File dateTrack = new File("UserProfiles/"+newUser+"/AnnualExpenses" + File.separator + currentMonth.getYear() + File.separator + currentMonth.getMonth());
 				if(dateTrack.exists()) {
 					System.out.println("directory already exists");
 				}
