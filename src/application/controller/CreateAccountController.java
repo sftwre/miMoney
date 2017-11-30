@@ -192,7 +192,7 @@ public class CreateAccountController {
 				//String incomeFile = "Income.txt";
 				File incomeFile = new File("UserProfiles" + File.separator+newUser+File.separator +"Income.txt");
 				File userFile = new File("UserProfiles" + File.separator+newUser+File.separator +newUser+".txt");
-				File dir = new File("UserProfiles" + File.separator+newUser+File.separator +"AnnualExpenses/2017");
+				File dir = new File("UserProfiles" + File.separator+newUser+File.separator +"AnnualExpenses" + File.separator + currentMonth.getYear());
 				File dateTrack = new File("UserProfiles" + File.separator +newUser+File.separator +"AnnualExpenses" + File.separator + currentMonth.getYear() + File.separator + MonthFormatter.formatMonth(currentMonth.getMonth()));
 				if(dateTrack.exists()) {
 					System.out.println("directory already exists");
