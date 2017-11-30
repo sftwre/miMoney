@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import application.Main;
 import application.view.CalendarView;
 import application.model.DatalistModel;
-import application.model.MonthFormatter;
+import application.model.DateFormatter;
 
 /**
  * @author Jonathan Remote
@@ -75,7 +75,7 @@ public class CalendarController {
 		tpList = new ArrayList<TitledPane>();
 		sList = new ArrayList<String>(42);
 		sListCopy = new ArrayList<String>(42);
-		monthOfLabel.setText("Month of " + MonthFormatter.formatMonth(currentMonth.getMonth()));
+		monthOfLabel.setText("Month of " + DateFormatter.formatMonth(currentMonth.getMonth()));
 		
 		addTitlePanes(decideDays());
 		
@@ -158,7 +158,7 @@ public class CalendarController {
 		
 		popUp.setScene(scene);
 		
-		popUp.setTitle("Date of " + MonthFormatter.formatMonth(currentMonth.getMonth()) + " "
+		popUp.setTitle("Date of " + DateFormatter.formatMonth(currentMonth.getMonth()) + " "
 						+ date.now().getDayOfMonth() + ", "
 						+ date.now().getYear());
 		
