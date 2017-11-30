@@ -10,7 +10,7 @@ import java.time.Month;
  * @author Jonathan
  *
  */
-public class MonthFormatter {
+public class DateFormatter {
 	
 	
 	/**
