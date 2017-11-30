@@ -298,7 +298,7 @@ public class CreateAccountController {
 					//fixedFile.mkdirs();
 					FileWriter fill = new FileWriter(fixedFile);
 					if(!houseDebt.isEmpty()){
-						fill.write("Housing:"+home.toString());
+						fill.write("Housing:"+Double.parseDouble(houseDebt)+":");
 						//fill.close();	
 					}
 					if(!healthDebt.isEmpty()) {
