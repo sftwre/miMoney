@@ -59,6 +59,8 @@ public class CalendarController {
 	
 	private LocalDate date;
 	
+	private LocalDate duplicateDate;
+	
 	private int counter;
 
 	private DatalistModel datalist;
@@ -110,7 +112,7 @@ public class CalendarController {
 				//monthTile.add(new Label("myStr"), i, j);
 
 				//list.add(specificDay);		
-	}
+	}//END initialize()
 
 	private void addTitlePanes(int n) {
 		switch(n) {
@@ -124,15 +126,20 @@ public class CalendarController {
 		tpList.add(new TitledPane("Friday", new Button("yes")));
 		tpList.add(new TitledPane("Saturday", new Button("yes")));
 		
-		for(int i = 0; i<tpList.size(); i++)
+		for(int i = 0; i<n; i++)
 			weekAccordion.getPanes().add(tpList.get(i));
 	}//END addTitlePanes()
 
 	private int decideDays() {
 		int days = 0;
+		duplicateDate = LocalDate.now();
+		while (!duplicateDate.getDayOfWeek().toString().equals("SUNDAY")) {
+            duplicateDate = duplicateDate.minusDays(1);
+			days++;
+		}//END
 		
 		return days;	
-	}
+	}//END decideDays()
 
 	@FXML
 	public void addAnExpense(ActionEvent event) 
