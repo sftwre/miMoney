@@ -40,9 +40,9 @@ public class DatalistModel {
 
 	public Expense decideType(String category, double t, LocalDate date, String i) {
 		switch(category) {
-		case "Apperal":
+		case "Apparel":
 			d = convertDate(date);
-			e = new Apperal(t, d, i);
+			e = new Apparel(t, d, i);
 			break;
 		case"Auto Maintenance":
 			d = convertDate(date);
