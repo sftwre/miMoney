@@ -3,8 +3,6 @@ package application.controller;
 import java.io.IOException;
 
 import application.Main;
-import application.MainAccount;
-//import application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -112,44 +110,6 @@ public class TutorialController
     	 
     	
     	
-    		/*try {
-    			Parent tutor;
-
-    			sceneCnt++;
-    			
-    			if(sceneCnt <= 4)
-    			{
-	    			scene +=""+sceneCnt+".fxml";
-	    			
-	    			tutor = FXMLLoader.load(getClass().getResource(scene));  			
-	    			//tutor = FXMLLoader.load(getClass().getClassLoader().getResource("view/resources/Tutorial2.fxml"));
-		 
-	    			MainTutorial.setScene(new Scene(tutor));
-		    		//Math.ceil();
-    			}
-    	} catch(IOException x) {
-    			x.printStackTrace();
-    			System.err.println("Tutorial page not found!");
-    		}
-		
-
-    	try {
-    		Parent tutor;
-    		sceneCnt++;
-    		
-    		tutor = FXMLLoader.load(getClass().getClassLoader().getResource("/" + scene + "" + sceneCnt +".fxml"));
-    		
-    		
- 
-    		Main.stage.setScene(new Scene(tutor, 500, 575));
-    		Main.stage.show();
-    		//Math.ceil();
-    	}catch(IOException e) {
-    		e.printStackTrace();
-    		System.err.println("Tutorial page not found!");
-    	}
-
-    	*/
     }
     
     //TODO Kelly and Johnathan need to be able to link this to the MainView.fxml 
@@ -167,7 +127,7 @@ public class TutorialController
     	//create.initOwner(Main.stage);
     	try
 		{
-    		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/CreateAccount2.fxml"));
+    		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/MainView.fxml"));
     		Scene scene = new Scene(root);
     		Main.stage.setScene(scene);
     		Main.stage.show();

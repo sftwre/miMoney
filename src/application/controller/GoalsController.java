@@ -1,9 +1,5 @@
 package application.controller;
 import java.nio.file.*;
-
-/**
- * @author Manuel Deaguinaga
- */
 import java.io.File;
 import java.io.FileWriter;
 
@@ -70,6 +66,8 @@ public class GoalsController implements EventHandler<ActionEvent> {
 	 */
 	@FXML
 	public void cContinue(ActionEvent event) {
+		
+		//kind name cost interestRate down
 		Goals carGoal = new Goals("CarGoal", this.Cmodel.getText(), Ccost.getText(),
 					this.Cinteres.getText(), this.Cdown.getText(), this.Cyear.getText(), this.Ctime.getText());
 		//Close window and open goal
@@ -79,7 +77,6 @@ public class GoalsController implements EventHandler<ActionEvent> {
 		String path = "UserProfiles" + File.separator + Main.session.currentUser.getUsername() + File.separator +
 				"Goals" +  File.separator + "Auto" + File.separator + this.Cmodel.getText();
 		
-		System.out.println(path);
 		//if there is a file print the info to the file 
 		
 		File file = new File(path);
@@ -88,7 +85,7 @@ public class GoalsController implements EventHandler<ActionEvent> {
 			try {
             
 				FileWriter fw = new FileWriter(file);
-				fw.write(carGoal.toString1());
+				fw.write(carGoal.toString());
 				fw.close();
 			}
 				catch (IOException iox) {
@@ -103,7 +100,7 @@ public class GoalsController implements EventHandler<ActionEvent> {
 		}
 		
 		
-		System.out.printf(carGoal.toString1());
+		//System.out.printf(carGoal.toString1());
 		// Else Create a file
 		
 	}
@@ -169,7 +166,7 @@ public class GoalsController implements EventHandler<ActionEvent> {
 			String path = "UserProfiles" + File.separator + Main.session.currentUser.getUsername() + File.separator +
 					"Goals" +  File.separator + "Home" + File.separator + this.hProjectName.getText();
 			
-			System.out.println(path);
+			//System.out.println(path);
 			//if there is a file print the info to the file 
 			
 			File file = new File(path);
@@ -178,7 +175,7 @@ public class GoalsController implements EventHandler<ActionEvent> {
 				try {
 	            
 					FileWriter fw = new FileWriter(file);
-					fw.write(homeGoal.toString1());
+					fw.write(homeGoal.toString());
 					fw.close();
 				}
 					catch (IOException iox) {
@@ -193,7 +190,7 @@ public class GoalsController implements EventHandler<ActionEvent> {
 			}
 			
 			// Print the information
-			System.out.printf(homeGoal.toString2());
+			//System.out.printf(homeGoal.toString2());
 			
 	}
 	@FXML
@@ -253,7 +250,7 @@ public class GoalsController implements EventHandler<ActionEvent> {
 			String path = "UserProfiles" + File.separator + Main.session.currentUser.getUsername() + File.separator +
 					"Goals" +  File.separator + "Loan" + File.separator + this.lProjectName.getText();
 			
-			System.out.println(path);
+			//System.out.println(path);
 			//if there is a file print the info to the file 
 			
 			File file = new File(path);
@@ -262,7 +259,7 @@ public class GoalsController implements EventHandler<ActionEvent> {
 				try {
 	            
 					FileWriter fw = new FileWriter(file);
-					fw.write(lLoanGoal.toString1());
+					fw.write(lLoanGoal.toString());
 					fw.close();
 				}
 					catch (IOException iox) {
@@ -277,7 +274,7 @@ public class GoalsController implements EventHandler<ActionEvent> {
 			}
 			
 			//Print the information
-			System.out.printf(lLoanGoal.toString3());
+			//System.out.printf(lLoanGoal.toString3());
 	}
 	@FXML
 	public void lCancel(ActionEvent event){
@@ -312,7 +309,7 @@ public class GoalsController implements EventHandler<ActionEvent> {
 		((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
 		
 		String path = "UserProfiles" + File.separator + Main.session.currentUser.getUsername() + File.separator +
-				"Goals" +  File.separator + "Vacations" + File.separator + this.vProjectName.getText();
+				"Goals" +  File.separator + "Vacation" + File.separator + this.vProjectName.getText();
 		
 		System.out.println(path);
 		//if there is a file print the info to the file 
@@ -323,7 +320,7 @@ public class GoalsController implements EventHandler<ActionEvent> {
 			try {
             
 				FileWriter fw = new FileWriter(file);
-				fw.write(vacationsGoal.toString1());
+				fw.write(vacationsGoal.toString());
 				fw.close();
 			}
 				catch (IOException iox) {
@@ -338,7 +335,7 @@ public class GoalsController implements EventHandler<ActionEvent> {
 		}
 		
 		//Print the information
-		System.out.printf(vacationsGoal.toString3());
+		//System.out.printf(vacationsGoal.toString3());
 	}
 	
 	@FXML
