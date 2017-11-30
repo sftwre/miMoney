@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 
 
 /**
- * 
+ * This code manages button and text inputs for the savings calculator
  * @author Sam Dash
  *
  */
