@@ -3,7 +3,7 @@ package application.model;
 /**
  * @author eeo072
  * The purpose of this code is to create a savings calculator.
- * The calculator will tell you when you will be able to buy something based on how much you save per month.
+ * The calculator will tell you in months when you will be able to buy something based on how much you save per month.
  *
  */
 public class CalculatorModel {
