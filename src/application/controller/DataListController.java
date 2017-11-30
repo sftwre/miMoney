@@ -17,6 +17,8 @@ import javafx.scene.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -82,6 +84,8 @@ public class DataListController {
     
 	static FinancialDataParser input;
 
+	//File fixedFile = new File(dir+File.separator +"FixedExpenses.txt");
+
     /**
      * 
      * @param date 
@@ -143,7 +147,12 @@ public class DataListController {
     }//END validate()
 	
 	private void addToFile(String selectedItem, double total2, LocalDate date2, String string) {
-		
+		//Create a new file writer for the given Months ExpenseTracker.txt
+		//TODO: sort through the dates line by line, store the last known date, current date, and next date
+		//TODO: if currentDate == givenDate then append the expense to end of line
+		//TODO: if currentDate.day() > givenDate.day()
+		//lastKnownDate = givenDate; write new line with expense
+		return;
 	}
     
 	public void addFreshExpense(){
