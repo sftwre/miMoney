@@ -19,7 +19,7 @@ import application.Main;
 
 import application.model.Income;
 
-import application.model.MonthFormatter;
+import application.model.DateFormatter;
 
 import application.model.SecureNewPass;
 import application.model.Expense.AutoInsurance;
@@ -222,7 +222,7 @@ public class CreateAccountController {
 				File incomeFile = new File("UserProfiles" + File.separator+newUser+File.separator +"Income.txt");
 				File userFile = new File("UserProfiles" + File.separator+newUser+File.separator +newUser+".txt");
 				File dir = new File("UserProfiles" + File.separator+newUser+File.separator +"AnnualExpenses" + File.separator + currentMonth.getYear());
-				File dateTrack = new File("UserProfiles" + File.separator +newUser+File.separator +"AnnualExpenses" + File.separator + currentMonth.getYear() + File.separator + MonthFormatter.formatMonth(currentMonth.getMonth()));
+				File dateTrack = new File("UserProfiles" + File.separator +newUser+File.separator +"AnnualExpenses" + File.separator + currentMonth.getYear() + File.separator + DateFormatter.formatMonth(currentMonth.getMonth()));
 
 				if(dateTrack.exists()) {
 					System.out.println("directory already exists");
