@@ -462,7 +462,7 @@ public class CreateBudgetController {
     	switch(expenseName)
     	{
     		case "Apperal":
-    			return new Apperal();
+    			return new Apparel();
     			
     		case "Auto Maintenance":
     			return new AutoMaintenance();

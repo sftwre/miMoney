@@ -10,8 +10,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 
+
+import java.text.NumberFormat;
+import java.time.YearMonth;
+
+
 import application.Main;
+
 import application.model.Income;
+
+import application.model.MonthFormatter;
+
 import application.model.SecureNewPass;
 import application.model.Expense.AutoInsurance;
 import application.model.Expense.AutoPayment;
@@ -99,6 +108,7 @@ public class CreateAccountController {
     
     private SecureNewPass snp;
     
+
     private Income in;
     
     private AutoInsurance insur;
@@ -109,6 +119,9 @@ public class CreateAccountController {
     
     private HomePayment home;
 	//private double housePrice;
+
+    private YearMonth currentMonth;
+
 
     
     /**
@@ -123,6 +136,8 @@ public class CreateAccountController {
 	 */
     @FXML
     void createAcct(ActionEvent event) throws IOException {
+    	
+    	currentMonth = YearMonth.now();
     	
 			if(user_name.getText().trim().isEmpty() || password.getText().trim().isEmpty() || phone_Number.getText().trim().isEmpty() || income.getText().trim().isEmpty() || jobInfo.getText().trim().isEmpty()) {
 		    		if(user_name.getText().trim().isEmpty()){ 
@@ -192,14 +207,23 @@ public class CreateAccountController {
 				String phone = phone_Number.getText().trim();
 				String newIncome = income.getText().trim();
 				String newJob = jobInfo.getText().trim();
-				home = housing.getText().trim();
+				String houseDebt = housing.getText().trim();
 				String healthDebt = health.getText().trim();
 				String payment = autoPay.getText().trim();
 				String insurance = autoInsur.getText().trim();
-				File incomeFile = new File("UserProfiles/"+newUser+"/Income.txt");
-				File userFile = new File("UserProfiles/"+newUser+"/"+newUser+".txt");
-				File dir = new File("UserProfiles/"+newUser+"/AnnualExpenses/2017");
-				File dateTrack = new File("UserProfiles/"+newUser+"/AnnualExpenses/2017/November");
+
+				//File incomeFile = new File("UserProfiles/"+newUser+"/Income.txt");
+				//File userFile = new File("UserProfiles/"+newUser+"/"+newUser+".txt");
+				//File dir = new File("UserProfiles/"+newUser+"/AnnualExpenses/2017");
+				//File dateTrack = new File("UserProfiles/"+newUser+"/AnnualExpenses/2017/November");
+
+				String fileName = "FixedExpenses.txt";
+				//String incomeFile = "Income.txt";
+				File incomeFile = new File("UserProfiles" + File.separator+newUser+File.separator +"Income.txt");
+				File userFile = new File("UserProfiles" + File.separator+newUser+File.separator +newUser+".txt");
+				File dir = new File("UserProfiles" + File.separator+newUser+File.separator +"AnnualExpenses" + File.separator + currentMonth.getYear());
+				File dateTrack = new File("UserProfiles" + File.separator +newUser+File.separator +"AnnualExpenses" + File.separator + currentMonth.getYear() + File.separator + MonthFormatter.formatMonth(currentMonth.getMonth()));
+
 				if(dateTrack.exists()) {
 					System.out.println("directory already exists");
 				}
@@ -208,7 +232,7 @@ public class CreateAccountController {
 					if (success){
 				      // creating the directory succeeded
 				      System.out.println("directory was created successfully");
-				      File expTr = new File(dateTrack+"/ExpenseTracker.txt");
+				      File expTr = new File(dateTrack+File.separator +"ExpenseTracker.txt");
 				      if(expTr.createNewFile()) {
 				    	  System.out.println("Expense Tracker file is created!");
 				      }
@@ -263,11 +287,11 @@ public class CreateAccountController {
 				}else {
 					System.out.println("File already exists.");
 				}
-				home = Double.parseDouble(houseDebt);
+				//home = Double.parseDouble(houseDebt);
 				
 				
 				if(!houseDebt.isEmpty() || !healthDebt.isEmpty() || !payment.isEmpty() || !insurance.isEmpty()) {
-					File fixedFile = new File(dir+"/FixedExpenses.txt");
+					File fixedFile = new File(dir+File.separator +"FixedExpenses.txt");
 					if(fixedFile.createNewFile()) {
 						System.out.println("Fixed File is created!");
 					}

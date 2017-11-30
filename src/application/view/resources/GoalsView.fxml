@@ -136,7 +136,7 @@
                         </AnchorPane>
                   </content>
                 </TitledPane>
-                  <TitledPane animated="false" layoutX="10.0" layoutY="64.0" text="Vacations/Savings">
+                  <TitledPane animated="false" layoutX="10.0" layoutY="64.0" text="Vacations">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
