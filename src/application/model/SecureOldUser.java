@@ -25,10 +25,8 @@ public class SecureOldUser {
 		dataParser = new UserDataParser(currentUser);
 		Path path = Paths.get("UserProfiles" + File.separator + currentUser.getUsername());
 		
-		if(Files.exists(path)) {
-			System.out.printf("\nFile path does exist\n");
+		if(Files.exists(path)) 
 			auth = true;
-		}
 		
 		
 		return auth;

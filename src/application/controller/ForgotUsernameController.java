@@ -59,6 +59,7 @@ public class ForgotUsernameController {
 				wrongPhone.setVisible(false);
 				phNo = phoneTextField.getCharacters().toString();
 				phNo = phNo.replaceAll("[^\\d]", "");
+				
 				System.out.printf("%s", phNo);
 				}
 		});

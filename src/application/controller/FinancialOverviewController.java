@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.NumberFormat;
+import java.time.YearMonth;
 
 import application.Main;
 import application.model.*;
@@ -78,6 +79,9 @@ public class FinancialOverviewController
     private PieChart spendingChart;				// Chart for displaying the Users spending
     
     @FXML
+    private Label nullSpendingData;				// Label for indicating that no spending data is available
+    
+    @FXML
     private GridPane incomePaneGrid;			// Grid to add the save button for editing the Users Income
     
     @FXML
@@ -89,9 +93,7 @@ public class FinancialOverviewController
     
     private FinancialDataParser financialData;	// FileParser for retrieving the Financial information of the User
     
-    private User user;							// Current user of the application
-    
-    private ArrayList<Income> userIncome;
+    private Income userIncome;					// Income data of the User
     
     // Expense data for pie chart
     private ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(); 
@@ -110,17 +112,23 @@ public class FinancialOverviewController
 public void initialize()
 {
 	// TODO change User
-	//instantiate the current user and FinancaialDataParser
-	this.user = new User("testUser77");
 	
-	this.financialData = new FinancialDataParser(user);
+	this.financialData = new FinancialDataParser(Main.session.currentUser);
 	
 	loadSpendingDataForChart();
 	
+	
+	//If there is no spending data, set the label indicating that no spending data is available to visible
+	if(pieChartData.isEmpty())
+		nullSpendingData.setVisible(true);
+	
 	//populate the pieChart to display the expenses of the user
+	else 
+	{
 	spendingChart.setData(pieChartData);
 	
 	spendingChart.setStartAngle(25);
+	}
 	
 	loadGoalsDataForList();
 	
@@ -149,39 +157,44 @@ public void initialize()
 	userIncome = financialData.readIncome();
 		
 	//format the user income
-	employmentTextField.setText(userIncome.get(0).getTitle());
+	employmentTextField.setText(userIncome.getTitle());
 		
-	salaryTextField.setText(NumberFormat.getCurrencyInstance().format(userIncome.get(0).getPay()));
+	salaryTextField.setText(NumberFormat.getCurrencyInstance().format(userIncome.getPay()));
 		
 
 		
 }
 
 /**
- * Used to retrieve all of the the User's spending data, add
- * the total spent by category and load it into the ObservableList pieChartData.
+ * Used to retrieve all of the the User's spending data for the current month
+ * with duplicate Expense categories added.
  */
 public void loadSpendingDataForChart()
 {
+		// retrieve financial data relevant to the current month and year
+		YearMonth currentDate = YearMonth.now();
 	
 		//Create a Date to control what Expense data is retrieved
-		Date january = new Date(1,1,2017);
+		Date currentMonth = new Date(currentDate.getMonthValue(), 1, currentDate.getYear());
 			
 		//Get the variable expenses for January
-		ArrayList<Expense> monthlyExpenses = financialData.readExpenses(january, FinanceType.REXPENSE);
+		ArrayList<Expense> monthlyExpenses = financialData.readExpenses(currentMonth, FinanceType.REXPENSE);
 			
 		//Get the fixed expenses for January and append them to the current list of Expenses
-		monthlyExpenses.addAll(financialData.readExpenses(january, FinanceType.FEXPENSE));
+		monthlyExpenses.addAll(financialData.readExpenses(currentMonth, FinanceType.FEXPENSE));
+		
+		// if the user has no monthly expenses, leave the pieChartData empty
+		if(monthlyExpenses.isEmpty())
+			return;
 		
 		//Combine duplicate Expense objects to obtain the total Expenses per category
 		HashMap<String, Double> totalExpenses = totalExpensesByCategory(monthlyExpenses);
-			
+		
 		//add the expenses to the PieChart
 		for(String e : totalExpenses.keySet()) 
 		{
 				pieChartData.add(new PieChart.Data(e , totalExpenses.get(e)));
-		}
-		
+		}		
 }
 
 /**
@@ -414,17 +427,17 @@ private void writeIncomeData(String employment, String salary) throws IOExceptio
 {
 	
 	//reset the userIncome object and write it to the file
-	userIncome.get(0).userPay(employment, Double.parseDouble(salary));
+	userIncome.userPay(employment, Double.parseDouble(salary));
 	
-	financialData.setUserProfile(user);
+	financialData.setUserProfile(Main.session.currentUser);
 	
 	String incomeFile = financialData.getUserProfile();
 	
-	BufferedWriter bufferOutput = new BufferedWriter(new FileWriter(incomeFile + "Income.txt"));
+	BufferedWriter bufferedOutput = new BufferedWriter(new FileWriter(incomeFile + "Income.txt"));
 	
-	bufferOutput.write(userIncome.get(0).toString());
+	bufferedOutput.write(userIncome.toString());
 	
-	bufferOutput.close();
+	bufferedOutput.close();
 }
 
 }

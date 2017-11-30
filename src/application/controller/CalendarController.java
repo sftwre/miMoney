@@ -35,6 +35,9 @@ public class CalendarController {
 	@FXML
 	private GridPane monthTile;
 	
+	@FXML
+	private Label monthOfLabel;
+	
 	private CalendarView view;
 		
 	private ArrayList<String> sList;
@@ -56,6 +59,9 @@ public class CalendarController {
 		currentMonth = YearMonth.now();
 		sList = new ArrayList<String>(42);
 		sListCopy = new ArrayList<String>(42);
+		monthOfLabel.setText("Month of " + currentMonth.getMonth().toString().substring(0, 1).toUpperCase()
+							+ currentMonth.getMonth().toString().substring(1).toLowerCase());
+		
 		int k = 1;
 		
 				date = LocalDate.of(currentMonth.getYear(), currentMonth.getMonthValue(), 1);
@@ -94,8 +100,6 @@ public class CalendarController {
 	@FXML
 	public void addAnExpense(ActionEvent event) 
 	{
-		datalist = new DatalistModel(currentMonth, date);//DataListController.initialize(currentMonth, date);
-		
 		Stage popUp =  new Stage();
 		
 		popUp.initModality(Modality.APPLICATION_MODAL);
@@ -104,19 +108,22 @@ public class CalendarController {
 		
 		try
 		{
-		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/DatalistModel.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/DatalistView.fxml"));
 		
 		Scene scene = new Scene(root);
 		
 		popUp.setScene(scene);
 		
-		popUp.setTitle("Date of asdf");
+		popUp.setTitle("Date of " + currentMonth.getMonth().toString().substring(0, 1).toUpperCase()
+						+ currentMonth.getMonth().toString().substring(1).toLowerCase() + " "
+						+ date.now().getDayOfMonth() + ", "
+						+ date.now().getYear());
 		
 		popUp.show();
 		
 		} catch(IOException e){
 			
-			System.out.printf("The resource 'view/resources/DatalistModel.fxml' could not be located");
+			System.out.printf("The resource 'view/resources/DatalistView.fxml' could not be located");
 		}
 
 	}

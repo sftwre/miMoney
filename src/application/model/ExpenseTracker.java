@@ -10,7 +10,6 @@ import application.model.Expense.Expense;
  * on a monthly basis.
  * 
  * @author Isaac Buitrago
- * @author jguzm
  *
  */
 
