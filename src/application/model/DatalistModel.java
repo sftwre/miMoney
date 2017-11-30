@@ -5,9 +5,8 @@ import java.time.YearMonth;
 import java.util.ArrayList;
 
 import application.model.ExpenseTracker;
-import application.model.Expense.*;
-import application.model.Expense.Gas;
 //import application.model.Goals.*;
+import application.model.Expense.*;
 
 /**
  * A DataList will handle all of the data
@@ -25,15 +24,20 @@ public class DatalistModel {
 	private Expense e;
 
 	private Date d;
-	
+		
 	/*
 	 * constructor for generic DataList use case
-	 */
+	 */	
 	
 	public void add(String category, double total, LocalDate date, String item) {
 		et.addExpense(decideType(category, total, date, item));
-	}	
+	}//END add()
 	
+	public DatalistModel() {
+		//d = new Date(1, 1, 2017);
+		et = new ExpenseTracker();
+	}//END constructor
+
 	public Expense decideType(String category, double t, LocalDate date, String i) {
 		switch(category) {
 		case "Apperal":
@@ -95,6 +99,7 @@ public class DatalistModel {
 
 	private Date convertDate(LocalDate date) {
 		//TODO: get all values from date and put into d
+		//System.out.println(date.toString());
 		d = new Date(date.getMonthValue(), date.getDayOfMonth(), date.getYear());
 		return d;
 	}// END convertDate
