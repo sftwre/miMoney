@@ -21,10 +21,7 @@ public class DateConverter {
 	 */
 		
 	public static Date convertDate(LocalDate date) {
-		Date d;
-		d = new Date(date.getMonthValue(), date.getDayOfMonth(), date.getYear());
-
-		return d;
+		return new Date(date.getMonthValue(), date.getDayOfMonth(), date.getYear());
 	}// END convertDate
 
 }
