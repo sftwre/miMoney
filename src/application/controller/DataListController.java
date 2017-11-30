@@ -31,6 +31,7 @@ import java.time.YearMonth;
 import application.Main;
 import application.model.DatalistModel;
 import application.model.Date;
+import application.model.DateConverter;
 import application.model.FinanceType;
 import application.model.Expense.Expense;
 import application.model.Expense.VariableExpense;
@@ -209,7 +210,7 @@ public class DataListController {
     public void readExpenses()
 	{
 		//Create a Date to control what Expense data is retrieved
-		d = new Date(date.getMonthValue(), date.getDayOfMonth(), date.getYear());
+		d = DateConverter.convertDate(date);
 
 		//Get the variable expenses for February
 		ArrayList<Expense> monthExpenses = input.readExpenses(d, FinanceType.REXPENSE);
@@ -237,8 +238,8 @@ public class DataListController {
     						  "Public Transportation", "Subscriptions", "Miscellaneous");
     }//END loadExpenseCategories()
     
-    public void setDate(LocalDate d) {
-    	this.date = d;
+    public void setDate(LocalDate date) {
+    	this.date = date;
     }//END setDate()
 
 }//END CONTROLLER CLASS DatalistController
