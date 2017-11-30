@@ -19,7 +19,7 @@ public class MonthFormatter {
 	 * 
 	 * e.g.
 	 * YearMonth currentMonth = YearMonth.now() //this gets the current month and year
-	 * System.out.printf("%s", currentMonth.MonthFormatter.formatMonth());
+	 * System.out.printf("%s", MonthFormatter.formatMonth(currentMonth.getMonth()));
 	 * Output: November
 	 * 
 	 * If you simply print currentMonth.getMonth().toString() you will get the current
