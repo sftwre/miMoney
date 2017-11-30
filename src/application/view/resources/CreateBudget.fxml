@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" prefHeight="352.0" prefWidth="405.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CreateBudgetController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" prefHeight="352.0" prefWidth="384.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CreateBudgetController">
    <children>
-      <VBox fx:id="vBox" prefHeight="336.0" prefWidth="424.0">
+      <VBox fx:id="vBox" prefHeight="352.0" prefWidth="389.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <GridPane prefHeight="54.0" prefWidth="405.0">
               <columnConstraints>
@@ -23,7 +23,7 @@
               </rowConstraints>
                <children>
                   <Text fx:id="titleText" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" textAlignment="CENTER" wrappingWidth="180.0" />
-                  <TextField fx:id="titleTextField" promptText="Exp. Summer Budget" GridPane.columnIndex="1">
+                  <TextField fx:id="titleTextField" prefHeight="25.0" prefWidth="156.0" promptText="Exp. Summer Budget" GridPane.columnIndex="1">
                      <tooltip>
                         <Tooltip text="Give your Budget a title" />
                      </tooltip>

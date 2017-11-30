@@ -11,7 +11,18 @@
    <children>
       <SplitPane prefHeight="583.0" prefWidth="184.0">
          <items>
-            <ScrollPane hbarPolicy="NEVER" hmax="0.0" prefHeight="200.0" prefWidth="200.0" />
+            <ScrollPane hbarPolicy="NEVER" hmax="0.0" prefHeight="200.0" prefWidth="200.0">
+               <content>
+                  <Accordion fx:id="weekAccordion">
+                    <panes>
+                      <TitledPane fx:id="sundayPane" animated="false" text="Sunday">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        </content>
+                      </TitledPane>
+                    </panes>
+                  </Accordion>
+               </content></ScrollPane>
          </items>
       </SplitPane>
       <SplitPane layoutX="184.0" prefHeight="583.0" prefWidth="588.0">

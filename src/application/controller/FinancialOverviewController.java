@@ -13,6 +13,7 @@ import java.time.YearMonth;
 import application.Main;
 import application.model.*;
 import application.model.Expense.Expense;
+import application.model.Goals.Budget;
 import application.model.Goals.Goals;
 
 import java.util.ArrayList;
@@ -122,7 +123,7 @@ public void initialize()
 	if(pieChartData.isEmpty())
 		nullSpendingData.setVisible(true);
 	
-	//populate the pieChart to display the expenses of the user
+	// spending data is available, populate the pieChart to display the expenses of the user
 	else 
 	{
 	spendingChart.setData(pieChartData);
@@ -130,7 +131,12 @@ public void initialize()
 	spendingChart.setStartAngle(25);
 	}
 	
+	// Load all the non Budget Goals into the ListView on the Current Goals panel
 	loadGoalsDataForList();
+	
+	// Load all the Budgets into the ListView on the Current Goals panel
+	loadBudgetDataForList();
+	
 	
 	/*
 	 * If the User currently does not contain any goals, display a label  
@@ -241,6 +247,24 @@ public void loadGoalsDataForList()
 				NumberFormat.getCurrencyInstance().format(g.getTotalCost())));
 	}
 
+}
+
+
+/**
+ * Used to load all of the users Budgets into the goalsListData 
+ */
+public void loadBudgetDataForList()
+{
+	//load all the Goals from the Goals directory
+	ArrayList<Budget> budgetList = financialData.readBudgets();
+		
+	//for each Budget, display the title of the Budget 
+	for(Budget b: budgetList)
+	{
+		goalsListData.add(String.format("%s", b.getTitle()));
+		System.out.println(b.toString());
+		
+	}
 }
 
 /**

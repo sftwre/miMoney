@@ -17,6 +17,8 @@ import javafx.scene.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -29,6 +31,7 @@ import java.time.YearMonth;
 import application.Main;
 import application.model.DatalistModel;
 import application.model.Date;
+import application.model.DateConverter;
 import application.model.FinanceType;
 import application.model.Expense.Expense;
 import application.model.Expense.VariableExpense;
@@ -81,6 +84,8 @@ public class DataListController {
     private DatalistModel dm;
     
 	static FinancialDataParser input;
+
+	//File fixedFile = new File(dir+File.separator +"FixedExpenses.txt");
 
     /**
      * 
@@ -143,7 +148,12 @@ public class DataListController {
     }//END validate()
 	
 	private void addToFile(String selectedItem, double total2, LocalDate date2, String string) {
-		
+		//Create a new file writer for the given Months ExpenseTracker.txt
+		//TODO: sort through the dates line by line, store the last known date, current date, and next date
+		//TODO: if currentDate == givenDate then append the expense to end of line
+		//TODO: if currentDate.day() > givenDate.day()
+		//lastKnownDate = givenDate; write new line with expense
+		return;
 	}
     
 	public void addFreshExpense(){
@@ -200,7 +210,7 @@ public class DataListController {
     public void readExpenses()
 	{
 		//Create a Date to control what Expense data is retrieved
-		d = new Date(date.getMonthValue(), date.getDayOfMonth(), date.getYear());
+		d = DateConverter.convertDate(date);
 
 		//Get the variable expenses for February
 		ArrayList<Expense> monthExpenses = input.readExpenses(d, FinanceType.REXPENSE);
@@ -228,8 +238,8 @@ public class DataListController {
     						  "Public Transportation", "Subscriptions", "Miscellaneous");
     }//END loadExpenseCategories()
     
-    public void setDate(LocalDate d) {
-    	this.date = d;
+    public void setDate(LocalDate date) {
+    	this.date = date;
     }//END setDate()
 
 }//END CONTROLLER CLASS DatalistController
