@@ -46,6 +46,7 @@ public class CalculatorModel {
 	}
 	/**
 	 * Calculate time to save up for purchase in months
+	 * Goal is divided by deposit, rounded up, and cast to integer
 	 * @param sG the savings goal
 	 * @param mD the monthly deposit
 	 */
