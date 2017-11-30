@@ -1,7 +1,7 @@
 package application.controller;
 
 import javafx.scene.control.TextField;
-import application.model.SavingsCalculatorModel;
+import application.model.CalculatorModel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -26,7 +26,7 @@ public class CalculatorController implements EventHandler<ActionEvent>{
     
     private double num1 = 0;
     private double num2 = 0;
-    private SavingsCalculatorModel model = new SavingsCalculatorModel(num1, num2);
+    private CalculatorModel model = new CalculatorModel(num1, num2);
     
     @Override
     public void handle(ActionEvent event)

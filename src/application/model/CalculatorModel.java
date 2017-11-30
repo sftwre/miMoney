@@ -6,12 +6,12 @@ package application.model;
  * The calculator will tell you when you will be able to buy something based on how much you save per month.
  *
  */
-public class SavingsCalculatorModel {
+public class CalculatorModel {
 	private double savingsGoal; // Total cost of the item the user saving up to obtain
 	private double monthlyDeposit; // Amount deposited per month towards item
 	private int time; // Time in months that it will take to be able to afford the item
 
-	public SavingsCalculatorModel(double savingsGoal, double monthlyDeposit) {
+	public CalculatorModel(double savingsGoal, double monthlyDeposit) {
 		this.savingsGoal = savingsGoal;
 		this.monthlyDeposit = monthlyDeposit;
 		time = 0;
