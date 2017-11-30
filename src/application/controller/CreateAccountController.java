@@ -12,6 +12,7 @@ import java.text.NumberFormat;
 import java.time.YearMonth;
 
 import application.Main;
+import application.model.MonthFormatter;
 import application.model.SecureNewPass;
 //import application.MainAccount;
 import javafx.event.ActionEvent;
@@ -189,11 +190,10 @@ public class CreateAccountController {
 				String insurance = autoInsur.getText().trim();
 				String fileName = "FixedExpenses.txt";
 				//String incomeFile = "Income.txt";
-				File incomeFile = new File("UserProfiles/"+newUser+"/Income.txt");
-				File userFile = new File("UserProfiles/"+newUser+"/"+newUser+".txt");
-				File dir = new File("UserProfiles/"+newUser+"/AnnualExpenses/2017");
-				File dateTrack = new File("UserProfiles/"+newUser+"/AnnualExpenses/2017/November");
-				//File dateTrack = new File("UserProfiles/"+newUser+"/AnnualExpenses" + File.separator + currentMonth.getYear() + File.separator + currentMonth.getMonth());
+				File incomeFile = new File("UserProfiles" + File.separator+newUser+File.separator +"Income.txt");
+				File userFile = new File("UserProfiles" + File.separator+newUser+File.separator +newUser+".txt");
+				File dir = new File("UserProfiles" + File.separator+newUser+File.separator +"AnnualExpenses/2017");
+				File dateTrack = new File("UserProfiles" + File.separator +newUser+File.separator +"AnnualExpenses" + File.separator + currentMonth.getYear() + File.separator + MonthFormatter.formatMonth(currentMonth.getMonth()));
 				if(dateTrack.exists()) {
 					System.out.println("directory already exists");
 				}
@@ -202,7 +202,7 @@ public class CreateAccountController {
 					if (success){
 				      // creating the directory succeeded
 				      System.out.println("directory was created successfully");
-				      File expTr = new File(dateTrack+"/ExpenseTracker.txt");
+				      File expTr = new File(dateTrack+File.separator +"ExpenseTracker.txt");
 				      if(expTr.createNewFile()) {
 				    	  System.out.println("Expense Tracker file is created!");
 				      }
@@ -261,7 +261,7 @@ public class CreateAccountController {
 				
 				
 				if(!houseDebt.isEmpty() || !healthDebt.isEmpty() || !payment.isEmpty() || !insurance.isEmpty()) {
-					File fixedFile = new File(dir+"/FixedExpenses.txt");
+					File fixedFile = new File(dir+File.separator +"FixedExpenses.txt");
 					if(fixedFile.createNewFile()) {
 						System.out.println("Fixed File is created!");
 					}
