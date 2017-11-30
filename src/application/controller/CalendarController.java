@@ -7,8 +7,10 @@ import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -21,6 +23,7 @@ import java.util.ArrayList;
 import application.Main;
 import application.view.CalendarView;
 import application.model.DatalistModel;
+import application.model.MonthFormatter;
 
 /**
  * @author Jonathan Remote
@@ -38,7 +41,15 @@ public class CalendarController {
 	@FXML
 	private Label monthOfLabel;
 	
+	@FXML
+	Accordion weekAccordion;
+	
+	@FXML
+	TitledPane sundayPane;
+	
 	private CalendarView view;
+	
+	private ArrayList<TitledPane> tpList;
 		
 	private ArrayList<String> sList;
 	
@@ -57,10 +68,14 @@ public class CalendarController {
 		monthTile.setMinSize(420, 380);
 		view = new CalendarView();
 		currentMonth = YearMonth.now();
+		
+		System.out.println(currentMonth.getMonth());
+		tpList = new ArrayList<TitledPane>();
 		sList = new ArrayList<String>(42);
 		sListCopy = new ArrayList<String>(42);
-		monthOfLabel.setText("Month of " + currentMonth.getMonth().toString().substring(0, 1).toUpperCase()
-							+ currentMonth.getMonth().toString().substring(1).toLowerCase());
+		monthOfLabel.setText("Month of " + MonthFormatter.formatMonth(currentMonth.getMonth()));
+		
+		addTitlePanes(decideDays());
 		
 		int k = 1;
 		
@@ -97,6 +112,28 @@ public class CalendarController {
 				//list.add(specificDay);		
 	}
 
+	private void addTitlePanes(int n) {
+		switch(n) {
+		
+		}//END switch(n)
+		
+		tpList.add(new TitledPane("Monday", new Button("yes")));
+		tpList.add(new TitledPane("Tuesday", new Button("yes")));
+		tpList.add(new TitledPane("Wednesday", new Button("yes")));
+		tpList.add(new TitledPane("Thursday", new Button("yes")));
+		tpList.add(new TitledPane("Friday", new Button("yes")));
+		tpList.add(new TitledPane("Saturday", new Button("yes")));
+		
+		for(int i = 0; i<tpList.size(); i++)
+			weekAccordion.getPanes().add(tpList.get(i));
+	}//END addTitlePanes()
+
+	private int decideDays() {
+		int days = 0;
+		
+		return days;	
+	}
+
 	@FXML
 	public void addAnExpense(ActionEvent event) 
 	{
@@ -114,8 +151,7 @@ public class CalendarController {
 		
 		popUp.setScene(scene);
 		
-		popUp.setTitle("Date of " + currentMonth.getMonth().toString().substring(0, 1).toUpperCase()
-						+ currentMonth.getMonth().toString().substring(1).toLowerCase() + " "
+		popUp.setTitle("Date of " + MonthFormatter.formatMonth(currentMonth.getMonth()) + " "
 						+ date.now().getDayOfMonth() + ", "
 						+ date.now().getYear());
 		
@@ -127,21 +163,6 @@ public class CalendarController {
 		}
 
 	}
-		/*Stage popUp =  new Stage();
-		
-		popUp.initModality(Modality.APPLICATION_MODAL);
-		popUp.initOwner(Main.stage);
-		
-		try
-		{
-		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/DatalistModel.fxml"));
-		Scene scene = new Scene(root);
-		popUp.setScene(scene);
-		popUp.show();
-		} catch(IOException e){
-			System.out.printf("\nThe resource 'view/resources/DatalistModel.fxml' could not be located\n");
-		}// END try/catch load FXML
-	}*/
 	
 	/**
 	 * Sample code:
