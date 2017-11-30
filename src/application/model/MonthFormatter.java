@@ -3,6 +3,7 @@
  */
 package application.model;
 
+import java.time.DayOfWeek;
 import java.time.Month;
 
 /**
@@ -35,5 +36,10 @@ public class MonthFormatter {
 	 return mo.toString().substring(0, 1).toUpperCase()
 		+ mo.toString().substring(1).toLowerCase();
 	}//END static formatMonth()
+	
+	public static String formatDay(DayOfWeek d){
+		 return d.toString().substring(0, 1).toUpperCase()
+			+ d.toString().substring(1).toLowerCase();
+		}//END static formatMonth()
 
 }//END MODEL CLASS MonthFormatter
