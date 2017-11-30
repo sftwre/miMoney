@@ -24,10 +24,8 @@
                   <Text fx:id="totalCost" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Text fx:id="monthlyPayment" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Text fx:id="time" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Interes Rate (APR)" textAlignment="CENTER" wrappingWidth="200.0" GridPane.rowIndex="5" />
                   <Button fx:id="close" mnemonicParsing="false" onAction="#closeButton" prefHeight="27.0" prefWidth="170.0" text="Close" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <Button fx:id="Search" mnemonicParsing="false" onAction="#searchButton" prefHeight="27.0" prefWidth="170.0" text="Search" />
-                  <Text fx:id="interestRate" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="188.21875" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <TextField fx:id="searchText" promptText="Ex. Ford F-150" GridPane.columnIndex="1" />
                </children>
                <columnConstraints>
