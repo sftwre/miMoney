@@ -28,12 +28,16 @@ import java.util.ArrayList;
 import application.Main;
 import application.view.CalendarView;
 import application.model.DatalistModel;
+<<<<<<< HEAD
 import application.model.Date;
 import application.model.DateConverter;
 import application.model.FinanceType;
 import application.model.User;
 import application.model.DateFormatter;
 import application.model.Expense.Expense;
+=======
+import application.model.DateFormatter;
+>>>>>>> branch 'master' of https://github.com/UTSA-CS-3443/miMoney.git
 
 /**
  * @author Jonathan Remote
