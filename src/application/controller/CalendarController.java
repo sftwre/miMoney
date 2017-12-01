@@ -145,7 +145,7 @@ public class CalendarController {
 		//dataParser = new UserDataParser(user);
 		Path path = Paths.get("UserProfiles" + File.separator + user.getUsername() + File.separator + "AnnualExpenses" + File.separator + currentMonth.getYear() + File.separator + DateFormatter.formatMonth(currentMonth.getMonth()));
 		
-		if(Files.exists(path)) 
+		if(Files.exists(path))
 			return;
 		
 		String fileName = "FixedExpenses.txt";
@@ -284,7 +284,7 @@ public class CalendarController {
 			System.out.printf("The resource 'view/resources/DatalistView.fxml' could not be located");
 		}
 
-	}
+	}//END addAnExpense()
 	
 	/**
 	 * Sample code:
