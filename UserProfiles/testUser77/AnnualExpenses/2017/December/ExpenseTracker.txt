@@ -1,1 +1,1 @@
-Entertainment:64.560000:12/01/2017:Call of Duty WW2
+Entertainment:64.560000:12/01/2017:Call of Duty WW2,Food:23.690000:12/1/2017:Mcdonalds,Entertainment:40.520000:12/1/2017:Battlefield 1,Entertainment:952.830000:12/1/2017:Acer x34 Predator

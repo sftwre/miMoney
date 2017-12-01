@@ -192,7 +192,7 @@ public class DataListController {
 			doubleLabel.setText(DecimalFormat.getCurrencyInstance().format(oldTotal));
 			counter++;
 			
-			dm.add(category, oldTotal, date, item);
+			//dm.add(category, oldTotal, date, item);
 			t0Field.requestFocus();
 			return;
 		}

@@ -1,11 +1,13 @@
 package application.model;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
@@ -41,7 +43,9 @@ public class DatalistModel {
 	
 	private BufferedReader br;
 	
-	private FileWriter fw;		
+	private FileWriter fw;
+	
+	private Writer bw;		
 	/*
 	 * constructor for generic DataList use case
 	 */	
@@ -136,6 +140,7 @@ public class DatalistModel {
 		//Series of try catch used with FileIO
 		try {
 			fw = new FileWriter(et, true);
+			bw = new BufferedWriter(fw);
 		} catch (IOException err) {
 			System.out.printf("\nException in try catch DatalistController addtoFile create new file writer\n");
 		}
@@ -149,19 +154,30 @@ public class DatalistModel {
 
 		try {
 			line = br.readLine();
+
+			//while(line != null) {
 			if(line != null)
 			{
 				if(line.contains(e.getDate().toString())) {
-					fw.append(e.toString());
+					bw.append("," + e.toString());
+					System.out.print("\nNO\n");
 				}else {
 					fw.append(e.toString());
 				}
 					//write to end of line
 			}
+			//line = br.readLine();
+		//}//END while
 		} catch (IOException err) {
 			// TODO Auto-generated catch block
 			err.printStackTrace();
 		}//END try catch read line check line
+		try {
+			bw.close();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		//END series of try/catch
 		
