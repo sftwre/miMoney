@@ -17,9 +17,14 @@ import javafx.scene.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.text.DecimalFormat;
@@ -32,6 +37,7 @@ import application.Main;
 import application.model.DatalistModel;
 import application.model.Date;
 import application.model.DateConverter;
+import application.model.DateFormatter;
 import application.model.FinanceType;
 import application.model.Expense.Expense;
 import application.model.Expense.VariableExpense;
@@ -81,9 +87,9 @@ public class DataListController {
     
 	private Date d;
 
-    private DatalistModel dm;
-    
 	static FinancialDataParser input;
+	
+    private DatalistModel dm;
 
 	//File fixedFile = new File(dir+File.separator +"FixedExpenses.txt");
 
@@ -102,11 +108,11 @@ public class DataListController {
 		currentMonth = YearMonth.now();
 		date = LocalDate.of(currentMonth.getYear(), currentMonth.getMonthValue(), LocalDate.now().getDayOfMonth());
 		sdf = new SimpleDateFormat("MM/dd/yyyy");
-		
 		input = new FinancialDataParser(Main.session.currentUser);
-    	
+		    	
 		total = 10.0;
     	t1Field.setPromptText(DecimalFormat.getCurrencyInstance().format(total));
+    	doubleLabel.setText(DecimalFormat.getCurrencyInstance().format(total));
 		readExpenses();
     	
     	addButton.setDefaultButton(true);
@@ -147,14 +153,7 @@ public class DataListController {
     	return true;
     }//END validate()
 	
-	private void addToFile(String selectedItem, double total2, LocalDate date2, String string) {
-		//Create a new file writer for the given Months ExpenseTracker.txt
-		//TODO: sort through the dates line by line, store the last known date, current date, and next date
-		//TODO: if currentDate == givenDate then append the expense to end of line
-		//TODO: if currentDate.day() > givenDate.day()
-		//lastKnownDate = givenDate; write new line with expense
-		return;
-	}
+	
     
 	public void addFreshExpense(){
 		if(counter == 0)
@@ -165,7 +164,6 @@ public class DataListController {
 			counter++;
 			
 			dm.add(expensesComboBox.getSelectionModel().getSelectedItem(), total, date, t0Field.getCharacters().toString());
-			addToFile(expensesComboBox.getSelectionModel().getSelectedItem(), total, date, t0Field.getCharacters().toString());
 			t1Field.clear();
 			t0Field.clear();
 			t0Field.requestFocus();
@@ -177,7 +175,6 @@ public class DataListController {
 				new Label(t0Field.getCharacters().toString()), 
 				new Label(DecimalFormat.getCurrencyInstance().format(total)));
 		dm.add(expensesComboBox.getSelectionModel().getSelectedItem(), total, date, t0Field.getCharacters().toString());
-		addToFile(expensesComboBox.getSelectionModel().getSelectedItem(), total, date, t0Field.getCharacters().toString());
 		//itemsGridPane.add(new Label(t0Field.getCharacters().toString()), 0, counter);
 		//itemsGridPane.add(new Label(DecimalFormat.getCurrencyInstance().format(total)), 1, counter);
 		counter++;
@@ -222,7 +219,6 @@ public class DataListController {
 		{
 			if(e.getDate().toString().compareTo(d.toString()) == 0)
 			{
-				//System.out.printf("%f %s %s%n", e.getAmmount(), e.getItem(), e.getDate().toString());
 				addOldExpense(e.getClassName(), e.getAmmount(), LocalDate.of(e.getDate().getYear(), e.getDate().getMonth(), e.getDate().getDay()), e.getItem());
 			}
 		}//END for each expense
