@@ -65,8 +65,7 @@ public class CreateAccountController {
     @FXML
     private PasswordField password;
     
-    @FXML
-    private Label passwordTxt;
+    
     
     @FXML
     private Label incomeTxt;
@@ -208,9 +207,13 @@ public class CreateAccountController {
 				String newIncome = income.getText().trim();
 				String newJob = jobInfo.getText().trim();
 				String houseDebt = housing.getText().trim();
+				//home.setAmmount(Double.parseDouble(houseDebt));
 				String healthDebt = health.getText().trim();
+				healthy.setAmmount(Double.parseDouble(healthDebt));
 				String payment = autoPay.getText().trim();
+				auto.setAmmount(Double.parseDouble(payment));
 				String insurance = autoInsur.getText().trim();
+				insur.setAmmount(Double.parseDouble(insurance));
 
 				//File incomeFile = new File("UserProfiles/"+newUser+"/Income.txt");
 				//File userFile = new File("UserProfiles/"+newUser+"/"+newUser+".txt");
@@ -298,16 +301,24 @@ public class CreateAccountController {
 					//fixedFile.mkdirs();
 					FileWriter fill = new FileWriter(fixedFile);
 					if(!houseDebt.isEmpty()){
+						//home.setAmmount(Double.parseDouble(houseDebt));
+						//home.setDate(currentMonth, );
 						fill.write("Housing:"+home.toString());
 						//fill.close();	
 					}
 					if(!healthDebt.isEmpty()) {
-						fill.write("Health Insurance:"+Double.parseDouble(healthDebt)+":");
+						//fill.write("Health Insurance:"+Double.parseDouble(healthDebt)+":");
+						//Double.parseDouble(healthDebt);
+						healthy.setAmmount(Double.parseDouble(healthDebt));
+						//healthy.setAmmount(healthDebt);
+						fill.write("Health Insurance:"+healthy.toString());
 						
 					}if(!payment.isEmpty()) {
-						fill.write("Auto Payment:"+Double.parseDouble(payment)+":");
+						//fill.write("Auto Payment:"+Double.parseDouble(payment)+":");
+						fill.write("Auto Payment:"+auto.toString());
 						
 					}if(!insurance.isEmpty()) {
+						//fill.write("Auto Insurance:"+Double.parseDouble(insurance)+":");
 						fill.write("Auto Insurance:"+Double.parseDouble(insurance)+":");
 					}
 					
