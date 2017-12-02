@@ -79,10 +79,15 @@ public class Goals2Controller {
 				} 
 				catch (FileNotFoundException exception) {	//prints an error for the file 
 				    System.err.println("failed to open data.txt");
-				    System.exit(1);
+				    notExist = 1;
+				    //System.exit(1);
 				}		
 				
-			
+				if (in == null){
+			    	notExist = 1;
+			    	break;
+			    }
+				
 				// Transfer data by token to name
 				while (in.hasNext()) {
 				    String name = in.next();
@@ -116,6 +121,7 @@ public class Goals2Controller {
 			this.time.setText("");
 			Error();
 		}
+		notExist = 0;
 	}
 	
 	
