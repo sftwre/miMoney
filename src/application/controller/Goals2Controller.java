@@ -3,6 +3,10 @@ package application.controller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.DirectoryNotEmptyException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Paths;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -45,16 +49,9 @@ public class Goals2Controller {
 	private Text time;	// Name of the project
 	
 	@FXML
-	private Text interestRate;	// Name of the project
-	
-	@FXML
 	private TextField searchText;
-	
-	@FXML
-    private ListView<String> currentGoalsListView;// ListView for displaying the current goals of the User
     
-    @FXML 
-    private StackPane goalsStackPane;			// Stack Pane that contains a ListView and label
+    int fileType;
     
     String [] sGoals = {"Auto","Home","Loan","Savings","Vacation"}; // Array with the different types of goals
 	
@@ -89,9 +86,11 @@ public class Goals2Controller {
 				// Transfer data by token to name
 				while (in.hasNext()) {
 				    String name = in.next();
-				    String [] parts = name.split(":");
 				    
 				    System.out.println(name);
+				    
+				    String parts [] = name.split(":");
+				    
 				    
 				    this.name.setText(parts[1]);
 					this.totalCost.setText(parts[2]);
@@ -102,6 +101,7 @@ public class Goals2Controller {
 				    
 				}
 				in.close();	//Close file
+				this.fileType = i;
 				notExist = 0;
 				break;
 			}
@@ -128,12 +128,30 @@ public class Goals2Controller {
 		
 	}
 	public void deleteButton (ActionEvent event ){
+		
+		String path;
+		File file;
+		
+		path = "UserProfiles" + File.separator + Main.session.currentUser.getUsername() + File.separator +
+				"Goals" +  File.separator + sGoals[this.fileType] + File.separator + this.searchText.getText();
+		
+		file = new File(path);
+		
+		try {
+			Files.deleteIfExists(Paths.get(path));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		this.name.setText("");
 		this.totalCost.setText("");
 		this.monthlyPayment.setText("");
 		this.time.setText("");
-		this.interestRate.setText("");
-		
+		this.searchText.setText("");
+		this.searchText.getText();
+			
+
 	}
 	
 	@FXML

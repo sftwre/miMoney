@@ -32,8 +32,6 @@ import javafx.stage.Stage;
 
 public class GoalsController implements EventHandler<ActionEvent> {
 	
-	private FinancialDataParser financialData;	// FileParser for retrieving the Financial information of the User
-	private ObservableList<String> goalsListData = FXCollections.observableArrayList();	
 	@FXML
 	private TextField Cmodel;	// Name of the project
 	

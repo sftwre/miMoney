@@ -180,6 +180,9 @@ public class Goals {
 	}
 	
 	public String toString(){
+		
+		this.projectName = this.projectName.replaceAll("\\s+", "");
+		
 		return String.format("%s:%s:%.2f:%.2f:%d"
 				, this.type
 				, this.projectName
@@ -187,6 +190,4 @@ public class Goals {
 				, this.monthly
 				, this.time);
 	}
-	
-
 }
