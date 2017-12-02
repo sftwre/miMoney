@@ -1,0 +1,15 @@
+This text describes how the goals text are stored
+
+1.- Type of goal : shows the type of goal
+2.- Goal Name : All one word, even the name of the goal is with spaces
+3.- Total Cost: Total payment amount including down payment, interest rate, taxes (if apply), and other expenses.
+4.- Monthly Payment: Total amount that will be pay by month (Total Cost / 12) if apply.
+5.- Total time: it can be by month or by year depending on type of goal.
+
+Example: CarGoal:FordF-150:21540.00:359.00:5
+
+Type of Goal    Goal Name    Total Cost   Monthly Payment  Total time
+    ^              ^             ^            ^               ^  
+    |              |             |            |               |  
+    |              |             |            |               |  
+CarGoal:       FordF-150:     21540.00:     359.00:           5
