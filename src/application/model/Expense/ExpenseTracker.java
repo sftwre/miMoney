@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 
 /**
- * This class is responsible for tracking a user's varaible Expenses
+ * This class is responsible for tracking a user's variable Expenses
  * on a monthly basis.
  * 
  * @author Isaac Buitrago

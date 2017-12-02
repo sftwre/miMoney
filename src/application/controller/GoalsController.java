@@ -1,9 +1,7 @@
 package application.controller;
-
-/**
- * @author Manuel Deaguinaga
- */
+import java.nio.file.*;
 import java.io.File;
+import java.io.FileWriter;
 
 /**
  * @author Manuel Deaguinaga
@@ -66,20 +64,52 @@ public class GoalsController implements EventHandler<ActionEvent> {
 	 * button and update the information
 	 * in the displayed
 	 */
+	@FXML
 	public void cContinue(ActionEvent event) {
+		
+		//kind name cost interestRate down
 		Goals carGoal = new Goals("CarGoal", this.Cmodel.getText(), Ccost.getText(),
 					this.Cinteres.getText(), this.Cdown.getText(), this.Cyear.getText(), this.Ctime.getText());
 		//Close window and open goal
 		((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
 		
-		File file = new File("UserProfiles/testUser77/Goals/Auto/"+this.Cmodel.getText());
-		System.out.printf(carGoal.toString1());
+			
+		String path = "UserProfiles" + File.separator + Main.session.currentUser.getUsername() + File.separator +
+				"Goals" +  File.separator + "Auto" + File.separator + this.Cmodel.getText();
+		
+		//if there is a file print the info to the file 
+		
+		File file = new File(path);
+		if(!file.exists()) { 
+		
+			try {
+            
+				FileWriter fw = new FileWriter(file);
+				fw.write(carGoal.toString());
+				fw.close();
+			}
+				catch (IOException iox) {
+				//do stuff with exception
+				iox.printStackTrace();
+			}
+		}
+		
+		else if(file.exists()){
+			System.out.println("Goal Exist");
+			
+		}
+		
+		
+		//System.out.printf(carGoal.toString1());
+		// Else Create a file
+		
 	}
 	
 	/**
 	 * 
 	 * @param event
 	 */
+	@FXML
 	public void cCancel(ActionEvent event){
 		this.Cmodel.setText("");
 		this.Ccost.setText("");
@@ -123,6 +153,7 @@ public class GoalsController implements EventHandler<ActionEvent> {
 	 * button and update the information
 	 * in the displayed
 	 */
+	@FXML
 	public void hContinue(ActionEvent event) {
 			
 			Goals homeGoal = new Goals("HomeGoal", this.hProjectName.getText(), hCost.getText(),
@@ -132,12 +163,37 @@ public class GoalsController implements EventHandler<ActionEvent> {
 			((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
 			
 			// Create file
+			String path = "UserProfiles" + File.separator + Main.session.currentUser.getUsername() + File.separator +
+					"Goals" +  File.separator + "Home" + File.separator + this.hProjectName.getText();
+			
+			//System.out.println(path);
+			//if there is a file print the info to the file 
+			
+			File file = new File(path);
+			if(!file.exists()) { 
+			
+				try {
+	            
+					FileWriter fw = new FileWriter(file);
+					fw.write(homeGoal.toString());
+					fw.close();
+				}
+					catch (IOException iox) {
+					//do stuff with exception
+					iox.printStackTrace();
+				}
+			}
+			
+			else if(file.exists()){
+				System.out.println("Goal Exist");
+				
+			}
 			
 			// Print the information
-			System.out.printf(homeGoal.toString2());
+			//System.out.printf(homeGoal.toString2());
 			
 	}
-	
+	@FXML
 	public void hCancel(ActionEvent event){
 		//Deletes the data entered
 		this.hProjectName.setText("");
@@ -183,19 +239,44 @@ public class GoalsController implements EventHandler<ActionEvent> {
 	 * button and update the information
 	 * in the displayed
 	 */
+	@FXML
 	public void lContinue(ActionEvent event) {
 			
-			Goals lLomeGoal = new Goals("LoanGoal", this.lProjectName.getText(), lCost.getText(),
+			Goals lLoanGoal = new Goals("LoanGoal", this.lProjectName.getText(), lCost.getText(),
 					this.lInteres.getText(), this.lDown.getText(), this.lTime.getText());
 			//Close window and open goal
 			((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
 			
-			//Create the file txt
+			String path = "UserProfiles" + File.separator + Main.session.currentUser.getUsername() + File.separator +
+					"Goals" +  File.separator + "Loan" + File.separator + this.lProjectName.getText();
+			
+			//System.out.println(path);
+			//if there is a file print the info to the file 
+			
+			File file = new File(path);
+			if(!file.exists()) { 
+			
+				try {
+	            
+					FileWriter fw = new FileWriter(file);
+					fw.write(lLoanGoal.toString());
+					fw.close();
+				}
+					catch (IOException iox) {
+					//do stuff with exception
+					iox.printStackTrace();
+				}
+			}
+			
+			else if(file.exists()){
+				System.out.println("Goal Exist");
+				
+			}
 			
 			//Print the information
-			System.out.printf(lLomeGoal.toString3());
+			//System.out.printf(lLoanGoal.toString3());
 	}
-	
+	@FXML
 	public void lCancel(ActionEvent event){
 		this.lProjectName.setText("");
 		this.lType.setText("");
@@ -205,24 +286,66 @@ public class GoalsController implements EventHandler<ActionEvent> {
 		this.lTime.setText("");
 	}
 	
+	@FXML
+	private TextField vProjectName;	// Name of the project
 	
-	//Will show the data of the goals
-	public void loadGoalsDataForList()
-	{
-		//load all the Goals from the Goals directory
-		ArrayList<Goals> goalsList = financialData.readGoals();
+	@FXML
+	private TextField vTotalCost; //
+	
+	@FXML
+	private TextField vTime;	//
+	
+	@FXML
+	private Button vContinue;	//
+	
+	@FXML
+	private Button vCancel;		//
+	
+	@FXML
+	public void vContinue(ActionEvent event) {
+		Goals vacationsGoal = new Goals("Vacations", this.vProjectName.getText(), this.vTotalCost.getText(), this.vTime.getText());
 		
-		//instantiate the goalsListData
-		goalsListData = FXCollections.observableArrayList();
+		//Close window and open goal
+		((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
 		
-		//for each goal display the ProjectName and cost
-		for(Goals g: goalsList)
-		{
-			goalsListData.add(String.format("%s : %s", g.getProjectName(),
-					NumberFormat.getCurrencyInstance().format(g.getTotalCost())));
+		String path = "UserProfiles" + File.separator + Main.session.currentUser.getUsername() + File.separator +
+				"Goals" +  File.separator + "Vacation" + File.separator + this.vProjectName.getText();
+		
+		System.out.println(path);
+		//if there is a file print the info to the file 
+		
+		File file = new File(path);
+		if(!file.exists()) { 
+		
+			try {
+            
+				FileWriter fw = new FileWriter(file);
+				fw.write(vacationsGoal.toString());
+				fw.close();
+			}
+				catch (IOException iox) {
+				//do stuff with exception
+				iox.printStackTrace();
+			}
 		}
-
+		
+		else if(file.exists()){
+			System.out.println("Goal Exist");
+			
+		}
+		
+		//Print the information
+		//System.out.printf(vacationsGoal.toString3());
 	}
+	
+	@FXML
+	public void vCancel(ActionEvent event){
+		this.vProjectName.setText("");
+		this.vTotalCost.setText("");
+		this.vTime.setText("");
+		
+	}
+	
 
 	@Override
 	public void handle(ActionEvent event) {

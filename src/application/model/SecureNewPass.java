@@ -25,17 +25,22 @@ public class SecureNewPass extends SecurePass{
     private String hash;
     
     private User currentUser;
-    
-    public void secure(String user, CharSequence pass)
+        
+    public void secure(String username, CharSequence pass, String phoneNumber)
     { 
-    	currentUser = new User(user);
+    	//System.out.println("In");
+    	currentUser = new User(username);
+    	//System.out.printf("Username: %s", currentUser.getUsername());
     	salt = createSalt();
-    	hash = super.hashFun(input.nextLine(), salt);
-    	//TODO: find another way to take password input, above line compiles but will not work in the end
-
+    	//System.out.printf("Salt: %s", salt);
+    	hash = super.hashFun(pass.toString(), salt);
+    	//System.out.printf("Hash: %s", hash);
       
     	currentUser.setSalt(salt);
     	currentUser.setPassword(hash);
+    	currentUser.setPhone(phoneNumber);
+    	
+    	//TODO: write toString() to username.txt
     }// END secure()
     
     public String createSalt()
@@ -52,5 +57,9 @@ public class SecureNewPass extends SecurePass{
       return build.toString();
     }// END createSalt()
 
+    public String toString() {
+    	return (String.format("%s:%s:%s:%s", currentUser.getUsername(),currentUser.getPassword(), 
+				currentUser.getSalt(), currentUser.getPhone()));
+    }//END toString()
 
 }//END APPLICATION CLASS SecureNewPass

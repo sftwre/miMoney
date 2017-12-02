@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
@@ -7,65 +8,123 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CreateBudgetController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" prefHeight="352.0" prefWidth="384.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CreateBudgetController">
    <children>
-      <GridPane fx:id="budgetGridPane" prefHeight="265.0" prefWidth="370.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox fx:id="vBox" prefHeight="352.0" prefWidth="389.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gas" textAlignment="CENTER" wrappingWidth="180.0" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rent" textAlignment="CENTER" wrappingWidth="180.0" GridPane.rowIndex="1" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Food" textAlignment="CENTER" wrappingWidth="180.0" GridPane.rowIndex="2" />
-            <TextField fx:id="gasTextField" promptText="Exp. $75" GridPane.columnIndex="1" />
-            <TextField fx:id="rentTextField" promptText="Exp. $750" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="foodTextField" promptText="Exp. $250" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button fx:id="continueButton" mnemonicParsing="false" onAction="#Continue" prefHeight="27.0" prefWidth="170.0" text="Continue" GridPane.columnIndex="2" GridPane.rowIndex="3">
-               <padding>
-                  <Insets right="8.0" />
-               </padding>
-               <GridPane.margin>
-                  <Insets right="8.0" />
-               </GridPane.margin>
-            </Button>
-            <CheckBox fx:id="gasExpense" mnemonicParsing="false" text="Select" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
-            <CheckBox fx:id="foodExpense" layoutX="257.0" layoutY="35.0" mnemonicParsing="false" text="Select" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <CheckBox fx:id="rentExpense" layoutX="257.0" layoutY="35.0" mnemonicParsing="false" text="Select" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <StackPane fx:id="buttonStackPane" prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="3">
+            <GridPane prefHeight="54.0" prefWidth="405.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                  <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteGoal" prefHeight="27.0" prefWidth="170.0" text="Delete">
-                     <StackPane.margin>
+                  <Text fx:id="titleText" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" textAlignment="CENTER" wrappingWidth="180.0" />
+                  <TextField fx:id="titleTextField" prefHeight="25.0" prefWidth="156.0" promptText="Exp. Summer Budget" GridPane.columnIndex="1">
+                     <tooltip>
+                        <Tooltip text="Give your Budget a title" />
+                     </tooltip>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </GridPane>
+            <ScrollPane prefViewportHeight="157.0" prefViewportWidth="405.0" VBox.vgrow="ALWAYS">
+               <content>
+                  <GridPane fx:id="budgetGridPane" prefHeight="128.0" prefWidth="405.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Text fx:id="gasText" strokeType="OUTSIDE" strokeWidth="0.0" text="Gas" textAlignment="CENTER" wrappingWidth="180.0" />
+                        <Text fx:id="foodText" strokeType="OUTSIDE" strokeWidth="0.0" text="Food" textAlignment="CENTER" wrappingWidth="180.0" GridPane.rowIndex="1" />
+                        <Text fx:id="apperalText" strokeType="OUTSIDE" strokeWidth="0.0" text="Apperal" textAlignment="CENTER" wrappingWidth="180.0" GridPane.rowIndex="2" />
+                        <TextField fx:id="gasTextField" promptText="Exp. $75" GridPane.columnIndex="1">
+                           <tooltip>
+                              <Tooltip text="Enter the amount to spend per month for this Expense Category" />
+                           </tooltip>
+                        </TextField>
+                        <TextField fx:id="foodTextField" promptText="Exp. $200" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <tooltip>
+                              <Tooltip text="Enter the amount to spend per month for this Expense Category" />
+                           </tooltip>
+                        </TextField>
+                        <TextField fx:id="apperalTextField" promptText="Exp. $100" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <tooltip>
+                              <Tooltip text="Enter the amount to spend per month for this Expense Category" />
+                           </tooltip>
+                        </TextField>
+                        <CheckBox fx:id="gasExpense" mnemonicParsing="false" onAction="#budgetItemSelected" text="Select" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                        <CheckBox fx:id="apperalExpense" layoutX="257.0" layoutY="35.0" mnemonicParsing="false" onAction="#budgetItemSelected" text="Select" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                        <CheckBox fx:id="foodExpense" layoutX="257.0" layoutY="35.0" mnemonicParsing="false" onAction="#budgetItemSelected" text="Select" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                     </children>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+            <GridPane prefHeight="115.0" prefWidth="405.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <StackPane fx:id="buttonStackPane" prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteGoal" prefHeight="27.0" prefWidth="170.0" text="Delete">
+                           <StackPane.margin>
+                              <Insets left="8.0" />
+                           </StackPane.margin>
+                        </Button>
+                        <Button fx:id="clearButton" mnemonicParsing="false" onAction="#clearTextFields" prefHeight="27.0" prefWidth="170.0" text="Clear">
+                           <StackPane.margin>
+                              <Insets left="8.0" />
+                           </StackPane.margin>
+                        </Button>
+                     </children>
+                  </StackPane>
+                  <ComboBox fx:id="expensesComboBox" onAction="#addExpenseCategories" prefHeight="29.0" prefWidth="139.0" promptText="Expenses" GridPane.rowIndex="1">
+                     <GridPane.margin>
                         <Insets left="8.0" />
-                     </StackPane.margin>
-                  </Button>
-                  <Button fx:id="clearButton" layoutX="10.0" layoutY="30.0" mnemonicParsing="false" onAction="#clearTextFields" prefHeight="27.0" prefWidth="170.0" text="Clear">
+                     </GridPane.margin>
                      <padding>
                         <Insets left="8.0" />
                      </padding>
-                     <StackPane.margin>
-                        <Insets left="8.0" />
-                     </StackPane.margin>
+                  </ComboBox>
+                  <Button fx:id="continueButton" mnemonicParsing="false" onAction="#saveBudget" prefHeight="27.0" prefWidth="170.0" text="Continue" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <padding>
+                        <Insets right="8.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets right="8.0" />
+                     </GridPane.margin>
                   </Button>
+                  <Label fx:id="invalidTextField" prefHeight="17.0" prefWidth="108.0" text="* invalid text field" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
                </children>
-            </StackPane>
-            <ComboBox fx:id="expensesComboBox" onAction="#showExpenseCategories" prefWidth="150.0" promptText="Expenses" GridPane.rowIndex="4">
-               <GridPane.margin>
-                  <Insets left="8.0" />
-               </GridPane.margin>
-               <padding>
-                  <Insets left="8.0" />
-               </padding>
-            </ComboBox>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </GridPane>
          </children>
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-      </GridPane>
+      </VBox>
    </children>
 </AnchorPane>

@@ -1,4 +1,5 @@
 package application.model.Goals;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -17,18 +18,33 @@ public class Goals {
 	private int time;
 	private double taxes;
 	private double other;
+	private double monthly;
 	
+	
+	//CarGoal
 	public Goals (String type, String projectName, String totalCost,
 			String interestRate, String downPayment, String year, String time) {
-		this.projectName = projectName;
-		this.type = type;
-		this.totalCost = Double.parseDouble(totalCost);
-		this.interestRate = Double.parseDouble(interestRate);
-		this.downPayment = Double.parseDouble(downPayment);
-		this.year = Integer.parseInt(year); 
-		this.time = Integer.parseInt(time);
+		
+		try{
+			this.projectName = projectName;
+			this.type = type;
+			this.totalCost = Double.parseDouble(totalCost);
+			this.interestRate = Double.parseDouble(interestRate);
+			this.downPayment = Double.parseDouble(downPayment);
+			this.year = Integer.parseInt(year); 
+			this.time = Integer.parseInt(time);
+		}
+		catch(NumberFormatException ex){
+			System.out.println("Not a number");
+		}
+		
+		//operations
+		
+		this.totalCost = ((this.interestRate) * this.totalCost) + this.totalCost - this.downPayment;
+		this.monthly =   (this.totalCost)/(this.time * 12);	
 	}
 	
+	//HomeGoal
 	public Goals (String type, String projectName, String totalCost,
 			String interestRate, String downPayment, String time, String taxas, String other) {
 		this.projectName = projectName;
@@ -41,8 +57,13 @@ public class Goals {
 		this.other = Double.parseDouble(other);
 		
 		//Operations
+		
+		this.totalCost = ((this.interestRate) * this.totalCost) + this.totalCost - this.downPayment + (this.taxes * this.time);
+		this.monthly =   (this.totalCost)/(this.time * 12);
+		//operations
 	}
 	
+	//LoanGoal
 	public Goals (String type, String projectName, String totalCost,
 			String interestRate, String downPayment, String time) {
 		this.projectName = projectName;
@@ -52,8 +73,21 @@ public class Goals {
 		this.downPayment = Double.parseDouble(downPayment); 
 		this.time = Integer.parseInt(time);
 		
-		System.out.println(toString3());
+		// Operations
+		
+		this.totalCost = ((this.interestRate) * this.totalCost) + this.totalCost - this.downPayment;
+		this.monthly =   (this.totalCost)/(this.time);
+		
+	}
+	//VacationGoal
+	public Goals (String type, String projectName, String totalCost, String time) {
+		this.type = type;
+		this.projectName = projectName;
+		this.totalCost = Double.parseDouble(totalCost);
+		this.time = Integer.parseInt(time); 	
+		
 		//Operations
+		this.monthly = (this.totalCost)/(this.time);
 	}
 
 	
@@ -136,35 +170,21 @@ public class Goals {
 	public void other (double other){
 		this.other = other;
 	}
-
-	public String toString1(){
-		return String.format("%s:%s:%f:%f:%f:%d:%d"
-				, this.type
-				, this.projectName
-				, this.totalCost
-				, this.interestRate
-				, this.downPayment
-				, this.year
-				, this.time);
+	
+	public double monthly() {
+		return monthly;
 	}
-	public String toString2(){
-		return String.format("%s:%s:%f:%f:%f:%d:%f:%f"
-				, this.type
-				, this.projectName
-				, this.totalCost
-				, this.interestRate
-				, this.downPayment
-				, this.time
-				, this.taxes
-				, this.other);
+	
+	public void monthly (double monthly){
+		this.monthly = monthly;
 	}
-	public String toString3(){
-		return String.format("%s:%s:%f:%f:%f:%d"
+	
+	public String toString(){
+		return String.format("%s:%s:%.2f:%.2f:%d"
 				, this.type
 				, this.projectName
 				, this.totalCost
-				, this.interestRate
-				, this.downPayment
+				, this.monthly
 				, this.time);
 	}
 	

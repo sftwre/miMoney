@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
@@ -10,7 +11,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.Goals2Controller">
    <children>
-      <Pane prefHeight="400.0" prefWidth="600.0">
+      <Pane prefHeight="400.0" prefWidth="615.0">
          <children>
             <GridPane layoutX="13.0" layoutY="27.0" prefHeight="340.0" prefWidth="373.0">
                <children>
@@ -23,10 +24,8 @@
                   <Text fx:id="totalCost" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Text fx:id="monthlyPayment" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Text fx:id="time" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Interes Rate (APR)" textAlignment="CENTER" wrappingWidth="200.0" GridPane.rowIndex="5" />
                   <Button fx:id="close" mnemonicParsing="false" onAction="#closeButton" prefHeight="27.0" prefWidth="170.0" text="Close" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <Button fx:id="Search" mnemonicParsing="false" onAction="#searchButton" prefHeight="27.0" prefWidth="170.0" text="Search" />
-                  <Text fx:id="interestRate" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="188.21875" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <TextField fx:id="searchText" promptText="Ex. Ford F-150" GridPane.columnIndex="1" />
                </children>
                <columnConstraints>
@@ -44,6 +43,19 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
             </GridPane>
+            <TitledPane layoutX="386.0" layoutY="100.0" prefHeight="200.0" prefWidth="106.0" text="Current Goals">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <StackPane layoutY="11.0" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <Label prefHeight="47.0" prefWidth="200.0" text="Label" />
+                              <ListView fx:id="currentGoalsListView" prefHeight="169.0" prefWidth="219.0" />
+                           </children>
+                        </StackPane>
+                     </children>
+                  </AnchorPane>
+               </content></TitledPane>
          </children>
       </Pane>
    </children>

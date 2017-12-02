@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.regex.Pattern;
 import java.util.NoSuchElementException;
 import application.model.Expense.*;
-import application.model.Goals.Goals;
+import application.model.Goals.*;
 import application.model.*;
 
 
@@ -21,7 +21,8 @@ import application.model.*;
  * @author Isaac Buitrago
  *
  */
-public class FinancialDataParser extends FileParser {
+public class FinancialDataParser extends FileParser 
+{
 	
 	private String line;				// Store a line of text from a file
 	private String rawObjects[];		// raw data used to instantiate an object
@@ -53,12 +54,11 @@ public class FinancialDataParser extends FileParser {
 	
 	/**
 	 * Reads the Income data from income.txt
-	 * @return an ArrayList of Income Objects
+	 * @return Income of the user or null if none is provided
 	 */
-	public ArrayList<Income> readIncome()
+	public Income readIncome()
 	{
-		
-		ArrayList<Income> incomeList = new ArrayList<Income>();	//list of Income objects to return
+		Income userIncome = null;		// Income data of the User
 		
 		//reset root directory of the current user
 		setUserProfile(this.user);
@@ -73,7 +73,7 @@ public class FinancialDataParser extends FileParser {
 			
 			line = bufferInput.readLine();
 			
-			while(line != null && ! line.isEmpty()) 
+			if(! line.isEmpty())
 			{
 				//no need to split the line on commas, each line is a separate Income
 				
@@ -90,11 +90,7 @@ public class FinancialDataParser extends FileParser {
 				rawObjects = line.split(":");
 				
 				//create a new Income with Job the title and Wage
-				Income income = new Income(rawObjects[0], Double.parseDouble(rawObjects[1]));
-				
-				incomeList.add(income);
-				
-				line = bufferInput.readLine();
+				userIncome = new Income(rawObjects[0], Double.parseDouble(rawObjects[1]));
 			}
 			
 			bufferInput.close();
@@ -112,18 +108,15 @@ public class FinancialDataParser extends FileParser {
 			
 		}
 		
-			return (incomeList);
+			return (userIncome);
 	}
 		
 	
 	/**
-	 * Get all of the Goals data for the user.
-	 * Open each goal file, parse the data, 
-	 * instantiate the Goal and add the Goal to an ArrayList.
-	 * 
+	 * Used to parse all of the Goals data, except Budget, of the user.
+	 * Open each goal file, parse the data, instantiate the Goal and add the Goal to an ArrayList.
 	 * @return an ArrayList of Goals data
 	 */
-
 	public ArrayList<Goals> readGoals() 
 	{
 		
@@ -136,6 +129,9 @@ public class FinancialDataParser extends FileParser {
 		//prepare the userProfile to read from the Goals directory
 		this.userProfile += "Goals";
 		
+		// Path to skip
+		Path budgetFolder =  Paths.get("Budget");
+		
 		try {
 			
 		Path path = Paths.get(this.userProfile);
@@ -144,13 +140,16 @@ public class FinancialDataParser extends FileParser {
 		
 		for(Path p : directoryStream)
 		{
-			//iterate through all the files in the directory and parse the goals data
-			if(Files.isDirectory(p))
-			{
+			// Iterate through all the files in all directories but Goals and parse the goals data
+			if(Files.isDirectory(p) && !p.getFileName().equals(budgetFolder))
+			{	
 				DirectoryStream<Path> filesStream = Files.newDirectoryStream(p);
 				
 				for(Path f : filesStream)
 				{
+					//skip hidden files
+					if(Files.isHidden(f))
+						continue;
 					
 					//Create reader for character files
 					FileReader file =  new FileReader(f.toFile());
@@ -177,7 +176,7 @@ public class FinancialDataParser extends FileParser {
 						for(String object : rawObjects)
 						{
 							//check that the data in the file is formatted correctly
-							if(!formattedData("[a-zA-Z]+:[a-zA-Z\\s]+:\\d+\\.\\d{6}:\\d+\\.\\d{6}:\\d+\\.\\d{6}:\\d+:\\d+:\\d+\\.\\d{6}", object))
+							if(!formattedData("[a-zA-Z]+:[a-zA-Z\\d\\-\\.\\s]+:\\d+\\.\\d{6}:\\d+\\.\\d{6}:\\d+\\.\\d{6}:\\d+:\\d+:\\d+\\.\\d{6}", object) )
 							{
 								throw new Exception(String.format("%s is not formatted to standards in %s.%n"
 										+ "Standard: Colons seperating fields, commas seperating objects, 6 decimal digits of precision%n"
@@ -227,6 +226,102 @@ public class FinancialDataParser extends FileParser {
 		
 		return(goalsList);
 		
+	}
+	
+	/**
+	 * Used to parse all of the user's Budgets.
+	 * Open each Budget file, parse the data, and instantiate a Budget object.
+	 * @return an ArrayList of Budgets
+	 */
+	public ArrayList<Budget> readBudgets() 
+	{
+		
+		//list of Goals for the user
+		ArrayList<Budget> budgetList = new ArrayList<Budget>();
+		
+		//reset root directory of the current user
+		setUserProfile(this.user);
+		
+		//prepare the userProfile to read from the Budget directory
+		this.userProfile += "Goals" + File.separator + "Budget";
+		
+		try 
+		{
+			
+		Path path = Paths.get(this.userProfile);
+		
+		DirectoryStream<Path> fileStream = Files.newDirectoryStream(path);
+		
+		// for all Budgets stored in separate files, open the file and create a Budget
+		
+		for(Path f : fileStream)
+		{
+				
+			//skip hidden files
+			if(Files.isHidden(f))
+				continue;
+					
+				//Create reader for character files
+				FileReader file =  new FileReader(f.toFile());
+					
+				bufferInput = new BufferedReader(file);
+					
+				line = bufferInput.readLine();
+				
+					
+				/*
+				 * First line contains the title of the Budget.
+				 * Create a new BUdget with this title
+				*/
+				Budget budget = new Budget(line);
+					
+				line = bufferInput.readLine();
+					
+				// read all the Expense categories within the Budget
+					
+				while(line != null && ! line.isEmpty())
+				{
+					
+					//check that the current line is formatted correctly
+					if(!formattedData("[a-zA-Z]+:\\d+\\.\\d{6}:\\d+\\/\\d+\\/\\d+:.*", line) )
+					{
+						throw new Exception(String.format("%s is not formatted to standards in %s.%n"
+								+ "Standard: Colons seperating fields, commas seperating objects, 6 decimal digits of precision%n"
+								+ "for double values, no decimals for integer values."
+								+ "%n", line, f.toFile() + ".txt" ));
+					}
+							
+					// create the appropriate Expense object from the current line
+					Expense budgetItem = createExpenseObject(line);
+							
+					// add the budgetItem to the budget
+					budget.addItem(budgetItem);
+							
+					line = bufferInput.readLine();
+				}
+					
+				bufferInput.close();
+					
+				//add Budget to budgetList
+				budgetList.add(budget);	
+			}
+				
+			fileStream.close();
+				
+		} catch(FileNotFoundException e){
+			
+			System.out.printf("File: %s does not exists\n", userProfile);
+			
+		} catch(IOException e){
+			
+			System.out.printf("Could not locate the directory : %s\n", userProfile);
+			
+		} catch (Exception e) {
+			
+			System.out.println(e.getMessage() + " readGoals()");
+		}
+		
+		return(budgetList);	
 	}
 	
 	
@@ -350,7 +445,7 @@ try {
 	 */
 	private Expense createExpenseObject(String object) throws Exception {
 		
-		//properties of an Expense object separated by colon
+		//properties of an Expense object separated by colons
 		ArrayList<String> properties = new ArrayList<String>(Arrays.asList(object.split(":")));
 		
 		//If the last colon contains no text, add null to indicate that the Expense contains no item 
@@ -359,7 +454,7 @@ try {
 			properties.add(null);
 		}
 				
-		//create a date object from the second to construct an Expense
+		//create a date object from the second property to construct an Expense
 		String[] mdy = properties.get(2).split("\\/");
 		
 		Date date = new Date(Integer.parseInt(mdy[0]), Integer.parseInt(mdy[1]) , Integer.parseInt(mdy[2]));
@@ -382,7 +477,7 @@ try {
 		else if(properties.get(0).equals("Apparel")) 
 		{
 		
-			return new Apperal(Double.valueOf(properties.get(1)), date, properties.get(3) );
+			return new Apparel(Double.valueOf(properties.get(1)), date, properties.get(3) );
 		
 		}
 		

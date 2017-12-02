@@ -1,4 +1,1 @@
-Housing:600000
-Gas:7500
-Auto Payment:400000
-Auto Insurance:30090988
+Housing:300.0 Gas:355.0 

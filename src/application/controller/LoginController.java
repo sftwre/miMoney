@@ -50,7 +50,7 @@ public class LoginController {
 	@FXML
 	Label incorrectCombo;
 	
-	private User currentUser = new User("testUser77");	//This sets the current user to testUser77
+	private User currentUser;// = new User("testUser77");	//This sets the current user to testUser77
 	private SecureOldPass oldPass;
 	private SecureOldUser oldUser;
 	private ActionEvent e;
@@ -59,21 +59,24 @@ public class LoginController {
 		oldUser = new SecureOldUser();
 		oldPass = new SecureOldPass();
 
-		currentUser.setUserAuthenticated(oldUser.auth(userField.getCharacters().toString()));
-		
-			if(!currentUser.isUserAuthenticated())
-				currentUser.setPassAuthenticated(false);
-			else if(currentUser.isUserAuthenticated())
-				currentUser.setPassAuthenticated(oldPass.secure(currentUser.getUsername(), passField.getCharacters()));
-
 	loginButton.setOnAction(new EventHandler<ActionEvent>() {
 		@Override
 		public void handle(ActionEvent e) {
-		/*	if(currentUser.isPassAuthenticated())
-			{*/
+			currentUser = new User(userField.getCharacters().toString());
+			currentUser.setUserAuthenticated(oldUser.auth(currentUser.getUsername()));
+			
+			if(!currentUser.isUserAuthenticated())
+				currentUser.setPassAuthenticated(false);
+			else if(currentUser.isUserAuthenticated()) {
+				currentUser.setPassAuthenticated(oldPass.secure(currentUser.getUsername(), passField.getCharacters()));
+			}
+
+			if(currentUser.isPassAuthenticated())
+			{
+				Main.session.startSession(currentUser);
 				goToMainView(new ActionEvent());
-			//}
-			//incorrectCombo.setText("Username or password is incorrect.");
+			}
+			incorrectCombo.setText("Username or password is incorrect.");
 		}
 	});
 		

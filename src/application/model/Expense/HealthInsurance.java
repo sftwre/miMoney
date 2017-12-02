@@ -8,15 +8,23 @@ import application.model.Date;
  *
  */
 
-public class HealthInsurance extends Expense implements FixedExpense {
+public class HealthInsurance extends Expense implements FixedExpense 
+{
 
-	public HealthInsurance(double amount, Date date, String item) {
+	public HealthInsurance(double amount, Date date, String item) 
+	{
 		super(amount, date, item);
 		
 	}
 
+	public HealthInsurance()
+	{
+		super();
+	}
+	
 	@Override
-	public String getClassName() {
+	public String getClassName() 
+	{
 		
 		return ("HealthInsurance");
 	}

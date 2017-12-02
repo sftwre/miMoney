@@ -6,33 +6,63 @@ import application.model.Expense.Expense;
 
 /**
  * This object represents a user's Budget.
- * A Budget consists of Expenses and fixed amount the
- * user desires to spend on each type of Expense. No date
- * is required to represent a Budget.
- * 
+ * A Budget consists of Expenses and a fixed amount
+ * to spend on each type of Expense. No date
+ * is required to represent a Budget. 
  * @author Isaac Buitrago
  *
  */
 
-public class Budget {
+public class Budget 
+{
 
+	private ArrayList<Expense> budgetItems; // Expenses the Budget consists of
 	
-	private ArrayList<Expense> expenses; //fixed expenses for the user
 	
-	private String title; //The name of the budget
+	private String title;					// Title of the Budget
 	
-	public Budget(String title) {
+	/**
+	 * Constructor used to create a new Budget
+	 */
+	public Budget(String title)
+	{
 		
-		this.expenses = new ArrayList<Expense>();
+		this.budgetItems = new ArrayList<Expense>();
 		this.title = title;
-		
+	}
+	
+	/**
+	 * Overloaded constructor to create an empty Budget
+	 */
+	public Budget()
+	{
+		this.budgetItems = new ArrayList<Expense>();
+	}
+	
+	
+	/**
+	 * 
+	 * @return the Title of the Budget
+	 */
+	public String getTitle() 
+	{
+		return title;
+	}
+
+	/**
+	 * 
+	 * @param title of the Budget
+	 */
+	public void setTitle(String title) 
+	{
+		this.title = title;
 	}
 	
 	/**
 	 * 
 	 * @param expense the user decides to spend a fixed amount on
 	 */
-	public void addExpense(Expense expense) {
+	public void addItem(Expense expense) {
 		
 		try{
 			if(expense == null)
@@ -42,26 +72,30 @@ public class Budget {
 			System.out.println("Expense object must be instantiated");
 		}
 		
-		this.expenses.add(expense);
-	}
-	
-	
-	/**
-	 * 
-	 * @return the title of the Budget
-	 */
-	public String getTitle() {
-		
-		return this.title;
+		this.budgetItems.add(expense);
 	}
 	
 	/**
-	 * Reset the title of the Budget
-	 * @param title of the Budget
+	 * Used to return the budget items that represent this Budget
+	 * @return
 	 */
-	
-	public void setTitle(String title) {
+	public ArrayList<Expense> getItems()
+	{
 		
-		this.title = title;
+		return this.budgetItems;
+		
+	}
+	
+	/**
+	 * Method for storing the Budget in a file
+	 */
+	public String toString()
+	{
+		String output = new String();
+		
+		for(Expense e : budgetItems)
+			output += String.format("%s%n", e.toString());
+		
+		return (String.format("%s%n", this.title) + output);
 	}
 }

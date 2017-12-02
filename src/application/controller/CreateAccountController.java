@@ -8,9 +8,24 @@ package application.controller;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
+
+
 import java.text.NumberFormat;
+import java.time.YearMonth;
+
 
 import application.Main;
+
+import application.model.Income;
+
+import application.model.DateFormatter;
+
+import application.model.SecureNewPass;
+import application.model.Expense.AutoInsurance;
+import application.model.Expense.AutoPayment;
+import application.model.Expense.HealthInsurance;
+import application.model.Expense.HomePayment;
 //import application.MainAccount;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,12 +37,15 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 //import javafx.scene.text.Text;
 //import javafx.stage.Modality;
 //import javafx.stage.Stage;
+/**
+ * Controller handles events in the create account page
+ * @author kel
+ *
+ */
 
 public class CreateAccountController {
 
@@ -77,7 +95,7 @@ public class CreateAccountController {
     private TextField housing;
     
     @FXML
-    private TextField gas;
+    private TextField health;
     
     @FXML
     private TextField autoPay;
@@ -87,9 +105,39 @@ public class CreateAccountController {
     
     @FXML
     private Hyperlink tutorialLink;
+    
+    private SecureNewPass snp;
+    
 
+    private Income in;
+    
+    private AutoInsurance insur;
+    
+    private HealthInsurance healthy;
+    
+    private AutoPayment auto;
+    
+    private HomePayment home;
+	//private double housePrice;
+
+    private YearMonth currentMonth;
+
+
+    
+    /**
+	 * Isaac Buitrago commentary
+	 * 
+	 * Please use An Income object for the Income and Job.
+	 * Use a User object for the username, phone and pathToProfile
+	 * Create a HomePayment,AutoPayment, and AutoInsurance objects for the
+	 * appropriate fields.
+	 * 
+	 * When it is time to write this data, call the toString of each object
+	 */
     @FXML
     void createAcct(ActionEvent event) throws IOException {
+    	
+    	currentMonth = YearMonth.now();
     	
 			if(user_name.getText().trim().isEmpty() || password.getText().trim().isEmpty() || phone_Number.getText().trim().isEmpty() || income.getText().trim().isEmpty() || jobInfo.getText().trim().isEmpty()) {
 		    		if(user_name.getText().trim().isEmpty()){ 
@@ -147,20 +195,57 @@ public class CreateAccountController {
 				//this.income = Double.parseDouble(income);
 				
 				String newUser = user_name.getText().trim();
-				String newPass = password.getText().trim();
+				//String newPass = password.getText().trim();
+				/*
+				 * Commenting out line above (after we talk). This is slightly dangerous
+				 * but mostly because it's a little redundant. Sending
+				 * password.getCharacters() to SecureNewPass
+				 * cuts out this step.
+				 */
+				
+				
 				String phone = phone_Number.getText().trim();
 				String newIncome = income.getText().trim();
 				String newJob = jobInfo.getText().trim();
 				String houseDebt = housing.getText().trim();
-				String gasDebt = gas.getText().trim();
+				String healthDebt = health.getText().trim();
 				String payment = autoPay.getText().trim();
 				String insurance = autoInsur.getText().trim();
+
+				//File incomeFile = new File("UserProfiles/"+newUser+"/Income.txt");
+				//File userFile = new File("UserProfiles/"+newUser+"/"+newUser+".txt");
+				//File dir = new File("UserProfiles/"+newUser+"/AnnualExpenses/2017");
+				//File dateTrack = new File("UserProfiles/"+newUser+"/AnnualExpenses/2017/November");
+
 				String fileName = "FixedExpenses.txt";
 				//String incomeFile = "Income.txt";
-				File incomeFile = new File("UserProfiles/"+newUser+"/Income.txt");
-				File userFile = new File("UserProfiles/"+newUser+"/"+newUser+".txt");
-				
-				File dir = new File("UserProfiles/"+newUser+"/AnnualExpenses");
+				File incomeFile = new File("UserProfiles" + File.separator+newUser+File.separator +"Income.txt");
+				File userFile = new File("UserProfiles" + File.separator+newUser+File.separator +newUser+".txt");
+				File dir = new File("UserProfiles" + File.separator+newUser+File.separator +"AnnualExpenses" + File.separator + currentMonth.getYear());
+				File dateTrack = new File("UserProfiles" + File.separator +newUser+File.separator +"AnnualExpenses" + File.separator + currentMonth.getYear() + File.separator + DateFormatter.formatMonth(currentMonth.getMonth()));
+
+				if(dateTrack.exists()) {
+					System.out.println("directory already exists");
+				}
+				else {
+					boolean success = dateTrack.mkdirs();
+					if (success){
+				      // creating the directory succeeded
+				      System.out.println("directory was created successfully");
+				      File expTr = new File(dateTrack+File.separator +"ExpenseTracker.txt");
+				      if(expTr.createNewFile()) {
+				    	  System.out.println("Expense Tracker file is created!");
+				      }
+				      else {
+				    	  System.out.println("Tracker failed to print");
+				      }
+				      
+				    }
+					else{
+				      // creating the directory failed
+				      System.out.println("failed trying to create the directory");
+				    }
+				}
 				
 				if(dir.exists()) {
 					System.out.println("directory already exists");
@@ -171,12 +256,14 @@ public class CreateAccountController {
 				      // creating the directory succeeded
 				      System.out.println("directory was created successfully");
 				      
+				      
 				    }
 					else{
 				      // creating the directory failed
 				      System.out.println("failed trying to create the directory");
 				    }
 				}
+				//if()
 				if(incomeFile.createNewFile()) {
 					System.out.println("Income File is created!");
 					FileWriter writer = new FileWriter(incomeFile);
@@ -188,34 +275,40 @@ public class CreateAccountController {
 				}
 				
 				if(userFile.createNewFile()) {
-					System.out.println("User File is created!");
 					FileWriter writer = new FileWriter(userFile);
-					writer.write(newUser + ":" + newPass + ":" + phone);
+					snp = new SecureNewPass();
+					snp.secure(newUser, password.getCharacters(), phone);
+					System.out.printf("%s", snp.toString());
+					writer.write(snp.toString());
+					//writer.write(newUser + ":" + newPass + ":" + phone);
 					writer.close();
+					System.out.println("User File is created!");
 					
 				}else {
 					System.out.println("File already exists.");
 				}
+				//home = Double.parseDouble(houseDebt);
 				
-				if(!houseDebt.isEmpty() || !gasDebt.isEmpty() || !payment.isEmpty() || !insurance.isEmpty()) {
-					File fixedFile = new File(dir+"/FixedExpenses.txt");
+				
+				if(!houseDebt.isEmpty() || !healthDebt.isEmpty() || !payment.isEmpty() || !insurance.isEmpty()) {
+					File fixedFile = new File(dir+File.separator +"FixedExpenses.txt");
 					if(fixedFile.createNewFile()) {
 						System.out.println("Fixed File is created!");
 					}
 					//fixedFile.mkdirs();
 					FileWriter fill = new FileWriter(fixedFile);
 					if(!houseDebt.isEmpty()){
-						fill.write("Housing:"+Double.parseDouble(houseDebt)+" ");
+						fill.write("Housing:"+home.toString());
 						//fill.close();	
 					}
-					if(!gasDebt.isEmpty()) {
-						fill.write("Gas:"+Double.parseDouble(gasDebt)+" ");
+					if(!healthDebt.isEmpty()) {
+						fill.write("Health Insurance:"+Double.parseDouble(healthDebt)+":");
 						
 					}if(!payment.isEmpty()) {
-						fill.write("Auto Payment:"+Double.parseDouble(payment)+" ");
+						fill.write("Auto Payment:"+Double.parseDouble(payment)+":");
 						
 					}if(!insurance.isEmpty()) {
-						fill.write("Auto Insurance:"+Double.parseDouble(insurance)+" ");
+						fill.write("Auto Insurance:"+Double.parseDouble(insurance)+":");
 					}
 					
 					fill.close();
@@ -240,29 +333,6 @@ public class CreateAccountController {
 			}
 	}
 				
-
-
-    
-    
-    
-    @FXML
-    void OnMouseDragOver(MouseEvent event) {
-
-    	//if(event.)
-    	Tooltip inc = new Tooltip("Enter monthly income");
-    	Tooltip pass = new Tooltip("\nYour password must be\n" + "at least 8 characters in length\n");
-    	Tooltip job = new Tooltip("Enter the title of your job");
-    	passwordTxt.setTooltip(pass);
-    	incomeTxt.setTooltip(inc);
-    	jobTxt.setTooltip(job);
-//    	Tooltip.install(income, inc);
-//    	Tooltip.install(jobInfo, job);
-    	
-    	//Rectangle rect = new Rectangle(100, 100);
-    	//rect.setOnMouseDragOver(value);
-    	
-    	//income.setTooltip(text);
-    }
     
     @FXML
     public void goToTutorial(ActionEvent event) {
