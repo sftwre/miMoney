@@ -104,15 +104,13 @@ public class FinancialOverviewController
  
 
 
-//TODO change all references to testUser77
 /**
  * Called by the FXMLLoader to initialize the controller. 
  * Loads the Income, Expenses, and Goals data of the user
- * and display it in the appropriate controls.
+ * and displays it in the appropriate controls.
  */
 public void initialize()
 {
-	// TODO change User
 	
 	this.financialData = new FinancialDataParser(Main.session.currentUser);
 	
@@ -262,8 +260,6 @@ public void loadBudgetDataForList()
 	for(Budget b: budgetList)
 	{
 		goalsListData.add(String.format("%s", b.getTitle()));
-		System.out.println(b.toString());
-		
 	}
 }
 
@@ -352,7 +348,6 @@ public void saveIncomeChanges(ActionEvent event)
 				
 			} catch(IOException e){
 				
-				//TODO create a dialog box
 			}
 		
 		//format the text in the salary text field
@@ -383,6 +378,7 @@ public void saveIncomeChanges(ActionEvent event)
 
 }  
 
+// TODO determine if this is possible given the time
 /**
  * Used to switch the view to the Goals tab when the User clicks on
  * a goal in the Current Goals panel
@@ -415,6 +411,7 @@ public void createNewGoal(ActionEvent event)
 	
 	try
 	{
+		
 	Parent root = FXMLLoader.load(getClass().getResource("../view/resources/GoalsView.fxml"));
 	
 	Scene scene = new Scene(root);
@@ -424,6 +421,8 @@ public void createNewGoal(ActionEvent event)
 	popUp.show();
 	
 	} catch(IOException e){
+		
+		e.printStackTrace();
 		
 		System.out.printf("The resource 'view/resources/GoalsView.fxml' could not be located");
 	}
