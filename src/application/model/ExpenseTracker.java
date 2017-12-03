@@ -6,21 +6,23 @@ import application.model.Expense.Expense;
 
 
 /**
- * This class is responsible for tracking a user's varaible Expenses
+ * This class is responsible for tracking a user's variable Expenses
  * on a monthly basis.
  * 
  * @author Isaac Buitrago
  *
  */
 
-public class ExpenseTracker{
+public class ExpenseTracker
+{
 	
 	/**
 	 * Living expenses include Housing, Auto expenses, and General Insurance payments
 	 */
 	private ArrayList<Expense> livingExpenses;
 	
-	public ExpenseTracker() {
+	public ExpenseTracker() 
+	{
 
 		livingExpenses = new ArrayList<Expense>();
 	}
@@ -28,7 +30,8 @@ public class ExpenseTracker{
 	/**
 	 *@return ArrayList of expenses for the month 
 	 */
-	public Expense getExpense(int index){
+	public Expense getExpense(int index)
+	{
 		
 		return this.livingExpenses.get(index);
 	}
@@ -37,7 +40,8 @@ public class ExpenseTracker{
 	 * 
 	 * @param expense made during the month
 	 */
-	public void addExpense(Expense expense) {
+	public void addExpense(Expense expense) 
+	{
 		
 		this.livingExpenses.add(expense);
 	}
@@ -47,7 +51,8 @@ public class ExpenseTracker{
 	 * @param expense to be deleted from the list
 	 */
 	
-	public void removeExpense(Expense expense) {
+	public void removeExpense(Expense expense) 
+	{
 		
 		this.livingExpenses.remove(expense);
 		
