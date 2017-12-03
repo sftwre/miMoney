@@ -3,7 +3,6 @@ package application;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.transform.Scale;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import application.model.Session;
