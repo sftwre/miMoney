@@ -3,6 +3,7 @@ package application.model;
 /**
  * 
  * @author Raul Cecena
+ * @author Isaac Buitrago
  *
  */
 public class Income {
