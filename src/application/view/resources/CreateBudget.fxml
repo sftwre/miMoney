@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -33,9 +34,11 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </GridPane>
-            <ScrollPane prefViewportHeight="157.0" prefViewportWidth="405.0" VBox.vgrow="ALWAYS">
-               <content>
-                  <GridPane fx:id="budgetGridPane" prefHeight="128.0" prefWidth="405.0" VBox.vgrow="ALWAYS">
+            <StackPane fx:id="budgetStackPane" prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <Rectangle fx:id="successRectangle" arcHeight="10.0" arcWidth="5.0" fill="#a9afb5" height="37.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="180.0" />
+                  <Label fx:id="successLabel" text="Budget successfully created !" visible="false" />
+                  <GridPane fx:id="budgetGridPane" prefHeight="128.0" prefWidth="405.0">
                      <children>
                         <Text fx:id="gasText" strokeType="OUTSIDE" strokeWidth="0.0" text="Gas" textAlignment="CENTER" wrappingWidth="180.0" />
                         <Text fx:id="foodText" strokeType="OUTSIDE" strokeWidth="0.0" text="Food" textAlignment="CENTER" wrappingWidth="180.0" GridPane.rowIndex="1" />
@@ -70,8 +73,8 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                   </GridPane>
-               </content>
-            </ScrollPane>
+               </children>
+            </StackPane>
             <GridPane prefHeight="115.0" prefWidth="405.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

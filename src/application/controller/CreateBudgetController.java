@@ -9,9 +9,12 @@ import java.nio.file.Paths;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.LinkedList;
+
+import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,9 +29,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.FontSmoothingType;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.util.Duration;
 import application.Main;
 import application.model.Expense.*;
 import application.model.Goals.Budget;
@@ -94,10 +99,20 @@ public class CreateBudgetController {
 
     @FXML
     private ComboBox<String> expensesComboBox;
-
-    @FXML
-    private StackPane buttonStackPane;
     
+    @FXML
+    private Rectangle successRectangle;		// Rectangle for displaying a success message with an animation
+
+    @FXML		
+    private Label successLabel;				// Label for displaying a success message with an animation
+    
+    @FXML
+    private StackPane budgetStackPane; 		// Stack Pane that contains the budgetGridPane and the success message
+    
+    @FXML
+    private StackPane buttonStackPane;		// Stack Pane that contains the Clear and delete Buttons
+    
+
     // Options to display adding a new Expense category
     private ObservableList<String> expenseOptions = FXCollections.observableArrayList();
     
@@ -113,14 +128,14 @@ public class CreateBudgetController {
     // List of Check Boxes in budgetGridPane
     private ArrayList<CheckBox> checkBoxes = new ArrayList<CheckBox>();
     
-    // Map of Text for Expense category and associated TextField
+    // Map of Text for Expense category and its associated TextField on the budgetGridPane
     private HashMap<Text, TextField> budgetItemsMap = new HashMap<Text, TextField>();
     
     // Budget for the user
-    private Budget budget = new Budget();
+    private Budget budget;
     
     /**
-     * Used to initialize components of the view
+     * Used to initialize components of the view and the animations used on those components
      */
     public void initialize()
     {
@@ -135,11 +150,11 @@ public class CreateBudgetController {
     		
     	};
     	
-    	comboBoxThread.run();
+    	 comboBoxThread.run();
     	
     	 stackPaneButtons = buttonStackPane.getChildren();
     	 
-    	 //add to the list of Check Boxes 
+    	 // add the default list item check boxes into the List
     	 checkBoxes.add(foodExpense);
     	 checkBoxes.add(gasExpense);
     	 checkBoxes.add(apperalExpense);
@@ -151,6 +166,9 @@ public class CreateBudgetController {
     	 
     	// set the rowIndex to last row in budgetGridPane
     	 rowIndex =  budgetGridPane.getRowConstraints().size()-1;
+    	 
+    	// instantiate the Budget
+    	 budget = new Budget();
     	 
     }
 
@@ -178,11 +196,11 @@ public class CreateBudgetController {
     		
     	// Bring Delete Button forward in the StackPane if the Top Button is the "Clear" Button
     	if(((Button)stackPaneButtons.get(1)).getText().equals("Clear") && budgetItemToEdit)
-    		moveButtonInStackPane(this.buttonStackPane);
+    		moveNodeInStackPane(this.buttonStackPane);
     	
     	// If there are no Items selected, bring the Clear Button forward
     	else if( ! budgetItemToEdit)
-    		moveButtonInStackPane(this.buttonStackPane);
+    		moveNodeInStackPane(this.buttonStackPane);
 
     }
     
@@ -210,7 +228,7 @@ public class CreateBudgetController {
     	
     	budgetGridPane.getChildren().removeAll(nodesToDelete);
     	
-    	moveButtonInStackPane(this.buttonStackPane);
+    	moveNodeInStackPane(this.buttonStackPane);
     }
 
     
@@ -220,7 +238,7 @@ public class CreateBudgetController {
     }
 
     /**
-     * Used to add a new Budget Item to the Budget.
+     * Used to add a new Budget Item to the budgetGridPane.
      * Each Item contains a Label, TextField, and CheckBox
      * @param event
      */
@@ -238,7 +256,7 @@ public class CreateBudgetController {
     	itemSelected = new CheckBox("Select");
     	
     	// set the properties of the Text
-    	itemCategory.setWrappingWidth(200);
+    	itemCategory.setWrappingWidth(180);
     	itemCategory.setTextAlignment(TextAlignment.CENTER);
     	itemCategory.setFontSmoothingType(FontSmoothingType.GRAY);
     	
@@ -287,7 +305,7 @@ public class CreateBudgetController {
     /**
      * Used to create a new Budget from the list of Budget Items
      * provided by the User and save the Budget in the Budget
-     * directory of the Goals directory.
+     * sub-directory of the Goals directory.
      * @param event
      */
     @FXML
@@ -300,9 +318,14 @@ public class CreateBudgetController {
     	if(budgetItemsMap.isEmpty())
     		return;
     	
-    	// validate the title text field with no monetary values
+    	// validate the Title TextFeild, it must have a value that cannot be monetary
     	if(! isTextFieldValid(titleTextField, false))
+    	{
     		validBudget = false;
+    		titleTextField.setStyle("-fx-border-color: red;");
+    	}
+    	
+    	else
     	
     	for(Text category : budgetItemsMap.keySet())
     	{
@@ -328,21 +351,25 @@ public class CreateBudgetController {
     			
     			item.setAmmount(Double.parseDouble(value));
     			
-    			// set the Date for the Object to the current month and year
+    			// set the Date for the Object to the current month, day, year
     			YearMonth currentDate = YearMonth.now();
     			
-    			Date date = new Date(currentDate.getMonthValue(),1, currentDate.getYear());
+    			Calendar cal = Calendar.getInstance();
+    			
+    			Date date = new Date(currentDate.getMonthValue(), cal.get(Calendar.DAY_OF_MONTH) ,currentDate.getYear());
     			
     			item.setDate(date);
     			
-    			// add the BUdget item to the Budget
+    			// add the BUdget item to the Budget TODO
     			this.budget.addItem(item);
     		}
     	}
     		
-    	// create a file for the Budget and save the Budget if all items are valid
+    	// create a file for the Budget, save the Budget if all items are valid, and display a success message
     	if(validBudget)
     	{
+    		boolean newFile;		// boolean to determine if the newly created Budget file already exists
+    		
     		this.budget.setTitle(titleTextField.getText());
     		
     		invalidTextField.setVisible(false);
@@ -355,9 +382,10 @@ public class CreateBudgetController {
     		
     		try {
     			
-    			boolean fvar =  filePath.createNewFile();
+    			newFile =  filePath.createNewFile();
     			
-    			if(fvar)
+    			// the User has created a new Budget, write it to the file
+    			if(newFile)
     			{
     				
 				BufferedWriter goalFile = new BufferedWriter(new FileWriter(filePath));
@@ -368,31 +396,45 @@ public class CreateBudgetController {
 				
 				goalFile.close();
 				
+				// display the rectangle and label for the success message
+				moveNodeInStackPane(budgetStackPane);
+				
+				// set the rectangle and label to visible
+				successRectangle.setVisible(true);
+				successLabel.setVisible(true);
+				
+				//apply a fading animation to the Rectangle and Label
+				fadeSuccessMessage(successRectangle, successLabel);
+				
+				// hide the rectangle and label
+				//successRectangle.setVisible(false);
+				//successLabel.setVisible(false);
+				
     			}
     			
-    		else
-    			invalidTextField.setVisible(true);
+    			// the user has created a Budget that already exists
+    			else
+    			{
+    				
+    			}
     			
     		//TODO Implement an error dialog
 			} catch (IOException e) {
 				
-				
 				System.out.printf("Error while accessing %s%n", filePath.getPath());
 				
-			} catch(SecurityException e)
-    		{
+			} catch(SecurityException e){
 				System.out.printf("No permission to write to %s%n", filePath.getPath());
     		}
     		
+    		
     	}
-
-    }
+    	
+    	else
+			invalidTextField.setVisible(true);
+    	
+   }
     
-    
-    private boolean isTextFieldValid(TextField titleTextField2) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 
 	/**
@@ -405,7 +447,7 @@ public class CreateBudgetController {
      */
     private boolean isTextFieldValid(TextField amount, boolean monetary)
     {
-    	String value = amount.getText();
+    	String value = amount.getText().trim();
     	
     	if((value.equals("") || value.matches(".*[^\\d,\\.\\$]")) && monetary)
     		return false;	
@@ -419,9 +461,9 @@ public class CreateBudgetController {
 
 
 	/**
-     * Used to move buttons in the buttonStackPane forward and backward
+     * Used to move nodes in a StackPane forward and backward
      */
-    private void moveButtonInStackPane(StackPane stackPane)
+    private void moveNodeInStackPane(StackPane stackPane)
     {
     	ObservableList<Node> nodes = stackPane.getChildren();
     	
@@ -449,6 +491,36 @@ public class CreateBudgetController {
     	
     	return(itemSelected);
     }
+    
+    /**
+     * Used to fade the Rectangle and Label used to display a success message
+     * for creating a Budget.
+     * 
+     * @param rectangle	to set the FadeTransition
+     * @param label to set the the FadeTransition
+     */
+    private void fadeSuccessMessage(Rectangle rectangle, Label label)
+    {
+    	double durration = 4000.00;
+    	
+    	// create the Fade Transitions
+    	FadeTransition rectangleFade = new FadeTransition(Duration.millis(durration), rectangle);
+
+    	FadeTransition labelFade = new FadeTransition(Duration.millis(durration + .1* durration), label);
+    	
+    	// set the from and to values for the opacity fading
+    	rectangleFade.setToValue(0.0);
+    	
+    	labelFade.setToValue(0.0);
+    	
+    	// play the animations
+    	
+    	rectangleFade.play();
+    	
+    	labelFade.play();
+    		
+    }
+    
     
     /**
      * Used to
