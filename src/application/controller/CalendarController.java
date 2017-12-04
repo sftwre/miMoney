@@ -293,20 +293,31 @@ public class CalendarController {
 		}
 				
 		Boolean auth = false;
+		String str = "";
 		//*
 		while (!duplicateDate.getDayOfWeek().toString().equals("SATURDAY")) {
 			for(Expense e : monthExpenses)
 			{
 				if(e.getDate().toString().contains(d.toString())) {
 					auth = true;
+					if(e.getItem().length() > 18) {
+							gpList.get(i).addRow(counter,
+									new Label(e.getItem().substring(0, 18) + "\t\t" + DecimalFormat.getCurrencyInstance().format(e.getAmmount())));
+							str = e.getItem().substring(18);
+							gpList.get(i).addRow(counter + 1, new Label(str));
+					}else {
 					gpList.get(i).addRow(counter,
-							new Label(e.getItem() + "\t" + DecimalFormat.getCurrencyInstance().format(e.getAmmount())));
+							new Label(e.getItem() + "\t\t" + DecimalFormat.getCurrencyInstance().format(e.getAmmount())));
 							//new Label(DecimalFormat.getCurrencyInstance().format(e.getAmmount())));
+					}//END inner if/else str length
+					
 					
 					System.out.printf("%s + ", d.toString());
 					System.out.printf("%s\n", e.toString());
+					str = "";
 					counter++;
-				}
+					
+				}//END if current expense matches date
 			}//END for each expense
 			
 			if(auth == false) {
