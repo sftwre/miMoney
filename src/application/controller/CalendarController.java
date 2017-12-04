@@ -253,17 +253,19 @@ public class CalendarController {
 		return;
 	}//END addToFile()
 	
-	private void addTitlePanes(int n) {		
+	private void addTitlePanes(int n) {
 //*		
-		tpList.add(new TitledPane("Monday", new Button("yes")));
-		tpList.add(new TitledPane("Tuesday", new Button("yes")));
-		tpList.add(new TitledPane("Wednesday", new Button("yes")));
-		tpList.add(new TitledPane("Thursday", new Button("yes")));
-		tpList.add(new TitledPane("Friday", new Button("yes")));
-		tpList.add(new TitledPane("Saturday", new Button("yes"))); //*/
+		//tpList.add(new TitledPane("Monday", new Button("yes")));
+		//tpList.add(new TitledPane("Tuesday", new Button("yes")));
+		//tpList.add(new TitledPane("Wednesday", new Button("yes")));
+		//tpList.add(new TitledPane("Thursday", new Button("yes")));
+		//tpList.add(new TitledPane("Friday", new Button("yes")));
+		//tpList.add(new TitledPane("Saturday", new Button("yes"))); //*/
 		
-		for(int j = 0; j<n; j++)
+		for(int j = n; j>0; j--) {
 			weekAccordion.getPanes().add(tpList.get(j));
+			tpList.get(j).setPrefHeight(50);
+		}
 	}//END addTitlePanes()
 
 	//TODO: LOOP
@@ -275,35 +277,49 @@ public class CalendarController {
 	//TODO: LOOP until all days in this week are done
 	
 	private int decideDays() {
-		//int days = 4;
 		int days = 0;
 		int i = 0;
+		int j = 0;
 		duplicateDate = LocalDate.now();
 		d = DateConverter.convertDate(duplicateDate);
 
 		monthExpenses = input.readExpenses(d, FinanceType.REXPENSE);
 		monthExpenses.addAll(input.readExpenses(d, FinanceType.FEXPENSE));
+		i = 0;
 		
+		for(j = 0; j<=duplicateDate.getDayOfWeek().getValue(); j++) {
+			gpList.add(new GridPane());
+			System.out.printf("New gridpane created + %d\n", duplicateDate.getDayOfWeek().getValue());
+		}
+				
+		Boolean auth = false;
 		//*
-		while (!duplicateDate.getDayOfWeek().toString().equals("SUNDAY")) {
-			i = 0;
+		while (!duplicateDate.getDayOfWeek().toString().equals("SATURDAY")) {
 			for(Expense e : monthExpenses)
 			{
-				if(e.getDate().toString().compareTo(d.toString()) == 0)
-				{
-				/*	gpList.add(new GridPane());
-					gpList.get(i).addRow(counter, 
-							new Label(e.getItem()), 
-							new Label(DecimalFormat.getCurrencyInstance().format(e.getAmmount())));;
-							//Above line currently happens every time a date is found. Need to make so that when a date is found that matches the date of an existing grid pane, it's
-							//added as a row to this gridpane
-							tpList.add(new TitledPane(DateFormatter.formatDay(duplicateDate.getDayOfWeek()), gpList.get(i)));
-				}else{
-					tpList.add(new TitledPane(DateFormatter.formatDay(duplicateDate.getDayOfWeek()), new Label("No Expenses")));*/
+				if(e.getDate().toString().contains(d.toString())) {
+					auth = true;
+					gpList.get(i).addRow(counter,
+							new Label(e.getItem() + "\t" + DecimalFormat.getCurrencyInstance().format(e.getAmmount())));
+							//new Label(DecimalFormat.getCurrencyInstance().format(e.getAmmount())));
+					
+					System.out.printf("%s + ", d.toString());
+					System.out.printf("%s\n", e.toString());
+					counter++;
 				}
-				i++;
 			}//END for each expense
 			
+			if(auth == false) {
+				gpList.get(i).addRow(counter, new Label("No expenses on this day!"));
+				tpList.add(new TitledPane(DateFormatter.formatDay(duplicateDate.getDayOfWeek()), new Label("No expenses on this day!")));
+			}else {
+				auth = false;
+				tpList.add(new TitledPane(DateFormatter.formatDay(duplicateDate.getDayOfWeek()), gpList.get(i)));
+			}
+			
+			tpList.add(new TitledPane(DateFormatter.formatDay(duplicateDate.getDayOfWeek()), gpList.get(i)));
+			counter = 0;
+			i++;
             duplicateDate = duplicateDate.minusDays(1);
             d.setDay(d.getDay() - 1);
 			days++;
