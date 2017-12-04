@@ -22,6 +22,7 @@ import application.model.Income;
 import application.model.DateFormatter;
 
 import application.model.SecureNewPass;
+import application.model.User;
 import application.model.Expense.AutoInsurance;
 import application.model.Expense.AutoPayment;
 import application.model.Expense.HealthInsurance;
@@ -121,6 +122,7 @@ public class CreateAccountController {
 
     private YearMonth currentMonth;
 
+    private User newUser;	// the user account of the application
 
     
     /**
@@ -193,7 +195,11 @@ public class CreateAccountController {
 		else {
 				//this.income = Double.parseDouble(income);
 				
-				String newUser = user_name.getText().trim();
+			
+			/**
+			 *  Create the user object and fill in it's fields
+			 */
+				 newUser =  new User(user_name.getText().trim());
 				//String newPass = password.getText().trim();
 				/*
 				 * Commenting out line above (after we talk). This is slightly dangerous
@@ -201,18 +207,35 @@ public class CreateAccountController {
 				 * password.getCharacters() to SecureNewPass
 				 * cuts out this step.
 				 */
+				 
+				newUser.setPhone(phone_Number.getText().trim());
 				
+				//String newIncome = income.getText().trim();
 				
-				String phone = phone_Number.getText().trim();
-				String newIncome = income.getText().trim();
-				String newJob = jobInfo.getText().trim();
+				in.userPay(jobInfo.getText().trim(), Double.parseDouble(income.getText().trim()));
+				
+				/**
+				 * Extract the data from the text fields
+				 */
 				String houseDebt = housing.getText().trim();
-				//home.setAmmount(Double.parseDouble(houseDebt));
-				String healthDebt = health.getText().trim();
-				healthy.setAmmount(Double.parseDouble(healthDebt));
-				String payment = autoPay.getText().trim();
-				auto.setAmmount(Double.parseDouble(payment));
 				String insurance = autoInsur.getText().trim();
+				String healthDebt = health.getText().trim();
+				String payment = autoPay.getText().trim();
+				String newPhone = phone_Number.getText().trim();
+				
+				//String newJob = jobInfo.getText().trim();
+				
+				
+				home = new HomePayment(Double.parseDouble(housing.getText().trim()), null, null);
+				
+				healthy = new HealthInsurance(Double.parseDouble(health.getText().trim()), null, null);
+				
+				// this is causing a NULL pointer exception because healthy is not instantiated, healthy.setAmmount(Double.parseDouble(healthDebt));
+				
+				auto = new AutoPayment(Double.parseDouble(autoPay.getText().trim()), null, null);
+				
+				//NULL pointer exception, auto.setAmmount(Double.parseDouble(payment));
+
 				insur.setAmmount(Double.parseDouble(insurance));
 
 				//File incomeFile = new File("UserProfiles/"+newUser+"/Income.txt");
@@ -221,15 +244,27 @@ public class CreateAccountController {
 				//File dateTrack = new File("UserProfiles/"+newUser+"/AnnualExpenses/2017/November");
 
 				String fileName = "FixedExpenses.txt";
-				//String incomeFile = "Income.txt";
-				File incomeFile = new File("UserProfiles" + File.separator+newUser+File.separator +"Income.txt");
-				File userFile = new File("UserProfiles" + File.separator+newUser+File.separator +newUser+".txt");
-				File dir = new File("UserProfiles" + File.separator+newUser+File.separator +"AnnualExpenses" + File.separator + currentMonth.getYear());
-				File dateTrack = new File("UserProfiles" + File.separator +newUser+File.separator +"AnnualExpenses" + File.separator + currentMonth.getYear() + File.separator + DateFormatter.formatMonth(currentMonth.getMonth()));
+				
+				//File incomeFile = new File("UserProfiles" + File.separator+newUser+File.separator +"Income.txt");
+				
+				File incomeFile = new File(newUser.getPathToProfile() +"Income.txt");
+				
+				File userFile = new File(newUser.getPathToProfile()+ newUser.getUsername() + ".txt");
+				
+				File dir = new File(newUser.getPathToProfile() +"AnnualExpenses" + File.separator + currentMonth.getYear());
+				
+				File dateTrack = new File(newUser.getPathToProfile() + "AnnualExpenses" + File.separator + currentMonth.getYear() + DateFormatter.formatMonth(currentMonth.getMonth()));
 
 				if(dateTrack.exists()) {
+					
+					// TODO kelly, please use the Alert class to alert the user that the account already exists
+					// Alert can also be used to give error messages, do this if you have time
+					
 					System.out.println("directory already exists");
 				}
+				
+				//TODO please delete all System.out.println() statements, they should not be in the final version
+				
 				else {
 					boolean success = dateTrack.mkdirs();
 					if (success){
@@ -268,9 +303,10 @@ public class CreateAccountController {
 				}
 				//if()
 				if(incomeFile.createNewFile()) {
-					System.out.println("Income File is created!");
 					FileWriter writer = new FileWriter(incomeFile);
-					writer.write(newJob+":"+ Double.parseDouble(newIncome));
+					
+					// using toString() of Income and Expense objects does all the work for you
+					writer.write(in.toString());
 					writer.close();
 					
 				}else {
@@ -280,7 +316,7 @@ public class CreateAccountController {
 				if(userFile.createNewFile()) {
 					FileWriter writer = new FileWriter(userFile);
 					snp = new SecureNewPass();
-					snp.secure(newUser, password.getCharacters(), phone);
+					snp.secure(newUser, password.getCharacters(), newPhone);
 					System.out.printf("%s", snp.toString());
 					writer.write(snp.toString());
 					//writer.write(newUser + ":" + newPass + ":" + phone);
@@ -293,7 +329,15 @@ public class CreateAccountController {
 				//home = Double.parseDouble(houseDebt);
 				
 				
-				if(!houseDebt.isEmpty() || !healthDebt.isEmpty() || !payment.isEmpty() || !insurance.isEmpty()) {
+				/**
+				 * It is fine to access the text fields directly here, since at this point the data 
+				 * in the Monthly Expenses has been extracted into objects.
+				 */
+				
+				// TODO, kelly notice line 350. I called the toString() of the HomePayment class to take care of this task.
+				// please update all calls to write with the appropriate toString() of the object
+				
+				if(!healthDebt.isEmpty() || !houseDebt.isEmpty() || !payment.isEmpty() || !insurance.isEmpty()) {
 					File fixedFile = new File(dir+File.separator +"FixedExpenses.txt");
 					if(fixedFile.createNewFile()) {
 						System.out.println("Fixed File is created!");
@@ -303,7 +347,7 @@ public class CreateAccountController {
 					if(!houseDebt.isEmpty()){
 						//home.setAmmount(Double.parseDouble(houseDebt));
 						//home.setDate(currentMonth, );
-						fill.write("Housing:"+home.toString());
+						fill.write(home.toString());
 						//fill.close();	
 					}
 					if(!healthDebt.isEmpty()) {
@@ -311,7 +355,7 @@ public class CreateAccountController {
 						//Double.parseDouble(healthDebt);
 						healthy.setAmmount(Double.parseDouble(healthDebt));
 						//healthy.setAmmount(healthDebt);
-						fill.write("Health Insurance:"+healthy.toString());
+						fill.write(healthy.toString());
 						
 					}if(!payment.isEmpty()) {
 						//fill.write("Auto Payment:"+Double.parseDouble(payment)+":");
@@ -325,9 +369,6 @@ public class CreateAccountController {
 					fill.close();
 				}
 				
-				
-				System.out.println(newIncome);
-				System.out.println(newJob);
 				//Stage popUp =  new Stage();
 				
 				
