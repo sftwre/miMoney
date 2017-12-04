@@ -159,14 +159,15 @@ public class DatalistModel {
 			if(line != null)
 			{
 				if(line.contains(e.getDate().toString())) {
+					//TODO: if 
 					bw.append("," + e.toString());
-					System.out.print("\nNO\n");
 				}else {
 					//TODO: Append a newLine
-					fw.append(e.toString());
+					bw.append("\n");
+					bw.append(e.toString());
 				}
 					//write to end of line
-			}
+			}//if line != null
 			//line = br.readLine();
 		//}//END while
 		} catch (IOException err) {
