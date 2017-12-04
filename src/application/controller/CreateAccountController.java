@@ -270,13 +270,14 @@ public class CreateAccountController {
 					boolean success = dateTrack.mkdirs();
 					if (success){
 				      // creating the directory succeeded
-				      System.out.println("directory was created successfully");
+				      
 				      File expTr = new File(dateTrack+File.separator +"ExpenseTracker.txt");
 				      if(expTr.createNewFile()) {
 				    	  System.out.println("Expense Tracker file is created!");
 				      }
 				      else {
 				    	  System.out.println("Tracker failed to print");
+				    	  
 				      }
 				      
 				    }
