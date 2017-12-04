@@ -226,17 +226,18 @@ public class CreateAccountController {
 				//String newJob = jobInfo.getText().trim();
 				
 				
-				home = new HomePayment(Double.parseDouble(housing.getText().trim()), null, null);
+				home = new HomePayment(Double.parseDouble(houseDebt), null, null);
 				
-				healthy = new HealthInsurance(Double.parseDouble(health.getText().trim()), null, null);
+				healthy = new HealthInsurance(Double.parseDouble(healthDebt), null, null);
 				
 				// this is causing a NULL pointer exception because healthy is not instantiated, healthy.setAmmount(Double.parseDouble(healthDebt));
 				
-				auto = new AutoPayment(Double.parseDouble(autoPay.getText().trim()), null, null);
+				auto = new AutoPayment(Double.parseDouble(payment), null, null);
 				
 				//NULL pointer exception, auto.setAmmount(Double.parseDouble(payment));
-
-				insur.setAmmount(Double.parseDouble(insurance));
+				
+				insur =  new AutoInsurance(Double.parseDouble(insurance), null, null);
+				
 
 				//File incomeFile = new File("UserProfiles/"+newUser+"/Income.txt");
 				//File userFile = new File("UserProfiles/"+newUser+"/"+newUser+".txt");
