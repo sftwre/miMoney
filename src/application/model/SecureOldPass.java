@@ -72,7 +72,7 @@ public class SecureOldPass extends SecurePass{
 		if(auth == true) {
 			System.out.printf("%s", auth.toString());
 			auth = true;
-			System.out.println("password authenticated in OldPass");
+			//System.out.println("password authenticated in OldPass");
 			return auth;
 		}
 		System.out.printf("%s", auth.toString());
