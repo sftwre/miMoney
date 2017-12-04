@@ -15,8 +15,14 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -86,6 +92,12 @@ public class CalendarController {
 	
 	static FinancialDataParser input;
 	private UserDataParser dataParser;
+	
+	private BufferedReader br;
+	
+	private FileWriter fw;
+	
+	private Writer bw;		
 	
 	public void initialize() {
 		monthTile.setPrefSize(420, 380);
@@ -197,6 +209,50 @@ public class CalendarController {
 		}
 	}//END filePathExists()
 
+    private void addToAccordion(Expense e) {
+		Path path = Paths.get("UserProfiles" + File.separator + Main.session.currentUser.getUsername() + File.separator + "AnnualExpenses" + File.separator + currentMonth.getYear() + File.separator + DateFormatter.formatMonth(currentMonth.getMonth()) + File.separator + "ExpenseTracker.txt");
+		File et = new File(path.toString());
+		String line = "";
+		
+		//Series of try catch used with FileIO		
+		try {
+			br = new BufferedReader(new FileReader(path.toFile()));
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		Boolean auth = false;
+		try {
+			while((line = br.readLine()) != null) {
+				System.out.printf("\n" + line + "\n");
+				if(line.contains(e.getDate().toString())) {
+					System.out.printf("YES\n");
+					//bw.append("," + e.toString());
+					auth = true;
+				}//END if date append
+			}//END while read next line
+			
+			if(auth == false) {
+				System.out.printf("\nNew Line!!!\n");
+				//bw.append("\n");
+				//bw.append(e.toString());
+			}//if date not find
+			
+			} catch (IOException err) {
+			// TODO Auto-generated catch block
+			err.printStackTrace();
+		}//END try catch read line check line
+		
+		//END series of try/catch
+		
+		//TODO: sort through the dates line by line, store the last known date, current date, and next date
+		//TODO: if currentDate == givenDate then append the expense to end of line
+		//TODO: if currentDate.day() > givenDate.day()
+		//lastKnownDate = givenDate; write new line with expense
+		return;
+	}//END addToFile()
+	
 	private void addTitlePanes(int n) {		
 //*		
 		tpList.add(new TitledPane("Monday", new Button("yes")));
