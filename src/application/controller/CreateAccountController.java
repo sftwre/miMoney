@@ -120,7 +120,6 @@ public class CreateAccountController {
     private AutoPayment auto;
     
     private HomePayment home;
-	//private double housePrice;
 
     private YearMonth currentMonth;
 
@@ -328,16 +327,14 @@ public class CreateAccountController {
 					FileWriter writer = new FileWriter(userFile);
 					snp = new SecureNewPass();
 					snp.secure(newUser.getUsername(), password.getCharacters(), newPhone);
-					System.out.printf("%s", snp.toString());
+					//System.out.printf("%s", snp.toString());
 					writer.write(snp.toString());
-					//writer.write(newUser + ":" + newPass + ":" + phone);
 					writer.close();
-					System.out.println("User File is created!");
+					//User file is created
 					
 				}else {
 					System.out.println("File already exists.");
 				}
-				//home = Double.parseDouble(houseDebt);
 				
 				
 				/**
