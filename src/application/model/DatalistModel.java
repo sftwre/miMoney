@@ -162,6 +162,7 @@ public class DatalistModel {
 					bw.append("," + e.toString());
 					System.out.print("\nNO\n");
 				}else {
+					//TODO: Append a newLine
 					fw.append(e.toString());
 				}
 					//write to end of line
