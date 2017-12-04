@@ -382,22 +382,6 @@ public void saveIncomeChanges(ActionEvent event)
 
 }  
 
-// TODO determine if this is possible given the time
-/**
- * Used to switch the view to the Goals tab when the User clicks on
- * a goal in the Current Goals panel
- */
-@FXML
-public void switchToGoalsTab(MouseEvent event)
-{
-	try {
-	MainViewController.tabPane.getSelectionModel().selectLast();
-	} catch(Exception e)
-	{
-		System.out.println(e.getMessage());
-	}
-}
-
 /**
  * Used to display a new stage for displaying a list
  * of Goals the user can create.
