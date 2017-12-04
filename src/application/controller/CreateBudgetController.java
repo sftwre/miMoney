@@ -375,7 +375,7 @@ public class CreateBudgetController {
     		invalidTextField.setVisible(false);
     		
     		// create a new file with the same title as the Budget
-    		String path = Main.session.currentUser.pathToProfile() + "Goals" + File.separator + "Budget" 
+    		String path = Main.session.currentUser.getPathToProfile() + "Goals" + File.separator + "Budget" 
     					+  File.separator + this.budget.getTitle();
     		
     		File filePath =  new File(path);
