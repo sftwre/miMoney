@@ -51,7 +51,7 @@ public class User {
 		this.username = username;
 	}
 	
-	public String pathToProfile()
+	public String getPathToProfile()
 	{
 		return (this.pathToProfile);
 	}
