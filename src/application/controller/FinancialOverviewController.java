@@ -19,6 +19,8 @@ import application.model.Goals.Goals;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.junit.internal.builders.AllDefaultPossibilitiesBuilder;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -100,7 +102,7 @@ public class FinancialOverviewController
     private ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(); 
 
     // Goal data for the Current Goals pane
-    private ObservableList<String> goalsListData = FXCollections.observableArrayList();			
+    private ObservableList<String> goalsListData = FXCollections.observableArrayList();	
  
 
 
@@ -170,8 +172,10 @@ public void initialize()
 }
 
 /**
- * Used to retrieve all of the the User's spending data for the current month
- * with duplicate Expense categories added.
+ * Used to retrieve all of the the User's spending data for the current month.
+ * After all Expense data is loaded,  duplicate Expense categories are merged.
+ * The Final operation places all Expenses for the Month in the pieChartData
+ * collection.
  */
 public void loadSpendingDataForChart()
 {
