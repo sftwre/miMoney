@@ -146,12 +146,17 @@ public class DataListController {
 		if(t0Field.getCharacters().toString().compareTo("") == 0) {
 			incorrectCombo.setText("Must enter item name");
 			return auth;
+		}else if(t0Field.getCharacters().toString().length() > 45) {
+			incorrectCombo.setText("Item length is over 45 characters");
+			return auth;
+		}else if(t1Field.getCharacters().toString().compareTo("") == 0) {
+			incorrectCombo.setText("Must enter an item total");
+			return auth;
 		}else if(expensesComboBox.getSelectionModel().getSelectedItem() == null) {
 			incorrectCombo.setText("Must select expense category");
 			return auth;
-		}
+		}//END if/else validation
 		
-		//TODO: Limit character length from item name
     	return true;
     }//END validate()
 	
@@ -231,7 +236,7 @@ public class DataListController {
     private void loadExpenseCategories()
     {
     	
-    	expenseOptions.addAll("Apperal", "Auto Maintenance", "Home Maintenance", "Medical", 
+    	expenseOptions.addAll("Apparel", "Auto Maintenance", "Home Maintenance", "Medical", 
     						  "Education", "Entertainment", "Food", "Gas","Luxury", "Personal Care", 
     						  "Public Transportation", "Subscriptions", "Miscellaneous");
     }//END loadExpenseCategories()
