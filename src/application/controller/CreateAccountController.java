@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.text.NumberFormat;
 import java.time.YearMonth;
 
+import javax.swing.JOptionPane;
 
 import application.Main;
 
@@ -33,6 +34,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -109,7 +111,7 @@ public class CreateAccountController {
     private SecureNewPass snp;
     
 
-    private Income in;
+    private Income money;
     
     private AutoInsurance insur;
     
@@ -207,12 +209,15 @@ public class CreateAccountController {
 				 * password.getCharacters() to SecureNewPass
 				 * cuts out this step.
 				 */
-				 
+				
 				newUser.setPhone(phone_Number.getText().trim());
 				
-				//String newIncome = income.getText().trim();
-				
-				in.userPay(jobInfo.getText().trim(), Double.parseDouble(income.getText().trim()));
+				String newIncome = income.getText().trim();
+				String newJob = jobInfo.getText().trim();
+				money = new Income(newJob, Double.parseDouble(newIncome));
+				//Having issues with userPay here
+				money.userPay(newJob, Double.parseDouble(newIncome));
+				//money.userPay(newJob, Double.parseDouble(newIncome));
 				
 				/**
 				 * Extract the data from the text fields
@@ -226,17 +231,17 @@ public class CreateAccountController {
 				//String newJob = jobInfo.getText().trim();
 				
 				
-				home = new HomePayment(Double.parseDouble(houseDebt), null, null);
+				//home = new HomePayment(Double.parseDouble(houseDebt), null, null);
 				
-				healthy = new HealthInsurance(Double.parseDouble(healthDebt), null, null);
+				//healthy = new HealthInsurance(Double.parseDouble(healthDebt), null, null);
 				
 				// this is causing a NULL pointer exception because healthy is not instantiated, healthy.setAmmount(Double.parseDouble(healthDebt));
-				
-				auto = new AutoPayment(Double.parseDouble(payment), null, null);
+				//System.out.println(Double.parseDouble(payment));
+				//auto = new AutoPayment(Double.parseDouble(payment), null, "House");
 				
 				//NULL pointer exception, auto.setAmmount(Double.parseDouble(payment));
 				
-				insur =  new AutoInsurance(Double.parseDouble(insurance), null, null);
+				//insur =  new AutoInsurance(Double.parseDouble(insurance), null, null);
 				
 
 				//File incomeFile = new File("UserProfiles/"+newUser+"/Income.txt");
@@ -254,14 +259,15 @@ public class CreateAccountController {
 				
 				File dir = new File(newUser.getPathToProfile() +"AnnualExpenses" + File.separator + currentMonth.getYear());
 				
-				File dateTrack = new File(newUser.getPathToProfile() + "AnnualExpenses" + File.separator + currentMonth.getYear() + DateFormatter.formatMonth(currentMonth.getMonth()));
+				File dateTrack = new File(newUser.getPathToProfile() + "AnnualExpenses" + File.separator + currentMonth.getYear() + File.separator + DateFormatter.formatMonth(currentMonth.getMonth()));
 
 				if(dateTrack.exists()) {
 					
 					// TODO kelly, please use the Alert class to alert the user that the account already exists
 					// Alert can also be used to give error messages, do this if you have time
 					
-					System.out.println("directory already exists");
+					JOptionPane.showMessageDialog(null, "directory already exists");
+					//alert("");
 				}
 				
 				//TODO please delete all System.out.println() statements, they should not be in the final version
@@ -273,34 +279,37 @@ public class CreateAccountController {
 				      
 				      File expTr = new File(dateTrack+File.separator +"ExpenseTracker.txt");
 				      if(expTr.createNewFile()) {
-				    	  System.out.println("Expense Tracker file is created!");
+				    	  //Tracker file is created
 				      }
 				      else {
-				    	  System.out.println("Tracker failed to print");
+				    	  //System.err.println("Tracker failed to print");
+				    	  JOptionPane.showMessageDialog(null, "Tracker failed to print");
 				    	  
 				      }
 				      
 				    }
 					else{
 				      // creating the directory failed
-				      System.out.println("failed trying to create the directory");
+				      //System.err.println("failed trying to create the directory");
+				      JOptionPane.showMessageDialog(null, "failed trying to create the directory");
 				    }
 				}
 				
 				if(dir.exists()) {
-					System.out.println("directory already exists");
+					//JOptionPane.showMessageDialog(null, "directory already exists");
 				}
 				else {
 					boolean success = dir.mkdirs();
 					if (success){
 				      // creating the directory succeeded
-				      System.out.println("directory was created successfully");
+				      
 				      
 				      
 				    }
 					else{
 				      // creating the directory failed
-				      System.out.println("failed trying to create the directory");
+				      System.err.println("failed trying to create the directory");
+				      //JOptionPane.ERROR()
 				    }
 				}
 				//if()
@@ -308,7 +317,7 @@ public class CreateAccountController {
 					FileWriter writer = new FileWriter(incomeFile);
 					
 					// using toString() of Income and Expense objects does all the work for you
-					writer.write(in.toString());
+					writer.write(money.toString());
 					writer.close();
 					
 				}else {
@@ -342,30 +351,25 @@ public class CreateAccountController {
 				if(!healthDebt.isEmpty() || !houseDebt.isEmpty() || !payment.isEmpty() || !insurance.isEmpty()) {
 					File fixedFile = new File(dir+File.separator +"FixedExpenses.txt");
 					if(fixedFile.createNewFile()) {
-						System.out.println("Fixed File is created!");
+						//System.out.println("Fixed File is created!");
 					}
 					//fixedFile.mkdirs();
 					FileWriter fill = new FileWriter(fixedFile);
 					if(!houseDebt.isEmpty()){
-						//home.setAmmount(Double.parseDouble(houseDebt));
-						//home.setDate(currentMonth, );
+						home = new HomePayment(Double.parseDouble(houseDebt), null, null);
 						fill.write(home.toString());
-						//fill.close();	
 					}
 					if(!healthDebt.isEmpty()) {
-						//fill.write("Health Insurance:"+Double.parseDouble(healthDebt)+":");
-						//Double.parseDouble(healthDebt);
-						healthy.setAmmount(Double.parseDouble(healthDebt));
-						//healthy.setAmmount(healthDebt);
+						healthy = new HealthInsurance(Double.parseDouble(healthDebt), null, null);
 						fill.write(healthy.toString());
 						
 					}if(!payment.isEmpty()) {
-						//fill.write("Auto Payment:"+Double.parseDouble(payment)+":");
-						fill.write("Auto Payment:"+auto.toString());
+						auto = new AutoPayment(Double.parseDouble(payment), null, "House");
+						fill.write(auto.toString());
 						
 					}if(!insurance.isEmpty()) {
-						//fill.write("Auto Insurance:"+Double.parseDouble(insurance)+":");
-						fill.write("Auto Insurance:"+Double.parseDouble(insurance)+":");
+						insur =  new AutoInsurance(Double.parseDouble(insurance), null, null);
+						fill.write(insur.toString());
 					}
 					
 					fill.close();
@@ -381,7 +385,7 @@ public class CreateAccountController {
 		    		Main.stage.show();
 				}catch(IOException e) {
 					e.printStackTrace();
-					System.out.println("MainView page can't be found");
+					System.err.println("failed to pass");
 				}
 						
 			}
@@ -397,8 +401,6 @@ public class CreateAccountController {
 			Parent root = FXMLLoader.load(getClass().getResource("../view/resources/Tutorial.fxml"));
     		Scene scene = new Scene(root);
     		Main.setScene(scene);
-    		//popUp.setScene(scene);
-    		//popUp.show();
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
