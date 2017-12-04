@@ -23,6 +23,7 @@ import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -422,7 +423,11 @@ public class CreateBudgetController {
     			// the user has created a Budget that already exists
     			else
     			{
-    				Alert errorMesage = new Alert();
+    				Alert alert = new Alert(AlertType.WARNING);
+    				alert.setTitle("");
+    				alert.setHeaderText("A Budget with the title '" + titleTextField.getText() + "' already exists");
+    				alert.setContentText("Rename the Budget");
+    				alert.showAndWait();
     			}
 
 			} catch (IOException e) {
