@@ -9,7 +9,11 @@ import application.model.Session;
 
 
 /**
- *
+ *@author Isaac Buitrago
+ *@author Jonathan Guzman
+ *@author Kelly Malcom
+ *@author Manuel Deaguinaga
+ *@author Sam Dash
  */
 public class Main extends Application {
 	
