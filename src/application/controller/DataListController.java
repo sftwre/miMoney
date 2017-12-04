@@ -150,6 +150,8 @@ public class DataListController {
 			incorrectCombo.setText("Must select expense category");
 			return auth;
 		}
+		
+		//TODO: Limit character length from item name
     	return true;
     }//END validate()
 	
