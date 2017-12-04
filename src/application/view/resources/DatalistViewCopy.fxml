@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="551.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.DataListControllerCopy">
+   <children>
+      <BorderPane prefHeight="551.0" prefWidth="350.0">
+         <center>
+            <ScrollPane hbarPolicy="NEVER" hmax="0.0" prefHeight="453.0" prefWidth="350.0" BorderPane.alignment="CENTER">
+               <content>
+                  <GridPane fx:id="itemsGridPane" gridLinesVisible="true" prefHeight="64.0" prefWidth="348.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="273.0" minWidth="273.0" prefWidth="273.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="78.0" prefWidth="95.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="67.0" minHeight="67.0" prefHeight="67.0" vgrow="NEVER" />
+                    </rowConstraints>
+                     <children>
+                        <Label fx:id="itemLabel" text="item name..." />
+                        <Label fx:id="doubleLabel" GridPane.columnIndex="1" />
+                     </children>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </center>
+         <bottom>
+            <SplitPane dividerPositions="0.8132183908045977" prefHeight="73.0" prefWidth="350.0" BorderPane.alignment="CENTER">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <TextField fx:id="t0Field" prefHeight="40.0" prefWidth="217.0" promptText="expense name...." />
+                        <TextField fx:id="t1Field" layoutX="216.0" layoutY="-1.0" prefHeight="41.0" prefWidth="69.0" promptText="\$20.00" />
+                        <ComboBox fx:id="expensesComboBox" layoutX="1.0" layoutY="37.0" prefHeight="34.0" prefWidth="279.0" promptText="Expense Type" />
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <Button fx:id="addButton" layoutX="-8.0" layoutY="-1.0" mnemonicParsing="false" onAction="#addButtonExpense" onKeyPressed="#addButtonExpense" prefHeight="73.0" prefWidth="70.0" text="+" />
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </bottom>
+         <top>
+            <GridPane gridLinesVisible="true" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="263.0" minWidth="10.0" prefWidth="263.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0" prefWidth="87.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Items" />
+                  <Label text="Totals" GridPane.columnIndex="1" />
+                  <Label fx:id="incorrectCombo" textFill="RED" translateX="50.0" />
+               </children>
+            </GridPane>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>

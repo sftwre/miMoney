@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.NumberFormat;
+import java.time.LocalDate;
 import java.time.YearMonth;
 
 import application.Main;
@@ -93,6 +94,8 @@ public class FinancialOverviewController
     @FXML 
     private StackPane goalsStackPane;			// Stack Pane that contains a ListView and label
     
+    @FXML
+    private Button addExpensesButton;
     
     private FinancialDataParser financialData;	// FileParser for retrieving the Financial information of the User
     
@@ -103,6 +106,10 @@ public class FinancialOverviewController
 
     // Goal data for the Current Goals pane
     private ObservableList<String> goalsListData = FXCollections.observableArrayList();	
+    
+    private YearMonth currentMonth;
+    
+    private LocalDate date;
  
 
 
@@ -113,11 +120,12 @@ public class FinancialOverviewController
  */
 public void initialize()
 {
-	
 	this.financialData = new FinancialDataParser(Main.session.currentUser);
 	
-	loadSpendingDataForChart();
+	currentMonth = YearMonth.now();
+	date = LocalDate.now();
 	
+	loadSpendingDataForChart();
 	
 	//If there is no spending data, set the label indicating that no spending data is available to visible
 	if(pieChartData.isEmpty())
@@ -416,6 +424,36 @@ public void createNewGoal(ActionEvent event)
 	}
 
 }
+
+@FXML
+public void addAnExpense(ActionEvent event) 
+{
+	Stage popUp =  new Stage();
+	
+	popUp.initModality(Modality.APPLICATION_MODAL);
+	
+	popUp.initOwner(Main.stage);
+	
+	try
+	{
+	Parent root = FXMLLoader.load(getClass().getResource("../view/resources/DatalistViewCopy.fxml"));
+	
+	Scene scene = new Scene(root);
+	
+	popUp.setScene(scene);
+	
+	popUp.setTitle("Date of " + DateFormatter.formatMonth(currentMonth.getMonth()) + " "
+					+ date.now().getDayOfMonth() + ", "
+					+ date.now().getYear());
+	
+	popUp.show();
+	
+	} catch(IOException e){
+		
+		System.out.printf("The resource 'view/resources/DatalistViewCopy.fxml' could not be located");
+	}
+
+}//END addAnExpense()
 
 
 /**

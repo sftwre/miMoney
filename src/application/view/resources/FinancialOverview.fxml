@@ -96,5 +96,6 @@
             <Font size="14.0" />
          </font>
       </Label>
+      <Button fx:id="addExpensesButton" layoutX="125.0" layoutY="566.0" mnemonicParsing="false" onAction="#addAnExpense" text="Add todays expenses..." />
    </children>
 </AnchorPane>
