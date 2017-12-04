@@ -70,7 +70,6 @@ public class SecureOldPass extends SecurePass{
 		//cmp = newHash.compareTo(oldHash);
 		auth = newHash.equals(oldHash);
 		if(auth == true) {
-			System.out.printf("%s", auth.toString());
 			auth = true;
 			//System.out.println("password authenticated in OldPass");
 			return auth;
