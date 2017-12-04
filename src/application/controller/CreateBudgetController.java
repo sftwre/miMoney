@@ -22,6 +22,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -170,6 +171,12 @@ public class CreateBudgetController {
     	// instantiate the Budget
     	 budget = new Budget();
     	 
+    	// set the row constraints to avoid a NullPointerException
+    	GridPane.setRowIndex(gasText, 0);
+     	GridPane.setRowIndex(gasTextField, 0);
+     	GridPane.setRowIndex(gasExpense, 0);
+    	 
+    	 
     }
 
     
@@ -181,7 +188,6 @@ public class CreateBudgetController {
     @FXML
    public void budgetItemSelected(ActionEvent event) 
     {
-    	
     	Integer index = GridPane.getRowIndex(((CheckBox)event.getSource())); // row index of Check Box that was just clicked
     	
     	boolean budgetItemToEdit = budgetItemToEdit();					 	// flag to determine if a Budget Item is selected for deletion
@@ -222,8 +228,7 @@ public class CreateBudgetController {
     			
     			if(child instanceof Text)
     				budgetItemsMap.remove(child);
-    		}
-    			
+    		}	
     	}
     	
     	budgetGridPane.getChildren().removeAll(nodesToDelete);
@@ -245,6 +250,8 @@ public class CreateBudgetController {
     @FXML
     public void addExpenseCategories(ActionEvent event) 
     {
+    	
+    	int row;				// row on budgetGridPane to add controls 
     	Text itemCategory;		// Expense Category of the Budget Item
     	TextField itemAmount;	// Amount to allocate for the Expense Category
     	CheckBox itemSelected;	// CheckBox for selecting and deleting a Budget Item
@@ -271,14 +278,15 @@ public class CreateBudgetController {
     		
     	// place a new Budget Item in an empty row first before creating a new row
     	if(indexesToDelete.isEmpty())
+    	{
     		rowIndex++;
+    		row = rowIndex;
+    	}
     	
     	else
-    		rowIndex = indexesToDelete.remove();
+    		row = indexesToDelete.remove();
     	
-    	budgetGridPane.addRow(rowIndex, itemCategory, itemAmount, itemSelected);
-    	
-    	
+    	budgetGridPane.addRow(row, itemCategory, itemAmount, itemSelected);
     	
     	// align the CheckBox and TextField
     	GridPane.setValignment(itemAmount, VPos.CENTER);
@@ -360,7 +368,6 @@ public class CreateBudgetController {
     			
     			item.setDate(date);
     			
-    			// add the BUdget item to the Budget TODO
     			this.budget.addItem(item);
     		}
     	}
@@ -382,19 +389,19 @@ public class CreateBudgetController {
     		
     		try {
     			
-    			newFile =  filePath.createNewFile();
+    			newFile = filePath.createNewFile();
     			
     			// the User has created a new Budget, write it to the file
     			if(newFile)
     			{
     				
-				BufferedWriter goalFile = new BufferedWriter(new FileWriter(filePath));
+				bufferedOutput = new BufferedWriter(new FileWriter(filePath));
 				
-				goalFile.write(this.budget.toString());
+				bufferedOutput.write(this.budget.toString());
 				
-				goalFile.flush();
+				bufferedOutput.flush();
 				
-				goalFile.close();
+				bufferedOutput.close();
 				
 				// display the rectangle and label for the success message
 				moveNodeInStackPane(budgetStackPane);
@@ -415,10 +422,9 @@ public class CreateBudgetController {
     			// the user has created a Budget that already exists
     			else
     			{
-    				
+    				Alert errorMesage = new Alert();
     			}
-    			
-    		//TODO Implement an error dialog
+
 			} catch (IOException e) {
 				
 				System.out.printf("Error while accessing %s%n", filePath.getPath());
