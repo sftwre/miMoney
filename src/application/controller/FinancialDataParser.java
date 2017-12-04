@@ -324,6 +324,84 @@ public class FinancialDataParser extends FileParser
 		return(budgetList);	
 	}
 	
+	/**
+	 * Used to parse the Budget data from a single Budget file
+	 * @param budgetFile to open in the Users profile
+	 * @return a Budget parsed from budgetFile
+	 */
+	public Budget readBudgetFile(String budgetFile)
+	{ 
+		// Budget to parse
+		Budget budget = new Budget();
+		
+		//reset root directory of the current user
+		setUserProfile(this.user);
+				
+		//prepare the userProfile to read from the Budget directory
+		this.userProfile += "Goals" + File.separator + "Budget" + File.separator + "budgetFile.txt";
+				
+		try 
+		{
+							
+			//Create reader for character files
+			FileReader file =  new FileReader(this.userProfile);
+							
+			bufferInput = new BufferedReader(file);
+							
+			/*
+			* First line contains the title of the Budget.
+			* Create a new BUdget with this title
+			*/
+			line = bufferInput.readLine();
+			
+			budget.setTitle(line);
+				
+							
+			line = bufferInput.readLine();
+							
+			// read all the Expense categories within the Budget
+							
+			while(line != null && ! line.isEmpty())
+			{
+							
+				//check that the current line is formatted correctly
+				if(!formattedData("[a-zA-Z]+:\\d+\\.\\d{6}:\\d+\\/\\d+\\/\\d+:.*", line) )
+				{
+					throw new Exception(String.format("%s is not formatted to standards in %s.%n"
+							+ "Standard: Colons seperating fields, commas seperating objects, 6 decimal digits of precision%n"
+							+ "for double values, no decimals for integer values."
+							+ "%n", line, budgetFile + ".txt" ));
+				}
+									
+				// create the appropriate Expense object from the current line
+				Expense budgetItem = createExpenseObject(line);
+									
+				// add the budgetItem to the budget
+				budget.addItem(budgetItem);
+									
+				line = bufferInput.readLine();
+			}
+							
+			bufferInput.close();
+							
+						
+		} catch(FileNotFoundException e){
+					
+			System.out.printf("File: %s does not exists\n", userProfile);
+					
+		} catch(IOException e){
+					
+			System.out.printf("Could not locate the directory : %s\n", userProfile);
+					
+		} catch (Exception e) {
+					
+			System.out.println(e.getMessage() + " readGoals()");
+		}
+				
+		return(budget);	
+		
+	}
+	
 	
 	
 	/**
