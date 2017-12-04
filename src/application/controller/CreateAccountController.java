@@ -317,7 +317,7 @@ public class CreateAccountController {
 				if(userFile.createNewFile()) {
 					FileWriter writer = new FileWriter(userFile);
 					snp = new SecureNewPass();
-					snp.secure(newUser, password.getCharacters(), newPhone);
+					snp.secure(newUser.getUsername(), password.getCharacters(), newPhone);
 					System.out.printf("%s", snp.toString());
 					writer.write(snp.toString());
 					//writer.write(newUser + ":" + newPass + ":" + phone);
