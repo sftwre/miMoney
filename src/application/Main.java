@@ -3,14 +3,17 @@ package application;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.transform.Scale;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import application.model.Session;
 
 
 /**
- *
+ *@author Isaac Buitrago
+ *@author Jonathan Guzman
+ *@author Kelly Malcom
+ *@author Manuel Deaguinaga
+ *@author Sam Dash
  */
 public class Main extends Application {
 	

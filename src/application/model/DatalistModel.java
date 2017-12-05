@@ -58,6 +58,7 @@ public class DatalistModel {
 		et = new ExpenseTracker();
 		currentMonth = YearMonth.now();
 		input = new FinancialDataParser(Main.session.currentUser);
+		date = LocalDate.now();
 	}//END constructor
 
 	public Expense decideType(String category, double t, LocalDate date, String i) {
@@ -152,23 +153,24 @@ public class DatalistModel {
 			e1.printStackTrace();
 		}
 
+		Boolean auth = false;
 		try {
-			line = br.readLine();
-
-			//while(line != null) {
-			if(line != null)
-			{
+			while((line = br.readLine()) != null) {
+				System.out.printf("\n" + line + "\n");
 				if(line.contains(e.getDate().toString())) {
+					System.out.printf("YES\n");
 					bw.append("," + e.toString());
-					System.out.print("\nNO\n");
-				}else {
-					fw.append(e.toString());
-				}
-					//write to end of line
-			}
-			//line = br.readLine();
-		//}//END while
-		} catch (IOException err) {
+					auth = true;
+				}//END if date append
+			}//END while read next line
+			
+			if(auth == false) {
+				System.out.printf("\nNew Line!!!\n");
+				bw.append("\n");
+				bw.append(e.toString());
+			}//if date not find
+			
+			} catch (IOException err) {
 			// TODO Auto-generated catch block
 			err.printStackTrace();
 		}//END try catch read line check line

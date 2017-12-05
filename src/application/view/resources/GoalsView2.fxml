@@ -9,54 +9,64 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.Goals2Controller">
+<AnchorPane prefHeight="756.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.Goals2Controller">
    <children>
-      <Pane prefHeight="400.0" prefWidth="615.0">
-         <children>
-            <GridPane layoutX="13.0" layoutY="27.0" prefHeight="340.0" prefWidth="373.0">
+      <ScrollPane prefHeight="756.0" prefViewportHeight="756.0" prefViewportWidth="681.0" prefWidth="681.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <Pane prefHeight="756.0" prefWidth="615.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Goal result" textAlignment="CENTER" wrappingWidth="200.0" GridPane.rowIndex="1" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Cost" textAlignment="CENTER" wrappingWidth="200.0" GridPane.rowIndex="2" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Monthly Payment" textAlignment="CENTER" wrappingWidth="200.0" GridPane.rowIndex="3" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Time" textAlignment="CENTER" wrappingWidth="200.0" GridPane.rowIndex="4" />
-                  <Button fx:id="delete" mnemonicParsing="false" onAction="#deleteButton" prefHeight="27.0" prefWidth="170.0" text="Delete" GridPane.rowIndex="7" />
-                  <Text fx:id="name" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Text fx:id="totalCost" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Text fx:id="monthlyPayment" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Text fx:id="time" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Button fx:id="close" mnemonicParsing="false" onAction="#closeButton" prefHeight="27.0" prefWidth="170.0" text="Close" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <Button fx:id="Search" mnemonicParsing="false" onAction="#searchButton" prefHeight="27.0" prefWidth="170.0" text="Search" />
-                  <TextField fx:id="searchText" promptText="Ex. Ford F-150" GridPane.columnIndex="1" />
-               </children>
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-            </GridPane>
-            <TitledPane layoutX="386.0" layoutY="100.0" prefHeight="200.0" prefWidth="106.0" text="Current Goals">
-               <content>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                  <GridPane layoutX="13.0" layoutY="27.0" prefHeight="340.0" prefWidth="373.0">
                      <children>
-                        <StackPane layoutY="11.0" prefHeight="150.0" prefWidth="200.0">
-                           <children>
-                              <Label prefHeight="47.0" prefWidth="200.0" text="Label" />
-                              <ListView fx:id="currentGoalsListView" prefHeight="169.0" prefWidth="219.0" />
-                           </children>
-                        </StackPane>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Goal result" textAlignment="CENTER" wrappingWidth="200.0" GridPane.rowIndex="1" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Cost" textAlignment="CENTER" wrappingWidth="200.0" GridPane.rowIndex="2" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Monthly Payment" textAlignment="CENTER" wrappingWidth="200.0" GridPane.rowIndex="3" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Time" textAlignment="CENTER" wrappingWidth="200.0" GridPane.rowIndex="4" />
+                        <Button fx:id="delete" mnemonicParsing="false" onAction="#deleteButton" prefHeight="27.0" prefWidth="170.0" text="Delete" GridPane.rowIndex="7" />
+                        <Text fx:id="name" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Text fx:id="totalCost" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Text fx:id="monthlyPayment" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Text fx:id="time" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Button fx:id="close" mnemonicParsing="false" onAction="#closeButton" prefHeight="27.0" prefWidth="170.0" text="Close" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Button fx:id="Search" mnemonicParsing="false" onAction="#searchButton" prefHeight="27.0" prefWidth="170.0" text="Search" />
+                        <TextField fx:id="searchText" promptText="Ex. Ford F-150" GridPane.columnIndex="1" />
                      </children>
-                  </AnchorPane>
-               </content></TitledPane>
-         </children>
-      </Pane>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+                  <TitledPane layoutX="386.0" layoutY="100.0" prefHeight="200.0" prefWidth="106.0" text="Current Goals">
+                     <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <StackPane layoutY="11.0" prefHeight="150.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefHeight="47.0" prefWidth="200.0" text="Label" />
+                                    <ListView fx:id="currentGoalsListView" prefHeight="169.0" prefWidth="219.0" />
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </TitledPane>
+                  <TitledPane animated="false" collapsible="false" layoutX="13.0" layoutY="389.0" prefHeight="353.0" prefWidth="301.0" text="Current Budget">
+                  	<content>
+                  		<fx:include fx:id="BudgetView" source="ViewBudget.fxml" /> 
+                  	</content>
+                  </TitledPane>
+               </children>
+            </Pane>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

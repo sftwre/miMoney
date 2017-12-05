@@ -324,6 +324,84 @@ public class FinancialDataParser extends FileParser
 		return(budgetList);	
 	}
 	
+	/**
+	 * Used to parse the Budget data from a single Budget file
+	 * @param budgetFile to open in the Users profile
+	 * @return a Budget parsed from budgetFile
+	 */
+	public Budget readBudgetFile(String budgetFile)
+	{ 
+		// Budget to parse
+		Budget budget = new Budget();
+		
+		//reset root directory of the current user
+		setUserProfile(this.user);
+				
+		//prepare the userProfile to read from the Budget directory
+		this.userProfile += "Goals" + File.separator + "Budget" + File.separator + budgetFile;
+				
+		try 
+		{
+							
+			//Create reader for character files
+			FileReader file =  new FileReader(this.userProfile);
+							
+			bufferInput = new BufferedReader(file);
+							
+			/*
+			* First line contains the title of the Budget.
+			* Create a new BUdget with this title
+			*/
+			line = bufferInput.readLine();
+			
+			budget.setTitle(line);
+				
+							
+			line = bufferInput.readLine();
+							
+			// read all the Expense categories within the Budget
+							
+			while(line != null && ! line.isEmpty())
+			{
+							
+				//check that the current line is formatted correctly
+				if(!formattedData("[a-zA-Z]+:\\d+\\.\\d{6}:\\d+\\/\\d+\\/\\d+:.*", line) )
+				{
+					throw new Exception(String.format("%s is not formatted to standards in %s.%n"
+							+ "Standard: Colons seperating fields, commas seperating objects, 6 decimal digits of precision%n"
+							+ "for double values, no decimals for integer values."
+							+ "%n", line, budgetFile + ".txt" ));
+				}
+									
+				// create the appropriate Expense object from the current line
+				Expense budgetItem = createExpenseObject(line);
+									
+				// add the budgetItem to the budget
+				budget.addItem(budgetItem);
+									
+				line = bufferInput.readLine();
+			}
+							
+			bufferInput.close();
+							
+						
+		} catch(FileNotFoundException e){
+					
+			System.out.printf("File: %s does not exists\n", userProfile);
+					
+		} catch(IOException e){
+					
+			System.out.printf("Could not locate the directory : %s\n", userProfile);
+					
+		} catch (Exception e) {
+					
+			System.out.println(e.getMessage() + " readGoals()");
+		}
+				
+		return(budget);	
+		
+	}
+	
 	
 	
 	/**
@@ -430,6 +508,88 @@ try {
 		return (expenseList);
 		
 }
+	/**
+	 * Used to retrieve the Expense data for a specific month
+	 * @param date to retrieve the Expense data
+	 */
+	
+	public ArrayList<Expense> readMonthExpenses(Date date)
+	{
+		
+		ArrayList<Expense> expenseList = new ArrayList<Expense>();
+		
+		//reset URL of UserProfile to root directory for the current User
+		setUserProfile(this.user);
+		
+		try {
+			
+			
+			userProfile += String.format("%s%s%d%s%s%s%s", "AnnualExpenses", File.separator, 
+								date.getYear(), File.separator,Date.MONTHS_IN_YEAR[date.getMonth()],
+								File.separator, "ExpenseTracker.txt");
+			
+			
+			//read expense data from the expense file
+			bufferInput = new BufferedReader(new FileReader(this.userProfile));
+			
+			line = bufferInput.readLine();
+			
+			while(line != null && ! line.isEmpty()) 
+			{
+				// if the line contains commas, separate each Expense object
+				if(line.matches(".*,.*"))
+				{
+					
+					rawObjects = line.split(",");
+				}
+				
+				else
+					rawObjects[0] = line;
+				
+				for(String object : rawObjects)
+				{
+					
+					//Check the properties of an object are formated correctly
+					if(! formattedData("[a-zA-Z]+:\\d+\\.\\d{6}:\\d+\\/\\d+\\/\\d+:.*", object ))
+					{	
+						throw new Exception(String.format("%s is not formatted to standards in %s.%n"
+								+ "Standard: Colons seperating fields, commas seperating objects, 6 decimal digits of precision%n"
+								+ "for double values, no decimals for integer values."
+								+ "%n", line, userProfile));
+					}
+					
+					//Instantiate the Expense object based on the first token in the properties
+					Expense e = createExpenseObject(object);
+					
+					expenseList.add(e);
+				}
+				
+				//read the next line of rawObjects
+				line = bufferInput.readLine();
+			}
+			
+			bufferInput.close();
+			
+		} catch(NoSuchElementException e) {
+			
+			System.out.println(e.getMessage());
+			
+		} catch(FileNotFoundException e) {
+				System.out.printf("File: %s does not exists\n", userProfile);
+			
+		} catch(IOException e){
+			
+			System.out.printf("Could not open or close the file: %s\n", userProfile);
+			
+		} catch(Exception e){
+			
+			System.out.println(e.getMessage() + " readExpenses()");
+		}
+		
+		return (expenseList);
+		
+	}
+	
 	
 	
 	/**

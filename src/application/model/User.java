@@ -51,7 +51,7 @@ public class User {
 		this.username = username;
 	}
 	
-	public String pathToProfile()
+	public String getPathToProfile()
 	{
 		return (this.pathToProfile);
 	}
@@ -76,13 +76,9 @@ public class User {
 		return phone;
 	}
 
-	/**
-	 * Use regex to standardize the storing of phone numbers
-	 * @param phone
-	 */
+	
 	public void setPhone(String phone) {
 		
-		//TODO
 		this.phone = phone;
 	}
 

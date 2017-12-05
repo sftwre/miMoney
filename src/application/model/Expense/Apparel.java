@@ -25,7 +25,7 @@ public class Apparel extends Expense implements VariableExpense
 	public String getClassName() 
 	{
 		
-		return ("Apperal");
+		return ("Apparel");
 	}
 
 }

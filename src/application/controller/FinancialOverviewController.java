@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.NumberFormat;
+import java.time.LocalDate;
 import java.time.YearMonth;
 
 import application.Main;
@@ -18,6 +19,8 @@ import application.model.Goals.Goals;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import org.junit.internal.builders.AllDefaultPossibilitiesBuilder;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -91,6 +94,8 @@ public class FinancialOverviewController
     @FXML 
     private StackPane goalsStackPane;			// Stack Pane that contains a ListView and label
     
+    @FXML
+    private Button addExpensesButton;
     
     private FinancialDataParser financialData;	// FileParser for retrieving the Financial information of the User
     
@@ -100,24 +105,27 @@ public class FinancialOverviewController
     private ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(); 
 
     // Goal data for the Current Goals pane
-    private ObservableList<String> goalsListData = FXCollections.observableArrayList();			
+    private ObservableList<String> goalsListData = FXCollections.observableArrayList();	
+    
+    private YearMonth currentMonth;
+    
+    private LocalDate date;
  
 
 
-//TODO change all references to testUser77
 /**
  * Called by the FXMLLoader to initialize the controller. 
  * Loads the Income, Expenses, and Goals data of the user
- * and display it in the appropriate controls.
+ * and displays it in the appropriate controls.
  */
 public void initialize()
 {
-	// TODO change User
-	
 	this.financialData = new FinancialDataParser(Main.session.currentUser);
 	
-	loadSpendingDataForChart();
+	currentMonth = YearMonth.now();
+	date = LocalDate.now();
 	
+	loadSpendingDataForChart();
 	
 	//If there is no spending data, set the label indicating that no spending data is available to visible
 	if(pieChartData.isEmpty())
@@ -172,8 +180,10 @@ public void initialize()
 }
 
 /**
- * Used to retrieve all of the the User's spending data for the current month
- * with duplicate Expense categories added.
+ * Used to retrieve all of the the User's spending data for the current month.
+ * After all Expense data is loaded,  duplicate Expense categories are merged.
+ * The Final operation places all Expenses for the Month in the pieChartData
+ * collection.
  */
 public void loadSpendingDataForChart()
 {
@@ -262,8 +272,6 @@ public void loadBudgetDataForList()
 	for(Budget b: budgetList)
 	{
 		goalsListData.add(String.format("%s", b.getTitle()));
-		System.out.println(b.toString());
-		
 	}
 }
 
@@ -352,7 +360,6 @@ public void saveIncomeChanges(ActionEvent event)
 				
 			} catch(IOException e){
 				
-				//TODO create a dialog box
 			}
 		
 		//format the text in the salary text field
@@ -384,21 +391,6 @@ public void saveIncomeChanges(ActionEvent event)
 }  
 
 /**
- * Used to switch the view to the Goals tab when the User clicks on
- * a goal in the Current Goals panel
- */
-@FXML
-public void switchToGoalsTab(MouseEvent event)
-{
-	try {
-	MainViewController.tabPane.getSelectionModel().selectLast();
-	} catch(Exception e)
-	{
-		System.out.println(e.getMessage());
-	}
-}
-
-/**
  * Used to display a new stage for displaying a list
  * of Goals the user can create.
  * @param event that invoked Handler
@@ -415,6 +407,7 @@ public void createNewGoal(ActionEvent event)
 	
 	try
 	{
+		
 	Parent root = FXMLLoader.load(getClass().getResource("../view/resources/GoalsView.fxml"));
 	
 	Scene scene = new Scene(root);
@@ -425,10 +418,42 @@ public void createNewGoal(ActionEvent event)
 	
 	} catch(IOException e){
 		
+		e.printStackTrace();
+		
 		System.out.printf("The resource 'view/resources/GoalsView.fxml' could not be located");
 	}
 
 }
+
+@FXML
+public void addAnExpense(ActionEvent event) 
+{
+	Stage popUp =  new Stage();
+	
+	popUp.initModality(Modality.APPLICATION_MODAL);
+	
+	popUp.initOwner(Main.stage);
+	
+	try
+	{
+	Parent root = FXMLLoader.load(getClass().getResource("../view/resources/DatalistViewCopy.fxml"));
+	
+	Scene scene = new Scene(root);
+	
+	popUp.setScene(scene);
+	
+	popUp.setTitle("Date of " + DateFormatter.formatMonth(currentMonth.getMonth()) + " "
+					+ date.now().getDayOfMonth() + ", "
+					+ date.now().getYear());
+	
+	popUp.show();
+	
+	} catch(IOException e){
+		
+		System.out.printf("The resource 'view/resources/DatalistViewCopy.fxml' could not be located");
+	}
+
+}//END addAnExpense()
 
 
 /**

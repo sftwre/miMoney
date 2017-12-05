@@ -83,7 +83,10 @@ public abstract class Expense {
 	
 	public Date getDate() 
 	{
-		return this.transactionDate;
+		if(this.transactionDate == null)
+			return new Date(1,1,1970);
+		else
+			return this.transactionDate;
 	}
 	
 	public void setDate(Date date) 

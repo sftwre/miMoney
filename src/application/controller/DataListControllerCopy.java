@@ -47,7 +47,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
-public class DataListController {
+public class DataListControllerCopy {
     
     @FXML
     private Button addButton;
