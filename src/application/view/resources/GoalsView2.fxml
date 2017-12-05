@@ -45,20 +45,6 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                   </GridPane>
-                  <TitledPane layoutX="386.0" layoutY="100.0" prefHeight="200.0" prefWidth="106.0" text="Current Goals">
-                     <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <StackPane layoutY="11.0" prefHeight="150.0" prefWidth="200.0">
-                                 <children>
-                                    <Label prefHeight="47.0" prefWidth="200.0" text="Label" />
-                                    <ListView fx:id="currentGoalsListView" prefHeight="169.0" prefWidth="219.0" />
-                                 </children>
-                              </StackPane>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </TitledPane>
                   <TitledPane animated="false" collapsible="false" layoutX="13.0" layoutY="389.0" prefHeight="353.0" prefWidth="301.0" text="Current Budget">
                   	<content>
                   		<fx:include fx:id="BudgetView" source="ViewBudget.fxml" /> 
