@@ -211,14 +211,9 @@ public class CalendarController {
 	}//END filePathExists()
 	
 	private void addTitlePanes(int n) {
-		System.out.println(tpList.size());
-		
 		for(int j = n; j>=0; j--) 
 			weekAccordion.getPanes().add(tpList.get(j));
-
-			//weekAccordion.getPanes().addAll(tpList);
 			//tpList.get(j).setPrefWidth(220);
-		//}
 	}//END addTitlePanes()
 
 	//TODO: LOOP
@@ -230,7 +225,6 @@ public class CalendarController {
 	//TODO: LOOP until all days in this week are done
 	
 	private int decideDays() {
-		System.out.println(tpList.size());
 		int i = 0;
 		int j = 0;
 		duplicateDate = LocalDate.now();
@@ -266,12 +260,10 @@ public class CalendarController {
 			}//END for each expense
 			
 			if(auth == false) {
-				System.out.println("ASDFASDPOFUASPOF");
 				gpList.get(i).addRow(counter, new Label("No expenses on this day!"));
 				tpList.add(new TitledPane(DateFormatter.formatDay(duplicateDate.getDayOfWeek()), new Label("No expenses on this day!")));
 			}else {
 				auth = false;
-				System.out.println(DateFormatter.formatDay(duplicateDate.getDayOfWeek()));
 				tpList.add(new TitledPane(DateFormatter.formatDay(duplicateDate.getDayOfWeek()), gpList.get(i)));
 			}
 			
@@ -282,7 +274,6 @@ public class CalendarController {
             d.setDay(d.getDay() - 1);
 		}//END while rolling back to SUNDAY
 //*/		
-		System.out.printf("%d\n", i);
 		return i-1;	
 	}//END decideDays()
 
