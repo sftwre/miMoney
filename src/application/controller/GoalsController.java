@@ -96,16 +96,13 @@ public class GoalsController implements EventHandler<ActionEvent> {
 			System.out.println("Goal Exist");
 			
 		}
-		
-		
-		//System.out.printf(carGoal.toString1());
-		// Else Create a file
-		
 	}
 	
 	/**
 	 * 
 	 * @param event
+	 *  It cleans the informations that was entered in 
+	 *  the search area and the description
 	 */
 	@FXML
 	public void cCancel(ActionEvent event){
@@ -164,9 +161,7 @@ public class GoalsController implements EventHandler<ActionEvent> {
 			String path = "UserProfiles" + File.separator + Main.session.currentUser.getUsername() + File.separator +
 					"Goals" +  File.separator + "Home" + File.separator + this.hProjectName.getText();
 			
-			//System.out.println(path);
-			//if there is a file print the info to the file 
-			
+			//if there is a file print the info to the file 	
 			File file = new File(path);
 			if(!file.exists()) { 
 			
@@ -183,13 +178,8 @@ public class GoalsController implements EventHandler<ActionEvent> {
 			}
 			
 			else if(file.exists()){
-				System.out.println("Goal Exist");
-				
+				System.out.println("Goal Exist");	
 			}
-			
-			// Print the information
-			//System.out.printf(homeGoal.toString2());
-			
 	}
 	@FXML
 	public void hCancel(ActionEvent event){
@@ -247,10 +237,8 @@ public class GoalsController implements EventHandler<ActionEvent> {
 			
 			String path = "UserProfiles" + File.separator + Main.session.currentUser.getUsername() + File.separator +
 					"Goals" +  File.separator + "Loan" + File.separator + this.lProjectName.getText();
-			
-			//System.out.println(path);
+
 			//if there is a file print the info to the file 
-			
 			File file = new File(path);
 			if(!file.exists()) { 
 			
@@ -270,11 +258,12 @@ public class GoalsController implements EventHandler<ActionEvent> {
 				System.out.println("Goal Exist");
 				
 			}
-			
-			//Print the information
-			//System.out.printf(lLoanGoal.toString3());
 	}
 	@FXML
+	/**
+	 * Cleans the information that was displayed 
+	 * @param event
+	 */
 	public void lCancel(ActionEvent event){
 		this.lProjectName.setText("");
 		this.lType.setText("");
@@ -288,16 +277,16 @@ public class GoalsController implements EventHandler<ActionEvent> {
 	private TextField vProjectName;	// Name of the project
 	
 	@FXML
-	private TextField vTotalCost; //
+	private TextField vTotalCost; //	Total cost 
 	
 	@FXML
-	private TextField vTime;	//
+	private TextField vTime;	//	Time to achieve the goal
 	
 	@FXML
-	private Button vContinue;	//
+	private Button vContinue;	// Continue button
 	
 	@FXML
-	private Button vCancel;		//
+	private Button vCancel;		// Cansel button
 	
 	@FXML
 	public void vContinue(ActionEvent event) {
@@ -326,17 +315,17 @@ public class GoalsController implements EventHandler<ActionEvent> {
 				iox.printStackTrace();
 			}
 		}
-		
 		else if(file.exists()){
 			System.out.println("Goal Exist");
 			
 		}
-		
-		//Print the information
-		//System.out.printf(vacationsGoal.toString3());
 	}
 	
 	@FXML
+	/**
+	 * Clean the information displayed
+	 * @param event
+	 */
 	public void vCancel(ActionEvent event){
 		this.vProjectName.setText("");
 		this.vTotalCost.setText("");
@@ -344,7 +333,6 @@ public class GoalsController implements EventHandler<ActionEvent> {
 		
 	}
 	
-
 	@Override
 	public void handle(ActionEvent event) {
 		// TODO Auto-generated method stub

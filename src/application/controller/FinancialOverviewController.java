@@ -133,8 +133,11 @@ public void initialize()
 	
 	// spending data is available, populate the pieChart to display the expenses of the user
 	else 
-		spendingChart.setData(pieChartData);
+	{
+	spendingChart.setData(pieChartData);
 	
+	spendingChart.setStartAngle(25);
+	}
 	
 	// Load all the non Budget Goals into the ListView on the Current Goals panel
 	loadGoalsDataForList();
