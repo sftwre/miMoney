@@ -55,6 +55,12 @@ public class Goals2Controller {
     
     String [] sGoals = {"Auto","Home","Loan","Savings","Vacation"}; // Array with the different types of goals
 	
+    /**
+     * Search for the goal that was being entered 
+     * and display the information if it is founded
+     * other wise will display an error message 
+     * @param event
+     */
 	public void searchButton (ActionEvent event ){
 		int i;
 		String path;
@@ -124,7 +130,11 @@ public class Goals2Controller {
 		notExist = 0;
 	}
 	
-	
+	/**
+	 * Clears the information and the
+	 * name of the project entered
+	 * @param event
+	 */
 	public void closeButton (ActionEvent event ){
 		this.name.setText("");
 		this.totalCost.setText("");
@@ -133,6 +143,11 @@ public class Goals2Controller {
 		this.searchText.setText("");
 		
 	}
+	/**
+	 * Deleted the current goal displayed in
+	 * the goal section and the data
+	 * @param event
+	 */
 	public void deleteButton (ActionEvent event ){
 		
 		String path;
@@ -146,7 +161,6 @@ public class Goals2Controller {
 		try {
 			Files.deleteIfExists(Paths.get(path));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -161,6 +175,10 @@ public class Goals2Controller {
 	}
 	
 	@FXML
+	/**
+	 * Error that will be showed if the information 
+	 * entered is wrong or does not exist
+	 */
 	void Error(){			
 		Stage popUp =  new Stage();
 		popUp.initModality(Modality.APPLICATION_MODAL);
@@ -175,5 +193,4 @@ public class Goals2Controller {
 			System.out.printf("The resource 'view/resources/GoalsError.fxml' could not be located");
 		}
 	}
-
 }
