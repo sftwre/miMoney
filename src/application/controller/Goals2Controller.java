@@ -175,14 +175,5 @@ public class Goals2Controller {
 			System.out.printf("The resource 'view/resources/GoalsError.fxml' could not be located");
 		}
 	}
-	
-	// Above this line is for search and find goal
-	
-//--------------------------------------------------------------------------------------------------
-	
-	//Sam, you can start working from here 
-	
-	
-
 
 }
