@@ -359,7 +359,7 @@ public class CreateAccountController {
 				    		  if (success5){
 							      // creating the directory succeeded
 							      
-							      File autoFile = new File(loangoal + File.separator +"vacation");
+							      File autoFile = new File(vacation + File.separator +"vacation");
 							      if(autoFile.createNewFile()) {
 							    	  //Tracker file is created
 							      }
