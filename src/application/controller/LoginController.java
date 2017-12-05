@@ -90,6 +90,9 @@ public class LoginController {
 		{
 		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/MainView.fxml"));
 		Scene scene = new Scene(root);
+		Main.stage.setWidth(1000);
+		Main.stage.setHeight(730);
+		
 		Main.setScene(scene);
 		} catch(IOException e){
 			System.out.printf("The resource 'view/resources/MainView.fxml' could not be located");

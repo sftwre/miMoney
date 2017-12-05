@@ -1,49 +1,34 @@
 package application.controller;
 
-
-
-
-
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
-
-
-import java.text.NumberFormat;
 import java.time.YearMonth;
-
 import javax.swing.JOptionPane;
-
 import application.Main;
-
 import application.model.Income;
-
 import application.model.DateFormatter;
-
 import application.model.SecureNewPass;
 import application.model.User;
 import application.model.Expense.AutoInsurance;
 import application.model.Expense.AutoPayment;
 import application.model.Expense.HealthInsurance;
 import application.model.Expense.HomePayment;
-//import application.MainAccount;
+import application.model.Goals.Goals;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
-//import javafx.scene.text.Text;
-//import javafx.stage.Modality;
-//import javafx.stage.Stage;
+
 /**
  * Controller handles events in the create account page
  * @author kel
@@ -57,18 +42,21 @@ public class CreateAccountController {
 
 	@FXML
 	private TextField user_name;
+	
     @FXML
     private Button createAcctButton;
+    
     @FXML
     private TextField phone_Number;
+    
     @FXML
     private TextField jobInfo;
+    
     @FXML
     private TextField income;
+    
     @FXML
     private PasswordField password;
-    
-    
     
     @FXML
     private Label incomeTxt;
@@ -78,15 +66,13 @@ public class CreateAccountController {
     
     @FXML
     private Label password_error;
-
-   
     
     @FXML
     private Label phone_error;
     
     @FXML
     private Label income_error;
-    
+  
     @FXML
     private Label job_error;
     
@@ -110,7 +96,6 @@ public class CreateAccountController {
     
     private SecureNewPass snp;
     
-
     private Income money;
     
     private AutoInsurance insur;
@@ -124,6 +109,8 @@ public class CreateAccountController {
     private YearMonth currentMonth;
 
     private User newUser;	// the user account of the application
+    
+    private Goals goal;
 
     
     /**
@@ -179,7 +166,6 @@ public class CreateAccountController {
 		    		}
 		    		else {
 		    			income.setStyle("-fx-border-color: black;");
-		    			//income.setText(NumberFormat.getCurrencyInstance().format(number));
 		    			income_error.setText("");
 		    		}
 		    			    		
@@ -194,14 +180,12 @@ public class CreateAccountController {
 		    		}
 		    	}
 		else {
-				//this.income = Double.parseDouble(income);
 				
-			
 			/**
 			 *  Create the user object and fill in it's fields
 			 */
-				 newUser =  new User(user_name.getText().trim());
-				//String newPass = password.getText().trim();
+				
+				newUser =  new User(user_name.getText().trim());
 				/*
 				 * Commenting out line above (after we talk). This is slightly dangerous
 				 * but mostly because it's a little redundant. Sending
@@ -214,9 +198,7 @@ public class CreateAccountController {
 				String newIncome = income.getText().trim();
 				String newJob = jobInfo.getText().trim();
 				money = new Income(newJob, Double.parseDouble(newIncome));
-				//Having issues with userPay here
 				money.userPay(newJob, Double.parseDouble(newIncome));
-				//money.userPay(newJob, Double.parseDouble(newIncome));
 				
 				/**
 				 * Extract the data from the text fields
@@ -226,31 +208,11 @@ public class CreateAccountController {
 				String healthDebt = health.getText().trim();
 				String payment = autoPay.getText().trim();
 				String newPhone = phone_Number.getText().trim();
-				
-				//String newJob = jobInfo.getText().trim();
-				
-				
-				//home = new HomePayment(Double.parseDouble(houseDebt), null, null);
-				
-				//healthy = new HealthInsurance(Double.parseDouble(healthDebt), null, null);
-				
-				// this is causing a NULL pointer exception because healthy is not instantiated, healthy.setAmmount(Double.parseDouble(healthDebt));
-				//System.out.println(Double.parseDouble(payment));
-				//auto = new AutoPayment(Double.parseDouble(payment), null, "House");
-				
-				//NULL pointer exception, auto.setAmmount(Double.parseDouble(payment));
-				
-				//insur =  new AutoInsurance(Double.parseDouble(insurance), null, null);
+				String fd = "Auto";
+				String fd2 = "PlayStation 4";
+				goal = new Goals(fd, fd2, "600", "2015");
 				
 
-				//File incomeFile = new File("UserProfiles/"+newUser+"/Income.txt");
-				//File userFile = new File("UserProfiles/"+newUser+"/"+newUser+".txt");
-				//File dir = new File("UserProfiles/"+newUser+"/AnnualExpenses/2017");
-				//File dateTrack = new File("UserProfiles/"+newUser+"/AnnualExpenses/2017/November");
-
-				String fileName = "FixedExpenses.txt";
-				
-				//File incomeFile = new File("UserProfiles" + File.separator+newUser+File.separator +"Income.txt");
 				
 				File incomeFile = new File(newUser.getPathToProfile() +"Income.txt");
 				
@@ -259,7 +221,10 @@ public class CreateAccountController {
 				File dir = new File(newUser.getPathToProfile() +"AnnualExpenses" + File.separator + currentMonth.getYear());
 				
 				File dateTrack = new File(newUser.getPathToProfile() + "AnnualExpenses" + File.separator + currentMonth.getYear() + File.separator + DateFormatter.formatMonth(currentMonth.getMonth()));
+				
+				File goalTrack = new File(newUser.getPathToProfile() + "Goals");
 
+				
 				if(dateTrack.exists()) {
 					
 					// TODO kelly, please use the Alert class to alert the user that the account already exists
@@ -281,8 +246,14 @@ public class CreateAccountController {
 				    	  //Tracker file is created
 				      }
 				      else {
-				    	  //System.err.println("Tracker failed to print");
+				    	  
 				    	  JOptionPane.showMessageDialog(null, "Tracker failed to print");
+				    	  Alert a = new Alert(AlertType.ERROR);
+					      a.setTitle("Alert");
+					      a.setHeaderText("Tracker failed to print");
+					      a.setResizable(true);
+					      a.getDialogPane().setPrefSize(480, 320);
+					      a.show();
 				    	  
 				      }
 				      
@@ -291,6 +262,12 @@ public class CreateAccountController {
 				      // creating the directory failed
 				      //System.err.println("failed trying to create the directory");
 				      JOptionPane.showMessageDialog(null, "failed trying to create the directory");
+				      Alert a = new Alert(AlertType.ERROR);
+				      a.setTitle("Alert");
+				      a.setHeaderText("failed trying to create the directory");
+				      a.setResizable(true);
+				      a.getDialogPane().setPrefSize(480, 320);
+				      a.show();
 				    }
 				}
 				
@@ -307,8 +284,101 @@ public class CreateAccountController {
 				    }
 					else{
 				      // creating the directory failed
-				      System.err.println("failed trying to create the directory");
+				      
+				      Alert a = new Alert(AlertType.ERROR);
+				      a.setTitle("Alert");
+				      a.setHeaderText("failed trying to create the directory");
+				      a.setResizable(true);
+				      a.getDialogPane().setPrefSize(480, 320);
+				      a.show();
+				      
 				      //JOptionPane.ERROR()
+				    }
+				}
+				if(goalTrack.exists()) {
+					
+				}
+				else {
+					boolean success = goalTrack.mkdirs();
+					if (success){
+				      // creating the directory succeeded
+				      File autogoal = new File(goalTrack + File.separator + "Auto");
+				      File budgetgoal = new File(goalTrack + File.separator + "Budget");
+				      File homegoal = new File(goalTrack + File.separator + "Home");
+				      File loangoal = new File(goalTrack + File.separator + "Loan");
+				      File vacation = new File(goalTrack + File.separator + "Vacation");
+				      
+				      if(!autogoal.exists() || !budgetgoal.exists() || !homegoal.exists() || !loangoal.exists() || !vacation.exists()) {
+				    	  if(!autogoal.exists()) {
+				    		  boolean success1 = autogoal.mkdir();
+				    		  if (success1){
+							      // creating the directory succeeded
+							      
+							      File autoFile = new File(autogoal + File.separator + "AutoGoal");
+							      if(autoFile.createNewFile()) {
+							    	  //Tracker file is created
+							      }
+				    		  }
+				    	  }
+				    	  if(!budgetgoal.exists()) {
+				    		  boolean success2 = budgetgoal.mkdir();
+				    		  if (success2){
+							      // creating the directory succeeded
+							      
+							      File autoFile = new File(budgetgoal + File.separator +" Winter Budget");
+							      if(autoFile.createNewFile()) {
+							    	  //Tracker file is created
+							      }
+				    		  }
+				    	  }
+				    	  if(!homegoal.exists()) {
+				    		  boolean success3 = homegoal.mkdir();
+				    		  if (success3){
+							      // creating the directory succeeded
+							      
+							      File autoFile = new File(homegoal + File.separator +"home payment goals");
+							      if(autoFile.createNewFile()) {
+							    	  //Tracker file is created
+							      }
+				    		  }
+				    	  }
+				    	  if(!loangoal.exists()) {
+				    		  boolean success4 = loangoal.mkdir();
+				    		  if (success4){
+							      // creating the directory succeeded
+							      
+							      File autoFile = new File(loangoal + File.separator +"loans");
+							      if(autoFile.createNewFile()) {
+							    	  //Tracker file is created
+							      }
+				    		  }
+				    	  
+				    	  }
+				    	  if(!vacation.exists()) {
+				    		  boolean success5 = vacation.mkdir();
+				    		  if (success5){
+							      // creating the directory succeeded
+							      
+							      File autoFile = new File(vacation + File.separator +"vacation");
+							      if(autoFile.createNewFile()) {
+							    	  //Tracker file is created
+							      }
+				    		  }
+				    	  
+				    	  }
+				    }
+				      
+				  }
+					else{
+				      // creating the directory failed
+				      //System.err.println("failed trying to create the directory");
+				      JOptionPane.showMessageDialog(null, "failed trying to create the directory");
+				      Alert a = new Alert(AlertType.ERROR);
+				      a.setTitle("Alert");
+				      a.setHeaderText("failed trying to create the directory");
+				      a.setResizable(true);
+				      a.getDialogPane().setPrefSize(480, 320);
+				      a.show();
 				    }
 				}
 				//if()
@@ -320,20 +390,19 @@ public class CreateAccountController {
 					writer.close();
 					
 				}else {
-					System.out.println("File already exists.");
+					JOptionPane.showMessageDialog(null, "File already exists.");
 				}
 				
 				if(userFile.createNewFile()) {
 					FileWriter writer = new FileWriter(userFile);
 					snp = new SecureNewPass();
 					snp.secure(newUser.getUsername(), password.getCharacters(), newPhone);
-					//System.out.printf("%s", snp.toString());
 					writer.write(snp.toString());
 					writer.close();
 					//User file is created
 					
 				}else {
-					System.out.println("File already exists.");
+					JOptionPane.showMessageDialog(null, "File already exists.");
 				}
 				
 				
@@ -361,7 +430,7 @@ public class CreateAccountController {
 						fill.write(healthy.toString());
 						
 					}if(!payment.isEmpty()) {
-						auto = new AutoPayment(Double.parseDouble(payment), null, "House");
+						auto = new AutoPayment(Double.parseDouble(payment), null, null);
 						fill.write(auto.toString());
 						
 					}if(!insurance.isEmpty()) {
@@ -382,7 +451,12 @@ public class CreateAccountController {
 		    		Main.stage.show();
 				}catch(IOException e) {
 					e.printStackTrace();
-					System.err.println("failed to pass");
+					Alert a = new Alert(AlertType.ERROR);
+				    a.setTitle("Alert");
+				    a.setHeaderText("failed to access to tutorial");
+				    a.setResizable(true);
+				    a.getDialogPane().setPrefSize(480, 320);
+				    a.show();
 				}
 						
 			}
@@ -402,6 +476,7 @@ public class CreateAccountController {
 			e.printStackTrace();
 		}
     }
+    
 
 
 }

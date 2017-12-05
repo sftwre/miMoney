@@ -11,7 +11,7 @@ import application.model.Session;
 /**
  *@author Isaac Buitrago
  *@author Jonathan Guzman
- *@author Kelly Malcom
+ *@author Kelly Malcolm
  *@author Manuel Deaguinaga
  *@author Sam Dash
  */

@@ -237,9 +237,17 @@ public class CreateBudgetController {
     	moveNodeInStackPane(this.buttonStackPane);
     }
 
-    
+    /**
+     * Used to clear all text fields of a Budget
+     * @param event
+     */
     @FXML
-    public void clearTextFields(ActionEvent event) {
+    public void clearTextFields(ActionEvent event) 
+    {
+    	titleTextField.setText("");
+    	
+    	for(Text t : budgetItemsMap.keySet())
+    		budgetItemsMap.get(t).setText("");
 
     }
 
@@ -327,14 +335,13 @@ public class CreateBudgetController {
     	if(budgetItemsMap.isEmpty())
     		return;
     	
-    	// validate the Title TextFeild, it must have a value that cannot be monetary
+    	// validate the Title TextField, it must have a value that cannot be monetary
     	if(! isTextFieldValid(titleTextField, false))
     	{
     		validBudget = false;
     		titleTextField.setStyle("-fx-border-color: red;");
     	}
     	
-    	else
     	
     	for(Text category : budgetItemsMap.keySet())
     	{
@@ -414,10 +421,6 @@ public class CreateBudgetController {
 				//apply a fading animation to the Rectangle and Label
 				fadeSuccessMessage(successRectangle, successLabel);
 				
-				// hide the rectangle and label
-				//successRectangle.setVisible(false);
-				//successLabel.setVisible(false);
-				
     			}
     			
     			// the user has created a Budget that already exists
@@ -460,7 +463,7 @@ public class CreateBudgetController {
     {
     	String value = amount.getText().trim();
     	
-    	if((value.equals("") || value.matches(".*[^\\d,\\.\\$]")) && monetary)
+    	if((value.equals("") || value.matches(".*[^\\d,\\.\\$].*")) && monetary)
     		return false;	
     	
     	else if(value.equals(""))

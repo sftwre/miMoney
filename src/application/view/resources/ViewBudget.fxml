@@ -52,21 +52,16 @@
             </GridPane>
             <GridPane prefHeight="115.0" prefWidth="405.0">
                <children>
-                  <ComboBox fx:id="expensesComboBox" onAction="#addExpenseCategories" prefHeight="29.0" prefWidth="135.0" promptText="Expenses" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </ComboBox>
-                  <Label fx:id="invalidTextField" prefHeight="17.0" prefWidth="108.0" text="* invalid text field" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                  <Label fx:id="invalidTextField" prefHeight="17.0" prefWidth="108.0" text="* invalid text field" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <StackPane fx:id="buttonStackPane" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <StackPane fx:id="buttonStackPane" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveBudget" prefHeight="27.0" prefWidth="170.0" text="Save">
                            <StackPane.margin>
-                              <Insets right="8.0" />
+                              <Insets left="8.0" right="8.0" />
                            </StackPane.margin>
                         </Button>
                         <Button fx:id="editButton" mnemonicParsing="false" onAction="#editBudget" prefHeight="27.0" prefWidth="170.0" text="Edit">
@@ -74,7 +69,7 @@
                               <Insets right="8.0" />
                            </opaqueInsets>
                            <StackPane.margin>
-                              <Insets right="8.0" />
+                              <Insets left="8.0" right="8.0" />
                            </StackPane.margin>
                         </Button>
                      </children>
