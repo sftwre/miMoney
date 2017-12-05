@@ -1,10 +1,5 @@
 package application.controller;
 
-
-
-
-
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -311,8 +306,9 @@ public class CreateAccountController {
 				      File budgetgoal = new File(goalTrack + File.separator + "Budget");
 				      File homegoal = new File(goalTrack + File.separator + "Home");
 				      File loangoal = new File(goalTrack + File.separator + "Loan");
+				      File vacation = new File(goalTrack + File.separator + "Vacation");
 				      
-				      if(!autogoal.exists() || !budgetgoal.exists() || !homegoal.exists() || !loangoal.exists()) {
+				      if(!autogoal.exists() || !budgetgoal.exists() || !homegoal.exists() || !loangoal.exists() || !vacation.exists()) {
 				    	  if(!autogoal.exists()) {
 				    		  boolean success1 = autogoal.mkdir();
 				    		  if (success1){
@@ -340,7 +336,7 @@ public class CreateAccountController {
 				    		  if (success3){
 							      // creating the directory succeeded
 							      
-							      File autoFile = new File(homegoal + File.separator +"Single Bedroom Home");
+							      File autoFile = new File(homegoal + File.separator +"home payment goals");
 							      if(autoFile.createNewFile()) {
 							    	  //Tracker file is created
 							      }
@@ -351,7 +347,19 @@ public class CreateAccountController {
 				    		  if (success4){
 							      // creating the directory succeeded
 							      
-							      File autoFile = new File(loangoal + File.separator +"college loans");
+							      File autoFile = new File(loangoal + File.separator +"loans");
+							      if(autoFile.createNewFile()) {
+							    	  //Tracker file is created
+							      }
+				    		  }
+				    	  
+				    	  }
+				    	  if(!vacation.exists()) {
+				    		  boolean success5 = vacation.mkdir();
+				    		  if (success5){
+							      // creating the directory succeeded
+							      
+							      File autoFile = new File(loangoal + File.separator +"vacation");
 							      if(autoFile.createNewFile()) {
 							    	  //Tracker file is created
 							      }
@@ -359,23 +367,8 @@ public class CreateAccountController {
 				    	  
 				    	  }
 				    }
-				      //File expTr = new File(dateTrack+File.separator +"ExpenseTracker.txt");
-				      //if(expTr.createNewFile()) {
-				    	  //Tracker file is created
 				      
-				      //else {
-				    	  
-				    	  //JOptionPane.showMessageDialog(null, "Tracker failed to print");
-				    	  //Alert a = new Alert(AlertType.ERROR);
-					     // a.setTitle("Alert");
-					      //a.setHeaderText("Tracker failed to print");
-					      //a.setResizable(true);
-					      //a.getDialogPane().setPrefSize(480, 320);
-					      //a.show();
-				    	  
-				      //}
-				      
-				    }
+				  }
 					else{
 				      // creating the directory failed
 				      //System.err.println("failed trying to create the directory");

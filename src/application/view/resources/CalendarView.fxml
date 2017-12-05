@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="578.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CalendarController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="730.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CalendarController">
    <children>
-      <SplitPane prefHeight="583.0" prefWidth="184.0">
+      <SplitPane prefHeight="730.0" prefWidth="184.0">
          <items>
             <ScrollPane hbarPolicy="NEVER" hmax="0.0" prefHeight="200.0" prefWidth="200.0">
                <content>
@@ -17,11 +17,11 @@
                </content></ScrollPane>
          </items>
       </SplitPane>
-      <SplitPane layoutX="184.0" prefHeight="583.0" prefWidth="588.0">
+      <SplitPane layoutX="184.0" prefHeight="730.0" prefWidth="817.0">
          <items>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <GridPane fx:id="monthTile" gridLinesVisible="true" layoutX="31.0" layoutY="51.0">
+                  <GridPane fx:id="monthTile" gridLinesVisible="true" layoutX="69.0" layoutY="122.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" prefWidth="100.0" />
@@ -40,15 +40,15 @@
                         <RowConstraints maxHeight="80.0" minHeight="80.0" prefHeight="80.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                   </GridPane>
-                  <Button fx:id="addExpenseButton" layoutX="504.0" layoutY="542.0" mnemonicParsing="false" onAction="#addAnExpense" prefHeight="25.0" prefWidth="53.0" text="+" />
-                  <Label fx:id="monthOfLabel" layoutX="270.0" layoutY="14.0" text="Month of " />
-                  <Label layoutX="68.0" layoutY="36.0" text="S" />
-                  <Label layoutX="138.0" layoutY="36.0" text="M" />
-                  <Label layoutX="220.0" layoutY="38.0" text="T" />
-                  <Label layoutX="290.0" layoutY="36.0" text="W" />
-                  <Label layoutX="363.0" layoutY="36.0" text="R" />
-                  <Label layoutX="441.0" layoutY="36.0" text="F" />
-                  <Label layoutX="517.0" layoutY="36.0" text="Sa" />
+                  <Button fx:id="addExpenseButton" layoutX="479.0" layoutY="614.0" mnemonicParsing="false" onAction="#addAnExpense" prefHeight="34.0" prefWidth="84.0" text="+" />
+                  <Label fx:id="monthOfLabel" layoutX="308.0" layoutY="85.0" text="Month of " />
+                  <Label layoutX="106.0" layoutY="107.0" text="S" />
+                  <Label layoutX="176.0" layoutY="107.0" text="M" />
+                  <Label layoutX="258.0" layoutY="109.0" text="T" />
+                  <Label layoutX="328.0" layoutY="107.0" text="W" />
+                  <Label layoutX="401.0" layoutY="107.0" text="R" />
+                  <Label layoutX="479.0" layoutY="107.0" text="F" />
+                  <Label layoutX="555.0" layoutY="107.0" text="Sa" />
                </children>
             </Pane>
          </items>
