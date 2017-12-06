@@ -8,27 +8,14 @@ package application.controller;
  * for anything that needs to be displayed in list format with
  * (String) + (Double) pairs.
  * 
- * e.g. ItemName \t $20.15
  * @author Jonathan Remote
  *
  */
-import javafx.stage.*;
-import javafx.scene.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -37,15 +24,12 @@ import application.Main;
 import application.model.DatalistModel;
 import application.model.Date;
 import application.model.DateConverter;
-import application.model.DateFormatter;
 import application.model.FinanceType;
 import application.model.Expense.Expense;
-import application.model.Expense.VariableExpense;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 
 public class DataListControllerCopy {
     

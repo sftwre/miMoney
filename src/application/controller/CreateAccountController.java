@@ -1,5 +1,6 @@
 package application.controller;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -112,6 +113,7 @@ public class CreateAccountController {
     
     private Goals goal;
 
+	private FileWriter fw;
     
     /**
 	 * Isaac Buitrago commentary
@@ -186,13 +188,6 @@ public class CreateAccountController {
 			 */
 				
 				newUser =  new User(user_name.getText().trim());
-				/*
-				 * Commenting out line above (after we talk). This is slightly dangerous
-				 * but mostly because it's a little redundant. Sending
-				 * password.getCharacters() to SecureNewPass
-				 * cuts out this step.
-				 */
-				
 				newUser.setPhone(phone_Number.getText().trim());
 				
 				String newIncome = income.getText().trim();
@@ -231,11 +226,8 @@ public class CreateAccountController {
 					// Alert can also be used to give error messages, do this if you have time
 					
 					JOptionPane.showMessageDialog(null, "directory already exists");
-					//alert("");
+					
 				}
-				
-				//TODO please delete all System.out.println() statements, they should not be in the final version
-				
 				else {
 					boolean success = dateTrack.mkdirs();
 					if (success){
@@ -243,6 +235,15 @@ public class CreateAccountController {
 				      
 				      File expTr = new File(dateTrack+File.separator +"ExpenseTracker.txt");
 				      if(expTr.createNewFile()) {
+							fw = new FileWriter(expTr);
+
+					      try(BufferedWriter bw = new BufferedWriter(fw)) {
+								System.out.printf("done\n");
+
+								bw.write("Gas:0.000000:1/1/2017:This is a temporary fix");
+							} catch (IOException e) {
+								System.out.printf("\nException in try catch DatalistController addtoFile create new file writer\n");
+							}
 				    	  //Tracker file is created
 				      }
 				      else {
@@ -260,8 +261,6 @@ public class CreateAccountController {
 				    }
 					else{
 				      // creating the directory failed
-				      //System.err.println("failed trying to create the directory");
-				      JOptionPane.showMessageDialog(null, "failed trying to create the directory");
 				      Alert a = new Alert(AlertType.ERROR);
 				      a.setTitle("Alert");
 				      a.setHeaderText("failed trying to create the directory");
@@ -310,60 +309,23 @@ public class CreateAccountController {
 				      
 				      if(!autogoal.exists() || !budgetgoal.exists() || !homegoal.exists() || !loangoal.exists() || !vacation.exists()) {
 				    	  if(!autogoal.exists()) {
-				    		  boolean success1 = autogoal.mkdir();
-				    		  if (success1){
-							      // creating the directory succeeded
-							      
-							      File autoFile = new File(autogoal + File.separator + "AutoGoal");
-							      if(autoFile.createNewFile()) {
-							    	  //Tracker file is created
-							      }
-				    		  }
+				    		 autogoal.mkdir();
+				    		  
 				    	  }
 				    	  if(!budgetgoal.exists()) {
-				    		  boolean success2 = budgetgoal.mkdir();
-				    		  if (success2){
-							      // creating the directory succeeded
-							      
-							      File autoFile = new File(budgetgoal + File.separator +" Winter Budget");
-							      if(autoFile.createNewFile()) {
-							    	  //Tracker file is created
-							      }
-				    		  }
+				    		 budgetgoal.mkdir();
+				    		  
 				    	  }
 				    	  if(!homegoal.exists()) {
-				    		  boolean success3 = homegoal.mkdir();
-				    		  if (success3){
-							      // creating the directory succeeded
-							      
-							      File autoFile = new File(homegoal + File.separator +"home payment goals");
-							      if(autoFile.createNewFile()) {
-							    	  //Tracker file is created
-							      }
-				    		  }
+				    		 homegoal.mkdir();
+				    		 
 				    	  }
 				    	  if(!loangoal.exists()) {
-				    		  boolean success4 = loangoal.mkdir();
-				    		  if (success4){
-							      // creating the directory succeeded
-							      
-							      File autoFile = new File(loangoal + File.separator +"loans");
-							      if(autoFile.createNewFile()) {
-							    	  //Tracker file is created
-							      }
-				    		  }
-				    	  
+				    		  loangoal.mkdir();
 				    	  }
+				    	  
 				    	  if(!vacation.exists()) {
-				    		  boolean success5 = vacation.mkdir();
-				    		  if (success5){
-							      // creating the directory succeeded
-							      
-							      File autoFile = new File(vacation + File.separator +"vacation");
-							      if(autoFile.createNewFile()) {
-							    	  //Tracker file is created
-							      }
-				    		  }
+				    		  vacation.mkdir();
 				    	  
 				    	  }
 				    }
@@ -371,8 +333,6 @@ public class CreateAccountController {
 				  }
 					else{
 				      // creating the directory failed
-				      //System.err.println("failed trying to create the directory");
-				      JOptionPane.showMessageDialog(null, "failed trying to create the directory");
 				      Alert a = new Alert(AlertType.ERROR);
 				      a.setTitle("Alert");
 				      a.setHeaderText("failed trying to create the directory");
@@ -381,11 +341,8 @@ public class CreateAccountController {
 				      a.show();
 				    }
 				}
-				//if()
 				if(incomeFile.createNewFile()) {
 					FileWriter writer = new FileWriter(incomeFile);
-					
-					// using toString() of Income and Expense objects does all the work for you
 					writer.write(money.toString());
 					writer.close();
 					
@@ -410,9 +367,6 @@ public class CreateAccountController {
 				 * It is fine to access the text fields directly here, since at this point the data 
 				 * in the Monthly Expenses has been extracted into objects.
 				 */
-				
-				// TODO, kelly notice line 350. I called the toString() of the HomePayment class to take care of this task.
-				// please update all calls to write with the appropriate toString() of the object
 				
 				if(!healthDebt.isEmpty() || !houseDebt.isEmpty() || !payment.isEmpty() || !insurance.isEmpty()) {
 					File fixedFile = new File(dir+File.separator +"FixedExpenses.txt");

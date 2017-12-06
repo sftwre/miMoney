@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
 
-import application.controller.PaneNode;
 import javafx.scene.text.Text;
 
 /**
