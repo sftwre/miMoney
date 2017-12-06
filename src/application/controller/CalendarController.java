@@ -99,8 +99,6 @@ public class CalendarController {
 	
 	private FileWriter fw;
 	
-	private Writer bw;		
-	
 	public void initialize() {
 		monthTile.setPrefSize(420, 380);
 		monthTile.setMinSize(420, 380);
@@ -184,6 +182,21 @@ public class CalendarController {
 		      }catch(IOException e) {
 		    	  System.out.println("Tracker failed to print");
 		      }
+		      
+				try {
+					fw = new FileWriter(expTr);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			      try(BufferedWriter bw = new BufferedWriter(fw)) {
+						System.out.printf("done\n");
+
+						bw.write("Gas:0.000000:1/1/2017:This is a temporary fix");
+					} catch (IOException e) {
+						System.out.printf("\nException in try catch DatalistController addtoFile create new file writer\n");
+					}
 		      
 		    }//END if success
 			else{

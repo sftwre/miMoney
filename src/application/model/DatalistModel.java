@@ -156,16 +156,13 @@ public class DatalistModel {
 		Boolean auth = false;
 		try {
 			while((line = br.readLine()) != null) {
-				System.out.printf("\n" + line + "\n");
 				if(line.contains(e.getDate().toString())) {
-					System.out.printf("YES\n");
 					bw.append("," + e.toString());
 					auth = true;
 				}//END if date append
 			}//END while read next line
 			
 			if(auth == false) {
-				System.out.printf("\nNew Line!!!\n");
 				bw.append("\n");
 				bw.append(e.toString());
 			}//if date not find

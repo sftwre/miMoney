@@ -1,5 +1,6 @@
 package application.controller;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -112,6 +113,7 @@ public class CreateAccountController {
     
     private Goals goal;
 
+	private FileWriter fw;
     
     /**
 	 * Isaac Buitrago commentary
@@ -233,6 +235,15 @@ public class CreateAccountController {
 				      
 				      File expTr = new File(dateTrack+File.separator +"ExpenseTracker.txt");
 				      if(expTr.createNewFile()) {
+							fw = new FileWriter(expTr);
+
+					      try(BufferedWriter bw = new BufferedWriter(fw)) {
+								System.out.printf("done\n");
+
+								bw.write("Gas:0.000000:1/1/2017:This is a temporary fix");
+							} catch (IOException e) {
+								System.out.printf("\nException in try catch DatalistController addtoFile create new file writer\n");
+							}
 				    	  //Tracker file is created
 				      }
 				      else {
