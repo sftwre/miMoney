@@ -11,4 +11,4 @@ First-time users get the opportunity to walk through the features of the app wit
 In the Financial Overview section, users can see all of their expenses per month divided into categories. The user is able to enter  and edit their occupation and salary information in the Income panel. In the Current Goals panel, the user can create new financial goals or see the status of existing goals.
 
 # Calendar
-Days in the calendar are colored based on how much the user spent that day. In the left tab, the user's financial information for that week can be seen.
+The Calendar view shows any expenses that are linked to the current users week as shown in the left pane. If no expenses have been created for todays date, no expenses will show up. Add expenses to the current day of month with the plus button on the bottom right corner of the CalendarView or the add expenses button on the bottom left corner of the FinancialOverview.
