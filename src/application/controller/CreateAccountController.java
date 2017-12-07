@@ -110,8 +110,6 @@ public class CreateAccountController {
     private YearMonth currentMonth;
 
     private User newUser;	// the user account of the application
-    
-    //private Goals goal;
 
 	private FileWriter fw;
     
@@ -203,12 +201,7 @@ public class CreateAccountController {
 				String healthDebt = health.getText().trim();
 				String payment = autoPay.getText().trim();
 				String newPhone = phone_Number.getText().trim();
-				//String fd = "Auto";
-				//String fd2 = "PlayStation 4";
-				//goal = new Goals(fd, fd2, "600", "2015");
-				
-
-				
+		
 				File incomeFile = new File(newUser.getPathToProfile() +"Income.txt");
 				
 				File userFile = new File(newUser.getPathToProfile()+ newUser.getUsername() + ".txt");
@@ -242,7 +235,8 @@ public class CreateAccountController {
 
 								bw.write("Gas:0.000000:1/1/2017:This is a temporary fix");
 							} catch (IOException e) {
-								System.out.printf("\nException in try catch DatalistController addtoFile create new file writer\n");
+								
+								JOptionPane.showMessageDialog(null, "\nException in try catch DatalistController addtoFile create new file writer\n");
 							}
 				    	  //Tracker file is created
 				      }
