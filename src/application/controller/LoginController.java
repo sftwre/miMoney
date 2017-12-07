@@ -39,12 +39,6 @@ public class LoginController {
 	private Hyperlink signupLink;
 	
 	@FXML
-	private Hyperlink forgotUserLink;
-	
-	@FXML
-	private Hyperlink forgotPassLink;
-	
-	@FXML
 	Button loginButton;
 	
 	@FXML
@@ -112,32 +106,5 @@ public class LoginController {
 		}// END try/catch load FXML
 		
 	}//END goToSignUpView()
-	
-	@FXML
-	public void goToForgotUserView(ActionEvent event) {
-		
-		try
-		{
-		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/ForgotUsername.fxml"));
-		Scene scene = new Scene(root);
-		Main.setScene(scene);
-		} catch(IOException e){
-			System.out.printf("The resource 'view/resources/ForgotUsername.fxml' could not be located");
-		}// END try/catch load FXML
-	}// END goToForgotUserView()
-	
-	@FXML
-	public void goToForgotPassView(ActionEvent event) {
-		
-		try
-		{
-		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/ForgotPassword.fxml"));
-		Scene scene = new Scene(root);
-		Main.setScene(scene);
-		} catch(IOException e){
-			System.out.printf("The resource 'view/resources/ForgotPassword.fxml' could not be located");
-		}// END try/catch load FXML
-		
-	}
 	
 }//END CONTROLLER CLASS LoginController

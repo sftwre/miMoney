@@ -1,0 +1,2 @@
+Gas:0.000000:1/1/2017:This is a temporary fix
+Food:4.990000:12/6/2017:takis,Entertainment:25.000000:12/6/2017:Movie tickets
