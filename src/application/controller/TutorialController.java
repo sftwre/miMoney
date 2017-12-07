@@ -111,7 +111,8 @@ public class TutorialController
      * @param event
      */
     @FXML
-    public void getStarted(ActionEvent event) {
+    public void getStarted(ActionEvent event) 
+    {
     	
     	
     	try
@@ -134,9 +135,8 @@ public class TutorialController
     		
 		} catch(IOException e){
 			System.err.printf("The resource 'view/resources/MainView.fxml' could not be located");
-		}
-    	
-    	
+
+		}    	
     	
     }
 

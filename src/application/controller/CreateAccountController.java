@@ -15,7 +15,7 @@ import application.model.Expense.AutoInsurance;
 import application.model.Expense.AutoPayment;
 import application.model.Expense.HealthInsurance;
 import application.model.Expense.HomePayment;
-import application.model.Goals.Goals;
+//import application.model.Goals.Goals;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -110,8 +110,6 @@ public class CreateAccountController {
     private YearMonth currentMonth;
 
     private User newUser;	// the user account of the application
-    
-    private Goals goal;
 
 	private FileWriter fw;
     
@@ -209,14 +207,9 @@ public class CreateAccountController {
 				String healthDebt = health.getText().trim();
 				String payment = autoPay.getText().trim();
 				String newPhone = phone_Number.getText().trim();
-				String fd = "Auto";
-				String fd2 = "PlayStation 4";
-				goal = new Goals(fd, fd2, "600", "2015");
-				
-
 				
 				File incomeFile = new File(newUser.getPathToProfile() +"Income");
-				
+
 				File userFile = new File(newUser.getPathToProfile()+ newUser.getUsername());
 				
 				File dir = new File(newUser.getPathToProfile() +"AnnualExpenses" + File.separator + currentMonth.getYear());
@@ -238,8 +231,20 @@ public class CreateAccountController {
 				      
 				      File expTr = new File(dateTrack+File.separator +"ExpenseTracker");
 				      
-				      if(! expTr.createNewFile())
+				      if(expTr.createNewFile())
 				      {
+						FileWriter fw = new FileWriter(expTr);
+
+					      try(BufferedWriter bw = new BufferedWriter(fw)) {
+
+								bw.write("Gas:0.000000:1/1/2017:This is a temporary fix");
+							} catch (IOException e) {
+								
+								JOptionPane.showMessageDialog(null, "\nException in try catch DatalistController addtoFile create new file writer\n");
+							}
+				    	  //Tracker file is created
+				      }
+				      else {
 				    	  
 				    	  JOptionPane.showMessageDialog(null, "Tracker failed to print");
 				    	  Alert a = new Alert(AlertType.ERROR);
