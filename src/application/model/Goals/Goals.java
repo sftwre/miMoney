@@ -90,6 +90,15 @@ public class Goals {
 		this.monthly = (this.totalCost)/(this.time);
 	}
 
+	//GenericGoal
+	public Goals (String type, String projectName, String totalCost, String monthlyPayment, String time)
+	{
+		this.type = type;
+		this.projectName = projectName;
+		this.totalCost = Double.parseDouble(totalCost);
+		this.downPayment = Double.parseDouble(monthlyPayment);
+		this.time = Integer.parseInt(time); 	
+	}
 	
 	/**
 	 * @return the String value of what was just calculated or what the user is entering
