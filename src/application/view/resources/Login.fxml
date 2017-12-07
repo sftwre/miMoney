@@ -33,26 +33,6 @@
             <TextField fx:id="userField" promptText="enter username..." GridPane.columnIndex="1" GridPane.valignment="BOTTOM" />
             <Button fx:id="loginButton" maxWidth="-Infinity" mnemonicParsing="false" onAction="#goToMainView" prefWidth="100.0" text="Login" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
             <PasswordField fx:id="passField" promptText="enter password..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Hyperlink fx:id="forgotUserLink" onAction="#goToForgotUserView" prefHeight="28.0" prefWidth="129.0" text="forgot username?" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
-               <font>
-                  <Font size="14.0" />
-               </font></Hyperlink>
-            <Label prefHeight="29.0" prefWidth="20.0" text="or" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
-               <GridPane.margin>
-                  <Insets left="15.0" />
-               </GridPane.margin>
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Hyperlink fx:id="forgotPassLink" onAction="#goToForgotPassView" prefHeight="28.0" prefWidth="109.0" text="password?" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Hyperlink>
             <Hyperlink fx:id="signupLink" onAction="#goToSignUpView" prefHeight="50.0" prefWidth="62.0" text="signup " GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                <font>
                   <Font size="14.0" />
