@@ -159,10 +159,9 @@ public class CalendarController {
 		if(Files.exists(path))
 			return;
 		
-		String fileName = "FixedExpenses.txt";
-		//String incomeFile = "Income.txt";
-		File incomeFile = new File("UserProfiles" + File.separator+user.getUsername()+File.separator +"Income.txt");
-		File userFile = new File("UserProfiles" + File.separator+user.getUsername()+File.separator +user.getUsername()+".txt");
+		String fileName = "FixedExpenses";
+		File incomeFile = new File("UserProfiles" + File.separator+user.getUsername()+File.separator +"Income");
+		File userFile = new File("UserProfiles" + File.separator+user.getUsername()+File.separator +user.getUsername());
 		File dir = new File("UserProfiles" + File.separator+user.getUsername()+File.separator +"AnnualExpenses" + File.separator + currentMonth.getYear());
 		File dateTrack = new File("UserProfiles" + File.separator +user.getUsername()+File.separator +"AnnualExpenses" + File.separator + currentMonth.getYear() + File.separator + DateFormatter.formatMonth(currentMonth.getMonth()));
 
@@ -173,8 +172,7 @@ public class CalendarController {
 			boolean success = dateTrack.mkdirs();
 			if (success){
 		      // creating the directory succeeded
-		      System.out.println("directory was created successfully");
-		      File expTr = new File(dateTrack+File.separator +"ExpenseTracker.txt");
+		      File expTr = new File(dateTrack+File.separator +"ExpenseTracker");
 		      
 		      try {
 		    	  expTr.createNewFile();
@@ -191,7 +189,6 @@ public class CalendarController {
 				}
 
 			      try(BufferedWriter bw = new BufferedWriter(fw)) {
-						System.out.printf("done\n");
 
 						bw.write("Gas:0.000000:1/1/2017:This is a temporary fix");
 					} catch (IOException e) {
