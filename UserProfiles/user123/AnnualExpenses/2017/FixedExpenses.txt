@@ -1,1 +1,0 @@
-Housing:455.0:Health Insurance:344.0:Auto Payment:65.0:Auto Insurance:578.0:
