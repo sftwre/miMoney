@@ -237,10 +237,9 @@ public class CreateAccountController {
 				      // creating the directory succeeded
 				      
 				      File expTr = new File(dateTrack+File.separator +"ExpenseTracker");
-				      if(expTr.createNewFile()) {
-						// do not do anything, just create the file
-				      }
-				      else {
+				      
+				      if(! expTr.createNewFile())
+				      {
 				    	  
 				    	  JOptionPane.showMessageDialog(null, "Tracker failed to print");
 				    	  Alert a = new Alert(AlertType.ERROR);
