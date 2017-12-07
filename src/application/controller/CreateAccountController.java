@@ -130,7 +130,10 @@ public class CreateAccountController {
     	
     	currentMonth = YearMonth.now();
     	
-			if(user_name.getText().trim().isEmpty() || password.getText().trim().isEmpty() || phone_Number.getText().trim().isEmpty() || income.getText().trim().isEmpty() || jobInfo.getText().trim().isEmpty()) {
+			if(user_name.getText().trim().isEmpty() || password.getText().trim().isEmpty() || phone_Number.getText().trim().isEmpty()
+					|| income.getText().trim().isEmpty() || jobInfo.getText().trim().isEmpty() || 
+					jobInfo.getText().trim().matches(".*[^a-zA-Z\\s]+.*") || income.getText().trim().matches(".*[^\\d,\\.\\$]+.*")) {
+				
 		    		if(user_name.getText().trim().isEmpty()){ 
 		    			user_name.setStyle("-fx-border-color: red;");
 		    			username_error.setText("username is not entered");
@@ -161,9 +164,10 @@ public class CreateAccountController {
 		    			phone_error.setText("");
 		    		}
 		    		
-		    		if(income.getText().trim().isEmpty()){
+		    		if(income.getText().trim().isEmpty() || 
+		    				income.getText().trim().matches(".*[^\\d,\\.\\$]+.*")){
 		    			  income.setStyle("-fx-border-color: red;");
-		    			  income_error.setText("income is not entered");
+		    			  income_error.setText("monetary values only");
 		    			  income_error.setTextFill(Color.BLACK);
 		    		}
 		    		else {
@@ -171,9 +175,11 @@ public class CreateAccountController {
 		    			income_error.setText("");
 		    		}
 		    			    		
-		    		if(jobInfo.getText().trim().isEmpty()) {
+		    		if(jobInfo.getText().trim().isEmpty() || 
+		    				jobInfo.getText().trim().matches(".*[^a-zA-Z\\s]+.*")) {
+		    			
 		    			jobInfo.setStyle("-fx-border-color: red;");
-		    			job_error.setText("job title is not entered");
+		    			job_error.setText("letters and spaces only");
 		    			job_error.setTextFill(Color.BLACK);
 		    		}
 		    		else {
@@ -209,9 +215,9 @@ public class CreateAccountController {
 				
 
 				
-				File incomeFile = new File(newUser.getPathToProfile() +"Income.txt");
+				File incomeFile = new File(newUser.getPathToProfile() +"Income");
 				
-				File userFile = new File(newUser.getPathToProfile()+ newUser.getUsername() + ".txt");
+				File userFile = new File(newUser.getPathToProfile()+ newUser.getUsername());
 				
 				File dir = new File(newUser.getPathToProfile() +"AnnualExpenses" + File.separator + currentMonth.getYear());
 				
@@ -222,9 +228,6 @@ public class CreateAccountController {
 				
 				if(dateTrack.exists()) {
 					
-					// TODO kelly, please use the Alert class to alert the user that the account already exists
-					// Alert can also be used to give error messages, do this if you have time
-					
 					JOptionPane.showMessageDialog(null, "directory already exists");
 					
 				}
@@ -233,18 +236,9 @@ public class CreateAccountController {
 					if (success){
 				      // creating the directory succeeded
 				      
-				      File expTr = new File(dateTrack+File.separator +"ExpenseTracker.txt");
+				      File expTr = new File(dateTrack+File.separator +"ExpenseTracker");
 				      if(expTr.createNewFile()) {
-							fw = new FileWriter(expTr);
-
-					      try(BufferedWriter bw = new BufferedWriter(fw)) {
-								System.out.printf("done\n");
-
-								bw.write("Gas:0.000000:1/1/2017:This is a temporary fix");
-							} catch (IOException e) {
-								System.out.printf("\nException in try catch DatalistController addtoFile create new file writer\n");
-							}
-				    	  //Tracker file is created
+						// do not do anything, just create the file
 				      }
 				      else {
 				    	  
@@ -369,7 +363,7 @@ public class CreateAccountController {
 				 */
 				
 				if(!healthDebt.isEmpty() || !houseDebt.isEmpty() || !payment.isEmpty() || !insurance.isEmpty()) {
-					File fixedFile = new File(dir+File.separator +"FixedExpenses.txt");
+					File fixedFile = new File(dir+File.separator +"FixedExpenses");
 					if(fixedFile.createNewFile()) {
 						//System.out.println("Fixed File is created!");
 					}
@@ -377,19 +371,19 @@ public class CreateAccountController {
 					FileWriter fill = new FileWriter(fixedFile);
 					if(!houseDebt.isEmpty()){
 						home = new HomePayment(Double.parseDouble(houseDebt), null, null);
-						fill.write(home.toString());
+						fill.write(home.toString() + ",");
 					}
 					if(!healthDebt.isEmpty()) {
 						healthy = new HealthInsurance(Double.parseDouble(healthDebt), null, null);
-						fill.write(healthy.toString());
+						fill.write(healthy.toString() + ",");
 						
 					}if(!payment.isEmpty()) {
 						auto = new AutoPayment(Double.parseDouble(payment), null, null);
-						fill.write(auto.toString());
+						fill.write(auto.toString() + ",");
 						
 					}if(!insurance.isEmpty()) {
 						insur =  new AutoInsurance(Double.parseDouble(insurance), null, null);
-						fill.write(insur.toString());
+						fill.write(insur.toString() + ",");
 					}
 					
 					fill.close();
@@ -399,15 +393,20 @@ public class CreateAccountController {
 				
 				
 				try {
+					
+					// authenticate the User
+		    		Main.session.startSession(newUser);
+		    		
 					Parent root = FXMLLoader.load(getClass().getResource("../view/resources/Tutorial.fxml"));
 		    		Scene scene = new Scene(root);
+		    		
 		    		Main.stage.setScene(scene);
 		    		Main.stage.show();
 				}catch(IOException e) {
 					e.printStackTrace();
 					Alert a = new Alert(AlertType.ERROR);
 				    a.setTitle("Alert");
-				    a.setHeaderText("failed to access to tutorial");
+				    a.setHeaderText("failed to access the tutorial");
 				    a.setResizable(true);
 				    a.getDialogPane().setPrefSize(480, 320);
 				    a.show();
