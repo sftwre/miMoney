@@ -23,16 +23,16 @@ public class Session {
 	}
 	
 	/**
-	 * Load the User data into Collections User
+	 * Start the session for the user
 	 */
 	public void startSession(User user)
 	{
 		this.currentUser = user;
-		
+		this.currentUser.setPassAuthenticated(true);
 	}
 	
 	/**
-	 * Write User data from the collections to UserProfiles
+	 * End the user session
 	 */
 	
 	public void endSession()
