@@ -1,1 +1,0 @@
-HomePayment:457.000000:1/1/1970:HealthInsurance:897.000000:1/1/1970:AutoPayment:45.000000:1/1/1970:AutoInsurance:356.000000:1/1/1970:

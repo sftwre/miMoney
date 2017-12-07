@@ -219,6 +219,7 @@ public class CreateAccountController {
 				File goalTrack = new File(newUser.getPathToProfile() + "Goals");
 
 				
+				
 				if(dateTrack.exists()) {
 					
 					JOptionPane.showMessageDialog(null, "directory already exists");
