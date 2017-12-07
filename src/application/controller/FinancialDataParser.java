@@ -176,7 +176,7 @@ public class FinancialDataParser extends FileParser
 						for(String object : rawObjects)
 						{
 							//check that the data in the file is formatted correctly
-							if(!formattedData("[a-zA-Z]+:[a-zA-Z\\d\\-\\.\\s]+:\\d+\\.\\d{6}:\\d+\\.\\d{6}:\\d+\\.\\d{6}:\\d+:\\d+:\\d+\\.\\d{6}", object) )
+							if(!formattedData("[a-zA-Z]+:.+:\\d+\\.\\d+:\\d+\\.\\d+:\\d+", object) )
 							{
 								throw new Exception(String.format("%s is not formatted to standards in %s.%n"
 										+ "Standard: Colons seperating fields, commas seperating objects, 6 decimal digits of precision%n"
@@ -187,12 +187,8 @@ public class FinancialDataParser extends FileParser
 							String properties[] =  object.split(":");
 							
 							
-							// instantiate the Goals object 
 							Goals financialGoal = new Goals(properties[0], properties[1], properties[2], 
-									properties[3], properties[4], properties[5], properties[6]);
-							
-							//set the taxes for the object if any
-							financialGoal.setTaxes(Double.valueOf(properties[7]));
+									properties[3], properties[4]);
 							
 							//add the Goals to the list
 							goalsList.add(financialGoal);
@@ -221,6 +217,7 @@ public class FinancialDataParser extends FileParser
 			
 		} catch (Exception e) {
 			
+			e.printStackTrace();
 			System.out.println(e.getMessage() + " readGoals()");
 		}
 		
@@ -288,7 +285,7 @@ public class FinancialDataParser extends FileParser
 						throw new Exception(String.format("%s is not formatted to standards in %s.%n"
 								+ "Standard: Colons seperating fields, commas seperating objects, 6 decimal digits of precision%n"
 								+ "for double values, no decimals for integer values."
-								+ "%n", line, f.toFile() + ".txt" ));
+								+ "%n", line, f.toFile()));
 					}
 							
 					// create the appropriate Expense object from the current line
