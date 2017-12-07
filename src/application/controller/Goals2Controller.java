@@ -107,8 +107,6 @@ public class Goals2Controller {
 					this.totalCost.setText(parts[2]);
 					this.monthlyPayment.setText(parts[3]);
 					this.time.setText(parts[4]);
-				     
-				    System.out.println(name);
 				    
 				}
 				in.close();	//Close file
