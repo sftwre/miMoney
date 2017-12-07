@@ -133,6 +133,7 @@ public class TutorialController
     		Main.stage.show();
 		} catch(IOException e){
 			System.err.printf("The resource 'view/resources/MainView.fxml' could not be located");
+			e.printStackTrace();
 		}// END try/catch load FXML
     	/*create.initModality(Modality.APPLICATION_MODAL);
     	create.initOwner(Main.stage);

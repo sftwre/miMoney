@@ -15,7 +15,7 @@ import application.model.Expense.AutoInsurance;
 import application.model.Expense.AutoPayment;
 import application.model.Expense.HealthInsurance;
 import application.model.Expense.HomePayment;
-import application.model.Goals.Goals;
+//import application.model.Goals.Goals;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -111,7 +111,7 @@ public class CreateAccountController {
 
     private User newUser;	// the user account of the application
     
-    private Goals goal;
+    //private Goals goal;
 
 	private FileWriter fw;
     
@@ -203,9 +203,9 @@ public class CreateAccountController {
 				String healthDebt = health.getText().trim();
 				String payment = autoPay.getText().trim();
 				String newPhone = phone_Number.getText().trim();
-				String fd = "Auto";
-				String fd2 = "PlayStation 4";
-				goal = new Goals(fd, fd2, "600", "2015");
+				//String fd = "Auto";
+				//String fd2 = "PlayStation 4";
+				//goal = new Goals(fd, fd2, "600", "2015");
 				
 
 				
