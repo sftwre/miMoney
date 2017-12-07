@@ -1,7 +1,6 @@
 package application.controller;
-//import java.awt.event.ActionEvent;
-import java.io.IOException;
 
+import java.io.IOException;
 import application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,8 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-//import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 /**
  * @author Kelly Malcolm
@@ -23,8 +20,6 @@ import javafx.stage.Stage;
 public class TutorialController 
 {
 
-	//String scene = "../view/resources/Tutorial";
-	
 		int buttonClickCnt = 1;			// Counter to keep track of button clicks
 	
 	 	@FXML
@@ -54,7 +49,6 @@ public class TutorialController
     void nextScene(ActionEvent event) 
     {
    
-    	//new version of Tutorial using one controller and one FXML file
     	 
     	 if(((Button)event.getSource()).getId().equals("lastSceneButton"))
     		 buttonClickCnt--;
@@ -112,7 +106,6 @@ public class TutorialController
     	
     }
     
-    //TODO Kelly and Johnathan need to be able to link this to the MainView.fxml 
     /**
      * 
      * @param event
@@ -121,31 +114,27 @@ public class TutorialController
     public void getStarted(ActionEvent event) {
     	
     	
-    	//Stage create =  new Stage();
-    	
-    	//create.initModality(Modality.APPLICATION_MODAL);
-    	//create.initOwner(Main.stage);
     	try
 		{
-    		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/MainView.fxml"));
-    		Scene scene = new Scene(root);
+    		Parent root;
+    		Scene scene;
+    		
+    		if(Main.session.currentUser.isPassAuthenticated())
+    			root = FXMLLoader.load(getClass().getResource("../view/resources/MainView.fxml"));
+    		
+    		// return to the CreateAccount view
+    		else
+    			root = FXMLLoader.load(getClass().getResource("../view/resources/CreateAccount2.fxml"));
+    			
+    		scene = new Scene(root);
+    			
     		Main.stage.setScene(scene);
+    		
     		Main.stage.show();
+    		
 		} catch(IOException e){
 			System.err.printf("The resource 'view/resources/MainView.fxml' could not be located");
-		}// END try/catch load FXML
-    	/*create.initModality(Modality.APPLICATION_MODAL);
-    	create.initOwner(Main.stage);
-    	try {
-    		Parent start;
-        	start = FXMLLoader.load(getClass().getClassLoader().getResource("view/resourses/MainView.fxml"));
-        	Scene scene = new Scene(start);
-        	create.setScene(scene);
-        	create.show();
-        	//Main.stage.setScene(new Scene(start, 500, 575));
-    	}catch(IOException x) {
-    		x.printStackTrace();
-    	}*/
+		}
     	
     	
     	
