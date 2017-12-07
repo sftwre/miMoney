@@ -66,7 +66,7 @@ public class FinancialDataParser extends FileParser
 		try {
 			
 			//prepare the Buffer to read from Income.txt
-			userProfile += "Income.txt";
+			userProfile += "Income";
 			
 			//read from income.txt in UserProfiles
 			bufferInput = new BufferedReader(new FileReader(this.userProfile));
@@ -441,14 +441,14 @@ try {
 				
 				userProfile += String.format("%s%s%d%s%s%s%s", "AnnualExpenses", File.separator,
 						date.getYear(), File.separator, Date.MONTHS_IN_YEAR[date.getMonth()] , 
-						File.separator,"ExpenseTracker.txt");
+						File.separator,"ExpenseTracker");
 			}
 			
 			//FEXPENSE is desired, set the userProfile to FixedExpenses.txt expense file for year in date
 			else
 			{
 				userProfile += String.format("%s%s%d%s%s", "AnnualExpenses", File.separator, 
-								date.getYear(), File.separator, "FixedExpenses.txt");
+								date.getYear(), File.separator, "FixedExpenses");
 			}
 			
 			//read expense data from the expense file

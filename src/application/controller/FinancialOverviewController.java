@@ -479,7 +479,7 @@ private void writeIncomeData(String employment, String salary) throws IOExceptio
 	
 	String incomeFile = financialData.getUserProfile();
 	
-	BufferedWriter bufferedOutput = new BufferedWriter(new FileWriter(incomeFile + "Income.txt"));
+	BufferedWriter bufferedOutput = new BufferedWriter(new FileWriter(incomeFile + "Income"));
 	
 	bufferedOutput.write(userIncome.toString());
 	
