@@ -121,7 +121,7 @@ public class TutorialController
     		Scene scene;
     		
     		if(Main.session.currentUser.isPassAuthenticated())
-    			root = FXMLLoader.load(getClass().getResource("../view/resources/Login.fxml"));
+    			root = FXMLLoader.load(getClass().getResource("../view/resources/MainView.fxml"));
     		
     		// return to the CreateAccount view
     		else
@@ -134,7 +134,7 @@ public class TutorialController
     		Main.stage.show();
     		
 		} catch(IOException e){
-			System.err.printf("The resource 'view/resources/Login.fxml' could not be located");
+			System.err.printf("The resource 'view/resources/MainView.fxml' could not be located");
 
 		}    	
     	

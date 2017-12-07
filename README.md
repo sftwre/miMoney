@@ -5,7 +5,7 @@ miMoney is a money management tool designed to organize your finances. With a su
 miMoney begins with a simple and secure login. The app utilizes hashing and salting so that your plain text password is never stored on your computer.
 
 # Sign up
-First time users create their own account by filling in the following information shown on the create account page, with the 
+First time users create their own account by filling in the following information shown on the create account page, with the last four fields being optional but the rest required information.
 
 # Tutorial
 First-time users get the opportunity to walk through the features of the app with a series of tutorial displays that illustrate how the user can utilize each of the components to get the most out of their money managing experience.
