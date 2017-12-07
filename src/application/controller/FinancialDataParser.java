@@ -53,7 +53,7 @@ public class FinancialDataParser extends FileParser
 	}
 	
 	/**
-	 * Reads the Income data from income.txt
+	 * Reads the Income data from Income file
 	 * @return Income of the user or null if none is provided
 	 */
 	public Income readIncome()
@@ -181,7 +181,7 @@ public class FinancialDataParser extends FileParser
 								throw new Exception(String.format("%s is not formatted to standards in %s.%n"
 										+ "Standard: Colons seperating fields, commas seperating objects, 6 decimal digits of precision%n"
 										+ "for double values, no decimals for integer values."
-										+ "%n", object, f.toFile() + ".txt" ));
+										+ "%n", object, f.toFile()));
 							}
 							
 							String properties[] =  object.split(":");
@@ -216,8 +216,6 @@ public class FinancialDataParser extends FileParser
 			System.out.printf("Could not locate the directory : %s\n", userProfile);
 			
 		} catch (Exception e) {
-			
-			e.printStackTrace();
 			System.out.println(e.getMessage() + " readGoals()");
 		}
 		
@@ -367,7 +365,7 @@ public class FinancialDataParser extends FileParser
 					throw new Exception(String.format("%s is not formatted to standards in %s.%n"
 							+ "Standard: Colons seperating fields, commas seperating objects, 6 decimal digits of precision%n"
 							+ "for double values, no decimals for integer values."
-							+ "%n", line, budgetFile + ".txt" ));
+							+ "%n", line, budgetFile));
 				}
 									
 				// create the appropriate Expense object from the current line
@@ -404,10 +402,10 @@ public class FinancialDataParser extends FileParser
 	/**
 	 * Used to retrieve the Expenses of a user based on the recordType.
 	 * If FinanceType FEXPENSE is passed, all the fixed expenses of the User
-	 * are parsed from FixedExpenses.txt and placed into an ArrayList
+	 * are parsed from FixedExpenses and placed into an ArrayList
 	 * 
-	 * If FinanceType REXPENSE is passed, all the monthly expenses in SpendingTracker.txt
-	 * are placed into an ArrayList. The SpendingTracker.txt file is selected based on the
+	 * If FinanceType REXPENSE is passed, all the monthly expenses in SpendingTracker
+	 * are placed into an ArrayList. The SpendingTracker file is selected based on the
 	 * year and month in the date argument.
 	 * Ex: Date object 1/1/2017 and 1/12/2017 both return the Expense data for the month of
 	 * January 2017, so the day used in the Date object is irrelevant.
@@ -523,7 +521,7 @@ try {
 			
 			userProfile += String.format("%s%s%d%s%s%s%s", "AnnualExpenses", File.separator, 
 								date.getYear(), File.separator,Date.MONTHS_IN_YEAR[date.getMonth()],
-								File.separator, "ExpenseTracker.txt");
+								File.separator, "ExpenseTracker");
 			
 			
 			//read expense data from the expense file
