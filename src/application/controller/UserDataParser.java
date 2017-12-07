@@ -37,7 +37,7 @@ public class UserDataParser extends FileParser {
 		try {
 		
 			//set the user profile to the account information file
-			this.userProfile += String.format("%s", this.user.getUsername() + ".txt");
+			this.userProfile += String.format("%s", this.user.getUsername());
 			
 			bufferInput = new BufferedReader(new FileReader(this.userProfile));
 			
