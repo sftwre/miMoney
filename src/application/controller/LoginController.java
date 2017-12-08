@@ -44,7 +44,7 @@ public class LoginController {
 	@FXML
 	Label incorrectCombo;
 	
-	private User currentUser;// = new User("testUser77");	//This sets the current user to testUser77
+	private User currentUser;
 	private SecureOldPass oldPass;
 	private SecureOldUser oldUser;
 	private ActionEvent e;

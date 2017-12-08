@@ -214,7 +214,6 @@ public class CalendarController {
 		      
 		    }
 			else{
-		      // creating the directory failed
 		      System.out.println("failed trying to create the directory");
 		    }
 		}
@@ -223,17 +222,9 @@ public class CalendarController {
 	private void addTitlePanes(int n) {
 		for(int j = n; j>=0; j--) 
 			weekAccordion.getPanes().add(tpList.get(j));
-			//tpList.get(j).setPrefWidth(220);
 	}//END addTitlePanes()
 
-	//TODO: LOOP
-	//TODO: if(I can find this days date within monthly expenses
-	//TODO: create a Gridpane and add it to gpList, create a new TitledPane add the Gridpane to it, add the TitledPane to tpList
-	//TODO: add a new row to gridpane with itemLabel and doubleTotal until no more expenses for this date exist
-	//TODO: else (I can not find this days date within monthly expenses)
-	//TODO: create new TitledPane for this day and a label that says "no expenses found"
-	//TODO: LOOP until all days in this week are done
-	
+
 	private int decideDays() {
 		int i = 0;
 		int j = 0;
@@ -241,18 +232,16 @@ public class CalendarController {
 		d = DateConverter.convertDate(duplicateDate);
 
 		monthExpenses = input.readExpenses(d, FinanceType.REXPENSE);
-		//monthExpenses.addAll(input.readExpenses(d, FinanceType.FEXPENSE));
 		
 		for(j = 0; j<=duplicateDate.getDayOfWeek().getValue(); j++) {
 			gpList.add(new GridPane());
 		}
 				
 		Boolean auth = false;
-		//*
+
 		while (!duplicateDate.getDayOfWeek().toString().equals("SATURDAY")) {
 			for(Expense e : monthExpenses)
 			{
-				//System.out.printf("\n%s, %d is i, %d is counter, %s is duplicateDate, %d is days\n", d.toString(), i, counter, DateFormatter.formatDay(duplicateDate.getDayOfWeek()), days);
 
 				if(e.getDate().toString().contains(d.toString())) {
 					auth = true;
@@ -261,7 +250,6 @@ public class CalendarController {
 									new Label(e.getItem().substring(0, 18) + "\t\t" + DecimalFormat.getCurrencyInstance().format(e.getAmmount())));
 							gpList.get(i).addRow(counter + 1, new Label(e.getItem().substring(18)));
 							
-							//tpList.add(new TitledPane(DateFormatter.formatDay(duplicateDate.getDayOfWeek()), gpList.get(i)));
 					}else {
 					gpList.get(i).addRow(counter, new Label(e.getItem() + "\t\t" + DecimalFormat.getCurrencyInstance().format(e.getAmmount())));
 					}//END inner if/else str length					
@@ -276,14 +264,11 @@ public class CalendarController {
 				auth = false;
 				tpList.add(new TitledPane(DateFormatter.formatDay(duplicateDate.getDayOfWeek()), gpList.get(i)));
 			}
-			
-			//tpList.add(new TitledPane(DateFormatter.formatDay(duplicateDate.getDayOfWeek()), gpList.get(i)));
 			counter = 0;
 			i++;
             duplicateDate = duplicateDate.minusDays(1);
             d.setDay(d.getDay() - 1);
 		}//END while rolling back to SUNDAY
-//*/		
 		return i-1;	
 	}//END decideDays()
 
@@ -316,26 +301,5 @@ public class CalendarController {
 		}
 
 	}//END addAnExpense()
-	
-	@FXML
-	public void goToWeek(MouseEvent e){
-		Node n = (Node) e.getSource();
-		int spot[] = new int[2];
-		
-		spot[0] = monthTile.getColumnIndex(n);
-		spot[1] = monthTile.getRowIndex(n);
-		
-		System.out.printf("Column %d Row %d clicked\n", spot[0], spot[1]);
-	}//END goToWeek()
-	
-	/**
-	 * Sample code:
-	 * 
-	 * FinancialDataParser financialData =  new FinancialDataParser(new User("testUser77"));
-	 * 
-	 * Date  date = new Date(11,26,2017);
-	 * 
-	 * ArrayList<Expense> expenses = financialData.readExpenses(date, FinanceType.FEXPENSE);
-	 */
 	
 }
