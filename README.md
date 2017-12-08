@@ -27,3 +27,6 @@ The Calendar view shows any expenses that are linked to the current users week a
 #Goals
 Users can search for the details of their financial goals by the title of the project.
 Enter the name of a goal exactly as it appears on the Current Goals tab of the Financial Overview tab. Ex : Ashton Martin
+ 
+ Users can also track the status of their Budgets by selecting a Budget from the Current Budget
+ panel. Select Edit to change your spending limit for a specific spending category.
