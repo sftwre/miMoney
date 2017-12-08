@@ -128,7 +128,9 @@ public class TutorialController
     			root = FXMLLoader.load(getClass().getResource("../view/resources/CreateAccount2.fxml"));
     			
     		scene = new Scene(root);
-    			
+    		
+    		Main.stage.setWidth(1000);
+    		Main.stage.setHeight(730);
     		Main.stage.setScene(scene);
     		
     		Main.stage.show();
