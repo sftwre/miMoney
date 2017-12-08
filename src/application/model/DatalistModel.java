@@ -134,7 +134,7 @@ public class DatalistModel {
 	}//END decideType()
 	
     private void addToFile(Expense e) {
-		Path path = Paths.get("UserProfiles" + File.separator + Main.session.currentUser.getUsername() + File.separator + "AnnualExpenses" + File.separator + currentMonth.getYear() + File.separator + DateFormatter.formatMonth(currentMonth.getMonth()) + File.separator + "ExpenseTracker.txt");
+		Path path = Paths.get("UserProfiles" + File.separator + Main.session.currentUser.getUsername() + File.separator + "AnnualExpenses" + File.separator + currentMonth.getYear() + File.separator + DateFormatter.formatMonth(currentMonth.getMonth()) + File.separator + "ExpenseTracker");
 		File et = new File(path.toString());
 		String line = "";
 		
