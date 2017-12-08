@@ -24,7 +24,7 @@ In the Financial Overview section, users can see all of their expenses per month
 # Calendar
 The Calendar view shows any expenses that are linked to the current users week as shown in the left pane. If no expenses have been created for todays date, no expenses will show up. Add expenses to the current day of month with the plus button on the bottom right corner of the CalendarView or the add expenses button on the bottom left corner of the FinancialOverview.
 
-#Goals
+# Goals
 Users can search for the details of their financial goals by the title of the project.
 Enter the name of a goal exactly as it appears on the Current Goals tab of the Financial Overview tab. Ex : Ashton Martin
  
