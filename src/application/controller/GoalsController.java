@@ -298,7 +298,6 @@ public class GoalsController implements EventHandler<ActionEvent> {
 		String path = "UserProfiles" + File.separator + Main.session.currentUser.getUsername() + File.separator +
 				"Goals" +  File.separator + "Vacation" + File.separator + this.vProjectName.getText();
 		
-		System.out.println(path);
 		//if there is a file print the info to the file 
 		
 		File file = new File(path);
