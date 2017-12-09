@@ -32,6 +32,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TabPane;
@@ -96,6 +97,9 @@ public class FinancialOverviewController
     
     @FXML
     private Button addExpensesButton;
+    
+    @FXML
+    private Hyperlink logOutLink;
     
     private FinancialDataParser financialData;	// FileParser for retrieving the Financial information of the User
     
@@ -484,6 +488,19 @@ private void writeIncomeData(String employment, String salary) throws IOExceptio
 	bufferedOutput.write(userIncome.toString());
 	
 	bufferedOutput.close();
+}
+
+@FXML
+public void logOut(ActionEvent event) {
+	try {
+		Parent root = FXMLLoader.load(getClass().getResource("../view/resources/Login.fxml"));
+		Scene scene = new Scene(root);
+		Main.stage.setWidth(600);
+		Main.stage.setHeight(500);
+		Main.setScene(scene);
+	}catch(IOException e) {
+		e.printStackTrace();
+	}
 }
 
 }

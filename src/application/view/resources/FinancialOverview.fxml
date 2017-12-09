@@ -97,5 +97,6 @@
          </font>
       </Label>
       <Button fx:id="addExpensesButton" layoutX="125.0" layoutY="566.0" mnemonicParsing="false" onAction="#addAnExpense" text="Add todays expenses..." />
+      <Hyperlink fx:id="logOutLink" layoutX="52.0" layoutY="567.0" onAction="#logOut" prefHeight="23.0" prefWidth="67.0" text="Log Out" />
    </children>
 </AnchorPane>
